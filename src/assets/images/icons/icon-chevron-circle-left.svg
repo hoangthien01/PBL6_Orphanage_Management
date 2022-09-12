@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 53.2 (72643) - https://sketchapp.com -->
+    <title>5E695655-4EE5-4F48-9903-95F93D26DD27</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <circle id="path-1" cx="10" cy="10" r="10"></circle>
+        <filter x="-62.5%" y="-62.5%" width="225.0%" height="225.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.15 0" type="matrix"
+                           in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="4-Campaign" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="4-1-0-Campaign---Detail---Dashboard" transform="translate(-222.000000, -61.000000)">
+            <g id="sidebar" transform="translate(0.000000, 54.000000)">
+                <g id="hide-btn" transform="translate(230.000000, 15.000000)">
+                    <g id="Oval-2">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use stroke="#00AFFF" stroke-width="1" fill="#FFFFFF" fill-rule="evenodd"
+                             xlink:href="#path-1"></use>
+                    </g>
+                    <polygon id="Stroke-14" stroke="#00AFFF" stroke-width="0.959999981"
+                             points="11.6316801 13.6652803 11.9724802 13.3244803 8.68064003 10.0336001 11.9724802 6.74080001 11.6316801 6.4 8 10.0336001"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

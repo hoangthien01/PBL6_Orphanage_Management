@@ -1,0 +1,42 @@
+app-grid-column-sort-icon {
+    align-self: center;
+}
+
+.grid-column-sort-icon__default-icon {
+    width: 9px;
+    height: 100%;
+    margin: auto 0 auto 10px;
+    flex-shrink: 0;
+}
+
+.grid-column-sort-icon__inactive-sort {
+    svg {
+        path {
+            fill: #CCC;
+        }
+    }
+}
+
+.grid-column-sort-icon__ascending-sort {
+    svg {
+        path:nth-child(1) {
+            fill: #317FE5;
+        }
+
+        path:nth-child(2) {
+            fill: #CCC;
+        }
+    }
+}
+
+.grid-column-sort-icon__descending-sort {
+    svg {
+        path:nth-child(1) {
+            fill: #CCC;
+        }
+
+        path:nth-child(2) {
+            fill: #317FE5;
+        }
+    }
+}

@@ -83,6 +83,7 @@
     "strictOutputEventTypes": false,
     "strictDomEventTypes": false,
     "enableIvy": false,
+    "fullTemplateTypeCheck": true,
     "compilationMode": "partial"
   }
 }

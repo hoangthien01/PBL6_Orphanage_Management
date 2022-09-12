@@ -1,0 +1,93 @@
+/*------------Dx-Dropdown Button--------------*/
+dx-drop-down-button {
+    border-radius: 5px;
+
+    &.dx-dropdownbutton {
+        .dx-widget {
+            color: inherit;
+            background-color: inherit;
+            border-radius: inherit;
+        }
+
+        .dx-button-content {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            justify-content: space-between;
+
+            &:after {
+                display: none;
+            }
+        }
+
+        .dx-buttongroup-item {
+            border: none;
+        }
+
+        .dx-icon {
+            width: 15px;
+            height: 15px;
+            font-size: 12px;
+            margin-left: 6px;
+            margin-right: 0;
+            color: #fff;
+        }
+
+        // .dx-icon-spindown::before {
+        //    // content: "\f001";
+        //     color: $color-grey-999;
+        // }
+    }
+
+    &[dropdown-button-primary="true"] {
+        .dx-button-content {
+            @include gotham-medium(400, 12px, 20px);
+            color: #FFFF;
+            background-color: $color-blue-00AFFF;
+            border: none;
+            border-radius: 5px;
+
+            &:hover {
+                background-color: $btn-primary__bg-color__hover;
+            }
+
+            &:active {
+                background-color: $btn-primary__bg-color__active;
+            }
+        }
+    }
+    &[dropdown-button-primary-outline="true"] {
+        .dx-button-content {
+            @include gotham-medium(400, 12px, 20px);
+            color: $color-blue-00AFFF;
+            background-color: #FFF;
+            border: 1px solid $color-blue-00AFFF;
+            border-radius: 5px;
+
+            &:hover {
+                background-color: $btn-primary-outline__bg-color__hover;
+                border: 1px solid $color-blue-00AFFF;
+            }
+
+            &:active {
+                color: $color-blue-00AFFF;
+                background-color: $btn-primary-outline__bg-color__active;
+                border: 1px solid $color-blue-00AFFF;
+            }
+        }
+
+        .dx-icon {
+            color: $color-blue-00AFFF;
+        }
+    }
+}
+
+.dx-dropdownbutton-popup-wrapper {
+    .dx-popup-content {
+        padding: 16px;
+    }
+
+    .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item-content {
+        padding: 10px;
+    }
+}

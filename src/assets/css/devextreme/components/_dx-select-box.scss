@@ -1,0 +1,97 @@
+/*------------Dx-Select-Box--------------*/
+
+dx-select-box.base-accent-border {
+    .dx-texteditor-buttons-container i {
+        font-size: 8px;
+        color: $color-blue-00AFFF;
+    }
+
+    &.dx-texteditor.dx-editor-outlined {
+        border: 1px solid $color-blue-00AFFF;
+    }
+
+    .dx-placeholder {
+        color: $color-blue-00AFFF;
+        font-family: 'gotham medium';
+    }
+
+    &.dx-texteditor.dx-state-focused, &.dx-texteditor.dx-state-hover {
+        i {
+            color: $color-blue-00AFFF;
+        }
+    }
+}
+
+dx-select-box {
+    .dx-dropdowneditor-icon {
+        background-color: transparent !important;
+
+        &:before {
+            content: "\f016";
+            color: $color-grey-999;
+        }
+    }
+
+    // Use select-box as dropdown button
+    // to fix dropdown's width
+    &.dx-selectbox {
+        &[select-box-button-primary-outline="true"]{
+            @include dev-extreme-button-primary-outline;
+
+            .dx-texteditor-input {
+                padding: 7px 9px 8px;
+            }
+
+            .dx-placeholder {
+                color: inherit;
+                font-family: inherit;
+                padding: 0 9px;
+            }
+
+            .dx-texteditor-buttons-container i {
+                color: $color-blue-00AFFF;
+                line-height: 28px;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.dx-selectbox {
+    @include field-input;
+
+    .dx-texteditor-input {
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        color: inherit;
+    }
+
+    .dx-placeholder {
+        &:before {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+        }
+    }
+}
+
+// Select-Box dropdown
+.dx-selectbox-popup-wrapper {
+    .dx-popup-content {
+        padding: $popup-content-padding;
+    }
+
+    .dx-list:not(.dx-list-select-decorator-enabled) .dx-list-item-content {
+        padding: 10px;
+    }
+
+    .dx-list .dx-empty-message {
+        text-align: center;
+        color: $color-grey-999;
+        @include gotham-book(400, 14px, 20px);
+        font-style: italic;
+    }
+}

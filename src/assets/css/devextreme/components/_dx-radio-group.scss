@@ -1,0 +1,10 @@
+/*------------Dx-Radio-Group--------------*/
+dx-radio-group {
+    &.dx-radiogroup-horizontal .dx-radiobutton {
+        margin-right: 32px;
+    }
+
+    &.dx-radiogroup-horizontal .dx-radiobutton:last-of-type {
+        margin-right: 0;
+    }
+}

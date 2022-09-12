@@ -1,0 +1,19 @@
+.is-disabled {
+    opacity: 0.6;
+    cursor: default;
+    pointer-events: none;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.unselectable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.is-hidden {
+    display: none;
+}

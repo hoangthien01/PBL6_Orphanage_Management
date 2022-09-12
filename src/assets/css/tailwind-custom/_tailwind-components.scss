@@ -1,0 +1,10 @@
+@layer components {
+    /* ... */
+}
+
+@layer utilities {
+    /* ... */
+    .translate_-1\/2_-1\/2 {
+        transform: translate(-50%, -50%);
+    }
+}

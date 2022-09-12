@@ -1,0 +1,28 @@
+.dx-popover-wrapper.popover-action-buttons__wrapper {
+    .dx-popover-arrow {
+        display: none;
+    }
+
+    .dx-popup-content {
+        padding: 10px 0;
+    }
+}
+
+.popover-action-buttons__button-item {
+    height: 30px;
+    padding: 5px 16px;
+    cursor: pointer;
+    @include popup-item-effect-color;
+}
+
+.popover-action-buttons__button-icon-container {
+    width: 20px;
+    max-width: 20px;
+    flex-shrink: 0;
+}
+
+.popover-action-buttons__button-title {
+    margin-left: 8px;
+    @include gotham-book(400, 12px, 16.8px);
+    color: inherit;
+}

@@ -1,0 +1,116 @@
+{
+	"version": "20.1.7",
+	"date": "07/10/2020",
+	"themeId": "1",
+	"hue": null,
+	"items": [
+		{
+			"key": "@base-font-family",
+			"value": "'Gotham Book', sans-serif"
+		},
+		{
+			"key": "@base-text-color",
+			"value": "#555555"
+		},
+		{
+			"key": "@base-icon-color",
+			"value": "#555555"
+		},
+		{
+			"key": "@base-bg",
+			"value": "#ffffff"
+		},
+		{
+			"key": "@base-accent",
+			"value": "#00AFFF"
+		},
+		{
+			"key": "@base-border-color",
+			"value": "#cccccc"
+		},
+		{
+			"key": "@base-border-radius",
+			"value": "5px"
+		},
+		{
+			"key": "@list-item-selected-bg",
+			"value": "#cccccc"
+		},
+		{
+			"key": "@popup-title-bg",
+			"value": "#00AFFF"
+		},
+		{
+			"key": "@loadindicator-bg",
+			"value": "#00AFFF"
+		},
+		{
+			"key": "@pager-page-selected-bg",
+			"value": "#00AFFF"
+		},
+		{
+			"key": "@datagrid-border-color",
+			"value": "#cccccc"
+		},
+		{
+			"key": "@datagrid-columnchooser-item-color",
+			"value": "#555555"
+		},
+		{
+			"key": "@datagrid-columnchooser-font-weight",
+			"value": "normal"
+		},
+		{
+			"key": "@datagrid-selection-bg",
+			"value": "transparent"
+		},
+		{
+			"key": "@datagrid-row-selected-border-color",
+			"value": "#cccccc"
+		},
+		{
+			"key": "@datagrid-row-selected-color",
+			"value": "#555555"
+		},
+		{
+			"key": "@datagrid-row-focused-color",
+			"value": "#555555"
+		},
+		{
+			"key": "@datagrid-hover-bg",
+			"value": "#00AFFF"
+		},
+		{
+			"key": "@datagrid-nodata-color",
+			"value": "#555555"
+		},
+		{
+			"key": "@datagrid-group-row-bg",
+			"value": "#f8f9fb"
+		},
+		{
+			"key": "@datagrid-search-color",
+			"value": "#ffffff"
+		},
+		{
+			"key": "@datagrid-search-bg",
+			"value": "#ffffff"
+		},
+		{
+			"key": "@datagrid-row-alternation-bg",
+			"value": "#f8f9fb"
+		},
+		{
+			"key": "@datagrid-row-focused-color",
+			"value": "#555555"
+		},
+		{
+			"key": "@tooltip-border-color",
+			"value": "rgba(0, 0, 0, 0)"
+		}
+	],
+	"baseTheme": "generic.light",
+	"outputColorScheme": "custom-scheme",
+	"makeSwatch": false,
+	"widgets": []
+}

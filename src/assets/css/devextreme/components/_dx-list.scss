@@ -1,0 +1,120 @@
+/*------------Dx-List--------------*/
+dx-list {
+    .dx-texteditor-input[aria-label="Search"] {
+        min-height: $search-bar-min-height;
+    }
+}
+
+/*------------dx-list in Lookup / List / Select-box / Tag-Box --------------*/
+// For dropdown items with list style, not check-box list style
+.dx-list.dx-list-with-search {
+    .dx-list-search {
+        margin-bottom: 9px;
+    }
+
+    .dx-empty-message {
+        border-top: none;
+        height: 105px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.dx-list:not(.dx-list-select-decorator-enabled) {
+    .dx-empty-message {
+        border-top: none;
+    }
+
+    .dx-list-item-content {
+        color: $color-black-555;
+        @include gotham-book(400, 12px, 16.8px);
+    }
+
+    .dx-scrollable-content {
+        padding-right: 0 !important;
+    }
+
+    .dx-list-group {
+        padding-bottom: 10px;
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+
+    .dx-list-group-header {
+        @include gotham-medium(400, 14px, 20px);
+        color: #4882C7;
+        padding: 5px 0;
+        border-top: none;
+        border-bottom: none;
+    }
+
+    .dx-list-item {
+        border-top: none;
+        border-radius: 5px;
+        margin-top: 4px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &.dx-state-hover {
+            background-color: $dropdown-item__bg-color__hover;
+        }
+
+        &.dx-state-focused {
+            // set focus by hover color
+            // cuz in the case, we select item and then de-select it, color of focused state is still existed
+            background-color: $dropdown-item__bg-color__focused;
+        }
+
+        &.dx-state-active {
+            background-color: $dropdown-item__bg-color__focused;
+        }
+
+        &.dx-list-item-selected {
+            background-color: $dropdown-item__bg-color__active;
+
+            .dx-list-item-content {
+                position: relative;
+                padding-right: 30px;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    right: 10px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    display: inline-block;
+                    color: #00AFFF;
+                    text-rendering: auto;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTMiIHZpZXdCb3g9IjAgMCAxMiAxMyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMCA2LjVDMCAzLjE4NjIgMi42ODYyIDAuNSA2IDAuNUM5LjMxMzggMC41IDEyIDMuMTg2MiAxMiA2LjVDMTIgOS44MTM4IDkuMzEzOCAxMi41IDYgMTIuNUMyLjY4NjIgMTIuNSAwIDkuODEzOCAwIDYuNVpNMi42ODY0OCA2LjY3NDczTDUuMDExODUgOS4wMDAxTDkuMzEzMyA0LjY5ODY0TDguNjE0NzUgNC4wMDAxTDUuMDExODUgNy42MDNMMy4zODUwMyA1Ljk3NjE5TDIuNjg2NDggNi42NzQ3M1oiIGZpbGw9IiMwMEFGRkYiLz4NCjwvc3ZnPg0K);
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: contain;
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin: 0;
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+
+            &.dx-state-active {
+                background-color: $dropdown-item__bg-color__focused;
+            }
+
+            &.dx-state-hover:not(.dx-state-focused) {
+                background-color: $dropdown-item__bg-color__hover;
+            }
+
+            &.dx-state-focused {
+                background-color: $dropdown-item__bg-color__focused;
+            }
+        }
+    }
+}

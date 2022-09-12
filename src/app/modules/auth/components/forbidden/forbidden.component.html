@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="error-template">
+        <h2 class="pb-16-c">Access Control Denied</h2>
+        <div class="error-details">
+            Sorry, You don't have permission to perform this action.
+        </div>
+        <div class="error-actions">
+            <a routerLink="/" class="btn btn-primary btn-md" (click)="goToHomePage()">
+                Take Me Home
+            </a>
+            <a routerLink="/contact" class="btn btn-default btn-md">
+                Contact Support
+            </a>
+            <a href="/" class="btn btn-default btn-md" (click)="logout()">
+                Logout
+            </a>
+        </div>
+    </div>
+</div>

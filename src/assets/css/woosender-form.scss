@@ -1,0 +1,209 @@
+@import "woosender-extend";
+@import "woosender-variable";
+
+@mixin section-title {
+    color: $color-black-555;
+    @include gotham-medium(400, 14px, 20px);
+    padding-bottom: 16px;
+}
+
+@mixin field-title {
+    display: block;
+    @include gotham-book(400, 12px, 16.8px);
+    color: $color-black-555;
+}
+
+.form-wrapper {
+    .section-summary__title {
+        color: $color-black-555;
+        @include gotham-book(400, 20px, 28px);
+    }
+
+    .section-summary__desc {
+        color: $color-grey-777;
+        @include gotham-book(400, 14px, 19.6px);
+    }
+
+    // TODO: rename later: section__title
+    .section-title {
+        @include section-title;
+    }
+
+    .section-title__medium-14 {
+        color: $color-black-555;
+        @include gotham-medium(400, 14px, 20px);
+        padding-bottom: 4px;
+    }
+
+    .section__desc {
+        color: $color-grey-777;
+        @include gotham-book(400, 12px, 16.8px);
+    }
+
+    .section-desc__book-12--color-777 {
+        color: $color-grey-777;
+        @include gotham-book(400, 12px, 16.8px);
+    }
+
+    .section-desc__book-12--color-555 {
+        color: $color-black-555;
+        @include gotham-book(400, 12px, 16.8px);
+    }
+
+    .box-properties {
+        padding-bottom: 16px;
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+
+    .title {
+        @include field-title;
+        padding-bottom: 4px;
+    }
+
+    .field-label {
+        @include field-title;
+        padding-bottom: 4px;
+
+        &[label-required="true"]:after {
+            content: "";
+            transform: translateY(-50%);
+            display: inline-block;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB2aWV3Qm94PSIwIDAgOCA4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHBhdGggZD0iTTMuMTA4MjggOEg0Ljg5MTcyTDQuNTM1MDMgNC45NUw3LjA4MjggNi43NzVMOCA1LjI1TDUuMDk1NTQgNEw4IDIuNzVMNy4wODI4IDEuMjI1TDQuNTM1MDMgMy4wNUw0Ljg5MTcyIDBIMy4xMDgyOEwzLjQ2NDk3IDMuMDVMMC45MTcxOTggMS4yMjVMMCAyLjc1TDIuOTA0NDYgNEwwIDUuMjVMMC45MTcxOTggNi43NzVMMy40NjQ5NyA0Ljk1TDMuMTA4MjggOFoiIGZpbGw9IiNFNTc5NzkiLz4NCjwvc3ZnPg0K);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: 6px;
+            margin-left: 4px;
+            width: 8px;
+            height: 8px;
+        }
+
+        &[label-optional="true"] {
+            content: " (optional)";
+            font-size: 11px;
+        }
+    }
+
+    .field-label__medium-12--color-555 {
+        color: $color-black-555;
+        @include gotham-medium(400, 12px, 20px);
+        padding-bottom: 4px;
+
+        &[label-required="true"]:after {
+            content: "";
+            transform: translateY(-50%);
+            display: inline-block;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB2aWV3Qm94PSIwIDAgOCA4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHBhdGggZD0iTTMuMTA4MjggOEg0Ljg5MTcyTDQuNTM1MDMgNC45NUw3LjA4MjggNi43NzVMOCA1LjI1TDUuMDk1NTQgNEw4IDIuNzVMNy4wODI4IDEuMjI1TDQuNTM1MDMgMy4wNUw0Ljg5MTcyIDBIMy4xMDgyOEwzLjQ2NDk3IDMuMDVMMC45MTcxOTggMS4yMjVMMCAyLjc1TDIuOTA0NDYgNEwwIDUuMjVMMC45MTcxOTggNi43NzVMMy40NjQ5NyA0Ljk1TDMuMTA4MjggOFoiIGZpbGw9IiNFNTc5NzkiLz4NCjwvc3ZnPg0K);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: 6px;
+            margin-left: 4px;
+            width: 8px;
+            height: 8px;
+        }
+    }
+
+    .field-label__medium-12--color-777 {
+        color: $color-grey-777;
+        @include gotham-medium(400, 12px, 20px);
+        padding-bottom: 4px;
+
+        &[label-required="true"]:after {
+            content: "";
+            transform: translateY(-50%);
+            display: inline-block;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI4IiB2aWV3Qm94PSIwIDAgOCA4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KPHBhdGggZD0iTTMuMTA4MjggOEg0Ljg5MTcyTDQuNTM1MDMgNC45NUw3LjA4MjggNi43NzVMOCA1LjI1TDUuMDk1NTQgNEw4IDIuNzVMNy4wODI4IDEuMjI1TDQuNTM1MDMgMy4wNUw0Ljg5MTcyIDBIMy4xMDgyOEwzLjQ2NDk3IDMuMDVMMC45MTcxOTggMS4yMjVMMCAyLjc1TDIuOTA0NDYgNEwwIDUuMjVMMC45MTcxOTggNi43NzVMMy40NjQ5NyA0Ljk1TDMuMTA4MjggOFoiIGZpbGw9IiNFNTc5NzkiLz4NCjwvc3ZnPg0K);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: 6px;
+            margin-left: 4px;
+            width: 8px;
+            height: 8px;
+        }
+    }
+
+    .field-label__medium-14 {
+        @include gotham-medium(400, 14px, 20px);
+        color: $color-black-555;
+    }
+
+    .field-description {
+        color: $color-grey-777;
+        @include gotham-book(300, 12px, 19px);
+        display: inline-block;
+    }
+
+    .field-content {
+        color: $color-black-555;
+        @include gotham-book(400, 14px, 19.6px);
+        overflow-wrap: break-word;
+    }
+
+    .field-box {
+        height: $field-height;
+        width: 100%;
+        color: $color-black-555;
+
+        &.dx-textbox {
+            &.dx-state-readonly {
+                .dx-texteditor-input {
+                    cursor: default;
+                }
+            }
+        }
+
+        &.dx-lookup,
+        &.dx-selectbox {
+            &.dx-state-disabled {
+                background-color: #f8f9fb;
+                cursor: default;
+            }
+        }
+    }
+
+    .field-box-lite {
+        height: $field-height-lite;
+        width: 100%;
+        color: $color-black-555;
+        @include gotham-book(400, 14px, 16px);
+    }
+
+    .custom-validate {
+        margin-top: 10px;
+        color: $color-red-CE1818;
+        @extend .gotham-book-300;
+    }
+
+    // Dx-Switch Button
+    .switch-btn {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .switch-btn-label {
+        margin-left: 12px;
+        color: $color-black-555;
+        @include gotham-book(400, 12px, 16.8px);
+    }
+}

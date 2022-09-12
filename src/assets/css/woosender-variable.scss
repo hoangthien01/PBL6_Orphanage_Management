@@ -1,0 +1,153 @@
+/**
+ * Main Colors
+ */
+$color-white-FFFFFF: #FFFFFF;
+
+$color-blue-00AFFF: #00AFFF;
+$color-blue-00AFFF__hover-78: rgba(0, 175, 255, 0.78);
+$color-blue-4882C7: #4882C7;
+$color-blue-39A0D3: #39A0D3;
+$color-blue-E1F6FF: #E1F6FF;
+$color-blue-EBF2F8: #EBF2F8;
+$color-blue-30BEFF: #30BEFF;
+
+$color-grey-999: #999;
+$color-grey-CCC: #CCC;
+$color-grey-777: #777;
+$color-grey-DDD: #DDD;
+$color-grey-D3D3D3: #D3D3D3;
+$color-grey-E2E7ED: #E2E7ED;
+$color-grey-EAF0F6: #EAF0F6;
+
+$color-black-555: #555;
+$color-black-026: #00000026;
+
+$color-green-89CD7F: #89CD7F;
+$color-green-BFFEE7: #BFFEE7;
+
+$color-red-E57979: #E57979;
+$color-red-E57979__hover-78: rgba(229, 121, 121, 0.78);
+$color-red-CE1818: #CE1818;
+$color-red-DC6565: #DC6565;
+
+$color-purple-B246AE: #B246AE;
+$color-purple-B246AE__hover-78: rgba(178, 70, 174, 0.78);
+
+/**
+ * Background Colors
+ */
+$bg-color-grey-FAFAFA: #FAFAFA;
+$bg-color-grey-F5F5F5: #F5F5F5;
+$bg-color-grey-F3F3F3: #F3F3F3;
+/**
+ * Border
+ */
+$border-color-grey-EEE: #EEE;
+$border-color-grey-CCC: #CCC;
+
+/**
+ * Header
+ */
+$header__margin-top: 54px;
+
+/**
+ * Side Bar Menu
+ */
+$side-bar__width: 354px;
+$side-bar__width-small: 240px;
+$side-bar__secondary__width: 266px;
+$side-bar-collapsed__width: 70px;
+$side-bar__border-color: $border-color-grey-EEE;
+$side-bar__bg-color: $bg-color-grey-FAFAFA;
+$side-bar__tab__bg-color__active: $color-grey-E2E7ED;
+
+/**
+ * Search Input including - Lookup / List Controls, ect
+ */
+$search-bar-min-height: 30px;
+
+/**
+ * Form - Field
+ */
+$field-border-style: 1px solid #ccc;
+$field-margin-label: 5px;
+$field-height-lite: 40px;
+$field-height: 44px;
+
+$icon-in-base-accent-color: #ffffff;
+
+/**
+ * Mobile
+ */
+$item-selected-color: #EBF2F8;
+$hover-item-selected-color: #F8F9FB;
+$mobile-header-height: 60px;
+$height-mobile-footer: 48px;
+
+/**
+ * Tooltip
+ */
+$tooltip-background-color: #5C5C5C;
+$tooltip-text-color: #E5E5E5;
+$tooltip-width: 300px;
+//
+$box-hover-color-icon: #F1F3F4;
+
+/**
+ * Grid
+ */
+$grid__page-sizes__margin-right: 70px;
+
+/**
+ * Custom Scroll
+ */
+$custom-scroll__max-width: 7px;
+$custom-scroll__min-width: 4px;
+
+/**
+ * Dashboard Colors
+ */
+$good-color: #2DBF5E;
+$poor-color: #FBDC3D;
+$bad-color: #FD9215;
+$ouch-color: #EB5757;
+//
+$woo-text-color: #3F9FCB;
+$good-text-color: #60AF7A;
+$poor-text-color: #C6B352;
+$bad-text-color: #CA8C43;
+$ouch-text-color: #C66868;
+
+/**
+ * Button
+ */
+$btn-primary__bg-color__hover: rgba(0, 175, 255, .85);
+$btn-primary__bg-color__active: #00A1EA;
+
+$btn-primary-outline__bg-color__hover: rgba(0, 175, 255, 0.1);
+$btn-primary-outline__bg-color__active: rgba(0, 175, 255, 0.2);
+
+$btn-delete__bg-color__hover: rgba(229, 121, 121, 0.8);
+$btn-delete__bg-color__active: #E86A6A;
+
+$btn-delete-outline__bg-color__hover: rgba(229, 121, 121, 0.2);
+$btn-delete-outline__bg-color__active: rgba(229, 121, 121, 0.5);
+
+$btn-cancel__bg-color__hover: #F5F5F5;
+$btn-cancel__bg-color__active: #C2C2C2;
+
+/**
+ * Dropdown Item
+ */
+$dropdown-item__bg-color__hover: rgba(224, 246, 255, 0.6);
+$dropdown-item__bg-color__focused: rgba(0, 175, 255, 0.34);
+$dropdown-item__bg-color__active: #E1F6FF;
+/**
+ * Popup
+ */
+$popup-content-padding: 16px;
+
+/**
+ * Effect
+ */
+$box-shadow__black-15: 0px 1px 4px rgb(0 0 0 / 15%);

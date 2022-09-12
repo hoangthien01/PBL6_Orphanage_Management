@@ -1,0 +1,73 @@
+dx-tab-panel {
+    &.dx-tabpanel > .dx-tabpanel-tabs .dx-tabs {
+        box-shadow: none;
+        background-color: #FFF;
+    }
+
+    .dx-tabs-wrapper {
+        display: flex;
+        justify-content: flex-start;
+        padding: 0 8px;
+    }
+
+
+    &.dx-tabpanel > .dx-tabpanel-tabs .dx-tab {
+        box-shadow: none;
+        margin: 0 8px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border: 1px solid transparent;
+        border-bottom: none;
+        background-color: $bg-color-grey-F3F3F3;
+        @include gotham-book(400, 12px, 19.6px);
+        color: #555;
+    }
+
+    &.dx-tabpanel > .dx-tabpanel-tabs .dx-tabs-expanded .dx-tab:not(.dx-tab-selected):hover {
+        background-color: $dropdown-item__bg-color__active;
+    }
+
+    &.dx-tabpanel > .dx-tabpanel-tabs .dx-tabs-expanded .dx-tab:not(.dx-tab-selected):first-of-type {
+        box-shadow: none;
+    }
+
+    &.dx-tabpanel > .dx-tabpanel-tabs .dx-tab.dx-tab-selected {
+        box-shadow: none;
+        border-color: $color-blue-00AFFF;
+        background-color: $dropdown-item__bg-color__active;
+        @include gotham-medium(400, 12px, 19.6px);
+        color: $color-blue-00AFFF;
+
+        &:after {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 100%;
+            position: absolute;
+            bottom: -2px;
+            top: auto;
+            left: 0;
+            right: -1px;
+            border: 1px solid $dropdown-item__bg-color__active;
+            z-index: 0;
+        }
+    }
+
+    &.dx-tabpanel > .dx-tabpanel-tabs .dx-tab.dx-tab-active .dx-tab-content,
+    &.dx-tabpanel > .dx-tabpanel-tabs .dx-tab.dx-tab-selected .dx-tab-content {
+        color: inherit;
+    }
+
+    &.dx-tabpanel .dx-tabs .dx-tab .dx-tab-content {
+        color: inherit;
+    }
+
+    &.dx-tabpanel .dx-multiview-wrapper {
+        border: 1px solid transparent;
+        border-top-color: $color-blue-00AFFF;
+    }
+
+    &.dx-tabpanel:not(.dx-empty-collection) .dx-multiview-wrapper {
+        border-top: 1px solid $color-blue-00AFFF;
+    }
+}

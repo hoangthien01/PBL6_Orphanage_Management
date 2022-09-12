@@ -1,0 +1,32 @@
+/*------------Dx-Date-Box--------------*/
+.dx-datebox {
+    @include field-input;
+
+    .dx-texteditor-input {
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        color: inherit;
+    }
+
+    .dx-placeholder {
+        &:before {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+        }
+    }
+}
+
+// On DateBox Popup
+.dx-timeview-field {
+    .dx-numberbox {
+        width: 90px;
+    }
+
+    .dx-selectbox {
+        width: 100px;
+    }
+}

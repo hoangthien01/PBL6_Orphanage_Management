@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="73px" height="72px" viewBox="0 0 73 72" version="1.1" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 59 (101010) - https://sketch.com -->
+    <title>8B735945-03B1-4667-896D-B65FC5FD90F9</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <circle id="path-1" cx="36.5158537" cy="36" r="36"></circle>
+    </defs>
+    <g id="0-Sign-in-&amp;-Register" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="0-2-0-Onboarding---Timezone" transform="translate(-647.000000, -280.000000)">
+            <g id="card" transform="translate(473.000000, 232.000000)">
+                <g id="ico-timezone" transform="translate(173.625000, 48.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Oval" fill="#EAF0F6" xlink:href="#path-1"></use>
+                    <g id="2150467" mask="url(#mask-2)" fill-rule="nonzero">
+                        <g transform="translate(18.515854, 18.000000)">
+                            <polygon id="Path" fill="#7FCBCA"
+                                     points="5.53836522 23.493287 0 35.9549217 36 35.9549217 30.4622609 23.493287"></polygon>
+                            <path d="M28.5448696,10.5448696 C28.4932363,11.925012 28.2223004,13.2881448 27.7422261,14.5831304 C26.0311304,19.6171826 21.8698435,26.0593043 18,30.4616348 C14.1301565,26.0593043 9.96886957,19.6171826 8.25746087,14.5843826 C7.77738654,13.289397 7.50645068,11.9262642 7.45481739,10.5461217 C7.45481739,4.72226464 12.1759864,0.00109565217 17.9998435,0.00109565217 C23.8237006,0.00109565217 28.5448696,4.72226464 28.5448696,10.5461217 L28.5448696,10.5448696 Z"
+                                  id="Path" fill="#FB4A59"></path>
+                            <circle id="Oval" fill="#F2F2F2" cx="18" cy="10.5442435" r="5.27227826"></circle>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

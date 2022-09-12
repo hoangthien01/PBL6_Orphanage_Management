@@ -1,0 +1,8 @@
+@import "mixins/_button";
+/*------------Dx-File-Uploader--------------*/
+
+dx-file-uploader {
+    .dx-fileuploader-button {
+        @include dev-extreme-button-primary-outline;
+    }
+}

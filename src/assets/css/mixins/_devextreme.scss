@@ -1,0 +1,17 @@
+@import "woosender-extend";
+@import "woosender-variable";
+
+/*------------Input (TextBox, NumberBox, Selectbox, etc) --------------*/
+@mixin field-input {
+    @include gotham-book(400, 14px, 19.6px);
+}
+
+@mixin field-input-padding {
+    padding: 10px 16px;
+}
+
+/*------------Dx-GRID--------------*/
+@mixin data-grid-row-text {
+    color: #555555;
+    @include gotham-book(400, 14px, 19.6px);
+}

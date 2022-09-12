@@ -1,0 +1,54 @@
+@import "mixins/_button";
+
+/*------------Dx-Popup--------------*/
+.dx-popup-title.dx-toolbar {
+    @include gotham-book(bold, 14px, 22px);
+    background: linear-gradient(238.27deg, $color-blue-00AFFF 0%, #0068FF 100%);
+    color: $icon-in-base-accent-color;
+    padding: 10px 30px;
+}
+
+.dx-popup-title.dx-toolbar .dx-toolbar-label {
+    @include gotham-book(bold, 14px, 17px)
+}
+
+.dx-popup-bottom.dx-toolbar .dx-toolbar-item {
+    padding: 0 10px 0 0;
+}
+
+.dx-popup-bottom.dx-toolbar .dx-toolbar-item:last-child {
+    padding: 0;
+}
+
+.dx-popup-content {
+    padding: $popup-content-padding;
+
+    & > .dx-button {
+        margin: 0 5px;
+    }
+}
+
+.dx-popup-bottom {
+    background: transparent;
+    color: $color-black-555;
+
+    &.dx-toolbar {
+        padding: 0 16px 16px;
+
+        .dx-button-has-text .dx-button-content {
+            padding: 7px 18px 8px;
+        }
+    }
+
+    .dx-popup-done {
+        @include dev-extreme-button-primary;
+    }
+
+    .dx-popup-clear {
+        @include dev-extreme-button-primary-outline;
+    }
+
+    .dx-popup-cancel {
+        @include dev-extreme-button-cancel;
+    }
+}

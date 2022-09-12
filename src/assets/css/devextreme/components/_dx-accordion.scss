@@ -1,0 +1,40 @@
+/*------------Dx-ACCORDION--------------*/
+
+dx-accordion {
+    background-color: inherit !important;
+
+    .dx-accordion-wrapper {
+        background-color: inherit;
+
+        .dx-accordion-item {
+            border: 1px solid transparent;
+            border-color: rgb(239, 239, 239) !important;
+        }
+
+        .dx-accordion-item-title {
+            color: #4882C7;
+            @include gotham-book(bold, 12px, 30px);
+            padding-left: 25px;
+        }
+
+        .dx-accordion-item-title:before {
+            font-size: 9px;
+        }
+
+        .dx-accordion-item-body {
+            padding: 0;
+        }
+
+        .dx-item.dx-accordion-item.dx-accordion-item-closed {
+            height: fit-content;
+        }
+
+        .dx-accordion-item.dx-state-hover > .dx-accordion-item-title {
+            background-color: inherit;
+        }
+
+        .dx-state-focused.dx-accordion-item {
+            border-color: #dddddd;
+        }
+    }
+}

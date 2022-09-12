@@ -1,0 +1,73 @@
+// Description:
+@mixin font-base($font-weight, $font-size, $line-height) {
+  font-weight: $font-weight;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+
+@mixin vertical-position($left,$right) {
+  left: $left;
+  right: $right;
+}
+
+@mixin horizontal-position($top,$bottom) {
+  top: $top;
+  bottom: $bottom;
+}
+
+@mixin position($top, $right, $bottom, $left) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+
+@mixin gotham($font-weight, $font-size, $line-height) {
+  font-family: 'Gotham', sans-serif;;
+  @include font-base($font-weight, $font-size, $line-height);
+}
+
+@mixin gotham-book($font-weight, $font-size, $line-height) {
+  font-family: 'Gotham Book', sans-serif;;
+  @include font-base($font-weight, $font-size, $line-height);
+}
+
+@mixin gotham-medium($font-weight, $font-size, $line-height) {
+  font-family: 'Gotham Medium', sans-serif;;
+  @include font-base($font-weight, $font-size, $line-height);
+}
+
+@mixin gotham-bold($font-size, $line-height) {
+    font-family: 'Gotham Bold', sans-serif;;
+    @include font-base(400, $font-size, $line-height);
+}
+
+.gotham-book-300 {
+  //font-family: 'Gotham Book';
+  @include gotham-book(300, 12px, 14px);
+}
+
+.gotham-book-500 {
+  //font-family: 'Gotham Book';
+  @include gotham-book(500, 12px, 14px)
+}
+
+.gotham-medium-300 {
+  //font-family: 'Gotham Medium';
+  @include gotham-book(300, 12px, 14px);
+}
+
+.gotham-medium-500 {
+  //font-family: 'Gotham Medium';
+  @include gotham-medium(500, 12px, 14px)
+}
+
+.gotham-bold-700 {
+    font-family: 'Gotham Bold', sans-serif;;
+    @include font-base(700, 24px, 28.8px);
+}
+
+
+

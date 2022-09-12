@@ -1,0 +1,19 @@
+.warning-message__error {
+    color: $color-red-DC6565;
+    @include gotham-book(400, 12px, 16.8px);
+}
+
+.warning-message__error--font-14 {
+    color: $color-red-DC6565;
+    @include gotham-book(400, 14px, 20px);
+}
+
+.warning-message__notification {
+    color: $color-black-555;
+    @include gotham-book(400, 12px, 16.8px);
+}
+
+.warning-message__notification--font-14 {
+    color: $color-black-555;
+    @include gotham-book(400, 14px, 20px);
+}

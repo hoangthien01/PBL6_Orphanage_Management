@@ -1,0 +1,58 @@
+@import "mixins/_devextreme";
+
+/*------------Dx-Lookup--------------*/
+dx-lookup {
+    .dx-lookup-arrow:before {
+        content: "\f016";
+        color: $color-grey-999;
+    }
+}
+
+.dx-lookup {
+    .dx-lookup-field {
+        padding: 10px 34px 10px 16px;
+        @include field-input;
+    }
+
+    &.dx-invalid {
+        .dx-lookup-field {
+            padding: 10px 60px 10px 16px;
+        }
+    }
+}
+
+.dx-lookup-popup-search {
+    .dx-list {
+        height: calc(100% - 41px);
+    }
+
+    .dx-lookup-search-wrapper {
+        padding: 0;
+        margin-bottom: 9px;
+    }
+
+    .dx-lookup-search .dx-texteditor-input {
+        min-height: $search-bar-min-height;
+    }
+
+    .dx-list .dx-empty-message {
+        text-align: center;
+        color: $color-grey-999;
+        @include gotham-book(400, 14px, 20px);
+        font-style: italic;
+    }
+}
+
+.dx-lookup-popup-wrapper {
+    .dx-list-item-content {
+        padding: 10px;
+    }
+
+    .dx-popup-content {
+        padding: $popup-content-padding;
+
+        .dx-empty-message {
+            border-top: none;
+        }
+    }
+}

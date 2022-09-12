@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 19" width="19px" height="19px">
+    <g fill="none" fill-rule="nonzero" transform="translate(.493 .5)">
+        <circle cx="8.936" cy="8.936" r="8.936" fill="currentColor"/>
+        <path fill="#FFF"
+              d="M11.182 9.286H9.588v5.841H7.172V9.286H6.023V7.233h1.15V5.904c0-.95.45-2.437 2.436-2.437l1.79.007v1.993H10.1c-.213 0-.513.106-.513.56v1.208h1.806l-.212 2.05z"/>
+    </g>
+</svg>

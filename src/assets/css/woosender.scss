@@ -1,0 +1,464 @@
+@import url("../fonts/index.css");
+//
+@import "woosender-extend";
+@import "woosender-variable";
+@import "woosender-form";
+@import "woosender-icon";
+@import "woosender-mobile";
+@import "woosender-page.scss";
+//
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "tailwind-custom";
+//
+@import "mixins";
+@import "shared";
+@import "devextreme/components";
+@import "components";
+
+html, body, {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-size: 13px;
+    font-family: "Gotham Book", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+}
+
+button {
+    outline: none;
+    border: transparent;
+    background-color: inherit;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+/*------------------------ BUTTON STYLE -----------------------*/
+
+/*-----------Dx-BUTTON TYPE: DEFAULT----------*/
+
+/*--------BUTTON BLUE-----------*/
+.btn-blue {
+    border: 1px solid $color-blue-00AFFF;
+    color: $color-blue-00AFFF;
+    background: white;
+    @extend .gotham-medium-500;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-blue:hover {
+    border: 1px solid $color-blue-00AFFF;
+    color: $color-blue-00AFFF;
+    background: white;
+}
+
+.btn-blue:focus {
+    border: 1px solid #2b8aba;
+    color: #2b8aba;
+    background: #fefefe;
+    outline: none;
+}
+
+.btn-blue:active {
+    border: 1px solid #2b8aba;
+    color: #2b8aba;
+    background: #fefefe;
+}
+
+/*--------Header page----------*/
+
+.title-bar {
+    z-index: 100;
+    background: #ffffff;
+    width: 100%;
+    height: 54px;
+    border-bottom: 1px solid #eeeeee;
+
+    .box-title {
+        padding: 15px 25px;
+
+        .activation {
+            margin: 2px 20px;
+            padding-right: 25px;
+            padding-top: 5px;
+            border-right: 1px solid #eeeeee;
+        }
+
+        .title {
+            color: #555555;
+            @include gotham-bold(16px, 19px);
+        }
+    }
+
+    .box-button {
+        padding: 10px;
+
+        .import-contact {
+            height: 30px;
+            width: 146px;
+            border-radius: 5px;
+            color: $color-blue-00AFFF;
+            @include gotham-book(500, 12px, 18px);
+            line-height: 18px;
+            margin: 0 10px;
+            text-align: center;
+
+            &.dx-state-hover {
+                background-color: rgba(0, 175, 255, 0.1);
+            }
+        }
+    }
+}
+
+// ------------ Left Side Bar Menu -------------- //
+.side-bar-menu-wrapper {
+    min-width: $side-bar__width-small;
+    width: $side-bar__width-small;
+    height: 100%;
+    background-color: $side-bar__bg-color;
+    transform: none;
+    visibility: visible;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-property: transform, margin-left, margin-right;
+    position: absolute;
+    left: 0;
+    z-index: 100;
+    border-right: 1px solid $side-bar__border-color;
+
+    .side-bar-scroll-view {
+        .dx-scrollable-content {
+            padding: 16px !important;
+        }
+    }
+
+    .side-bar-menu-content {
+        margin: 0;
+    }
+
+    .tab-item-icon {
+        width: 20px;
+        color: $color-grey-999;
+        flex-shrink: 0;
+    }
+
+    .tab-item-name {
+        @include gotham-medium(500, 12px, 19px);
+        color: #777;
+        flex-grow: 1;
+        flex-shrink: 0;
+    }
+
+    .side-bar-menu-item-container {
+        list-style: none;
+        padding-bottom: 5px;
+        overflow: hidden;
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+
+    .side-bar-menu-item {
+        height: 42px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 15px;
+        border-radius: 5px;
+        background-color: #FAFAFA;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $side-bar__tab__bg-color__active;
+
+            .tab-item-name {
+                color: $color-blue-4882C7;
+            }
+
+            .tab-item-icon {
+                color: $color-blue-4882C7;
+            }
+        }
+
+        &.active {
+            background-color: $side-bar__tab__bg-color__active;
+
+            .tab-item-name {
+                color: $color-blue-4882C7;
+            }
+
+            .tab-item-icon {
+                color: $color-blue-4882C7;
+            }
+        }
+    }
+
+    .line-filter {
+        border: 1px solid #000000;
+        opacity: 0.1;
+    }
+
+    .add-filter-box {
+        position: absolute;
+        bottom: 55px;
+    }
+
+    .side-bar-menu-item__nested-items {
+        margin-left: 28px;
+
+        .side-bar-menu-item-container:first-child {
+            padding-top: 5px;
+        }
+    }
+
+    .tab-parent__icon-chevron-down {
+        color: #999;
+        width: 14px;
+        flex-shrink: 0;
+
+        &[is-expanded="true"] {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.right-content-transition {
+    position: relative;
+    margin-left: 240px;
+    width: 100%;
+    overflow: auto;
+
+    &.content-transition {
+        transition-duration: 0.4s;
+        transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition-property: transform, margin-left, margin-right;
+    }
+
+    &.inactive-filter {
+        margin-left: 0;
+    }
+}
+
+
+.text-has-link {
+    color: $color-blue-00AFFF !important;
+    cursor: pointer;
+}
+
+.button-outline {
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid $color-blue-00AFFF;
+    color: $color-blue-00AFFF;
+    @extend .gotham-book-500;
+    cursor: pointer;
+    outline: none;
+    background: white;
+    box-shadow: none;
+    padding: 5px 8px;
+    height: 30px;
+    width: 76px;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+// Custom css for tooltip
+.dx-tooltip-wrapper {
+    .dx-overlay-content {
+        background-color: $tooltip-background-color;
+        color: $tooltip-text-color;
+
+        .dx-popup-content {
+            white-space: unset;
+            width: $tooltip-width;
+            text-align: left;
+            font-size: 11px;
+        }
+
+        .dx-popover-arrow {
+            &:after {
+                background-color: $tooltip-background-color;
+            }
+        }
+    }
+
+    &.custom-width {
+        .dx-popup-content {
+            max-width: $tooltip-width !important;
+            width: auto !important;
+        }
+    }
+}
+
+// multiple lines
+// Add  [style.-webkit-box-orient]="'vertical'" in html to add this style
+.multiple-lines {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+
+    &.two-lines {
+        -webkit-line-clamp: 2;
+    }
+
+    &.three-lines {
+        -webkit-line-clamp: 3;
+    }
+
+    &.four-lines {
+        -webkit-line-clamp: 4;
+    }
+
+    &.five-lines {
+        -webkit-line-clamp: 5;
+    }
+}
+
+// Loading out app
+@keyframes ball-scale {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes ball-scale {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.lds-dual-ring {
+    position: absolute;
+    left: calc(50% - 23px);
+    top: calc(50% - 23px);
+    display: inline-block;
+    width: 47px;
+    height: 47px;
+}
+
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    border-color: #fff $color-blue-00AFFF #fff $color-blue-00AFFF;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+div.dxc-tooltip {
+    z-index: 1;
+}
+
+.dx-icon-attach { // in Angular apps, add ::ng-deep before
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAA/klEQVRIx+3VQUoDQRCF4c8oigu9gKhExCw9hV7BnSvBa2TpCaLxAooEvINrRT2CKMGdZhAhQtTFlBBhxMl0FiJ5MFT3q+n6q3tgmj+gZXSQxXOORtnFUyWK36CGs/B28I5N3Kd238ET6kPeGp6HgEnKcFTgH6NXpkDtl/wCHgv8LhbHARjWB5oFfjNyyYBKmgAmgH8GeMNsjOfQL7NoZgTABfYxj92YJ+9ggOkY7+Eq4mVEkR9U3UFX/nuGO2wXvLOOhxFO4pvaeMHSD/kGXtGqCqjL74RrbBQUv5XfCytVAeJYsuj0BAc4jXkPWynFv7SKQ/l36EdspXY+Fn0Cic0xJ94/XGoAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjAtMDUtMjdUMDM6MzM6MDErMDA6MDByuzmCAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIwLTA1LTI3VDAzOjMzOjAxKzAwOjAwA+aBPgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII=');
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+}
+
+.disabled-text-selection {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/**
+ * Popover Actions List
+ */
+.popover-actions-list-container {
+    .dx-popover-arrow {
+        display: none;
+    }
+
+    .dx-popup-content {
+        padding: 10px 0;
+    }
+
+    .popover-action-item {
+        color: #555555;
+        @include gotham-book(500, 12px, 16.8px);
+        padding: 5px 16px;
+        cursor: pointer;
+
+        @include popup-item-effect-color;
+    }
+}
+
+.global-image-container {
+    position: absolute;
+    top: 0;
+    z-index: 10000;
+    width: 100%;
+    height: 100%;
+    background-color: #333333DB;
+    text-align: center;
+
+    .divContent {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        height: fit-content;
+        width: fit-content;
+
+        #global-image {
+            max-width: 90%;
+            border-radius: 5px;
+        }
+
+        svg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin-left: -7px;
+            margin-top: -25px;
+            font-size: 22px;
+            color: #FFFFFF;
+        }
+
+        svg:hover {
+            color: red;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,12 @@
+.prospect-status__label {
+    border-radius: 5px;
+    padding: 4px;
+    @include gotham-medium(400, 10px, 10.6px);
+    color: white;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    height: 18px;
+    width: fit-content;
+    white-space: nowrap;
+}

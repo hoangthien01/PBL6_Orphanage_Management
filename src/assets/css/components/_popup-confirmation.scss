@@ -1,0 +1,143 @@
+$body-max-width: 1700px;
+$header-height: 55px;
+$footer-height: 40px + 24px + 24px;
+
+.dx-popup-wrapper.confirmation-popup-container {
+    background-color: rgba(0, 0, 0, 0.7);
+
+    .dx-popup-title.dx-toolbar {
+        display: none;
+    }
+
+    .dx-toolbar-before {
+        width: calc(100% - 38px);
+    }
+
+    .dx-toolbar-after {
+        .dx-button-content {
+            .dx-icon.dx-icon-close {
+                font-size: 18px;
+            }
+        }
+    }
+
+    .dx-overlay-content {
+        border: none;
+    }
+
+    .popup-container {
+        height: 100%;
+        position: relative;
+        background: #eee;
+    }
+
+    .popup-content-header {
+        padding: 17px 24px;
+        background: linear-gradient(238.27deg, #00afff 10.39%, #0068ff 93.93%);
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        .title {
+            color: #ffffff;
+            @include gotham-book(600, 14px, 16.8px);
+            padding-right: 15px;
+        }
+
+        .close-button {
+            width: 21px;
+            height: 21px;
+            background-position: 3px 3px;
+            background-size: 15px 15px;
+            padding: 3px;
+            font-size: 18px;
+            text-align: center;
+            line-height: 15px;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+
+    .popup-content-footer {
+        padding: 24px;
+    }
+
+    .popup-content {
+        height: calc(100% - #{$header-height});
+        width: 100%;
+        background-color: #fff;
+    }
+
+    .popup-content-body {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(24px, 1fr);
+        max-width: $body-max-width;
+        margin: 0 auto;
+        background: white;
+
+        &[has-footer="true"] {
+            height: calc(100% - #{$footer-height});
+        }
+    }
+
+    .popup-content-wrapper {
+        padding: 24px 24px 0 24px;
+    }
+
+    .popup-content-conditional-agreement {
+        border-top: 1px dashed rgba(0, 0, 0, 0.1);
+        padding-top: 24px;
+        margin: 0 24px 0 24px;
+    }
+
+    .popup-container-scroll-view {
+        .dx-scrollable-content {
+            height: auto;
+            min-height: 100%;
+            padding-right: 0 !important;
+        }
+
+        .dx-scrollview-content {
+            height: auto;
+            min-height: 100%;
+        }
+    }
+
+    // Move to Global
+    .button-container {
+        width: 115px;
+        @include gotham-book(400, 12px, 20px);
+        padding: 10px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .dx-popup-content {
+        padding: 0;
+        height: 100%;
+    }
+}
+
+// TODO: Rename it popup-confirmation__content-title
+.popup-confirmation-content-title {
+    @include popup-content-title;
+}
+
+.popup-confirmation__content--font-medium-14 {
+    color: $color-black-555;
+    @include gotham-medium(400, 14px, 20px);
+}
+
+.popup-confirmation__content--font-book-14 {
+    color: $color-black-555;
+    @include gotham-book(400, 14px, 20px);
+}
+
+.popup-confirmation-content-detail {
+    @include popup-content-detail;
+}
+
+.popup-confirmation-switch-label {
+    color: #555555;
+    @include gotham-medium(400, 14px, 20px);
+}

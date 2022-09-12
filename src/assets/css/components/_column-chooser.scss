@@ -1,0 +1,81 @@
+.dx-data-grid__column-chooser-cell {
+    position: relative;
+
+    .column-chooser-button {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: calc(100% - 1px);
+        width: 22px;
+        background-color: #E2E7ED;
+        border: none;
+        border-radius: 0;
+        outline: none;
+        padding: 0;
+
+        &:hover {
+            border: 1px solid #00AFFF;
+            background-color: rgba(0, 175, 255, 0.2);
+
+            .dx-icon-chevrondown {
+                color: #00afff;
+            }
+        }
+    }
+
+    .column-chooser-button_active {
+        border: 1px solid #00AFFF;
+        background-color: rgba(0, 175, 255, 0.2);
+    }
+
+    .dx-icon-chevrondown {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 16px;
+    }
+
+    .dx-icon-chevron-down_active {
+        color: #00afff;
+    }
+}
+
+.column-chooser-popover {
+    .column-chooser-title {
+        padding-bottom: 8px;
+        @include gotham-medium(normal, 16px, 20px);
+        color: #555555;
+    }
+
+    .column-chooser-empty {
+        @include gotham-book(400, 13px, 16.8px);
+        font-style: italic;
+        color: #555;
+        padding: 10px 0;
+    }
+
+    .dx-checkbox {
+        padding-top: 7px;
+        padding-bottom: 7px;
+        width: 100%;
+    }
+
+    .column-chooser-popover-buttons {
+        padding-top: 8px;
+    }
+
+    .column-chooser-popover-reset-btn {
+        .dx-button-content {
+            @include gotham-book(400, 12px, 16.8px);
+        }
+    }
+
+    .column-chooser-popover-close-btn {
+        .dx-button-content {
+            @include gotham-book(400, 12px, 16.8px);
+        }
+    }
+}

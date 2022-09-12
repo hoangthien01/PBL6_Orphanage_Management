@@ -1,0 +1,82 @@
+<form>
+    <div class="login-container">
+        <div class="introduce">
+            <span class="trial-message">Login to your account</span>
+        </div>
+        <div class="main-content">
+            <div class="field-area form-wrapper" appAutoFocusInput [timeout]="1000">
+                <div class="box-properties">
+                    <span class="field-label">Email</span>
+                    <dx-text-box #emailTextBox
+                                 class="field-box"
+                                 placeholder="Enter Email"
+                                 [valueChangeEvent]="'input'"
+                                 [(value)]="login.email"
+                                 (onFocusOut)="removeSpaces()"
+                                 (onValueChanged)="dataChanged()"
+                                 (onEnterKey)="signIn()">
+                        <dx-validator>
+                            <dxi-validation-rule type="required"
+                                                 message="Email address is required">
+                            </dxi-validation-rule>
+                            <dxi-validation-rule type="email"
+                                                 message="Invalid email address">
+                            </dxi-validation-rule>
+                        </dx-validator>
+                    </dx-text-box>
+                </div>
+                <div class="box-properties">
+                    <span class="field-label">Password</span>
+                    <dx-text-box #passwordTextBox
+                                 class="field-box"
+                                 mode="password"
+                                 [inputAttr]="{ autocomplete: 'on' }"
+                                 placeholder="Enter Password"
+                                 [valueChangeEvent]="'input'"
+                                 [(value)]="login.password"
+                                 (onEnterKey)="signIn()"
+                                 (onValueChanged)="dataChanged()">
+                        <dx-validator>
+                            <dxi-validation-rule type="required"
+                                                 message="Password is required">
+                            </dxi-validation-rule>
+                        </dx-validator>
+                    </dx-text-box>
+                </div>
+                <div class="content-footer clearfix">
+                    <div class="login-button">
+                        <app-custom-button class="float-left mr-4 w-100"
+                                           [disabled]="!isDataValid || login.isLogging"
+                                           [height]="40"
+                                           icon="{{ login.isLogging ? 'fas fa-spinner fa-spin' : '' }}"
+                                           [text]="'SIGN IN'"
+                                           [type]="'primary'"
+                                           (onClick)="signIn()">
+                        </app-custom-button>
+                    </div>
+                    <div class="keep-login">
+                        <dx-check-box class="mr-2"
+                                      [text]="'Keep me logged in'"
+                                      [(value)]="login.rememberMe">
+                        </dx-check-box>
+                    </div>
+
+                    <div class="text-has-link forgot-password text-forgot" (click)="forgotPassword()">Forgot password?
+                    </div>
+                </div>
+                <!-- <div class="line"></div> -->
+<!--
+                <div class="add-new-account text-center mb-4">
+                    <p class="not-account">Do not have an account?</p>
+                    <app-custom-button class="mt-2 get-free-trial"
+                                       [height]="35"
+                                       [width]="120"
+                                       [text]="'Sign Up Now'"
+                                       [type]="'primary-outline'"
+                                       (onClick)="getFreeTrial()">
+                    </app-custom-button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</form>

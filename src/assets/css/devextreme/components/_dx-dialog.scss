@@ -1,0 +1,135 @@
+@import "mixins/_button";
+
+/*------------Dx-Dialog--------------*/
+
+.dx-toolbar.dx-dialog-buttons {
+    .dx-button-content {
+        line-height: 18px;
+    }
+}
+
+// Button's Dialog - Check confirmDialogPromise() on common-function
+.dx-dialog {
+    background-color: rgba(0, 0, 0, 0.7);
+
+    // Confirm
+    .dx-button-default.dx-button-mode-contained {
+        @include dev-extreme-button-primary;
+
+        // need to override focused color, cuz we execute focus() on dialog button
+        &.dx-state-focused {
+            background-color: $btn-primary__bg-color__active;
+            color: #FFFF;
+        }
+    }
+
+    // No Confirm
+    .dx-button-normal {
+        @include dev-extreme-button-cancel;
+    }
+
+    // Delete
+    .dx-button-danger.dx-button-mode-contained {
+        @include dev-extreme-button-delete;
+
+        &.dx-state-focused {
+            color: #FFFF;
+            background-color: $btn-delete__bg-color__active;
+        }
+    }
+
+    // No Delete
+    .dx-button-default.dx-button-mode-outlined {
+        @include dev-extreme-button-cancel;
+    }
+
+    // Content
+    .dx-overlay-content {
+        border: none !important;
+    }
+
+    // Toolbar - Title
+    .dx-popup-title.dx-toolbar {
+        @include gotham-book(600, 14px, 22px);
+        background: linear-gradient(238.27deg, #00AFFF 0%, #0068FF 100%);
+        color: #ffffff;
+        padding: 9px 24px;
+        border-bottom: none;
+    }
+
+    // Popup Title
+    .dx-popup-title {
+        .dx-toolbar-items-container {
+            .dx-toolbar-after {
+                cursor: pointer;
+                color: #979797;
+                height: 30px;
+                position: absolute;
+                right: 0;
+                width: 22px;
+            }
+
+            .dx-toolbar-after:after,
+            .dx-toolbar-after:after,
+            .dx-toolbar-after:after {
+                content: "";
+                height: 20px;
+                border-left: 2px solid #ebf3e7;
+                position: absolute;
+                transform: rotate(45deg);
+                left: 10px;
+                top: 5px;
+            }
+
+            .dx-toolbar-after:before,
+            .dx-toolbar-after:before,
+            .dx-toolbar-after:before {
+                content: "";
+                height: 20px;
+                border-left: 2px solid #ebf3e7;
+                position: absolute;
+                transform: rotate(-45deg);
+                left: 10px;
+                top: 5px;
+            }
+
+            .dx-toolbar-after:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    // Popup Content
+    .dx-popup-content {
+        &.dx-dialog-content {
+            padding: 24px;
+        }
+
+        .dx-dialog-message {
+            padding: 0;
+            @include popup-content-detail;
+        }
+    }
+
+    // Bottom - Toolbar
+    .dx-popup-bottom.dx-toolbar {
+        padding: 0 24px 24px;
+    }
+
+    // Dialog Buttons
+    .dx-dialog-buttons {
+        .dx-toolbar-items-container {
+            height: 40px;
+        }
+
+        .dx-toolbar-center {
+            float: none !important;
+            display: flex;
+            flex-wrap: nowrap;
+
+            .dx-button-content {
+                padding: 10px 16px 10px;
+            }
+        }
+    }
+}

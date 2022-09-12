@@ -1,0 +1,27 @@
+/* width */
+.custom-scroll::-webkit-scrollbar {
+    width: $custom-scroll__min-width;
+}
+
+.custom-scroll::-webkit-scrollbar:hover {
+    width: $custom-scroll__max-width;
+}
+
+/* Track */
+.custom-scroll::-webkit-scrollbar-track {
+    background: #ECEDEF;
+}
+
+/* Handle */
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #cecece;
+}
+
+/* Handle on hover */
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+}
+
+.custom-scroll:hover::-webkit-scrollbar-corner {
+    width: $custom-scroll__max-width;
+}

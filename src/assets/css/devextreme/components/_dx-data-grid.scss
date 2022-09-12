@@ -1,0 +1,218 @@
+@import "mixins/_devextreme";
+
+/*------------Dx-GRID--------------*/
+dx-data-grid {
+    &.grid-ordering .dx-datagrid-headers .dx-datagrid-table .dx-row > td {
+        &.dx-datagrid-drag-action {
+            cursor: move;
+        }
+
+        &:hover {
+            background: #e8f1f7;
+        }
+    }
+
+    &.grid-ordering .dx-datagrid-nowrap .dx-header-row > td > .dx-datagrid-text-content:hover {
+        cursor: pointer;
+    }
+
+    .dx-datagrid-pager {
+        text-align: center;
+        border-top: 1px solid $border-color-grey-EEE;
+    }
+
+    .dx-datagrid {
+        & .dx-sort-down:before, & .dx-sort-up:before {
+            content: "";
+        }
+
+        & .dx-row > td {
+            padding: 16px;
+        }
+
+        & .dx-datagrid-rowsview .dx-data-row td.dx-pointer-events-none,
+        & .dx-datagrid-rowsview .dx-freespace-row td.dx-pointer-events-none,
+        & .dx-datagrid-rowsview .dx-virtual-row td.dx-pointer-events-none,
+        & .dx-datagrid-headers .dx-row td.dx-pointer-events-none {
+            border-left: none;
+            border-right: none;
+        }
+    }
+
+    .dx-pager {
+        .dx-page-sizes {
+            float: right;
+
+            .dx-page-size {
+                padding: 4px 6px 4px;
+            }
+
+            .dx-selection {
+                color: #ffffff;
+                border-color: transparent;
+                background-color: $color-blue-00AFFF;
+            }
+        }
+
+        .dx-pages {
+            float: left;
+
+            .dx-page {
+                padding: 4px 6px 4px;
+            }
+
+            .dx-selection {
+                color: $icon-in-base-accent-color;
+                border-color: transparent;
+                background-color: $color-blue-00AFFF;
+                border-radius: 18px;
+                width: fit-content;
+                min-width: 25px;
+            }
+
+            & .dx-prev-button:before, & .dx-next-button:before {
+                color: $color-blue-00AFFF;
+            }
+
+            & .dx-prev-button, & .dx-next-button {
+                font-size: 21px;
+                text-align: center;
+                line-height: 14px;
+            }
+        }
+    }
+
+    .dx-datagrid-headers {
+        @include gotham-medium(400, 12px, 20px);
+        color: $color-black-555;
+        background-color: #F5F5F5 !important;
+
+        .dx-datagrid-table .dx-row > td {
+            background-color: #F5F5F5;
+            vertical-align: middle;
+        }
+
+        .dx-datagrid-table .dx-row > td.dx-col-fixed {
+            background-color: #F5F5F5;
+        }
+
+        .dx-select-checkbox {
+            margin-bottom: 2.5px;
+            line-height: 0;
+        }
+
+        + .dx-datagrid-rowsview {
+            border-top: none;
+        }
+    }
+
+    .dx-datagrid-headers .dx-datagrid-table .dx-row > td {
+        border-bottom: 1px solid $border-color-grey-EEE;
+    }
+
+    .dx-datagrid-rowsview {
+        border-top: none;
+
+        .dx-selection.dx-row > td, .dx-selection.dx-row:hover > td, .dx-selection.dx-row > tr > td, .dx-selection.dx-row:hover > tr > td {
+            background: transparent;
+        }
+
+        .dx-selection.dx-row:not(.dx-row-lines) > td {
+            border: none;
+        }
+
+        .dx-texteditor-input {
+            @include field-input-padding;
+        }
+
+        .dx-datagrid-content {
+            tr.dx-row.dx-data-row {
+                td {
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+
+    // Row - Alt
+    .dx-datagrid-rowsview .dx-row.dx-row-alt:not(.dx-row-focused):not(.dx-state-hover) > td {
+        background-color: $bg-color-grey-FAFAFA;
+    }
+
+    // Row - Hover
+    .dx-datagrid-table .dx-data-row.dx-state-hover:not(.dx-row-inserted):not(.dx-row-removed):not(.dx-edit-row):not(.dx-row-focused) > td:not(.dx-focused) {
+        background-color: $bg-color-grey-F5F5F5;
+    }
+
+    .dx-datagrid-table .dx-data-row.dx-state-hover:not(.dx-selection):not(.dx-row-inserted):not(.dx-row-removed):not(.dx-edit-row):not(.dx-row-focused) > td:not(.dx-focused) {
+        background-color: $bg-color-grey-F5F5F5;
+    }
+
+    .dx-datagrid-table .dx-data-row.dx-state-hover:not(.dx-selection):not(.dx-row-inserted):not(.dx-row-removed):not(.dx-edit-row):not(.dx-row-focused) > td.dx-focused {
+        background-color: $bg-color-grey-F5F5F5;
+    }
+
+    .dx-datagrid-rowsview .dx-selection.dx-row.dx-state-hover:not(.dx-row-focused) > td.dx-focused,
+    .dx-datagrid-rowsview .dx-selection.dx-row:not(.dx-row-focused):hover > td.dx-focused {
+        background-color: $bg-color-grey-F5F5F5;
+    }
+
+    .dx-datagrid-rowsview .dx-selection.dx-row:not(.dx-row-focused):hover:not(.dx-row-lines) > td,
+    .dx-datagrid-rowsview .dx-selection.dx-row:not(.dx-row-focused):not(.dx-row-lines) > td {
+        border: none;
+    }
+
+    // Header - Custom
+    .selected-column-header {
+        color: $color-blue-4882C7;
+    }
+
+    .selected-column {
+        color: $color-blue-4882C7;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    // Selection - Check box
+    .dx-datagrid-checkbox-size .dx-checkbox-icon {
+        height: 18px;
+        width: 18px;
+    }
+
+    .dx-datagrid-checkbox-size.dx-checkbox-checked .dx-checkbox-icon {
+        font-size: 13px;
+    }
+
+    // Focus Status
+    .dx-datagrid-focus-overlay {
+        border: none;
+    }
+
+    // Free-space
+    .dx-datagrid-rowsview .dx-datagrid-table .dx-row.dx-freespace-row {
+        display: none;
+    }
+
+    // Action Column
+    .dx-datagrid__actions-cell__three-dots-button {
+        display: flex;
+        justify-content: center;
+        padding: 5px 8px;
+        width: 33px;
+        height: 33px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #EAE8E8;
+            border-radius: 3px;
+        }
+    }
+
+    .dx-row.dx-data-row.dx-selection {
+        .dx-datagrid__actions-cell__three-dots-button {
+            visibility: hidden;
+            pointer-events: none;
+            user-select: none;
+        }
+    }
+}

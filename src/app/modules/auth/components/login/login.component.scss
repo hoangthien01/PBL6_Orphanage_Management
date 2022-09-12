@@ -1,0 +1,131 @@
+@import "woosender-extend";
+@import "woosender-variable";
+
+.login-container {
+	.introduce {
+		text-align: center;
+		padding-bottom: 35px;
+
+		.trial-message {
+			@include gotham-book(300, 20px, 24px);
+			display: inline-block;
+			margin-top: 50px;
+			color: #777777;
+		}
+	}
+
+	.main-content {
+		width: 100%;
+		border-radius: 8px;
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
+		background-color: #ffffff;
+		padding: 5px;
+
+		.field-area {
+			margin: 15px;
+
+			.box-properties {
+                ::ng-deep dx-text-box.field-box {
+                    // Helper that handle detect autofill
+                    input {
+                        &:-webkit-autofill {
+                            color: inherit;
+                            // Expose a hook for JavaScript when auto fill is shown.
+                            // JavaScript can capture 'animationiteration' events
+                            animation: onAutoFillStart 0.1s linear infinite;
+                        }
+                    }
+                }
+			}
+
+			.content-footer {
+                display: grid;
+                padding-top: 4px;
+                padding-bottom: 30px;
+                grid-template-columns: auto auto;
+                grid-template-areas: "keep-login forgot-password" "login-button login-button";
+                grid-row-gap: 15px;
+
+                .login-button {
+                    grid-area: login-button;
+
+					dx-button {
+						width: 100%;
+					}
+				}
+				.keep-login {
+					grid-area: keep-login;
+					margin-top: 8px;
+					float: right;
+
+					.keep-logged {
+						margin-top: 2px;
+						outline: none;
+						user-select: none;
+					}
+				}
+
+				.forgot-password {
+					grid-area: forgot-password;
+					margin-top: 10px;
+					float: right;
+					text-align: end;
+				}
+			}
+
+			.line {
+				box-sizing: border-box;
+				height: 2px;
+				border: 1px solid #EEEEEE;
+			}
+
+			.add-new-account {
+				margin-top: 25px;
+
+				.not-account {
+					color: #777777;
+					@include gotham-book(300, 14px, 17px);
+					text-align: center;
+				}
+			}
+		}
+	}
+}
+
+@keyframes onAutoFillStart {
+    from {
+        color: inherit;
+    }
+    to {
+        color: inherit;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	.login-container {
+		.main-content {
+			.field-area {
+				.content-footer {
+					grid-template-columns: 100px auto auto;
+					grid-template-areas:
+						"login-button keep-login forgot-password";
+					.keep-login {
+						float: left;
+						text-align: center;
+						
+						.keep-logged {
+
+						}
+					}
+
+					.forgot-password {
+						float: right;
+						text-align: end;
+					}
+				}
+			}
+		}
+	}
+}
+

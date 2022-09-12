@@ -1,0 +1,29 @@
+@import "mixins/_devextreme";
+/*------------Dx-TextBox--------------*/
+// Dx Text Box
+dx-text-box.conceal-native {
+    input {
+        font-family: 'text-security-disc', serif !important;
+    }
+}
+
+dx-text-box:not(.dx-searchbox) {
+    @include field-input;
+
+    .dx-texteditor-input {
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        color: inherit;
+    }
+
+    .dx-placeholder {
+        &:before {
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+        }
+    }
+}

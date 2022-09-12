@@ -1,0 +1,37 @@
+.iti-flag {
+	width: 20px;
+	height: 15px;
+	box-shadow: 0 0 1px 0 #888;
+	background: #dbdbdb url("~src/assets/images/app-common/flags.png") no-repeat 20px 0;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min--moz-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2 / 1),
+only screen and (min-device-pixel-ratio: 2),
+only screen and (min-resolution: 192dpi),
+only screen and (min-resolution: 2dppx) {
+	.iti-flag {
+		background-size: 5630px 15px;
+	}
+}
+
+.iti-flag.ca {
+	height: 10px;
+	background-position: -834px 0px;
+}
+
+.iti-flag.gb {
+	height: 10px;
+	background-position: -1775px 0px;
+}
+
+.iti-flag.us {
+	height: 11px;
+	background-position: -5241px 0px;
+}
+
+/*
+ * Since we need to remove redundant flags
+  - So for other flags, please take them from Git History
+ */

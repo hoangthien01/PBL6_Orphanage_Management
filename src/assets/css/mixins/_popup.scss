@@ -1,0 +1,25 @@
+@import "woosender-extend";
+@import "woosender-variable";
+
+/**
+ * Popup Effect Color (Hover/Active)
+ */
+@mixin popup-item-effect-color {
+    &:hover {
+        background-color: $dropdown-item__bg-color__hover;
+    }
+
+    &:active {
+        background-color: $dropdown-item__bg-color__focused;
+    }
+}
+
+@mixin popup-content-title {
+    color: #555555;
+    @include gotham-medium(400, 16px, 20px);
+}
+
+@mixin popup-content-detail {
+    color: #555555;
+    @include gotham-book(400, 14px, 19.6px);
+}

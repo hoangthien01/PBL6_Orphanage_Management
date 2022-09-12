@@ -1,0 +1,35 @@
+<div class="auth-container">
+  <div class="error-message"
+       [class]="errorMessage ? 'visible' : 'hidden'">
+    <div class="d-flex text-center justify-content-center message-content" *ngIf="errorMessage">
+      <app-svg-icon class="icon-error-info-container"
+                    [name]="'icon_warning_circle'">
+      </app-svg-icon>
+      <span>{{errorMessage}}</span>
+    </div>
+  </div>
+  <div class="auth-wrap">
+    <div class="general-content">
+      <div class="logo d-flex justify-content-center">
+        <app-svg-icon [name]="'icon_woosender_logo_color'"
+                      [width]="136">
+        </app-svg-icon>
+      </div>
+      <div class="main-body">
+        Hello
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-text text-has-link"
+         (click)="goToPrivacyPolicy()">
+         Privacy Policy
+    </div>
+    <div class="footer-text text-has-link"
+         (click)="goToTermOfService()">
+        Term of Service
+    </div>
+    <div class="footer-text">© {{year}} WooSender. All rights reserved.</div>
+  </div>
+</div>

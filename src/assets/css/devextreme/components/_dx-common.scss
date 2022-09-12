@@ -1,0 +1,61 @@
+@import "mixins/_devextreme";
+
+//override style
+
+.dx-widget {
+    color: $color-black-555;
+    @include gotham-book(400, 12px, 1.33334)
+}
+
+.dx-texteditor-input {
+    @include field-input-padding;
+}
+
+.dx-placeholder {
+    padding: 10px 0 10px 16px;
+    color: $color-grey-CCC;
+    line-height: 1;
+
+    &:before {
+        padding: 0;
+    }
+}
+
+/*--------------------------*/
+.dx-texteditor {
+    &.dx-state-hover {
+        border: 1px solid #61BBE7;
+    }
+
+    &.dx-state-readonly {
+        border-style: solid;
+        background-color: #EAF0F6;
+    }
+}
+
+// dx-textbox apply for TextBox (on Search Mode), DxList, DxLookup Popup
+.dx-searchbox {
+    .dx-texteditor-input {
+        padding: 7px 9px 8px 34px;
+    }
+
+    .dx-placeholder {
+        padding: 0;
+
+        &:before {
+            padding: 0 0 0 34px;
+        }
+    }
+}
+
+.dx-selectbox {
+    .dx-state-readonly {
+        background-color: transparent;
+    }
+
+    .dx-texteditor-input {
+        background-color: transparent;
+    }
+}
+
+

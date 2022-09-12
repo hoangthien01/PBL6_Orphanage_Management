@@ -1,0 +1,66 @@
+/*------------Dx-Check-Box--------------*/
+.dx-checkbox-indeterminate .dx-checkbox-icon {
+    font-size: 14px !important;
+
+    &:before {
+        content: "\f074";
+    }
+}
+
+.dx-checkbox-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.dx-checkbox-checked .dx-checkbox-icon {
+    font-size: 13px;
+}
+
+.dx-checkbox-checked .dx-checkbox-icon:before {
+    width: 14px;
+    top: 50%;
+    margin-top: -7px;
+    left: 50%;
+    margin-left: -7px;
+    height: 14px;
+}
+
+.dx-checkbox.dx-checkbox-has-text {
+    .dx-checkbox-text {
+        margin-left: -18px;
+        color: $color-black-555;
+        @include gotham-book(400, 12px, 22px);
+        vertical-align: top;
+        margin-top: -1px;
+    }
+
+    &[label-gotham-book--font-size-14="true"] {
+        .dx-checkbox-text {
+            font-size: 14px;
+        }
+    }
+
+    &[label-gotham-medium--font-size-12="true"] {
+        .dx-checkbox-text {
+            @include gotham-medium(400, 12px, 22px);
+        }
+    }
+
+    &[label-gotham-medium--font-size-14="true"] {
+        .dx-checkbox-text {
+            @include gotham-medium(400, 14px, 22px);
+        }
+    }
+
+    &[color-grey-777="true"] {
+        .dx-checkbox-text {
+            color: $color-grey-777;
+        }
+    }
+}
+
+.dx-state-disabled .dx-checkbox .dx-checkbox-icon,
+.dx-state-disabled .dx-checkbox-text,
+.dx-state-disabled.dx-checkbox .dx-checkbox-icon {
+    opacity: .6;
+}

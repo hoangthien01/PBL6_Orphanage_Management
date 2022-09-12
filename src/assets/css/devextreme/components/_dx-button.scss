@@ -1,0 +1,176 @@
+/*------------Dx-BUTTON--------------*/
+// TODO: Remove later, use accept-button component instead
+.dx-button-blue {
+    @extend .gotham-medium-500;
+    border: 1px solid $color-blue-00AFFF;
+    color: $color-blue-00AFFF;
+    background: white;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+
+    &.dx-state-hover {
+        background-color: #fefefe;
+        border-color: #61BBE7;
+        color: #61BBE7;
+    }
+
+    &.dx-state-focused {
+        background-color: #fefefe;
+        border-color: #2B8ABA;
+        color: #2B8ABA;
+        outline: none;
+    }
+
+    &.dx-state-active {
+        background-color: #fefefe;
+        border-color: #2B8ABA;
+        color: #2B8ABA;
+    }
+}
+
+.dx-button-mode-contained .dx-icon {
+    color: #fff;
+}
+
+.dx-button-bg-blue {
+    @extend .gotham-medium-500;
+    background-color: $color-blue-00AFFF;
+    border-color: $color-blue-00AFFF;
+    color: #FEFEFE;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+
+    &.dx-state-hover {
+        background-color: #61BBE7;
+        border-color: #61BBE7;
+    }
+
+    &.dx-state-active {
+        background-color: #2B8ABA;
+        border-color: #2B8ABA;
+        color: #fff;
+    }
+
+    &.dx-state-focused {
+        background-color: #2B8ABA;
+        border-color: #2B8ABA;
+        color: #fff;
+        outline: none;
+    }
+}
+
+.dx-button-mode-outlined {
+    &.dx-button-default {
+        .dx-icon {
+            color: $color-blue-00AFFF;
+        }
+
+        &.dx-state-hover, &.dx-state-active, &.dx-state-focused {
+            border-color: $color-blue-00AFFF;
+        }
+
+        background-color: $icon-in-base-accent-color;
+        border-color: $color-blue-00AFFF;
+        color: $color-blue-00AFFF;
+    }
+
+    &.dx-button-danger {
+        .dx-icon {
+            color: $color-red-E57979;
+        }
+
+        &.dx-state-hover, &.dx-state-active, &.dx-state-focused {
+            border-color: $color-red-E57979;
+        }
+
+        background-color: $icon-in-base-accent-color;
+        border-color: $color-red-E57979;
+        color: $color-red-E57979;
+    }
+
+    &.dx-button-success {
+        .dx-icon {
+            color: $color-purple-B246AE;
+        }
+
+        &.dx-state-hover, &.dx-state-active, &.dx-state-focused {
+            border-color: $color-purple-B246AE;
+        }
+
+        background-color: transparent;
+        border-color: $color-purple-B246AE;
+        color: $color-purple-B246AE;
+    }
+}
+
+.dx-button-mode-contained {
+    &.dx-button-default {
+        background-color: $color-blue-00AFFF;
+        border-color: transparent;
+        color: #fff;
+
+        .dx-icon {
+            color: #fff;
+        }
+
+        &.dx-state-hover, &.dx-state-active, &.dx-state-focused {
+            border-color: $color-blue-00AFFF;
+            background-color: $color-blue-00AFFF__hover-78;
+        }
+    }
+
+    &.dx-button-danger {
+        background-color: $color-red-E57979;
+        border-color: transparent;
+        color: #fff;
+
+        .dx-icon {
+            color: #fff;
+        }
+
+        &.dx-state-hover, &.dx-state-active, &.dx-state-focused {
+            border-color: $color-red-E57979;
+            background-color: $color-red-E57979__hover-78;
+        }
+    }
+
+    &.dx-button-success {
+        background-color: $color-purple-B246AE;
+        border-color: transparent;
+        color: #fff;
+
+        .dx-icon {
+            color: #fff;
+        }
+
+        &.dx-state-hover, &.dx-state-active, &.dx-state-focused {
+            border-color: $color-purple-B246AE;
+            background-color: $color-purple-B246AE__hover-78;
+        }
+    }
+}
+
+//
+//
+.dx-button {
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+
+    .dx-button-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.dx-button-has-text .dx-button-content {
+    padding: 6px 12px;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+}

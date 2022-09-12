@@ -1,0 +1,181 @@
+@import "woosender-extend";
+@import "woosender-variable";
+/**
+ * Button Hover/Selected Color
+ */
+@mixin dev-extreme-button-primary {
+    @include gotham-medium(400, 12px, 20px);
+    color: #FFFF;
+    background-color: $color-blue-00AFFF;
+    border: none;
+
+    &.dx-state-focused {
+        background-color: $color-blue-00AFFF;
+    }
+
+    &.dx-state-hover {
+        background-color: $btn-primary__bg-color__hover;
+    }
+
+    &.dx-state-active {
+        background-color: $btn-primary__bg-color__active;
+        color: #FFFF;
+    }
+}
+
+@mixin button-primary-effect {
+    &:focus {
+        background-color: $color-blue-00AFFF;
+    }
+
+    &:hover {
+        background-color: $btn-primary__bg-color__hover;
+    }
+
+    &:active {
+        background-color: $btn-primary__bg-color__active;
+        color: #FFFF;
+    }
+}
+
+@mixin dev-extreme-button-primary-outline {
+    @include gotham-medium(400, 12px, 20px);
+    color: $color-blue-00AFFF;
+    background-color: #FFF;
+    border: 1px solid $color-blue-00AFFF;
+
+    ::ng-deep .dx-icon {
+        color: $color-blue-00AFFF;
+    }
+
+    &.dx-state-focused {
+        background-color: #FFF;
+        border: 1px solid $color-blue-00AFFF;
+    }
+
+    &.dx-state-hover {
+        background-color: $btn-primary-outline__bg-color__hover;
+        border: 1px solid $color-blue-00AFFF;
+    }
+
+    &.dx-state-active {
+        color: $color-blue-00AFFF;
+        background-color: $btn-primary-outline__bg-color__active;
+        border: 1px solid $color-blue-00AFFF;
+    }
+}
+
+@mixin button-primary-outline-effect {
+    &:hover {
+        color: $color-blue-00AFFF;
+        background-color: $btn-primary-outline__bg-color__hover;
+        border: 1px solid $color-blue-00AFFF;
+    }
+
+    &:active {
+        color: $color-blue-00AFFF;
+        background-color: $btn-primary-outline__bg-color__active;
+        border: 1px solid $color-blue-00AFFF;
+    }
+}
+
+@mixin dev-extreme-button-delete {
+    @include gotham-medium(400, 12px, 20px);
+    color: #FFF;
+    background-color: $color-red-E57979;
+    border: none;
+
+    &.dx-state-focused {
+        color: #FFF;
+        background-color: $color-red-E57979;
+    }
+
+    &.dx-state-hover {
+        background-color: $btn-delete__bg-color__hover;
+    }
+
+    &.dx-state-active {
+        color: #FFFF;
+        background-color: $btn-delete__bg-color__active;
+    }
+}
+
+@mixin button-delete-effect {
+    &:focus {
+        color: #FFF;
+        background-color: $color-red-E57979;
+    }
+
+    &:hover {
+        background-color: $btn-delete__bg-color__hover;
+    }
+
+    &:active {
+        color: #FFFF;
+        background-color: $btn-delete__bg-color__active;
+    }
+}
+
+@mixin dev-extreme-button-delete-outline {
+    @include gotham-medium(400, 12px, 20px);
+    color: $color-red-E57979;
+    background-color: #FFF;
+    border: 1px solid $color-red-E57979;
+
+    ::ng-deep .dx-icon {
+        color: $color-red-E57979;
+    }
+
+    &.dx-state-focused {
+        background-color: #FFF;
+        border: 1px solid $color-red-E57979;
+    }
+
+    &.dx-state-hover {
+        border-color: $color-red-E57979;
+        background-color: $btn-delete-outline__bg-color__hover;
+    }
+
+    &.dx-state-active {
+      border-color: $color-red-E57979;
+      background-color: $btn-delete-outline__bg-color__active;
+      color: $color-red-E57979;
+    }
+}
+
+@mixin button-delete-outline-effect {
+    &:focus {
+        background-color: #FFF;
+        border: 1px solid $color-red-E57979;
+    }
+
+    &:hover {
+        border-color: $color-red-E57979;
+        background-color: $btn-delete-outline__bg-color__hover;
+    }
+
+    &:active {
+        border-color: $color-red-E57979;
+        background-color: $btn-delete-outline__bg-color__active;
+        color: $color-red-E57979;
+    }
+}
+
+@mixin dev-extreme-button-cancel {
+    @include gotham-medium(400, 12px, 20px);
+    color: $color-black-555;
+    background-color: #FFF;
+    border: none;
+
+    &.dx-state-focused {
+        background-color: #FFF;
+    }
+
+    &.dx-state-hover {
+        background-color: $btn-cancel__bg-color__hover;
+    }
+
+    &.dx-state-active {
+        background-color: $btn-cancel__bg-color__hover;
+    }
+}

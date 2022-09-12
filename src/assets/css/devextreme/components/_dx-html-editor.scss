@@ -1,0 +1,63 @@
+/*------------Dx-HTML-Editor--------------*/
+dx-html-editor {
+    border-top: 1px solid #eeeeee;
+    background-color: #fff;
+
+    .dx-button-mode-contained .dx-icon {
+        color: $color-black-555;
+    }
+
+    .dx-htmleditor-content {
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+
+    .dx-htmleditor-content.ql-blank {
+        &::before {
+            left: 20px;
+            font-size: 14px;
+            color: $color-grey-CCC;
+            font-style: unset;
+        }
+    }
+
+    .dx-htmleditor-content > * {
+        cursor: text;
+        font-family: 'gotham book', sans-serif;
+        font-size: 14px;
+        font-style: unset;
+    }
+
+    .dx-htmleditor-toolbar-wrapper {
+        border-bottom: 1px solid #e4e5e6;
+    }
+
+    .dx-toolbar-text-auto-hide .dx-button .dx-button-content {
+        padding: 5px;
+    }
+
+    ::ng-deep .dx-htmleditor.dx-invalid {
+        border-color: #ddd !important;
+    }
+}
+
+// Toolbar dropdown
+.dx-dropdownmenu-popup-wrapper {
+    .dx-overlay-content .dx-popup-content {
+        padding: 10px 0;
+    }
+
+    .dx-toolbar-menu-section {
+        .dx-list-item {
+            border-radius: 0;
+
+            &:active {
+                background-color: $dropdown-item__bg-color__focused;
+            }
+        }
+    }
+
+    .dx-toolbar-menu-section .dx-toolbar-hidden-button .dx-button .dx-button-content {
+        justify-content: flex-start;
+    }
+}

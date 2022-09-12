@@ -1,0 +1,84 @@
+@import "woosender-variable";
+@import "woosender-extend";
+
+/*--------Setup base layout for mobile----------*/
+.mobile-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	position: relative;
+
+	div:first-child {
+		&.mobile-header {
+			height: $mobile-header-height;
+			z-index: 1500;
+			background: linear-gradient(238.27deg, #00afff 0%, #0068ff 100%);
+			box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.05);
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			padding: 20px;
+			position: absolute;
+			top: 0;
+
+			.left {
+				display: flex;
+				justify-content: flex-start;
+
+				span {
+					color: #FFFFFF;
+					display: inline-block;
+					@include gotham-book(300, 14px, 19px);
+				}
+			}
+
+			.right {
+				display: flex;
+
+				.icon-item {
+					width: 30px;
+					height: 30px;
+					padding: 3px;
+					border-radius: 7px;
+
+					&:hover {
+						box-shadow: 0 0 2px 0 $box-hover-color-icon
+					}
+				}
+			}
+
+			app-mobile-main-header {
+				display: flex;
+				width: 100%;
+				justify-content: space-between;
+				padding: 15px 20px;
+
+				.left {
+					padding: 3px 0;
+				}
+			}
+		}
+	}
+
+	div:nth-child(2) {
+		&.mobile-content {
+			position: absolute;
+			top: $mobile-header-height;
+			bottom: 0;
+			width: 100%;
+
+			&.has-footer-menu {
+				bottom: $height-mobile-footer;
+			}
+		}
+	}
+
+	div:nth-child(3) {
+		&.mobile-footer {
+			position: absolute;
+			bottom: 0;
+			height: $height-mobile-footer;
+			width: 100%;
+		}
+	}
+}

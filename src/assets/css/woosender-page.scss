@@ -1,0 +1,54 @@
+@import "woosender-extend";
+@import "woosender-variable";
+
+/**
+ * Page Content
+ */
+.page-header__title {
+    color: $color-black-555;
+    @include gotham-bold(16px, 21px);
+    white-space: nowrap;
+}
+
+/**
+ * Page Content
+ */
+.page-content__wrapper {
+    position: relative;
+    height: 100%;
+}
+
+.page-content__container__p-64-c {
+    padding-left: 64px;
+    padding-right: 64px;
+}
+
+.page-content__title-container {
+    padding-top: 48px;
+    padding-bottom: 32px;
+}
+
+.page-content__title {
+    color: $color-black-555;
+    @include gotham-book(400, 36px, 43.2px);
+}
+
+.page-content__subtitle {
+    color: $color-black-555;
+    @include gotham-book(400, 12px, 16.8px);
+    padding-top: 8px;
+}
+
+.page-content__desc {
+    color: $color-black-555;
+    @include gotham-book(400, 12px, 16.8px);
+}
+
+.page-content__width-520 {
+    width: 520px;
+}
+
+.disabled-content {
+    pointer-events: none;
+    opacity: 0.5;
+}

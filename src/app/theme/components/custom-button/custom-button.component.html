@@ -1,0 +1,15 @@
+<dx-button #dxButton
+           class="{{'dx-button-' + type}} {{customClass}}"
+           [ngClass]="{
+                'button-gotham-book-font': font === AppFontTypes.GothamBook
+           }"
+           [ngStyle]="customStyle"
+           [height]="height"
+           [width]="width"
+           [disabled]="disabled"
+           [hidden]="hidden"
+           [text]="text"
+           [icon]="icon"
+           (onClick)="onClick.emit($event)">
+    <ng-content></ng-content>
+</dx-button>

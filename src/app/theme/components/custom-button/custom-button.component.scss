@@ -1,5 +1,5 @@
-// @import "woosender-extend";
-// @import "mixins/_button";
+@import "woosender-extend";
+@import "mixins/_button";
 
 :host {
   display: inline-block;
@@ -7,44 +7,44 @@
 
 // PRIMARY
 .dx-button-primary {
-  // @include dev-extreme-button-primary;
+  @include dev-extreme-button-primary;
 }
 
 .dx-button-primary-outline {
-  // @include dev-extreme-button-primary-outline;
+  @include dev-extreme-button-primary-outline;
 }
 
 .dx-button-primary-outline-without-border {
-  // @include dev-extreme-button-primary-outline;
+  @include dev-extreme-button-primary-outline;
   border: none !important;
 }
 
 // DELETE
 .dx-button-delete {
-  // @include dev-extreme-button-delete;
+  @include dev-extreme-button-delete;
 }
 
 .dx-button-delete-outline {
-  // @include dev-extreme-button-delete-outline;
+  @include dev-extreme-button-delete-outline;
 }
 
 .dx-button-delete-outline-without-border {
-  // @include dev-extreme-button-delete-outline;
+  @include dev-extreme-button-delete-outline;
   border: none !important;
 }
 
 // CANCEL
 .dx-button-cancel {
-  // @include dev-extreme-button-cancel;
+  @include dev-extreme-button-cancel;
 }
 
 .button-gotham-book-font {
-  // @include gotham-book(400, 12px, 17.8px);
+  @include gotham-book(400, 12px, 17.8px);
 }
 
 //
 .dx-button-bg-white-color-inherit {
-  // @include gotham-medium(400, 12px, 20px);
+  @include gotham-medium(400, 12px, 20px);
   color: inherit;
   background-color: #FFF;
   border: none;
@@ -67,7 +67,7 @@
 //custom style
 
 .dx-button-custom-style {
-  // @include gotham-medium(400,12px,20px);
+  @include gotham-medium(400,12px,20px);
   color: inherit;
   background-color: inherit;
   border: inherit;

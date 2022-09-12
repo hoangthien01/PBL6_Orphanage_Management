@@ -1,9 +1,6 @@
 import { environment } from '@environment';
 import { UserRoleType } from '@app/shared/app.enum';
 import { PermissionModel } from '@app/shared/models';
-// import { AccountExperienceSettingModel, PermissionModel } from '@app/shared/models';
-// import { AccountSubscriptionModel } from '@app/core/store/models';
-// import { CustomFieldModel } from '@app/modules/shared/custom-fields/models/custom-field.model';
 import { AVATAR_PROFILE_DEFAULT } from '@app/shared/app.constants';
 
 export interface IBaseAuthResult {
@@ -101,7 +98,6 @@ export class AccountInfoReloadModel {
     timezone: string;
     timezoneIana: string;
     // NOTE: In AccountLoggedModel, we temporarily use "subscription - without 's'"
-    subscriptions: AccountSubscriptionModel;
     expiredAt: Date;
     //
     isOnboarded: boolean;
@@ -123,9 +119,7 @@ export class UserInfoReloadModel {
     //
     isOnlyAssignedData: boolean;
     // Settings
-    customFields: CustomFieldModel[];
     settings: { name: string; value: string }[];
-    accountSettings: AccountExperienceSettingModel;
 
     public constructor(init?: Partial<UserInfoReloadModel>) {
         Object.assign(this, init);

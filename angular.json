@@ -11,6 +11,9 @@
       "schematics": {
         "@schematics/angular:application": {
           "strict": true
+        },
+        "@schematics/angular:component": {
+          "style": "scss"
         }
       },
       "root": "",
@@ -32,9 +35,22 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/css/devextreme/dx.common.css",
+              "src/assets/css/devextreme/generic.light.custom.css",
+              "src/assets/css/woosender.scss"
             ],
-            "scripts": []
+            "stylePreprocessorOptions": {
+                "includePaths": [
+                    "src/assets",
+                    "src/assets/css"
+                ]
+            },
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {

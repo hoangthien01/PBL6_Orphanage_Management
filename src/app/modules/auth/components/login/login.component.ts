@@ -1,17 +1,13 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {finalize} from 'rxjs/operators';
 import {Subject, Subscription} from 'rxjs';
 import {DxTextBoxComponent} from 'devextreme-angular/ui/text-box';
-import { Store } from '@ngxs/store';
 //
 import {CommonFunction, RegexObject} from 'src/app/utilities';
 // import { DEVICE_TOKEN, PLATFORM_NAME } from '@app/core/store/user/user.storage';
 // import {BaseService} from '@app/core/services';
-import {AccountService} from '@app/modules/account-setting/services/account.service';
 import {SignInModel} from '@app/modules/account-setting/models';
 // import {UserService} from '@app/modules/account-setting/services/user.service';
-import { AuthResultModel } from '@app/core/store/models';
 // import * as UserActions from '@app/core/store/user/user.actions';
 
 @Component({
@@ -37,10 +33,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private queryStringSub: Subscription = new Subscription();
     detectAutofillSubject: Subject<void> = new Subject<void>();
 
-    constructor(private accountService: AccountService,
-                private router: Router,
-                private route: ActivatedRoute,
-                private store: Store) {
+    constructor(private router: Router,
+                private route: ActivatedRoute) {
         this.subscribeDetectAutofill();
     }
 
@@ -75,10 +69,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     dataChanged() {
         const email = this.login.email;
         const password = this.login.password;
-        if (!email || !password) {
-            this.isDataValid = false;
-            return;
-        }
+        // if (!email || !password) {
+        //     this.isDataValid = false;
+        //     return;
+        // }
 
         this.isDataValid = RegexObject.checkEmailIsValid(String(email)) && password.length >= 6;
     }
@@ -112,7 +106,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         // });
     }
 
-    doAfterUserLoggedIn(auth: AuthResultModel) {
+    doAfterUserLoggedIn() {
         // this.store.dispatch(new UserActions.SetAuthResult({
         //     authResult: auth,
         //     setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.Login

@@ -13,6 +13,7 @@ import {
   svgIconWarningCircle,
   svgIconWoosenderLogoColor
 } from 'src/assets/images/svg-icons.constants';
+import { LoginComponent } from './components/login/login.component';
 
 const SVG_ICONS = [
   svgIconWoosenderLogoColor,
@@ -35,10 +36,10 @@ export const routes: Routes = [
       //   component: SignUpComponent,
       //   canDeactivate: [DeactivateGuard],
       // },
-      // {
-      //   path: 'login',
-      //   component: LoginComponent,
-      // },
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
       {
         path: 'forbidden',
         component: ForbiddenComponent
@@ -53,6 +54,8 @@ export const routes: Routes = [
 @NgModule({
   declarations: [
     AuthComponent,
+    LoginComponent,
+    ForbiddenComponent
   ],
   imports: [
     ThemeModule,

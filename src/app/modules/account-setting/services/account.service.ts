@@ -1,13 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 //
-import { CommonFunction, DateHelper, ObjectHelper, RegexObject } from 'src/app/utilities';
 import { NotificationType } from '@app/shared/app.enum';
 
-import {
-    GridBaseModel,
-    ListItemModel,
-} from '@app/shared/models';
 import { BaseService } from '@app/core/services';
 
 @Injectable({

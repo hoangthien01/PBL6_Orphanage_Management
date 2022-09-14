@@ -1,0 +1,204 @@
+@import "woosender-extend";
+@import "woosender-variable";
+
+.sign-up-container {
+	height: 100%;
+
+	.introduce {
+		max-width: 490px;
+		text-align: center;
+
+		.description-message {
+			@include gotham-book(300, 20px, 24px);
+			color: #777777;
+			margin: 35px 0 10px;
+			display: inline-block;
+		}
+	}
+
+	.progress-container {
+		margin: 20px auto 30px auto;
+		padding: 0;
+		display: table;
+		max-width: 200px;
+		list-style: none;
+		width: 100%;
+
+		li {
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+
+			div {
+				box-shadow: 0 4px 24px 5px rgba(33, 33, 33, 0.06);
+				width: 27px;
+				height: 27px;
+				background: #00AFFF;
+				border-radius: 50%;
+				margin: 0 auto;
+
+				&.not-completed {
+					background: transparent;
+					border: 4px solid $color-blue-00AFFF;
+				}
+
+				i {
+					color: #fff;
+					position: relative;
+					top: 4px;
+					font-size: 13px;
+				}
+			}
+		}
+	}
+
+	.main-content {
+		width: 100%;
+		border-radius: 8px;
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
+		background-color: #ffffff;
+		padding: 5px;
+
+		.field-area {
+			margin: 15px;
+
+			.content-footer {
+                display: flex;
+                padding-top: 4px;
+                justify-content: space-between;
+
+                .login-link {
+                    margin-top: 10px;
+                }
+            }
+
+			.agree-message {
+				text-align: center;
+				@include gotham-book(300, 11px, 18px);
+
+				p {
+					margin-bottom: 30px;
+				}
+			}
+
+			.order-summary {
+				margin: 20px 0;
+				border-top: 1.5px solid #EEEEEE;
+				border-bottom: 1.5px solid #EEEEEE;
+				padding: 20px 0;
+				color: #555555;
+				@include gotham-book(300, 14px, 17px);
+
+				.title {
+					@include gotham-book(700, 13px, 18px);
+					color: #777777;
+				}
+
+				.text-has-link {
+					cursor: default;
+				}
+
+				.summary-description {
+					margin-top: 10px;
+					line-height: 19px;
+					display: grid;
+					grid-template-areas: 'summary-info' 'summary-money';
+					grid-row-gap: 15px;
+
+					.summary-info {
+						grid-area: summary-info;
+						text-align: left;
+
+						div {
+							width: 100%;
+						}
+					}
+
+					.summary-money {
+						grid-area: summary-money;
+						text-align: left;
+
+						div {
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+	.register-success-box {
+		border-radius: 8px;
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
+		background-color: #ffffff;
+		text-align: center;
+		color: #555555;
+		padding: 30px;
+		min-height: 345px;
+		max-width: 490px;
+
+		.message-congrat {
+			@include gotham-book(300, 19px, 24px);
+		}
+
+		.congratulation {
+			@include gotham-book(300, 20px, 24px);
+		}
+
+		.thank-register {
+			font-size: 21px;
+			font-weight: 800;
+			margin-bottom: 30px;
+		}
+
+		.email-register {
+			margin-top: 40px;
+			color: #555555;
+			font-size: 27px;
+		}
+
+		.start-onboarding {
+			margin-top: 50px;
+			font-size: 15px;
+		}
+
+		.check-spam {
+			background-color: #F8F9FB;
+			padding: 15px;
+			text-align: left;
+			margin-bottom: 30px;
+
+			.highlight {
+				font-weight: 800;
+			}
+		}
+	}
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	.sign-up-container {
+		.main-content {
+			.field-area {
+				.order-summary {
+					.summary-description {
+						grid-template-areas: 'summary-info summary-money';
+						grid-template-columns: 60% 40%;
+
+						.summary-info {
+							text-align: left;
+						}
+
+						.summary-money {
+							text-align: right;
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+

@@ -1,0 +1,644 @@
+@import 'variables';
+@import 'base/mixins';
+
+$background-color-dark: #161923;
+$background-color-light: #eef0f4;
+
+$text-color-dark: $color-black-3;
+$text-color-light: $color-black-8;
+
+$selected-text-color-dark: white;
+$selected-text-color-light: white;
+
+$text-font-size: 14;
+$text-font-weight: 600;
+
+$sub-menu-border-color-dark: $color-black-9;
+$sub-menu-border-color-light: $color-black-3;
+
+:host {
+	.onboarding-help-shown,
+	.onboarding-help-shown * {
+		transition: none !important;
+	}
+
+	.menu-container {
+		transition: all 0.3s ease;
+		position: relative;
+		height: 100%;
+		background-color: $background-color-dark;
+		color: $text-color-dark;
+		border-right: pxToRem(1) solid $color-black-2;
+
+		.feature-group-title {
+			display: inline-block;
+			width: 100%;
+			@include rem(height, 33);
+
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
+
+		ul.menu-wrapper {
+			@include rem(margin, 0, 16);
+
+			li {
+				@include rem(border-radius, 8);
+				@include rem(margin-bottom, 4);
+
+				@include rem(height, 40);
+			}
+		}
+
+		.logo {
+			@include rem(height, 62);
+
+			> img {
+				@include rem(height, 32);
+			}
+		}
+
+		&.expanded {
+			@include rem(width, 240);
+
+			ul.sub-menu {
+				@include rem(margin-top, 8);
+				@include rem(margin-left, 15);
+				@include rem(padding-left, 8);
+				@include rem(border-left, 1);
+				border-color: $sub-menu-border-color-dark;
+				border-style: solid;
+			}
+		}
+
+		&.compacted {
+			@include rem(width, 72);
+
+			.messenger-section li.menu-item .unread-count {
+				position: absolute;
+				@include rem(top, 6);
+				@include rem(right, 0);
+			}
+
+			li.menu-item.parent-menu {
+				@include rem(width, 40);
+				margin-right: auto;
+			}
+
+			.logo {
+				.arrow-icon {
+					display: none;
+				}
+			}
+
+			ul.sub-menu {
+				background-color: $background-color-dark;
+				@include rem(padding, 8);
+			}
+
+			&:not(.onboarding-help-shown) .menu-item.parent-menu.selected {
+				background-color: $color-black-9;
+			}
+
+			.menu-item {
+				&--link {
+					@include rem(padding, 12);
+
+					.item-left {
+						text-align: center;
+					}
+
+					.item-right {
+						.action-create-project {
+							display: none;
+						}
+
+						.icon-parent {
+							display: none;
+						}
+					}
+				}
+
+				&.child-menu {
+					.menu-item--link {
+						@include rem(padding-left, 12);
+					}
+				}
+			}
+
+			::ng-deep .dx-scrollable-container {
+				overflow: initial;
+			}
+
+			.sub-menu {
+				position: absolute;
+				@include rem(left, 61);
+				@include rem(margin-top, -50);
+				z-index: 9;
+				@include rem(width, 216);
+				@include borderRadius(8px);
+				box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.15);
+				@include rem(max-height, 500);
+				transition: all 0.3s ease;
+				overflow: hidden;
+
+				&:hover {
+					overflow-y: auto;
+					overflow-y: hidden;
+				}
+
+				.menu-item {
+					&:hover,
+					&:focus,
+					&.active {
+						background-color: $color-blue-6;
+					}
+
+					&--link {
+						.item-left {
+							text-align: left;
+							@include vertical-align-flex();
+
+							.item-text {
+								display: inline-block;
+								overflow: hidden;
+								text-overflow: ellipsis;
+								white-space: nowrap;
+							}
+						}
+					}
+				}
+			}
+
+			.group-title {
+				text-align: center;
+
+				&--text {
+					display: none;
+				}
+
+				&--icon {
+					display: inline-block;
+				}
+			}
+
+			.bottom-section {
+				.default-avatar {
+					@include rem(margin, 0, auto);
+				}
+
+				.info-name-rank {
+					display: none;
+				}
+
+				.icon-warning {
+					display: none;
+				}
+			}
+		}
+
+		// Menu selected style
+		&:not(.onboarding-help-shown) li.menu-item.parent-menu.selected {
+			.item-text,
+			.item-icon,
+			.item-right > * {
+				color: white;
+			}
+
+			&[module-name='sales'] {
+				background-color: $color-jade-5;
+
+				.item-text,
+				.item-icon,
+				.item-right > * {
+					color: $color-black-deep;
+				}
+			}
+
+			&[module-name='accounting'] {
+				background-color: $color-green-5;
+
+				color: $color-black-deep;
+
+				.item-text,
+				.item-icon,
+				.item-right > * {
+					color: $color-black-deep;
+				}
+			}
+
+			&[module-name='inventory'] {
+				background-color: $color-orange-5;
+			}
+
+			&[module-name='work'] {
+				background-color: $color-blue-7;
+			}
+
+			&[module-name='hrm'] {
+				background-color: $color-yellow-5;
+
+				color: $color-black-deep;
+
+				.item-text,
+				.item-icon,
+				.item-right > * {
+					color: $color-black-deep;
+				}
+			}
+
+			&[module-name='okr'] {
+				background-color: $color-red-5;
+			}
+
+			&[module-name='business-process'] {
+				background-color: $color-black-9;
+			}
+		}
+
+		.navigation-section {
+			height: calc(100vh - 334px - 27px); // TODO: Update when have setting icon
+		}
+
+		.logo {
+			@include rem(padding, 15);
+			@include vertical-align-flex();
+			@include justify-content(space-between);
+
+			.arrow-icon {
+				color: $color-gray-500;
+				@include rem(width, 14);
+
+				&:hover {
+					color: #fff;
+				}
+			}
+		}
+
+		.line-separator {
+			@include rem(height, 1);
+			background: $color-black-9;
+			@include rem(margin, 15, 0, 15, 0);
+		}
+
+		.group-title {
+			color: $color-black-5;
+			@include rem(padding, 6, 12);
+
+			&--text {
+				display: inline-block;
+				font-weight: $text-font-weight;
+				@include rem(font-size, 12);
+				//styleName: Desktop/Small;
+				// font-family: 'Inter';
+				// font-style: normal;
+			}
+
+			&--icon {
+				display: none;
+				@include rem(width, 16);
+				color: $color-black-8;
+			}
+		}
+
+		&:not(.onboarding-help-shown) .menu-item.parent-menu.selected {
+			background-color: $color-black-10-5;
+
+			.before {
+				@include borderRadiusRight(4px);
+			}
+		}
+
+		.menu-item {
+			cursor: pointer;
+			color: $color-gray-300;
+			display: flex;
+			align-items: center;
+			position: relative;
+
+			&:hover,
+			&:focus,
+			&.active {
+				background: $color-black-9;
+				color: #fff;
+			}
+
+			&.parent-menu {
+				.before {
+					position: absolute;
+					@include rem(left, 0);
+					height: 100%;
+					@include rem(width, 4);
+				}
+
+				&.active {
+					.icon-parent {
+						transform: rotate(90deg);
+					}
+				}
+			}
+
+			&.child-menu {
+				.menu-item--link {
+					color: $text-color-dark;
+				}
+			}
+
+			&--link {
+				width: 100%;
+				@include vertical-align-flex();
+				@include justify-content(space-between);
+				color: $text-color-dark;
+				text-decoration: none;
+				@include rem(padding, 12);
+				@include rem(font-size, $text-font-size);
+				font-weight: $text-font-weight;
+
+				.item-left {
+					width: 100%;
+					display: inline-block;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					white-space: nowrap;
+
+					.item-icon {
+						@include rem(width, 16);
+						@include rem(height, 16);
+
+						color: $text-color-dark;
+						vertical-align: middle;
+					}
+
+					> span {
+						@include rem(margin-left, 8);
+						vertical-align: middle;
+
+						&.item-text {
+							width: calc(100% - 24px);
+						}
+					}
+				}
+
+				.item-right {
+					display: flex;
+					align-items: center;
+
+					.action-create-project {
+						@include vertical-align-absolute();
+						@include rem(right, 30);
+						@include rem(padding, 5);
+						@include rem(line-height, 14);
+						@include borderRadius(4px);
+
+						&.float-right {
+							@include rem(right, 10);
+						}
+
+						&:hover {
+							background-color: $color-gray-900;
+						}
+
+						i {
+							display: inline-block;
+						}
+					}
+
+					.icon-parent {
+						transition: all 0.3s ease-in-out;
+						@include rem(width, 14);
+					}
+				}
+			}
+		}
+
+		.bottom-section {
+			@include rem(height, 48);
+			border-top: 1px solid $color-black-9;
+			width: 100%;
+		}
+
+		.messenger-section {
+			@include rem(margin-top, 4);
+			border-top: 1px solid $color-black-9;
+
+			li.menu-item {
+				@include rem(margin-top, 4);
+
+				.unread-count {
+					@include rem(width, 20);
+					@include rem(height, 20);
+					@include rem(border-radius, 14);
+					@include rem(font-size, 11);
+
+					color: white;
+					background: $color-red-7;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+			}
+		}
+	}
+
+	.light-theme.menu-container {
+		background-color: $background-color-light;
+		color: $text-color-light;
+
+		&.expanded {
+			ul.sub-menu {
+				border-color: $sub-menu-border-color-light;
+			}
+		}
+
+		&.compacted {
+			ul.sub-menu {
+				background-color: $background-color-light;
+			}
+
+			&:not(.onboarding-help-shown) .menu-item.parent-menu.selected {
+				background-color: $color-black-3;
+			}
+
+			.sub-menu {
+				.menu-item {
+					&:hover,
+					&:focus,
+					&.active {
+						background-color: $color-black-3;
+					}
+				}
+			}
+
+			.group-title {
+				&--icon {
+					color: $color-black-3;
+				}
+			}
+		}
+
+		// Menu selected style
+		&:not(.onboarding-help-shown) li.menu-item.parent-menu.selected {
+			.item-text,
+			.item-icon,
+			.item-right > * {
+				color: $color-black-deep;
+			}
+
+			&[module-name='business-process'] {
+				background-color: $color-black-3;
+
+				.item-text,
+				.item-icon,
+				.item-right > * {
+					color: $color-black-9;
+				}
+			}
+
+			&[module-name='okr'] {
+				background-color: $color-red-3;
+
+				.item-text,
+				.item-icon,
+				.item-right > * {
+					color: $color-red-9;
+				}
+			}
+
+			&[module-name='work'] {
+				background-color: $color-blue-3;
+
+				.item-text,
+				.item-icon,
+				.item-right > * {
+					color: $color-blue-9;
+				}
+			}
+
+			&[module-name='sales'] {
+				background-color: $color-jade-3;
+
+				.item-text,
+				.item-icon,
+				.item-right > * {
+					color: $color-jade-9;
+				}
+			}
+
+			&[module-name='hrm'] {
+				background-color: $color-yellow-3;
+
+				.item-text,
+				.item-icon,
+				.item-right > * {
+					color: $color-yellow-9;
+				}
+			}
+
+			&[module-name='accounting'] {
+				background-color: $color-green-3;
+
+				.item-text,
+				.item-icon,
+				.item-right > * {
+					color: $color-green-9;
+				}
+			}
+
+			&[module-name='inventory'] {
+				background-color: $color-orange-3;
+
+				.item-text,
+				.item-icon,
+				.item-right > * {
+					color: $color-orange-9;
+				}
+			}
+
+			&[module-name='wiki'] {
+				background-color: $color-violet-3;
+
+				.item-text,
+				.item-icon,
+				.item-right > * {
+					color: $color-violet-9;
+				}
+			}
+		}
+
+		.navigation-section {
+			.item-icon {
+				color: $color-black-6;
+			}
+
+			.action-create-project {
+				&:hover {
+					background-color: $color-gray-100;
+				}
+			}
+		}
+
+		&:not(.onboarding-help-shown) .menu-item.parent-menu.selected {
+			background-color: $color-black-3;
+		}
+
+		.menu-item {
+			color: $color-black-7;
+
+			&.active,
+			&:hover,
+			&:focus {
+				background: $color-black-3;
+				color: $color-black-10;
+
+				.arrow-icon {
+					color: $color-black-10;
+				}
+			}
+
+			&.child-menu {
+				.menu-item--link {
+					color: $color-black-10;
+				}
+			}
+
+			&--link {
+				color: $color-black-7;
+
+				.item-left {
+					.item-icon {
+						color: $text-color-light;
+					}
+				}
+
+				.item-right {
+					.action-create-project {
+						&:hover {
+							background-color: $color-black-2;
+						}
+					}
+				}
+			}
+		}
+
+		.logo {
+			.arrow-icon {
+				&:hover {
+					color: $color-black-5;
+				}
+			}
+		}
+
+		.line-separator {
+			background: $color-black-3;
+		}
+
+		.bottom-section {
+			border-top: 1px solid $color-black-3;
+		}
+
+		.messenger-section {
+			border-top: 1px solid $color-black-3;
+		}
+	}
+}

@@ -21,8 +21,7 @@ export class AuthComponent implements OnDestroy {
     //     this.errorMessage = message;
 
     setTimeout(() => {
-        this.errorMessage = 'Server error';
-        console.log('this.errorMessage', this.errorMessage);
+        this.errorMessage = null;
     }, 3000);
     // });
   }

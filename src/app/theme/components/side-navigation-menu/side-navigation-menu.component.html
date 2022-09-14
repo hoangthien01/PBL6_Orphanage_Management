@@ -1,0 +1,369 @@
+<ng-container *ngIf="currentUser$ | async as currentUser">
+	<div
+		class="menu-container"
+		[ngClass]="{
+			'expanded': !isCollapsed,
+			'compacted': isCollapsed,
+			'dark-theme': isDarkThemSelected,
+			'light-theme': !isDarkThemSelected,
+			'onboarding-help-shown': isOnboardingHelpShown
+		}">
+		<div class="group-section">
+			<div class="logo">
+				<ng-container *ngIf="!isCollapsed; else compactedTemplate">
+					<img
+						@fadeInEnterAnimation
+						[src]="
+							isDarkThemSelected
+								? 'assets/images/logo-white.svg'
+								: 'assets/images/logo-black.svg'
+						"
+						alt="cleeksy-logo" />
+				</ng-container>
+
+				<ng-template #compactedTemplate>
+					<img
+						@fadeInEnterAnimation
+						class="pointer"
+						(click)="toggle($event)"
+						[src]="
+							isDarkThemSelected
+								? 'assets/images/logo-cleeksy-border-1.svg'
+								: 'assets/images/logo-cleeksy-border-2.svg'
+						"
+						alt="cleeksy-logo" />
+				</ng-template>
+
+				<app-svg-icon
+					*ngIf="!isCollapsed"
+					[@fadeInEnterAnimation]="{ value: ':enter', params: { delay: 300 } }"
+					(click)="toggle($event)"
+					class="arrow-icon pointer"
+					[name]="'icon_arrow_left_line'">
+				</app-svg-icon>
+			</div>
+			<ul class="menu-wrapper">
+				<li
+					class="menu-item parent-menu"
+					routerLinkActive="active"
+					routerLink="notification">
+					<a class="menu-item--link" [title]="isCollapsed ? 'Thông báo' : ''">
+						<span class="item-left">
+							<app-svg-icon class="item-icon" [name]="'icon_notification'">
+							</app-svg-icon>
+							<span *ngIf="!isCollapsed" @fadeInEnterAnimation class="item-text">
+								Thông báo
+							</span>
+						</span>
+					</a>
+				</li>
+
+				<li class="menu-item parent-menu" routerLinkActive="active" routerLink="community">
+					<a class="menu-item--link" [title]="isCollapsed ? 'Cộng đồng' : ''">
+						<span class="item-left">
+							<app-svg-icon class="item-icon" [name]="'icon_community'">
+							</app-svg-icon>
+							<span *ngIf="!isCollapsed" @fadeInEnterAnimation class="item-text">
+								Cộng đồng
+							</span>
+						</span>
+					</a>
+				</li>
+
+				<li class="menu-item parent-menu" routerLinkActive="active">
+					<a
+						class="menu-item--link"
+						(click)="onSettingLinkClicked()"
+						[title]="isCollapsed ? 'Thiết lập' : ''">
+						<span class="item-left">
+							<app-svg-icon class="item-icon" [name]="'icon_settings'">
+							</app-svg-icon>
+							<span *ngIf="!isCollapsed" @fadeInEnterAnimation class="item-text">
+								Thiết lập
+							</span>
+						</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="line-separator"></div>
+		<div class="group-title feature-group-title animated fadeIn">
+			<span *ngIf="!isCollapsed" class="group-title--text">Tính Năng</span>
+			<app-svg-icon
+				*ngIf="isCollapsed"
+				[@fadeInEnterAnimation]="{ value: ':enter', params: { delay: 300 } }"
+				class="group-title--icon"
+				[name]="'icon_rhombus'">
+			</app-svg-icon>
+		</div>
+
+		<div class="navigation-section">
+			<dx-scroll-view [useNative]="isUseNative" scrollByContent="true" scrollByThumb="true">
+				<div class="menu-section">
+					<ul class="menu-wrapper position-relative">
+						<!--ork item-->
+						<ng-container
+							*ngIf="navItems | function: filterOrkItem as item"
+							[ngTemplateOutlet]="otherNoChild"
+							[ngTemplateOutletContext]="{ item: item }">
+						</ng-container>
+
+						<!--business process item-->
+						<ng-container
+							*ngIf="navItems | function: filterBusinessProcessItem as item"
+							[ngTemplateOutlet]="otherNoChild"
+							[ngTemplateOutletContext]="{ item: item }">
+						</ng-container>
+
+						<!--work item-->
+						<ng-container
+							*ngIf="navItems | function: filterWorkItem as item"
+							[ngTemplateOutlet]="item.hasItems ? workHasChild : workNoChild"
+							[ngTemplateOutletContext]="{ item: item }">
+							<app-project-creation-container
+								*ngIf="isCreateProjectPopupVisible"
+								[(visible)]="isCreateProjectPopupVisible">
+							</app-project-creation-container>
+						</ng-container>
+
+						<!--Other items-->
+						<div
+							class="other-items-wrapper"
+							joyrideStep="business"
+							[stepContent]="isOnboarding ? onboardingBusinessTemplate : null"
+							stepPosition="right">
+							<ng-container
+								*ngFor="let item of navItems | function: filterOtherItems">
+								<ng-container
+									[ngTemplateOutlet]="
+										item.hasItems ? otherHasChild : otherNoChild
+									"
+									[ngTemplateOutletContext]="{ item: item }">
+								</ng-container>
+							</ng-container>
+						</div>
+					</ul>
+				</div>
+			</dx-scroll-view>
+		</div>
+
+		<div class="favorite-section"></div>
+
+		<div class="messenger-section">
+			<ul
+				class="menu-wrapper"
+				joyrideStep="messenger"
+				[stepContent]="isOnboarding ? onboardingMessengerTemplate : null"
+				stepPosition="right">
+				<li
+					class="menu-item parent-menu"
+					module-name="messenger"
+					(click)="isShowConversationBox = !isShowConversationBox">
+					<a class="menu-item--link messenger" [title]="isCollapsed ? 'messenger' : ''">
+						<span class="item-left">
+							<app-svg-icon class="item-icon" name="icon_comment"> </app-svg-icon>
+
+							<span *ngIf="!isCollapsed" @fadeInEnterAnimation class="item-text">
+								Tin nhắn
+							</span>
+						</span>
+
+						<span
+							*ngIf="unreadMessagesCount > 0"
+							[ngClass]="{ 'animated fadeIn': isCollapsed }"
+							[@fadeInEnterAnimation]="{ value: ':enter', params: { delay: 300 } }"
+							class="item-right unread-count">
+							{{ unreadMessagesCount < 10 ? unreadMessagesCount : '9+' }}
+						</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="bottom-section">
+			<app-user-setting
+				[isCompacted]="isCollapsed"
+				[(isDarkThemeSelected)]="isDarkThemSelected">
+			</app-user-setting>
+		</div>
+	</div>
+</ng-container>
+
+<app-md-conversation
+	[isMenuCollapsed]="isCollapsed"
+	[(conversationListVisible)]="isShowConversationBox"
+	[(unreadMessagesCount)]="unreadMessagesCount">
+</app-md-conversation>
+
+<!-- Onboarding help: Work template-->
+<ng-template #onboardingWorkTemplate>
+	<app-onboarding-work-view *ngIf="isOnboarding"></app-onboarding-work-view>
+</ng-template>
+<!-- Onboarding help: Business template-->
+<ng-template #onboardingBusinessTemplate>
+	<app-onboarding-business-view *ngIf="isOnboarding"></app-onboarding-business-view>
+</ng-template>
+<!-- Onboarding help: Messenger template-->
+<ng-template #onboardingMessengerTemplate>
+	<app-onboarding-messenger-view *ngIf="isOnboarding"></app-onboarding-messenger-view>
+</ng-template>
+
+<ng-template #workNoChild let-item="item">
+	<li
+		class="menu-item parent-menu"
+		joyrideStep="work"
+		[stepContent]="isOnboarding ? onboardingWorkTemplate : null"
+		stepPosition="right"
+		[attr.module-name]="item.routerLink"
+		[routerLink]="[item?.routerLink]"
+		routerLinkActive="active selected"
+		(click)="toggleMenu(item.id)">
+		<a
+			class="menu-item--link {{ item.icon }}"
+			[title]="isCollapsed ? item?.text : ''"
+			(click)="treeItemClick($event, item)">
+			<span class="item-left">
+				<app-svg-icon class="item-icon" [name]="item?.icon"> </app-svg-icon>
+				<span *ngIf="!isCollapsed" @fadeInEnterAnimation class="item-text" [title]="item?.text">{{
+					item?.text
+					}}</span>
+			</span>
+
+			<span
+				class="item-right"
+				[@fadeInEnterAnimation]="{ value: ':enter', params: { delay: 300 } }"
+				*ngIf="!isCollapsed && item.routerLink === 'work'">
+				<span
+					class="action-create-project float-right"
+					(click)="showPopoverCreateProject($event)">
+					<i class="icon dx-icon-add"></i>
+				</span>
+			</span>
+		</a>
+	</li>
+</ng-template>
+
+<ng-template #workHasChild let-item="item">
+	<ul
+		joyrideStep="work"
+		class="work-wrapper"
+		[stepContent]="isOnboarding ? onboardingWorkTemplate : null"
+		stepPosition="right">
+		<li
+			class="menu-item parent-menu"
+			[ngClass]="{
+				'active': item.expanded,
+				'selected': item.selected
+			}"
+			[attr.module-name]="item.routerLink"
+			(click)="toggleMenu(item.id)">
+			<ng-container
+				[ngTemplateOutlet]="menuItemTemplate"
+				[ngTemplateOutletContext]="{ item: item }">
+			</ng-container>
+		</li>
+		<!--child items-->
+		<ng-container
+			[ngTemplateOutlet]="submenuTemplate"
+			[ngTemplateOutletContext]="{ item: item }">
+		</ng-container>
+	</ul>
+</ng-template>
+
+<ng-template #otherNoChild let-item="item">
+	<li
+		class="menu-item parent-menu"
+		[attr.module-name]="item.routerLink"
+		[routerLink]="[item?.routerLink]"
+		routerLinkActive="active selected"
+		(click)="toggleMenu(item.id)">
+		<a
+			class="menu-item--link {{ item.icon }}"
+			[title]="isCollapsed ? item?.text : ''"
+			(click)="treeItemClick($event, item)">
+			<span class="item-left">
+				<app-svg-icon class="item-icon" [name]="item?.icon"> </app-svg-icon>
+				<span *ngIf="!isCollapsed" @fadeInEnterAnimation class="item-text" [title]="item?.text">
+					{{ item?.text }}
+				</span>
+			</span>
+		</a>
+	</li>
+</ng-template>
+
+<ng-template #otherHasChild let-item="item">
+	<li
+		class="menu-item parent-menu"
+		[ngClass]="{
+			'active': item.expanded,
+			'selected': item.selected
+		}"
+		[attr.module-name]="item.routerLink"
+		(click)="toggleMenu(item.id)">
+		<ng-container
+			[ngTemplateOutlet]="menuItemTemplate"
+			[ngTemplateOutletContext]="{ item: item }">
+		</ng-container>
+	</li>
+	<!--child items-->
+	<ng-container [ngTemplateOutlet]="submenuTemplate" [ngTemplateOutletContext]="{ item: item }">
+	</ng-container>
+</ng-template>
+
+<!-- Menu item template -->
+<ng-template #menuItemTemplate let-item="item">
+	<a class="menu-item--link {{ item.icon }}" [title]="isCollapsed ? item?.text : ''">
+		<span class="item-left">
+			<app-svg-icon class="item-icon" [name]="item?.icon"> </app-svg-icon>
+			<span *ngIf="!isCollapsed" @fadeInEnterAnimation class="item-text" [title]="item?.text">
+				{{ item?.text }}
+			</span>
+		</span>
+		<span
+			class="item-right"
+			*ngIf="!isCollapsed"
+			[@fadeInEnterAnimation]="{ value: ':enter', params: { delay: 300 } }">
+			<span
+				*ngIf="item.routerLink === 'work'"
+				class="action-create-project"
+				(click)="showPopoverCreateProject($event)">
+				<i class="icon dx-icon-add"></i>
+			</span>
+
+			<app-svg-icon class="icon-parent" *ngIf="item?.hasItems" [name]="'icon_chevron_right'">
+			</app-svg-icon>
+		</span>
+	</a>
+</ng-template>
+
+<!--Sub menu item template-->
+<ng-template #submenuTemplate let-item="item">
+	<ul
+		@growAnimation
+		*ngIf="item?.items?.length && item?.expanded"
+		class="sub-menu scroll-bar"
+		[ngClass]="{ 'active': item?.expanded }">
+		<li
+			class="menu-item child-menu"
+			routerLinkActive="active"
+			[routerLink]="[subItem?.routerLink]"
+			*ngFor="let subItem of item.items">
+			<a
+				class="menu-item--link"
+				[title]="isCollapsed ? subItem?.text : ''"
+				(click)="treeItemClick($event, subItem)">
+				<span class="item-left">
+					<span class="icon-wrapper m-0">
+						<ng-container *ngIf="!!subItem.icon; else defaultIconTemplate">
+							<app-svg-icon class="item-icon" [name]="subItem.icon"> </app-svg-icon>
+						</ng-container>
+						<ng-template #defaultIconTemplate>
+							<app-svg-icon class="item-icon" [name]="'icon_rhombus'"> </app-svg-icon>
+						</ng-template>
+					</span>
+
+					<span @fadeInEnterAnimation class="item-text" [title]="subItem?.text">{{ subItem?.text }}</span>
+				</span>
+			</a>
+		</li>
+	</ul>
+</ng-template>

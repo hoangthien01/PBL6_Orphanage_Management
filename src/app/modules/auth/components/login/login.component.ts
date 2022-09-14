@@ -69,10 +69,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     dataChanged() {
         const email = this.login.email;
         const password = this.login.password;
-        // if (!email || !password) {
-        //     this.isDataValid = false;
-        //     return;
-        // }
+        if (!email || !password) {
+            this.isDataValid = false;
+            return;
+        }
 
         this.isDataValid = RegexObject.checkEmailIsValid(String(email)) && password.length >= 6;
     }

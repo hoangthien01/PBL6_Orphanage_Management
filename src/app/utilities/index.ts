@@ -7,3 +7,4 @@ export * from './storage';
 export * from './endpoints';
 export * from './array-helper';
 export * from './api-endpoints';
+export * from './devExtreme-helper';

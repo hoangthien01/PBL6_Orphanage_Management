@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 //
@@ -14,6 +15,7 @@ import {
   svgIconWoosenderLogoColor
 } from 'src/assets/images/svg-icons.constants';
 import { LoginComponent } from './components/login/login.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const SVG_ICONS = [
   svgIconWoosenderLogoColor,
@@ -31,11 +33,10 @@ export const routes: Routes = [
         pathMatch: 'full'
       },
       // CAUSING: if you change the SignUp Url, you should update ENDPOINTS.SIGN_UP as well
-      // {
-      //   path: 'sign-up-now',
-      //   component: SignUpComponent,
-      //   canDeactivate: [DeactivateGuard],
-      // },
+      {
+        path: 'sign-up',
+        component: SignUpComponent,
+      },
       {
         path: 'login',
         component: LoginComponent,
@@ -55,12 +56,14 @@ export const routes: Routes = [
   declarations: [
     AuthComponent,
     LoginComponent,
+    SignUpComponent,
     ForbiddenComponent
   ],
   imports: [
     ThemeModule,
     RouterModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    CommonModule
   ],
   // providers: [...PROVIDERS]
 })

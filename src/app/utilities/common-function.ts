@@ -383,28 +383,6 @@ export class CommonFunction {
         return undefined;
     }
 
-    public static highlightDuplicateTag(tagContent: string, tagList: DxTagBoxComponent) {
-        const tagElements = Array.from(tagList.instance.element().getElementsByClassName('tag-item-wrap'));
-        let duplicateTagElement;
-
-        for (const tagElement of tagElements) {
-            const textContent = (tagElement as any).querySelector('.tag-item').textContent || '';
-            if (textContent.trim().toLowerCase() === tagContent.trim().toLowerCase()) {
-                duplicateTagElement = tagElement;
-                break;
-            }
-        }
-
-        if (!duplicateTagElement) {
-            return;
-        }
-
-        duplicateTagElement.classList.add('tag-highlight');
-        setTimeout(() => {
-            duplicateTagElement.classList.remove('tag-highlight');
-        }, 2000);
-    }
-
     public static getImageSize(imgSrc): DimensionModel {
         const imgTag = document.createElement('img');
         imgTag.src = imgSrc;

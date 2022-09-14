@@ -1,3 +1,4 @@
+import { SideNavigationMenuComponent } from './components/side-navigation-menu/side-navigation-menu.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // import { RouterModule } from '@angular/router';
@@ -149,7 +150,8 @@ const BASE_MODULES = [
 
 const COMPONENTS = [
   CustomButtonComponent,
-  SvgIconComponent
+  SvgIconComponent,
+  SideNavigationMenuComponent
 ];
 
 // const PIPES = [
@@ -184,7 +186,7 @@ const COMPONENTS = [
 @NgModule({
   imports: [
     ...BASE_MODULES,
-    ...DEVEXTREME_MODULES
+    ...DEVEXTREME_MODULES,
   ],
   declarations: [
     ...COMPONENTS,

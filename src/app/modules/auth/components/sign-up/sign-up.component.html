@@ -28,21 +28,7 @@
                         </dx-validator>
                     </dx-text-box>
                 </div>
-                <div class="box-properties">
-                    <span class="field-label">{{accountMessages.CompanyName}}</span>
-                    <dx-text-box #companyName
-                                 class="field-box"
-                                 [placeholder]="accountMessages.EnterCompanyName" [valueChangeEvent]="'input'"
-                                 [(value)]="account.companyName"
-                                 (onEnterKey)="nextToCreditPage()"
-                                 (onValueChanged)="dataChanged()">
-                        <dx-validator>
-                            <dxi-validation-rule type="required"
-                                                 [message]="accountMessages.CompanyNameRequired">
-                            </dxi-validation-rule>
-                        </dx-validator>
-                    </dx-text-box>
-                </div>
+
                 <div class="box-properties name">
                     <span class="field-label">{{accountMessages.Email}}</span>
                     <dx-text-box #email
@@ -121,46 +107,7 @@
                                        class="btn-register w-100"
                                        [height]="40"
                                        [width]="'100%'"
-                                       [text]="'CREATE WOOSENDER ACCOUNT NOW'"
-                                       [type]="'primary'">
-                    </app-custom-button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div [@openClose]="stepSignUp.creditCard == currentStep ? 'open' : 'closed'"
-         [hidden]="stepSignUp.creditCard != currentStep" class="credit-card-box">
-        <div class="main-content">
-            <div class="field-area">
-                <div class="order-summary">
-                    <span class="field-label">ORDER SUMMARY</span>
-                    <div class="summary-description">
-                        <div class="summary-info">
-                            <div>WooSender {{planName}} Plan</div>
-                            <div *ngIf="trialDay > 0" class="font-weight-bold">{{trialDay}} {{trialDay > 1 ? "Days" : "Day"}} Free Trial</div>
-                        </div>
-                        <div *ngIf="trialDay > 0" class="summary-money">
-                            <div>Amount: <span class="text-has-link">$0</span></div>
-                            <div>Then just ${{baseCharge}}/month</div>
-                        </div>
-                        <div *ngIf="trialDay == 0" class="summary-money">
-                            <div>Amount: <span class="text-has-link">${{baseCharge}}</span>/month</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="box-properties">
-                    By clicking “GET INSTANT ACCESS” you agree to the WooSender <span (click)="goToTermOfService()"
-                                                                                      class="title text-has-link">Term of Service</span>
-                    and <span (click)="goToPrivacyPolicy()" class="title text-has-link">Privacy Policy</span>
-                </div>
-                <div class="content-footer">
-                    <app-custom-button (onClick)="registerAccount()"
-                                       [disabled]="isRegistering || !creditCard.isFormValid"
-                                       class="btn-register mr-0 w-100"
-                                       [height]="40"
-                                       [width]="'100%'"
-                                       icon="{{ isRegistering ? 'fas fa-spinner fa-spin' : '' }}"
-                                       [text]="'GET INSTANT ACCESS'"
+                                       [text]="'CREATE ACCOUNT NOW'"
                                        [type]="'primary'">
                     </app-custom-button>
                 </div>

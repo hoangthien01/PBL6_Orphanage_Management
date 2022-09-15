@@ -18,11 +18,11 @@ const routes: Routes = [
   //     loadChildren: () => import('@app/modules/admin/admin.module').then(m => m.AdminModule),
   //     data: { preload: false }
   // },
-  // {
-  //     path: 'mobile',
-  //     loadChildren: () => import('@app/modules/mobile/mobile.module').then(m => m.MobileModule),
-  //     data: { preload: false }
-  // },
+  {
+      path: 'home',
+      loadChildren: () => import('@app/modules/home/home.module').then(m => m.HomeModule),
+      data: { preload: false }
+    },
   // { path: '**', component: PageNotFoundComponent },
 ];
 

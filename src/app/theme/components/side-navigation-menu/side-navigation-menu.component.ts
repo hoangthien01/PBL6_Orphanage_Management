@@ -6,25 +6,24 @@ import {
 	OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 //
-import { Utility } from '@apps/shared/utilities';
+// import { Utility } from '@apps/shared/utilities';
 
 import { INavBarItem } from '@app/shared/models';
-import { Title } from '@angular/platform-browser';
-import { fadeInEnterOnlyAnimation, growAnimation } from '@cleeksy/shared/configurations/common';
+// import { fadeInEnterOnlyAnimation, growAnimation } from '@cleeksy/shared/configurations/common';
 // import { ToggleNavbar } from '@cleeksy/shared/data-access/app-ui-state';
 
 @Component({
 	selector: 'app-side-navigation-menu',
 	templateUrl: './side-navigation-menu.component.html',
 	styleUrls: ['./side-navigation-menu.component.scss'],
-	animations: [growAnimation, fadeInEnterOnlyAnimation],
+	// animations: [growAnimation, fadeInEnterOnlyAnimation],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideNavigationMenuComponent implements OnInit, OnDestroy {
-	currentUser$: Observable<IUser> = this.store.select(AppUserSelector.currentUser);
+	// currentUser$: Observable<IUser> = this.store.select(AppUserSelector.currentUser);
+	currentUser$ = null;
 
 	menuItems: Partial<INavBarItem>[] = [];
 	navItems: Partial<INavBarItem>[] = [];
@@ -44,48 +43,13 @@ export class SideNavigationMenuComponent implements OnInit, OnDestroy {
 
 	constructor(
 		private changeDetector: ChangeDetectorRef,
-		private titleService: Title,
-		private store: Store,
 		private router: Router	) {}
 
 	ngOnInit(): void {
-		this.isDarkThemSelected =
+		// this.isDarkThemSelected =
 			// 'dark' === this.userPreference?.selectedTheme?.trim().toLowerCase();
 	}
 
-	private processRecentAndFavoriteProject(
-		projects: { id: number; name: string; icon: string; slug: string }[]
-	): Partial<INavBarItem>[] {
-		let projectId = Number.MIN_SAFE_INTEGER;
-		let isInWorkModule = false;
-		if (this.router.url.startsWith('/work')) {
-			isInWorkModule = true;
-			const urlSplit = this.router.url.split('/');
-			if (urlSplit.length === 4) {
-				const projectSlug = urlSplit[2];
-				const project = projects.find(_ => _.slug === projectSlug);
-				if (project) {
-					projectId = project.id;
-				}
-			}
-		}
-		const projectsMenuItems: Partial<INavBarItem>[] = [];
-		const workItem = this.menuItems.find(_ => _.routerLink === 'work');
-		projects.forEach(_ => {
-			projectsMenuItems.push(
-				this.generateMenuItem(
-					_.id,
-					isInWorkModule && projectId === _.id,
-					_.name,
-					_.icon,
-					`/work/${_.id}-${_.slug}`,
-					workItem?.id
-				)
-			);
-		});
-
-		return projectsMenuItems;
-	}
 
 
 	createDataTree(dataset: Partial<INavBarItem>[]): Partial<INavBarItem>[] {
@@ -171,7 +135,7 @@ export class SideNavigationMenuComponent implements OnInit, OnDestroy {
 			this.navItems.forEach(_ => (_.selected = _.id === subItem.id));
 		}
 
-		this.titleService.setTitle(Utility.formatTitle(subItem.text));
+		// this.titleService.setTitle(Utility.formatTitle(subItem.text));
 
 		if (this.isCollapsed) {
 			// NOTE! set timeout to make sure router link attribute has triggered

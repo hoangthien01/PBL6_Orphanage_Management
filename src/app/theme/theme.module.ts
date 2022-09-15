@@ -79,6 +79,8 @@ import {
   CustomButtonComponent,
   SvgIconComponent
 } from './components';
+import { FunctionPipe } from './pipes';
+import { RouterModule } from '@angular/router';
 //
 // import {
 //     AutoFocusInputDirective,
@@ -154,26 +156,9 @@ const COMPONENTS = [
   SideNavigationMenuComponent
 ];
 
-// const PIPES = [
-//   TimeSecondPipe,
-//   TruncatePipe,
-//   StringToDatePipe,
-//   SeparateDateTimeToDatePipe,
-//   SeparateDateTimeToTimeExceptSecPipe,
-//   SeparateDateTimeToTimePipe,
-//   SecondsToWordTime,
-//   SecondsToTimePipe,
-//   GridColumnNullValuePipe,
-//   DisplayNameNullValuePipe,
-//   OrderByPipe,
-//   ValuePipe,
-//   FunctionPipe,
-//   RemoveHtmlTagPipe,
-//   TimeEventPipe,
-//   TimeAgoPipe,
-//   LookupValuePipe,
-//   IsItemExistInLookupPipe
-// ];
+const PIPES = [
+  FunctionPipe,
+];
 
 // const DIRECTIVES = [
 //     AutoFocusInputDirective,
@@ -187,17 +172,18 @@ const COMPONENTS = [
   imports: [
     ...BASE_MODULES,
     ...DEVEXTREME_MODULES,
+    RouterModule
   ],
   declarations: [
     ...COMPONENTS,
-    // ...PIPES,
+    ...PIPES,
     // ...DIRECTIVES,
   ],
   exports: [
     // ...BASE_MODULES,
     ...DEVEXTREME_MODULES,
     ...COMPONENTS,
-    // ...PIPES,
+    ...PIPES,
     // ...DIRECTIVES
   ]
 })

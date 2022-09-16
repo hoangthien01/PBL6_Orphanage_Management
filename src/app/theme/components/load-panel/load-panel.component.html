@@ -1,0 +1,14 @@
+<div *ngIf="isLoading"
+     class="load-panel-wrapper {{customClass}}"
+     [class.load-panel-grid-wrapper]="isApplyToGridLoading"
+     [ngStyle]="customStyle">
+    <div class="load-panel-content d-flex justify-content-center align-items-center">
+        <div class="load-panel-icons d-flex justify-content-center">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>

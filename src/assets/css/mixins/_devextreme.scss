@@ -1,5 +1,5 @@
-@import "woosender-extend";
-@import "woosender-variable";
+@import "../jerry-extend";
+@import "../jerry-variable";
 
 /*------------Input (TextBox, NumberBox, Selectbox, etc) --------------*/
 @mixin field-input {

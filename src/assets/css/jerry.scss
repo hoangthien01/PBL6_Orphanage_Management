@@ -1,20 +1,20 @@
 @import url("../fonts/index.css");
 //
-@import "woosender-extend";
-@import "woosender-variable";
-@import "woosender-form";
-@import "woosender-icon";
-@import "woosender-mobile";
-@import "woosender-page.scss";
+@import "./jerry-extend";
+@import "./jerry-variable";
+@import "./jerry-form";
+@import "./jerry-icon";
+@import "./jerry-mobile";
+@import "./jerry-page.scss";
 //
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-@import "tailwind-custom";
+@import "./tailwind-custom";
 //
-@import "mixins";
-@import "shared";
-@import "devextreme/components";
-@import "components";
+@import "./mixins";
+@import "./shared";
+@import "./devextreme/components";
+@import "./components";
 
 html, body {
     height: 100%;

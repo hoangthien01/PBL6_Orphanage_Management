@@ -12,13 +12,11 @@ import { SvgIconsRegistry } from '@app/core/services';
 //
 import {
   svgIconWarningCircle,
-  svgIconWoosenderLogoColor
 } from 'src/assets/images/svg-icons.constants';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const SVG_ICONS = [
-  svgIconWoosenderLogoColor,
   svgIconWarningCircle
 ];
 

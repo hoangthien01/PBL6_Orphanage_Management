@@ -1,6 +1,4 @@
 export const ENDPOINTS = {
-    HELP_CENTER: 'http://help.woosender.com/en',
-
     // Admin
     ADMIN: '/admin',
     ADMIN_LOGIN: '/admin/login',

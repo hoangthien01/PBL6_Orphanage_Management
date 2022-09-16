@@ -321,11 +321,11 @@ export class CommonFunction {
     }
 
     public static goToPrivacyPolicy() {
-        window.open('https://woosender.com/privacy-policy', '_blank');
+        window.open('https://jerry.com/privacy-policy', '_blank');
     }
 
     public static goToTermOfService() {
-        window.open('https://woosender.com/terms-and-services', '_blank');
+        window.open('https://jerry.com/terms-and-services', '_blank');
     }
 
     public static allowUpdateDimensions(gridInstance) {

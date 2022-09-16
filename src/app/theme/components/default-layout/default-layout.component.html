@@ -1,0 +1,25 @@
+<div class="default-layout {{wrapperTemplateClass}}">
+    <section *ngIf="!!headerTemplate"
+             class="default-layout__header {{headerTemplateClass}}">
+        <ng-container [ngTemplateOutlet]="headerTemplate"></ng-container>
+    </section>
+
+    <main class="default-layout__content d-flex flex-column {{mainTemplateClass}}"
+          [attr.data-content-type]="mainContentType"
+          [attr.data-has-header]="!!headerTemplate"
+          [attr.data-has-footer]="!!footerTemplate">
+        <app-load-panel *ngIf="hasLoadingDuringInit"
+                        [isLoading]="!isInit">
+        </app-load-panel>
+
+        <div class="default-layout__main--container">
+            <div class="default-layout__main--content">
+                <ng-container [ngTemplateOutlet]="mainTemplate"></ng-container>
+            </div>
+        </div>
+    </main>
+
+    <div *ngIf="!!footerTemplate" class="default-layout__footer">
+        <ng-container [ngTemplateOutlet]="footerTemplate"></ng-container>
+    </div>
+</div>

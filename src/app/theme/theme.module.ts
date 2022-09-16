@@ -1,3 +1,4 @@
+import { DefaultLayoutComponent } from './components/default-layout/default-layout.component';
 import { SideNavigationMenuComponent } from './components/side-navigation-menu/side-navigation-menu.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -81,6 +82,7 @@ import {
 } from './components';
 import { FunctionPipe } from './pipes';
 import { RouterModule } from '@angular/router';
+import { LoadPanelComponent } from './components/load-panel/load-panel.component';
 //
 // import {
 //     AutoFocusInputDirective,
@@ -153,7 +155,9 @@ const BASE_MODULES = [
 const COMPONENTS = [
   CustomButtonComponent,
   SvgIconComponent,
-  SideNavigationMenuComponent
+  SideNavigationMenuComponent,
+  LoadPanelComponent,
+  DefaultLayoutComponent
 ];
 
 const PIPES = [

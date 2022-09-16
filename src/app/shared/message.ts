@@ -162,8 +162,8 @@ export const ACCOUNT_MESSAGE = {
     EmailExist: 'Email is already registered. Please try another',
     PrivacyPolicy: 'Privacy Policy',
     TermOfService: 'Term of Service',
-    WooSenderCopyright: '© 2019 WooSender. All rights reserved.',
-    AgreePolicy: 'By clicking “Register” you agree to the WooSender',
+    JerryCopyright: '© 2019 Jerry. All rights reserved.',
+    AgreePolicy: 'By clicking “Register” you agree to the Jerry',
     PasswordNotMatchWarning: 'Not match to the Create Password',
     PasswordMinLengthWarning: 'Password must have 6 characters at least',
     SentPassword: 'Your new password has been sent to your mailbox',
@@ -175,7 +175,7 @@ export const ACCOUNT_MESSAGE = {
     MinPasswordMessage: 'Password must have at least 6 characters',
     NotMatchPasswordMessage: 'Password and Confirm Password do not match',
     ActivatedAccountSuccess: 'Thank you, your account has been activated!',
-    ConfirmLogoutWhenActivatedAccount: 'You are trying to activate your WooSender account. You need to sign out firstly. ' +
+    ConfirmLogoutWhenActivatedAccount: 'You are trying to activate your Jerry account. You need to sign out firstly. ' +
         '</br> Are you sure you want to sign out?',
     DeletePhoneNumberSucceed: 'The phone number has been deleted.',
     ConfirmToDeletePhoneNumber: 'Deleting a number is permanently release it. You cannot send and receive SMS, </br>call forwarding via this number. This cannot be undone.' +
@@ -211,7 +211,7 @@ export const INTEGRATION_MESSAGE = {
         'You need to grant all of permissions to continue using {0} calendar! <br> Do you want to try connecting to {0} calendar again?',
     IntegrationCalendarNotACalendarUserMessageError:
         'Your {0} Calendar integration will be disconnected due to unknown issue!' +
-        ' <br> Please contact WooSender Support for help.'
+        ' <br> Please contact Jerry Support for help.'
 }
 ;
 

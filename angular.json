@@ -37,7 +37,7 @@
             "styles": [
               "src/assets/css/devextreme/dx.common.css",
               "src/assets/css/devextreme/generic.light.custom.css",
-              "src/assets/css/woosender.scss"
+              "src/assets/css/jerry.scss"
             ],
             "stylePreprocessorOptions": {
                 "includePaths": [

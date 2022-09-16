@@ -43,7 +43,6 @@ export class BaseService {
 
     get binaryArrayHeaders(): HttpHeaders {
         return new HttpHeaders({
-            'app-key': environment.appKey,
             'Content-Type': 'application/octet-stream',
             Authorization: this.bearerAuthentication,
         });
@@ -51,7 +50,6 @@ export class BaseService {
 
     get headers(): HttpHeaders {
         return new HttpHeaders({
-            'app-key': environment.appKey,
             'Content-Type': 'application/json',
             Authorization: this.bearerAuthentication,
         });
@@ -63,7 +61,6 @@ export class BaseService {
 
     private _headersWithWSConnectionId(): HttpHeaders {
         return new HttpHeaders({
-            'app-key': environment.appKey,
             'Content-Type': 'application/json',
             Authorization: this.bearerAuthentication
         });
@@ -220,7 +217,6 @@ export class BaseService {
         // Important note: Don't add 'Content-Type' in request header.
         const httpOptions = {
             headers: new HttpHeaders({
-                'app-key': environment.appKey,
                 Accept: 'application/json',
                 Authorization: this.bearerAuthentication
             }),

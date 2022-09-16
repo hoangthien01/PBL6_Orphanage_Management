@@ -1,0 +1,61 @@
+<div class="box-menu d-flex">
+    <div class="d-flex justify-content-start mr-auto">
+        <a [routerLink]="['/conversations']" class="d-flex align-items-center pr-35-c pl-25-c logo-box">
+            <app-svg-icon name="icon_woosender_logo_white"
+                          style="width: 68px; height: 24px">
+            </app-svg-icon>
+        </a>
+        <div class="tab-item">
+            <a class="d-flex align-items-center sub-tab"
+               [routerLink]="['/contacts']"
+               [routerLinkActive]="'menu-selected'">
+                <app-svg-icon [name]="'icon_prospect_header'"
+                              [width]="14">
+                </app-svg-icon>
+            </a>
+        </div>
+
+        <div class="tab-item">
+            <a class="d-flex align-items-center sub-tab"
+               [routerLink]="['/pipeline']"
+               [routerLinkActive]="'menu-selected'">
+                <app-svg-icon [name]="'icon_currency'"
+                              [width]="18">
+                </app-svg-icon>
+
+                <div class="menu-title d-flex">Pipeline</div>
+            </a>
+        </div>
+
+        <div class="tab-item">
+            <a class="sub-tab d-flex align-items-center"
+               [routerLink]="['/conversations']"
+               [routerLinkActive]="'menu-selected'">
+                <app-svg-icon [name]="'icon_conversation_header'"
+                              [width]="18">
+                </app-svg-icon>
+                <div class="menu-title">Conversations</div>
+            </a>
+        </div>
+        <div class="tab-item">
+            <a class="sub-tab d-flex align-items-center"
+               [routerLink]="['/campaigns']"
+               [routerLinkActive]="'menu-selected'">
+                <app-svg-icon [name]="'icon_campaigns_header'"
+                              [width]="18">
+                </app-svg-icon>
+                <div class="menu-title">Campaigns</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- <div class="d-flex icon-menu">
+        <div [class.d-none]="isMadePhoneCall" title="Appointments">
+            <app-reminder-board></app-reminder-board>
+        </div>
+    </div>
+
+    <div [class.d-none]="isMadePhoneCall" class="avatar-box">
+        <app-header-avatar></app-header-avatar>
+    </div> -->
+</div>

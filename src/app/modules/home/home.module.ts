@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ThemeModule } from '@app/theme/theme.module';
 //
 import { SvgIconsRegistry } from '@app/core/services';
+import { HeaderComponent } from './components';
 //
 
 const SVG_ICONS = [
@@ -30,7 +31,8 @@ export const routes: Routes = [
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     ThemeModule,

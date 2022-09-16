@@ -160,12 +160,6 @@
 			class="item-right"
 			*ngIf="!isCollapsed"
 			[@fadeInEnterAnimation]="{ value: ':enter', params: { delay: 300 } }">
-			<span
-				*ngIf="item.routerLink === 'work'"
-				class="action-create-project"
-				(click)="showPopoverCreateProject($event)">
-				<i class="icon dx-icon-add"></i>
-			</span>
 
 			<app-svg-icon class="icon-parent" *ngIf="item?.hasItems" [name]="'icon_chevron_right'">
 			</app-svg-icon>

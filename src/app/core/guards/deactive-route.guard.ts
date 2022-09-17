@@ -14,7 +14,7 @@ export interface CanComponentDeactivate {
     providedIn: 'root'
 })
 export class DeactivateGuard implements CanDeactivate<CanComponentDeactivate> {
-    private _pageDataChanged$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+    private _pageDataChanged$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     canDeactivate(
         component?: CanComponentDeactivate,

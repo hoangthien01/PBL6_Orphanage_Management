@@ -51,7 +51,7 @@ export class BaseService {
     get headers(): HttpHeaders {
         return new HttpHeaders({
             'Content-Type': 'application/json',
-            Authorization: this.bearerAuthentication,
+            // Authorization: this.bearerAuthentication,
         });
     }
 

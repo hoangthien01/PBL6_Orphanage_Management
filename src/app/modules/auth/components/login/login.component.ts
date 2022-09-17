@@ -7,7 +7,8 @@ import {CommonFunction, RegexObject} from 'src/app/utilities';
 // import { DEVICE_TOKEN, PLATFORM_NAME } from '@app/core/store/user/user.storage';
 // import {BaseService} from '@app/core/services';
 import {SignInModel} from '@app/modules/account-setting/models';
-// import {UserService} from '@app/modules/account-setting/services/user.service';
+import { UserService } from '@app/modules/account-setting/services/user.service';
+import { finalize } from 'rxjs/operators';
 // import * as UserActions from '@app/core/store/user/user.actions';
 
 @Component({
@@ -34,7 +35,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     detectAutofillSubject: Subject<void> = new Subject<void>();
 
     constructor(private router: Router,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private userService: UserService) {
         this.subscribeDetectAutofill();
     }
 
@@ -87,23 +89,21 @@ export class LoginComponent implements OnInit, OnDestroy {
             return;
         }
         this.removeSpaces();
-        // login.deviceToken = sessionStorage.getItem(DEVICE_TOKEN);
-        // login.platform = sessionStorage.getItem(PLATFORM_NAME) || 'iOS';
-        // login.isLogging = true;
-        // this.userService.login(login).pipe(
-        //     finalize(() => {
-        //         login.isLogging = false;
-        //     })
-        // ).subscribe((res) => {
-        //     if (!res || !res.account || !res.user) {
-        //         this.accountService.authErrorMessage.emit('Something was wrong. Invalid email or password combination');
-        //     } else {
-        //         this.doAfterUserLoggedIn(res);
-        //     }
-        // }, error => {
-        //     const messageError = !!error.error && !!error.error.message ? error.error.message : 'Something bad happened; please try again later.';
-        //     this.accountService.authErrorMessage.emit(messageError);
-        // });
+        login.isLogging = true;
+        this.userService.login(login).pipe(
+            finalize(() => {
+                login.isLogging = false;
+            })
+        ).subscribe((res) => {
+            if (!res) {
+                // this.accountService.authErrorMessage.emit('Something was wrong. Invalid email or password combination');
+            } else {
+                this.doAfterUserLoggedIn();
+            }
+        }, error => {
+            const messageError = !!error.error && !!error.error.message ? error.error.message : 'Something bad happened; please try again later.';
+            // this.accountService.authErrorMessage.emit(messageError);
+        });
     }
 
     doAfterUserLoggedIn() {
@@ -111,6 +111,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         //     authResult: auth,
         //     setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.Login
         // }));
+        this.router.navigate(['home']).then();
     }
 
     forgotPassword() {

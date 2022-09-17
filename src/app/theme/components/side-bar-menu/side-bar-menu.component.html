@@ -1,0 +1,254 @@
+<div *ngIf="type === SideBarMenuType.normal || type === SideBarMenuType.normal_with_nested_items"
+     class="side-bar-menu-wrapper left-sidebar-filter"
+     [attr.aria-type]="type">
+    <dx-scroll-view class="side-bar-scroll-view"
+                    [direction]="'vertical'">
+        <ul class="side-bar-menu-content">
+            <li *ngFor="let tab of menu; index as tabIndex; trackBy: trackByFn"
+                class="side-bar-menu-item-container"
+                [ngClass]="{
+                    'is-disabled': tab.disabled
+                }"
+                [hidden]="!tab.visible">
+                <!-- Router Link -->
+                <a *ngIf="tab.visible && tab.routerLink && !tab.items && !tab.disabled"
+                   class="side-bar-menu-item"
+                   [routerLink]="tab.routerLink"
+                   [routerLinkActive]="'active'"
+                   [title]="!isLeftMenuExpanded ? tab.value : ''">
+                    <app-svg-icon *ngIf="tab.icon"
+                                  class="tab-item-icon"
+                                  [name]="tab.icon">
+                    </app-svg-icon>
+                    <div [ngClass]="{
+                            'tab-item-name': true,
+                            'd-flex': isLeftMenuExpanded ,
+                            'd-none': !isLeftMenuExpanded
+                        }"
+                         [innerHTML]="tab.value">
+                    </div>
+
+                    <ng-container *ngTemplateOutlet="errorInfoTemplate; context: {
+                        tab: tab,
+                        tabIndex: tabIndex
+                    }"></ng-container>
+                </a>
+
+                <!-- Router Link that is disabled-->
+                <a *ngIf="tab.visible && tab.routerLink  && !tab.items && tab.disabled"
+                   class="side-bar-menu-item"
+                   [title]="!isLeftMenuExpanded ? tab.value : ''">
+                    <app-svg-icon *ngIf="tab.icon"
+                                  class="tab-item-icon"
+                                  [name]="tab.icon">
+                    </app-svg-icon>
+                    <div [ngClass]="{
+                            'tab-item-name': true,
+                            'd-flex': isLeftMenuExpanded ,
+                            'd-none': !isLeftMenuExpanded
+                        }"
+                         [innerHTML]="tab.value">
+                    </div>
+                    <ng-container *ngTemplateOutlet="errorInfoTemplate; context: {
+                        tab: tab
+                    }"></ng-container>
+                </a>
+
+                <!-- Button -->
+                <a *ngIf="tab.visible && !tab.routerLink && !tab.items"
+                   class="side-bar-menu-item"
+                   [class.active]="tabSelected.key === tab.key"
+                   [title]="!isLeftMenuExpanded ? tab.value : ''"
+                   (click)="selectTab(tab)">
+                    <app-svg-icon *ngIf="tab.icon"
+                                  class="tab-item-icon"
+                                  [name]="tab.icon">
+                    </app-svg-icon>
+                    <div [ngClass]="{
+                            'tab-item-name': true,
+                            'd-flex': isLeftMenuExpanded ,
+                            'd-none': !isLeftMenuExpanded
+                        }"
+                         [innerHTML]="tab.value">
+                    </div>
+                    <ng-container *ngTemplateOutlet="errorInfoTemplate; context: {
+                        tab: tab
+                    }"></ng-container>
+                </a>
+
+                <!-- Parent Tab -->
+                <a *ngIf="tab.visible && !!tab.items && !!tab.items.length"
+                   class="side-bar-menu-item"
+                   [class.active]="currentUrl | function: isParentMenuItemActive : tab.parentRouterLink"
+                   [attr.is-expanded]="tab.isExpanded"
+                   [title]="!isLeftMenuExpanded  ? tab.value : ''"
+                   (click)="toggleParentMenuItem(tab)">
+                    <app-svg-icon *ngIf="tab.icon"
+                                  class="tab-item-icon"
+                                  [name]="tab.icon">
+                    </app-svg-icon>
+                    <div [ngClass]="{
+                            'tab-item-name': true,
+                            'd-flex': isLeftMenuExpanded ,
+                            'd-none': !isLeftMenuExpanded
+                        }"
+                         [innerHTML]="tab.value">
+                    </div>
+
+                    <app-svg-icon class="tab-parent__icon-chevron-down"
+                                  [attr.is-expanded]="tab.isExpanded"
+                                  [data]="SVG_ICONS.chevronDown">
+                    </app-svg-icon>
+                </a>
+
+                <ul *ngIf="tab.visible && !!tab.items && !!tab.items.length"
+                    class="side-bar-menu-item__nested-items"
+                    [@expandCollapseAnimation]="tab.isExpanded ? 'open' : 'closed'">
+                    <li *ngFor="let nestedTab of tab.items; index as nestedTabIndex; trackBy: trackByFn"
+                        class="side-bar-menu-item-container"
+                        [ngClass]="{
+                            'is-disabled': nestedTab.disabled
+                        }"
+                        [hidden]="!nestedTab.visible">
+                        <!-- Router Link -->
+                        <a *ngIf="nestedTab.visible && nestedTab.routerLink && !nestedTab.disabled"
+                           class="side-bar-menu-item"
+                           [routerLink]="nestedTab.routerLink"
+                           [routerLinkActive]="'active'"
+                           [title]="!isLeftMenuExpanded ? nestedTab.value : ''">
+                            <app-svg-icon *ngIf="nestedTab.icon"
+                                          class="tab-item-icon"
+                                          [name]="nestedTab.icon">
+                            </app-svg-icon>
+                            <div [ngClass]="{
+                                    'tab-item-name': true,
+                                    'd-flex': isLeftMenuExpanded ,
+                                    'd-none': !isLeftMenuExpanded
+                                }"
+                                 [innerHTML]="nestedTab.value">
+                            </div>
+
+                            <ng-container *ngTemplateOutlet="errorInfoTemplate; context: {
+                                tab: nestedTab,
+                                tabIndex: nestedTabIndex
+                            }"></ng-container>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </dx-scroll-view>
+</div>
+
+<div *ngIf="type === SideBarMenuType.secondary"
+     class="side-bar-menu-secondary-wrapper side-bar-menu-wrapper"
+     [attr.aria-type]="type">
+    <dx-scroll-view class="side-bar-menu__scroll-view"
+                    [direction]="'vertical'">
+        <ul class="side-bar-menu__content">
+            <li *ngFor="let tab of menu; index as tabIndex; trackBy: trackByFn"
+                class="side-bar-menu__tab-item-container"
+                [ngClass]="{
+                    'is-disabled': tab.disabled
+                }"
+                [hidden]="!tab.visible">
+                <!-- Router Link -->
+                <a *ngIf="tab.visible && tab.routerLink && !tab.disabled"
+                   class="side-bar-menu__tab-item"
+                   [routerLink]="tab.routerLink"
+                   [routerLinkActive]="'active'">
+                    <div class="d-flex align-items-center justify-content-start tab-item__title">
+                        <div class="tab-item__icon-container">
+                            <app-svg-icon *ngIf="tab.icon"
+                                          class="tab-item__icon"
+                                          [name]="tab.icon"
+                                          [ngStyle]="{
+                                              'width': tab.iconWidth ? tab.iconWidth + 'px' : ''
+                                          }">
+                            </app-svg-icon>
+                        </div>
+                        <div class="tab-item__name d-flex"
+                             [innerHTML]="tab.value">
+                        </div>
+
+                        <ng-container *ngTemplateOutlet="errorInfoTemplate; context: {
+                            tab: tab
+                        }"></ng-container>
+                    </div>
+
+                    <div [innerHTML]="tab.description" class="tab-item__desc">
+                    </div>
+                </a>
+
+                <!-- Router Link that is disabled-->
+                <a *ngIf="tab.visible && tab.routerLink && tab.disabled"
+                   class="side-bar-menu__tab-item"
+                   [title]="!isLeftMenuExpanded ? tab.value : ''">
+                   <div class="d-flex align-items-center justify-content-start tab-item__title">
+                        <div class="tab-item__icon-container">
+                            <app-svg-icon *ngIf="tab.icon"
+                                        class="tab-item__icon"
+                                        [name]="tab.icon"
+                                        [ngStyle]="{
+                                            'width': tab.iconWidth ? tab.iconWidth + 'px' : ''
+                                        }">
+                            </app-svg-icon>
+                        </div>
+                        <div class="tab-item__name d-flex"
+                            [innerHTML]="tab.value">
+                        </div>
+
+                        <ng-container *ngTemplateOutlet="errorInfoTemplate; context: {
+                            tab: tab
+                        }"></ng-container>
+                    </div>
+
+                    <div [innerHTML]="tab.description" class="tab-item__desc">
+                    </div>
+                </a>
+
+                <!-- Button -->
+                <a *ngIf="tab.visible && !tab.routerLink"
+                   class="side-bar-menu__tab-item"
+                   [class.active]="tabSelected.key === tab.key"
+                   [title]="!isLeftMenuExpanded ? tab.value : ''"
+                   (click)="selectTab(tab)">
+                    <div class="d-flex align-items-center justify-content-start tab-item__title">
+                        <div class="tab-item__icon-container">
+                            <app-svg-icon *ngIf="tab.icon"
+                                        class="tab-item__icon"
+                                        [name]="tab.icon"
+                                        [ngStyle]="{
+                                            'width': tab.iconWidth ? tab.iconWidth + 'px' : ''
+                                        }">
+                            </app-svg-icon>
+                        </div>
+                        <div class="tab-item__name d-flex"
+                            [innerHTML]="tab.value">
+                        </div>
+
+                        <ng-container *ngTemplateOutlet="errorInfoTemplate; context: {
+                            tab: tab
+                        }"></ng-container>
+                    </div>
+
+                    <div [innerHTML]="tab.description" class="tab-item__desc">
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </dx-scroll-view>
+</div>
+
+<ng-template #errorInfoTemplate
+             let-tab="tab"
+             let-tabIndex="tabIndex">
+    <ng-container *ngIf="!!tab?.errorInfo && !!tab.errorInfo?.hasError">
+        <app-help-text [deferRendering]="false"
+                       [tooltipWidth]="tab?.errorInfo?.tooltipWidth ? tab?.errorInfo?.tooltipWidth : 200"
+                       [width]="16"
+                       [type]="'warning'">
+            {{tab.errorInfo.tooltipMessage ? tab.errorInfo.tooltipMessage : '-'}}
+        </app-help-text>
+    </ng-container>
+</ng-template>

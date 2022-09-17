@@ -8,6 +8,7 @@ import { SvgIconsRegistry } from '@app/core/services';
 import { HomeComponent } from './home.component';
 import { HeaderComponent } from './components';
 import { AvatarComponent } from './components/header/avatar/avatar.component';
+import { AuthGuard } from '@app/core/guards';
 //
 
 const SVG_ICONS = [
@@ -17,6 +18,7 @@ export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',

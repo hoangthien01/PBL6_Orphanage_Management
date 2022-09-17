@@ -71,9 +71,11 @@ export class UserLoggedInModel {
     }
 
     public static getUserAvatarUrl(avatarId: string): string {
-        return !!avatarId
-            ? environment.avatarUrl + '/' + avatarId
-            : environment.avatarUrl + '/' + AVATAR_PROFILE_DEFAULT;
+      // TODO:
+      return 'todo'
+        // return !!avatarId
+        //     ? environment.avatarUrl + '/' + avatarId
+        //     : environment.avatarUrl + '/' + AVATAR_PROFILE_DEFAULT;
     }
 }
 

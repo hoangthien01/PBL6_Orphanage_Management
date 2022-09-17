@@ -1,3 +1,4 @@
+import { TruncatePipe } from './pipes/truncate.pipe';
 import { DefaultLayoutComponent } from './components/default-layout/default-layout.component';
 import { SideNavigationMenuComponent } from './components/side-navigation-menu/side-navigation-menu.component';
 import { NgModule } from '@angular/core';
@@ -162,6 +163,7 @@ const COMPONENTS = [
 
 const PIPES = [
   FunctionPipe,
+  TruncatePipe
 ];
 
 // const DIRECTIVES = [

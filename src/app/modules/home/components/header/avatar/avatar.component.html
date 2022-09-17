@@ -1,0 +1,76 @@
+<div class="container-box d-flex">
+    <div (click)="toManageAccountPage()" class="company-name d-flex justify-content-between align-items-center pointer"
+         [title]="currentAccount.accountName">
+        <span class="name">{{currentAccount.accountName | truncate}}</span>
+        <app-svg-icon class="icon-switch-white-container"
+                      title="Manage Accounts"
+                      style="width: 15px"
+                      [name]="'icon_switch'">
+        </app-svg-icon>
+    </div>
+    <div class="avatar"
+         (click)="onToggleMoreMenu()">
+        <app-svg-icon class="icon-avatar-default-container"
+                      [name]="'icon_avatar_default'">
+        </app-svg-icon>
+
+        <img *ngIf="!!currentAccount.avatar"
+             class="header__user-avatar-image"
+             [src]="currentAccount.avatar"
+             alt="avatar">
+    </div>
+</div>
+
+<dx-popover target=".avatar"
+            position="bottom"
+            [width]="205"
+            [(visible)]="moreMenuVisible"
+            class="more-menu">
+    <div *dxTemplate="let data = model of 'content'">
+        <div class="account-menu">
+            <div class="avatar-item d-flex justify-content-start ">
+				<span class="option-icon">
+                    <div class="avatar-image">
+                        <app-svg-icon class="icon-avatar-default-container"
+                                      [name]="'icon_avatar_default'">
+                        </app-svg-icon>
+
+                        <img *ngIf="!!currentAccount.avatar"
+                             class="header__user-avatar-image"
+                             [src]="currentAccount.avatar"
+                             alt="avatar">
+                    </div>
+				</span>
+
+                <span class="account-name" [title]="currentAccount.userName">{{currentAccount.userName}}</span>
+			</div>
+			<div class="container-item container-item--no-border-bottom">
+        <a class="d-flex menu-item pointer" (click)="toManageAccountPage()">
+            <app-svg-icon class="icon-switch-blue-container"
+                          [name]="'icon_switch'">
+            </app-svg-icon>
+            <div class="option-text">Manage Accounts</div>
+        </a>
+				<a class="d-flex menu-item pointer"
+           (click)="toSettingPage()">
+            <app-svg-icon class="icon-setting-container"
+                        [name]="'icon_setting_light'">
+            </app-svg-icon>
+            <div class="option-text">Settings</div>
+        </a>
+        <a class="d-flex menu-item pointer" (click)="toHelpCenterPage()">
+            <app-svg-icon class="icon-help-center-container"
+                          [name]="'icon_help_center'">
+            </app-svg-icon>
+            <div class="option-text">Help Center</div>
+        </a>
+        <a class="d-flex menu-item pointer" (click)="logout()">
+            <app-svg-icon class="icon-logout-container"
+                          [name]="'icon_logout'">
+            </app-svg-icon>
+            <div class="option-text">Logout</div>
+        </a>
+			</div>
+		</div>
+	</div>
+</dx-popover>

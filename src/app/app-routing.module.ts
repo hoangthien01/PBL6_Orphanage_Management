@@ -26,13 +26,13 @@ const routes: Routes = [
   // { path: '**', component: PageNotFoundComponent },
 ];
 
-//Load develop module if not in prod environment
-// if(!environment.production){
-// 	routes.unshift({
-// 		path: 'styles',
-// 		loadChildren: () => import('@app/modules/develop/style-system.module').then(m => m.StyleSystemModule),
-// 	});
-// }
+// Load develop module if not in prod environment
+if(!environment.production){
+	routes.unshift({
+		path: 'styles',
+		loadChildren: () => import('@app/modules/develop/style-system.module').then(m => m.StyleSystemModule),
+	});
+}
 
 const config: ExtraOptions = {
   useHash: false,

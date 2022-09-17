@@ -1,3 +1,4 @@
+import { HelpTextComponent } from './components/help-text/help-text.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { DefaultLayoutComponent } from './components/default-layout/default-layout.component';
 import { SideNavigationMenuComponent } from './components/side-navigation-menu/side-navigation-menu.component';
@@ -162,7 +163,8 @@ const COMPONENTS = [
   SideNavigationMenuComponent,
   LoadPanelComponent,
   DefaultLayoutComponent,
-  SideBarMenuComponent
+  SideBarMenuComponent,
+  HelpTextComponent
 ];
 
 const PIPES = [

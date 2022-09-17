@@ -1,0 +1,52 @@
+<div [ngClass]="!isEnabledToolTip && text ? 'd-flex align-items-start gap-8-c' : ''">
+    <span #helpTextIcon
+          class="icon-help-text-container"
+          [style.width]="width ? width + 'px' : '12px'"
+          (click)="onClick($event)">
+        <ng-container *ngIf="type === 'info'">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 12 13">
+                <path [attr.fill]="iconColor"
+                      fill-rule="evenodd"
+                      d="M7.189 6.115c.292-.404.44-.706.44-1.12 0-.851-.63-1.462-1.56-1.462-.894 0-1.489.542-1.617 1.37-.01.05.018.085.069.093l.543.095c.05.009.084-.018.094-.069.103-.525.413-.817.895-.817.491 0 .835.309.835.8 0 .292-.105.49-.405.903l-.576.793c-.181.25-.258.43-.258.774v.354c0 .051.033.086.087.086h.568c.05 0 .086-.035.086-.086v-.276c0-.292.05-.413.223-.646l.576-.792zm-.757 3.28v-.74c0-.052-.035-.086-.086-.086h-.654c-.052 0-.087.034-.087.086v.74c0 .051.035.086.087.086h.654c.05 0 .086-.035.086-.086zM5.999.531a6.008 6.008 0 016.001 6c0 3.308-2.693 6-6.001 6A6.007 6.007 0 010 6.53c0-3.309 2.693-6 5.999-6z" />
+            </svg>
+        </ng-container>
+        <ng-container *ngIf="type === 'warning'">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 fill="none"
+                 viewBox="0 0 12 12">
+                <path [attr.fill]="iconColor"
+                      fill-rule="evenodd"
+                      d="M6.6 7.8H5.4V9h1.2V7.8zm0-4.8H5.4v3.6h1.2V3zM6 12A6 6 0 105.999-.001 6 6 0 006 12z"
+                      clip-rule="evenodd" />
+            </svg>
+        </ng-container>
+    </span>
+
+    <ng-container *ngIf="!isEnabledToolTip && text">
+        <div *ngIf="text"
+              [ngClass]="textCustomClass | function: getTextClassHandler"
+              [innerHTML]="text"></div>
+    </ng-container>
+<!-- <ng-content> only support for tooltip
+    <ng-container *ngIf="!isEnabledToolTip && !text">
+        <div [ngClass]="textCustomClass | function: getTextClassHandler"><ng-content></ng-content></div>
+    </ng-container> -->
+</div>
+
+<dx-tooltip *ngIf="isEnabledToolTip"
+            class="help-text-tooltip-popover-wrapper"
+            hideEvent="dxhoverend"
+            showEvent="dxhoverstart"
+            [width]="tooltipWidth"
+            [position]="position"
+            [deferRendering]="deferRendering"
+            [target]="helpTextIcon">
+    <div *dxTemplate="let data of 'content'"
+         [class]="tooltipContentClass">
+        <div *ngIf="text"
+             [innerHTML]="text"></div>
+        <!-- <ng-content> only support for tooltip -->
+        <ng-content *ngIf="!text"></ng-content>
+    </div>
+</dx-tooltip>

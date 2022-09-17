@@ -1,0 +1,13 @@
+:host {
+    display: inline-block;
+    line-height: 0;
+    height: fit-content;
+    width: fit-content;
+}
+
+.icon-help-text-container {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: default;
+    flex-shrink: 0;
+}

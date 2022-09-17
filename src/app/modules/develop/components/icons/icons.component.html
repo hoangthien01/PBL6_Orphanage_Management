@@ -1,0 +1,8 @@
+<section class="p-15-c h-full text-center container-icons">
+    <div class="grid gap-15-c m-0-auto wrapper-icon">
+        <div class="item-icon" *ngFor="let icon of listIcons">
+            <app-svg-icon class="m-0-auto" [data]="icon.data" [width]="30"></app-svg-icon>
+            <p>{{icon.name}}</p>
+        </div>
+    </div>
+</section>

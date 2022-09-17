@@ -1,0 +1,11 @@
+.container-icons {
+    overflow: overlay;
+    .wrapper-icon {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    .item-icon {
+        app-svg-icon {
+            height: 30px;
+        }
+    }
+}

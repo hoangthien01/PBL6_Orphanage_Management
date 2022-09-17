@@ -79,6 +79,7 @@ import { DxiColumnModule, DxoPagerModule, DxoPagingModule, DxoSelectionModule } 
 
 import {
   CustomButtonComponent,
+  SideBarMenuComponent,
   SvgIconComponent
 } from './components';
 import { FunctionPipe } from './pipes';
@@ -92,6 +93,11 @@ import { LoadPanelComponent } from './components/load-panel/load-panel.component
 //     DisplayTooltipDirective,
 //     ImageEventListenerDirective,
 // } from '@app/theme/directives';
+
+import {
+  svgIconChevronLeft
+} from 'src/assets/images/svg-icons.constants';
+import { SvgIconsRegistry } from '@app/core/services';
 
 const DEVEXTREME_MODULES = [
   DxDataGridModule,
@@ -144,13 +150,10 @@ const BASE_MODULES = [
   CommonModule,
   // RouterModule,
   // FormsModule,
-  //
-  // PickerModule,
-  // VirtualScrollerModule,
-  // Daterangepicker,
-  // ClickOutsideModule,
-  // QuicklinkModule,
-  // ScrollingModule
+];
+
+const SVG_ICONS = [
+  svgIconChevronLeft
 ];
 
 const COMPONENTS = [
@@ -158,7 +161,8 @@ const COMPONENTS = [
   SvgIconComponent,
   SideNavigationMenuComponent,
   LoadPanelComponent,
-  DefaultLayoutComponent
+  DefaultLayoutComponent,
+  SideBarMenuComponent
 ];
 
 const PIPES = [
@@ -194,4 +198,7 @@ const PIPES = [
   ]
 })
 export class ThemeModule {
+  constructor(private _svgIconRegistry: SvgIconsRegistry) {
+    _svgIconRegistry.registerIcons(SVG_ICONS);
+}
 }

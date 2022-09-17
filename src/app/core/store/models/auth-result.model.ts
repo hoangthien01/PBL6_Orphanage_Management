@@ -13,12 +13,12 @@ export interface IBaseAuthResult {
 export class AuthResultModel implements IBaseAuthResult {
     account: AccountLoggedInModel;
     user: UserLoggedInModel;
+    profile: UserLoggedInModel;
+    permissions: string;
     token: string;
     dateExpired?: Date;
-    // Temporarily, We moved to AccountLoggedInModel
     loggedId?: string;
     refreshToken?: string;
-    twilioCapabilityToken?: string;
 
     public constructor(init?: Partial<AuthResultModel>) {
         Object.assign(this, init);

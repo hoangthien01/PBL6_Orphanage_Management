@@ -24,6 +24,8 @@ import { BaseService } from '@app/core/services';
 
 const INIT_STATE: AuthResultModel = {
     user: null,
+    permissions: null,
+    profile: null,
     account: null,
     token: null,
 };
@@ -50,26 +52,15 @@ export class UserState implements NgxsOnInit {
         //
         const userTokenFromLocalStorage: string = localStorage.getItem(USER_ACCESS_TOKEN);
         const userIdFromLocalStorage: string = localStorage.getItem(USER_ID);
-        const twilioCapabilityTokenFromLocalStorage: string = localStorage.getItem(TWILIO_CAPABILITY_TOKEN);
         const userPermissionsFromLocalStorage: string = localStorage.getItem(USER_PERMISSIONS);
 
         //
         if (!!userTokenFromLocalStorage && !!userIdFromLocalStorage) {
             const userTokenFromSessionStorage: string = sessionStorage.getItem(USER_ACCESS_TOKEN);
             //
-            if (!!userTokenFromSessionStorage) {
-                const twilioCapabilityFromSessionStorage: string = sessionStorage.getItem(TWILIO_CAPABILITY_TOKEN);
-                const userPermissionsFromSessionStorage: string = sessionStorage.getItem(USER_PERMISSIONS);
-                //
-                if (!twilioCapabilityFromSessionStorage || !userPermissionsFromSessionStorage) {
-                    context.dispatch(new UserActions.Logout({
-                        destroyAllIntegrations: false,
-                    }));
-                }
-            } else {
+            if (!userTokenFromSessionStorage) {
                 sessionStorage.setItem(USER_ACCESS_TOKEN, userTokenFromLocalStorage);
                 sessionStorage.setItem(USER_ID, userIdFromLocalStorage);
-                sessionStorage.setItem(TWILIO_CAPABILITY_TOKEN, twilioCapabilityTokenFromLocalStorage);
                 sessionStorage.setItem(USER_PERMISSIONS, userPermissionsFromLocalStorage);
             }
         } else {
@@ -136,93 +127,64 @@ export class UserState implements NgxsOnInit {
     //#region Auth Result Handlers
     @Action(UserActions.SetAuthResult)
     setAuthResult(context: StateContext<AuthResultModel>, { payload }: UserActions.SetAuthResult) {
-        if (!payload.authResult || !payload.authResult.account || !payload.authResult.user) {
-            context.dispatch(new UserActions.Logout({
-                destroyAllIntegrations: payload.setUpNewAuthResultType === UserActions.SetUpNewAuthResultType.SwitchAccount,
-                navigateToUrl: ENDPOINTS.LOGIN,
-            }));
-            return;
-        }
-        //
-        this._storeLoggedUser({
-            authResult: payload.authResult,
-            setUpNewAuthResultType: payload.setUpNewAuthResultType
-        });
-        //
-        context.patchState({
-            user: new UserLoggedInModel({
-                ...payload.authResult.user,
-            }),
-            account: new AccountLoggedInModel({
-                ...payload.authResult.account
-            })
-        });
-        // Set LoggedUserId
-        // Set Twilio
-        // this.webSocketService.connect(); ect...
+      if (!payload.authResult) {
+        context.dispatch(new UserActions.Logout({
+          navigateToUrl: ENDPOINTS.LOGIN,
+        }));
+        return;
+      }
+      //
+      this._storeLoggedUser({
+          authResult: payload.authResult,
+          setUpNewAuthResultType: payload.setUpNewAuthResultType
+      });
+      //
+
+      context.patchState({
+          user: new UserLoggedInModel({
+              ...payload.authResult.profile,
+          }),
+          // account: new AccountLoggedInModel({
+          //     ...payload.authResult.account
+          // })
+      });
     }
 
     private _storeLoggedUser(params: { authResult: AuthResultModel; setUpNewAuthResultType: UserActions.SetUpNewAuthResultType }) {
-        sessionStorage.setItem(ACCOUNT_ID, params.authResult.account.id);
-        sessionStorage.setItem(USER_ID, params.authResult.user.id);
-        // User Settings Info
-        switch (params.setUpNewAuthResultType) {
-            case UserActions.SetUpNewAuthResultType.Login:
-            case UserActions.SetUpNewAuthResultType.SwitchAccount:
-            case UserActions.SetUpNewAuthResultType.ReloadPage:
-            case UserActions.SetUpNewAuthResultType.StartOnboarding:
-                sessionStorage.setItem(ACCOUNT_TIMEZONE, JSON.stringify({
-                    timezone: params.authResult.account.timezone,
-                    timezoneIana: params.authResult.account.timezoneIana
-                }));
-                const userSettingsObject: Record<string, string> = ArrayHelper.convertToObject(params.authResult.user.settings);
-                localStorage.setItem(USER_EXPERIENCE_SETTINGS, JSON.stringify(userSettingsObject));
-                break;
-        }
+        // sessionStorage.setItem(ACCOUNT_ID, params.authResult.account.id);
+        sessionStorage.setItem(USER_ID, params.authResult.profile.id);
+        localStorage.setItem(USER_ID, params.authResult.profile.id);
         // Store TokenInfo in SessionStorage and LocalStorage
         switch (params.setUpNewAuthResultType) {
-            case UserActions.SetUpNewAuthResultType.Login:
-            case UserActions.SetUpNewAuthResultType.SwitchAccount:
-            case UserActions.SetUpNewAuthResultType.AutoLogin:
-                AppStorage.storeEncodeData({
-                    storage: 'session',
-                    key: USER_ACCESS_TOKEN,
-                    value: params.authResult.token,
-                    valueType: 'string'
-                });
-                AppStorage.storeEncodeData({
-                    storage: 'session',
-                    key: TWILIO_CAPABILITY_TOKEN,
-                    value: params.authResult.twilioCapabilityToken,
-                    valueType: 'string'
-                });
-                AppStorage.storeEncodeData({
-                    storage: 'session',
-                    key: USER_PERMISSIONS,
-                    value: params.authResult.user.permissions,
-                    valueType: 'array'
-                });
-                //
-                AppStorage.storeEncodeData({
-                    storage: 'local',
-                    key: USER_ACCESS_TOKEN,
-                    value: params.authResult.token,
-                    valueType: 'string'
-                });
-                localStorage.setItem(USER_ID, params.authResult.user.id);
-                AppStorage.storeEncodeData({
-                    storage: 'local',
-                    key: TWILIO_CAPABILITY_TOKEN,
-                    value: params.authResult.twilioCapabilityToken,
-                    valueType: 'string'
-                });
-                AppStorage.storeEncodeData({
-                    storage: 'local',
-                    key: USER_PERMISSIONS,
-                    value: params.authResult.user.permissions,
-                    valueType: 'array'
-                });
-                break;
+          case UserActions.SetUpNewAuthResultType.Login:
+          case UserActions.SetUpNewAuthResultType.SwitchAccount:
+          case UserActions.SetUpNewAuthResultType.AutoLogin:
+            AppStorage.storeEncodeData({
+                storage: 'session',
+                key: USER_ACCESS_TOKEN,
+                value: params.authResult.token,
+                valueType: 'string'
+            });
+            AppStorage.storeEncodeData({
+                storage: 'session',
+                key: USER_PERMISSIONS,
+                value: params.authResult.permissions,
+                valueType: 'array'
+            });
+
+            AppStorage.storeEncodeData({
+                storage: 'local',
+                key: USER_ACCESS_TOKEN,
+                value: params.authResult.token,
+                valueType: 'string'
+            });
+            AppStorage.storeEncodeData({
+                storage: 'local',
+                key: USER_PERMISSIONS,
+                value: params.authResult.permissions,
+                valueType: 'string'
+            });
+            break;
         }
     }
     //#endregion
@@ -333,8 +295,7 @@ export class UserState implements NgxsOnInit {
         if (!payload
             || !payload.authResult
             || !payload.authResult.token
-            || !payload.authResult.user
-            || !payload.authResult.twilioCapabilityToken) {
+            || !payload.authResult.user) {
             return;
         }
 
@@ -345,13 +306,13 @@ export class UserState implements NgxsOnInit {
             valueType: 'string'
         });
 
-        localStorage.setItem(USER_ID, payload.authResult.user.id);
-        AppStorage.storeEncodeData({
-            storage: 'local',
-            key: TWILIO_CAPABILITY_TOKEN,
-            value: payload.authResult.twilioCapabilityToken,
-            valueType: 'string'
-        });
+        // localStorage.setItem(USER_ID, payload.authResult.user.id);
+        // AppStorage.storeEncodeData({
+        //     storage: 'local',
+        //     key: TWILIO_CAPABILITY_TOKEN,
+        //     value: payload.authResult.twilioCapabilityToken,
+        //     valueType: 'string'
+        // });
 
         AppStorage.storeEncodeData({
             storage: 'local',

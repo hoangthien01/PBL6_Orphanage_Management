@@ -3,10 +3,10 @@ import { PermissionModel } from '@app/shared/models';
 import { environment } from '@environment';
 import { AppEnvironments } from '@app/shared/app.enum';
 
-export const USER_ACCESS_TOKEN = '_ws_atk';
-export const USER_ID = '_ws_uid';
+export const USER_ACCESS_TOKEN = 'USER_ACCESS_TOKEN';
+export const USER_ID = 'USER_ID';
 export const TWILIO_CAPABILITY_TOKEN = '_ws_tct';
-export const USER_PERMISSIONS = '_ws_ups';
+export const USER_PERMISSIONS = 'USER_PERMISSIONS';
 export const USER_EXPERIENCE_SETTINGS = '_ws_userExperienceSettings';
 export const CUSTOM_FIELDS_SETTINGS = '_ws_customFieldsSetting';
 export const ACCOUNT_ID = '_ws_aid';

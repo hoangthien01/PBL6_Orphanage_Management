@@ -4,3 +4,4 @@ export * from './svg-icon/svg-icon.component';
 export * from './side-navigation-menu/side-navigation-menu.component';
 export * from './default-layout/default-layout.component';
 export * from './load-panel/load-panel.component';
+export * from './side-bar-menu/side-bar-menu.component';

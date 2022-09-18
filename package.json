@@ -6,7 +6,8 @@
     "start": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng serve  --live-reload=false --open=false",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "generate-icons": "svg-to-ts"
   },
   "private": true,
   "dependencies": {
@@ -28,7 +29,7 @@
     "ngx-quicklink": "^0.2.6",
     "ngxs-reset-plugin": "^2.0.0",
     "rxjs": "~6.6.0",
-    "svg-to-ts": "^8.8.1",
+    "svg-to-ts": "^6.0.0",
     "ts-keycode-enum": "^1.0.6",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

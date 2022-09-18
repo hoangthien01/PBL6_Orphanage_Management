@@ -531,6 +531,13 @@ export const svgIconImport: {
   name: 'icon_import',
   data: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 18"><g fill="currentColor" fill-rule="evenodd" stroke="currentColor" stroke-width=".2"><path d="M12.6 5.8H9v.8h3.2v9.6H1.8V6.6H5v-.8H1.4a.4.4 0 00-.4.4v10.4c0 .22.18.4.4.4h11.2a.4.4 0 00.4-.4V6.2a.4.4 0 00-.4-.4z"/><path d="M9.686 8.32a.4.4 0 00-.565-.006L7.4 9.997V1.4a.4.4 0 00-.8 0v8.597L4.88 8.314a.4.4 0 00-.56.572l2.4 2.347a.4.4 0 00.566-.006L9.68 8.886a.4.4 0 00.006-.566z"/></g></svg>`
 };
+export const svgIconJerryLogo: {
+  name: 'icon_jerry_logo';
+  data: string;
+} = {
+  name: 'icon_jerry_logo',
+  data: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 603 560"><g clip-path="url(#icon-jerry-logo_svg__clip0_401_2)"><path fill="url(#icon-jerry-logo_svg__paint0_linear_401_2)" d="M40.934 223.103l263.708 166.17a.505.505 0 00.576 0l269.024-169.934a.515.515 0 00.236-.331.503.503 0 00-.085-.398.36.36 0 00-.151-.151L307.689 48.582a.503.503 0 00-.576 0L40.933 222.193a.557.557 0 00-.215.375.545.545 0 00.125.415.417.417 0 00.09.12zm263.711 361.006a18.116 18.116 0 01-9.869-2.914L12.356 399.324a.556.556 0 010-.73l12.024-18.705a.556.556 0 01.73 0l279.409 179.957a.502.502 0 00.575 0l264.803-170.148a21.04 21.04 0 009.719-17.78v-41.889a.565.565 0 00-.576-.515.689.689 0 00-.244.06L311.351 499.903a18.279 18.279 0 01-19.589 0L21.499 327.962A45.81 45.81 0 010 289.122v-58.608a18.177 18.177 0 015.123-12.694l.904-.729 5.193-3.553L297.916 26.694l.301-.18a18.234 18.234 0 0118.829.455l277.162 176.555a18.295 18.295 0 018.491 15.441 18.295 18.295 0 01-8.491 15.442l-279.53 176.495a18.384 18.384 0 01-19.435 0L24.082 240.184a.54.54 0 00-.73.181.453.453 0 00-.06.274v48.453a22.647 22.647 0 0010.506 19.2l267.505 170.027a.505.505 0 00.576 0l272.849-174.066a18.194 18.194 0 0121.999 1.809 18.916 18.916 0 015.861 14.242v51.412a44.348 44.348 0 01-20.408 37.474L314.37 581.267a18.655 18.655 0 01-9.719 2.824l-.006.018z"/></g><defs><linearGradient id="icon-jerry-logo_svg__paint0_linear_401_2" x1="0" x2="602.721" y1="0" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#21BBC0"/><stop offset=".34" stop-color="#20B9C0"/><stop offset="1" stop-color="#1387C9"/></linearGradient><clipPath id="icon-jerry-logo_svg__clip0_401_2"><path fill="#fff" d="M0 0h602.721v560H0z"/></clipPath></defs></svg>`
+};
 export const svgIconList: {
   name: 'icon_list';
   data: string;
@@ -1098,6 +1105,7 @@ export type svgIcon =
   | 'icon_help_center'
   | 'icon_image'
   | 'icon_import'
+  | 'icon_jerry_logo'
   | 'icon_list'
   | 'icon_live_chat_widget_left'
   | 'icon_live_chat_widget_right'

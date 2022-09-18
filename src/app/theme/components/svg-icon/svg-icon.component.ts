@@ -11,6 +11,7 @@ import { SvgIconsRegistry } from '@app/core/services';
 })
 export class SvgIconComponent {
   @HostBinding('style.width') _widthProperty: string;
+  @HostBinding('style.height') _heightProperty: string;
   @HostBinding('style.color') _colorProperty: string;
 
   private _name: string;
@@ -41,6 +42,11 @@ export class SvgIconComponent {
   @Input()
   set width(value: number) {
     this._widthProperty = value + 'px' ?? null;
+  }
+
+  @Input()
+  set height(value: number) {
+    this._heightProperty = value + 'px' ?? null;
   }
 
   @Input()

@@ -42,6 +42,7 @@ $sub-menu-border-color-light: $color-black-3;
 
 		ul.menu-wrapper {
 			@include rem(margin, 0, 16);
+      padding: 0;
 
 			li {
 				@include rem(border-radius, 8);
@@ -357,14 +358,15 @@ $sub-menu-border-color-light: $color-black-3;
 
 				.item-left {
 					width: 100%;
-					display: inline-block;
+					// display: inline-block;
+          display: flex;
 					text-overflow: ellipsis;
 					overflow: hidden;
 					white-space: nowrap;
 
 					.item-icon {
-						@include rem(width, 16);
-						@include rem(height, 16);
+						@include rem(width, 20);
+						@include rem(height, 20);
 
 						color: $text-color-dark;
 						vertical-align: middle;

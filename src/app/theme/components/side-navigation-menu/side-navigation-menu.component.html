@@ -40,27 +40,15 @@
 
 			<ul class="menu-wrapper">
 				<li
-					class="menu-item parent-menu"
+					class="menu-item parent-menu justify-center"
 					routerLinkActive="active"
 					routerLink="notification">
 					<a class="menu-item--link" [title]="isCollapsed ? 'Thông báo' : ''">
-						<span class="item-left">
-							<app-svg-icon class="item-icon" [name]="'icon_notification'">
+						<span class="item-left items-center">
+							<app-svg-icon class="item-icon text-grey-666E83" [name]="'icon_bell_light'">
 							</app-svg-icon>
 							<span *ngIf="!isCollapsed" class="item-text">
 								Thông báo
-							</span>
-						</span>
-					</a>
-				</li>
-
-				<li class="menu-item parent-menu" routerLinkActive="active" routerLink="community">
-					<a class="menu-item--link" [title]="isCollapsed ? 'Cộng đồng' : ''">
-						<span class="item-left">
-							<app-svg-icon class="item-icon" [name]="'icon_community'">
-							</app-svg-icon>
-							<span *ngIf="!isCollapsed" class="item-text">
-								Cộng đồng
 							</span>
 						</span>
 					</a>
@@ -72,8 +60,11 @@
 						(click)="onSettingLinkClicked()"
 						[title]="isCollapsed ? 'Thiết lập' : ''">
 						<span class="item-left">
-							<app-svg-icon class="item-icon" [name]="'icon_settings'">
-							</app-svg-icon>
+              <app-svg-icon class="item-icon fill-666e83"
+                                [name]="'icon_pencil'"
+                                [height]="16"
+                                [width]="16">
+                  </app-svg-icon>
 							<span *ngIf="!isCollapsed" class="item-text">
 								Thiết lập
 							</span>
@@ -89,7 +80,7 @@
 			<span *ngIf="!isCollapsed" class="group-title--text">Tính Năng</span>
 			<app-svg-icon
 				*ngIf="isCollapsed"
-				class="group-title--icon"
+				class="group-title--icon fill-666e83"
 				[name]="'icon_rhombus'">
 			</app-svg-icon>
 		</div>
@@ -98,7 +89,75 @@
 			<dx-scroll-view [useNative]="isUseNative" [scrollByContent]="true" [scrollByThumb]="true">
 				<div class="menu-section">
 					<ul class="menu-wrapper position-relative">
+            <li class="menu-item parent-menu" routerLinkActive="active">
+              <a
+                class="menu-item--link"
+                (click)="onSettingLinkClicked()"
+                [title]="isCollapsed ? 'Thiết lập' : ''">
+                <span class="item-left items-center">
+                  <app-svg-icon class="item-icon fill-666e83"
+                                [name]="'icon_uer_regular'"
+                                [width]="16">
+                  </app-svg-icon>
+                  <span *ngIf="!isCollapsed" class="item-text">
+                    Trẻ em
+                  </span>
+                </span>
+              </a>
+            </li>
 
+            <li class="menu-item parent-menu" routerLinkActive="active">
+              <a
+                class="menu-item--link"
+                (click)="onSettingLinkClicked()"
+                [title]="isCollapsed ? 'Thiết lập' : ''">
+                <span class="item-left items-center">
+                  <app-svg-icon class="item-icon fill-666e83"
+                                [name]="'icon_uer_regular'"
+                                [width]="16">
+                  </app-svg-icon>
+                  <span *ngIf="!isCollapsed" class="item-text">
+                    Nhân sự
+                  </span>
+                </span>
+              </a>
+            </li>
+
+            <li class="menu-item parent-menu" routerLinkActive="active">
+              <a
+                class="menu-item--link"
+                (click)="onSettingLinkClicked()"
+                [title]="isCollapsed ? 'Thiết lập' : ''">
+                <span class="item-left items-center">
+                  <app-svg-icon class="item-icon fill-666e83"
+                                [name]="'icon_heart_light'"
+                                [height]="16"
+                                [width]="16">
+                  </app-svg-icon>
+                  <span *ngIf="!isCollapsed" class="item-text">
+                    Ủng hộ
+                  </span>
+                </span>
+              </a>
+            </li>
+
+            <li class="menu-item parent-menu" routerLinkActive="active">
+              <a
+                class="menu-item--link"
+                (click)="onSettingLinkClicked()"
+                [title]="isCollapsed ? 'Thiết lập' : ''">
+                <span class="item-left items-center">
+                  <app-svg-icon class="item-icon fill-666e83"
+                                [name]="'icon_map'"
+                                [height]="16"
+                                [width]="16">
+                  </app-svg-icon>
+                  <span *ngIf="!isCollapsed" class="item-text">
+                    Sự kiện
+                  </span>
+                </span>
+              </a>
+            </li>
 					</ul>
 				</div>
 			</dx-scroll-view>
@@ -117,11 +176,10 @@
 					(click)="isShowConversationBox = !isShowConversationBox">
 					<a class="menu-item--link messenger" [title]="isCollapsed ? 'messenger' : ''">
 						<span class="item-left">
-							<app-svg-icon class="item-icon" name="icon_comment"> </app-svg-icon>
-
-							<span *ngIf="!isCollapsed" class="item-text">
-								Tin nhắn
-							</span>
+							<app-svg-icon class="item-icon fill-666e83"
+                            name="icon_flag_light">
+              </app-svg-icon>
+							<span *ngIf="!isCollapsed" class="item-text">Báo cáo</span>
 						</span>
 
 						<span

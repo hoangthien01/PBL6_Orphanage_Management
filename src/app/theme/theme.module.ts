@@ -1,3 +1,5 @@
+import { svgIconSettingLight, svgIconPencil } from './../../../dist/pbl/assets/images/svg-icons.constants';
+import { svgIconMap } from './../../assets/images/svg-icons.constants';
 import { HelpTextComponent } from './components/help-text/help-text.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { DefaultLayoutComponent } from './components/default-layout/default-layout.component';
@@ -96,7 +98,15 @@ import { LoadPanelComponent } from './components/load-panel/load-panel.component
 // } from '@app/theme/directives';
 
 import {
-  svgIconChevronLeft
+  svgIconAssigneeRoundRobin,
+  svgIconBellLight,
+  svgIconChevronLeft,
+  svgIconFlagLight,
+  svgIconHeartLight,
+  svgIconJerryLogo,
+  svgIconUerRegular,
+  svgIconUserGroup,
+  svgIconUserLight
 } from 'src/assets/images/svg-icons.constants';
 import { SvgIconsRegistry } from '@app/core/services';
 
@@ -154,7 +164,18 @@ const BASE_MODULES = [
 ];
 
 const SVG_ICONS = [
-  svgIconChevronLeft
+  svgIconChevronLeft,
+  svgIconJerryLogo,
+  svgIconBellLight,
+  svgIconAssigneeRoundRobin,
+  svgIconUserGroup,
+  svgIconUserLight,
+  svgIconFlagLight,
+  svgIconHeartLight,
+  svgIconUerRegular,
+  svgIconMap,
+  svgIconSettingLight,
+  svgIconPencil
 ];
 
 const COMPONENTS = [

@@ -3,6 +3,10 @@
              class="default-layout__header {{headerTemplateClass}}">
         <ng-container [ngTemplateOutlet]="headerTemplate"></ng-container>
     </section>
+    <section *ngIf="!!sidebarTemplate"
+             class="default-layout__sidebar {{sidebarTemplateClass}}">
+        <ng-container [ngTemplateOutlet]="sidebarTemplate"></ng-container>
+    </section>
 
     <main class="default-layout__content d-flex flex-column {{mainTemplateClass}}"
           [attr.data-content-type]="mainContentType"

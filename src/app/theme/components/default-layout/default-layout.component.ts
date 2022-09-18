@@ -10,11 +10,13 @@ type MainContentTypes = 'normal' | 'grid-without-title';
 })
 export class DefaultLayoutComponent {
     @Input() headerTemplate: TemplateRef<any>;
+    @Input() sidebarTemplate: TemplateRef<any>;
     @Input() mainTemplate: TemplateRef<any>;
     @Input() footerTemplate: TemplateRef<any>;
     //
     @Input() wrapperTemplateClass: string = '';
     @Input() headerTemplateClass: string = '';
+    @Input() sidebarTemplateClass: string = '';
     @Input() mainTemplateClass: string = '';
     //
     @Input() hasHeader: boolean = true;

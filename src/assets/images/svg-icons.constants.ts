@@ -447,6 +447,13 @@ export const svgIconFlagAlt: {
   name: 'icon_flag_alt',
   data: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 21"><path fill="currentColor" d="M4 18c0 .275-.227.5-.5.5h-1A.502.502 0 012 18V3.5c0-.555.445-1 1-1 .555 0 1 .445 1 1V18zM16.884 2.5c-.198 0-.406.042-.604.132-1.428.652-2.486.873-3.369.873-1.873 0-2.963-.995-5.122-.996-.76 0-1.676.143-2.789.483v10.953c1-.312 1.87-.44 2.652-.44 2.3 0 3.903.993 6.206.993.997 0 2.125-.187 3.472-.722.423-.154.67-.514.67-.898V3.46c0-.613-.522-.96-1.116-.96z"/></svg>`
 };
+export const svgIconFlagLight: {
+  name: 'icon_flag_light';
+  data: string;
+} = {
+  name: 'icon_flag_light',
+  data: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc.--><path d="M476.3 0c-6.365 0-13.01 1.35-19.34 4.233-45.69 20.86-79.56 27.94-107.8 27.94-59.96 0-94.81-31.86-163.9-31.87-34.63 0-77.87 8.003-137.2 32.05V24C48 10.75 37.25 0 24 0S0 10.75 0 24v464c0 13.3 10.75 24 24 24s24-10.75 24-24V384c53.59-23.86 96.02-31.81 132.8-31.81 73.63 0 124.9 31.78 198.6 31.78 31.91 0 68.02-5.971 111.1-23.09 13.6-4.98 21.5-16.48 21.5-28.78V30.73C512 11.1 495.3 0 476.3 0zM464 319.8c-30.31 10.82-58.08 16.1-84.6 16.1-30.8 0-58.31-7-87.44-14.41-32.01-8.141-68.29-17.37-111.1-17.37-42.35 0-85.99 9.09-132.8 27.73V84.14l18.03-7.301c47.39-19.2 86.38-28.54 119.2-28.54 28.24.004 49.12 6.711 73.31 14.48 25.38 8.148 54.13 17.39 90.58 17.39 35.43 0 72.24-8.496 114.9-26.61V319.8z"/></svg>`
+};
 export const svgIconGoogleLogo: {
   name: 'icon_google_logo';
   data: string;
@@ -474,6 +481,13 @@ export const svgIconHatCowboy: {
 } = {
   name: 'icon_hat_cowboy',
   data: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 12"><path fill="currentColor" d="M13.086 6.658C12.834 5.141 12.037.5 10.491.5c-.372 0-.704.157-.983.37a1.551 1.551 0 01-1.875 0C7.353.66 7.022.5 6.65.5 5.104.5 4.307 5.14 4.054 6.658c1.031.333 2.49.611 4.516.611s3.486-.278 4.516-.61zm3.796-.983a.426.426 0 00-.525.04c-.026.024-2.69 2.4-7.787 2.4C3.5 8.115.807 5.737.78 5.713a.426.426 0 00-.684.46C.116 6.226 2.15 11.5 8.57 11.5s8.455-5.274 8.474-5.327a.42.42 0 00-.162-.498z"/></svg>`
+};
+export const svgIconHeartLight: {
+  name: 'icon_heart_light';
+  data: string;
+} = {
+  name: 'icon_heart_light',
+  data: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z"/></svg>`
 };
 export const svgIconHeatscoreCold: {
   name: 'icon_heatscore_cold';
@@ -600,6 +614,13 @@ export const svgIconMail: {
 } = {
   name: 'icon_mail',
   data: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 11"><path fill="currentColor" d="M1.502.275c-.546 0-1 .454-1 1v8c0 .547.454 1 1 1h11c.547 0 1-.453 1-1v-8c0-.546-.453-1-1-1h-11zm1.35 1h8.3l-4.15 3.068-4.15-3.068zm-.85 1.238l5 3.695 5-3.695v6.762h-10V2.513z"/></svg>`
+};
+export const svgIconMap: {
+  name: 'icon_map';
+  data: string;
+} = {
+  name: 'icon_map',
+  data: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M560.02 32c-1.96 0-3.98.37-5.96 1.16L384.01 96H384L212 35.28A64.252 64.252 0 00191.76 32c-6.69 0-13.37 1.05-19.81 3.14L20.12 87.95A32.006 32.006 0 000 117.66v346.32C0 473.17 7.53 480 15.99 480c1.96 0 3.97-.37 5.96-1.16L192 416l172 60.71a63.98 63.98 0 0040.05.15l151.83-52.81A31.996 31.996 0 00576 394.34V48.02c0-9.19-7.53-16.02-15.98-16.02zM224 90.42l128 45.19v285.97l-128-45.19V90.42zM48 418.05V129.07l128-44.53v286.2l-.64.23L48 418.05zm480-35.13l-128 44.53V141.26l.64-.24L528 93.95v288.97z"/></svg>`
 };
 export const svgIconMessageColor: {
   name: 'icon_message_color';
@@ -909,6 +930,13 @@ export const svgIconTrash: {
   name: 'icon_trash',
   data: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 16"><path fill="currentColor" fill-rule="evenodd" d="M10.534.889h3.2v1.778H.934V.889h3.2L5.048 0h4.571l.915.889zM3.677 16c-1.006 0-1.829-.8-1.829-1.778V3.556H12.82v10.666c0 .978-.822 1.778-1.828 1.778H3.677z" clip-rule="evenodd"/></svg>`
 };
+export const svgIconUerRegular: {
+  name: 'icon_uer_regular';
+  data: string;
+} = {
+  name: 'icon_uer_regular',
+  data: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M313.6 304c-28.7 0-42.5 16-89.6 16-47.1 0-60.8-16-89.6-16C60.2 304 0 364.2 0 438.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-25.6c0-74.2-60.2-134.4-134.4-134.4zM400 464H48v-25.6c0-47.6 38.8-86.4 86.4-86.4 14.6 0 38.3 16 89.6 16 51.7 0 74.9-16 89.6-16 47.6 0 86.4 38.8 86.4 86.4V464zM224 288c79.5 0 144-64.5 144-144S303.5 0 224 0 80 64.5 80 144s64.5 144 144 144zm0-240c52.9 0 96 43.1 96 96s-43.1 96-96 96-96-43.1-96-96 43.1-96 96-96z"/></svg>`
+};
 export const svgIconUnassignedConversation: {
   name: 'icon_unassigned_conversation';
   data: string;
@@ -936,6 +964,13 @@ export const svgIconUpdate: {
 } = {
   name: 'icon_update',
   data: `<svg xmlns="http://www.w3.org/2000/svg" fill="#4882c7" viewBox="0 0 18 19"><g fill-rule="nonzero"><path d="M2.096 9.628a6.81 6.81 0 002.901 5.581c.31.218.326.67.03.903l-.01.007a.56.56 0 01-.667.02A7.943 7.943 0 01.963 9.629c0-4.369 3.615-7.915 7.975-7.952V2.81c-3.734.037-6.842 3.075-6.842 6.818z"/><path d="M9.146.662l2.083 1.425a.192.192 0 010 .317L9.146 3.83a.192.192 0 01-.3-.158V.82c0-.155.172-.246.3-.16zM15.888 9.593a6.81 6.81 0 00-2.901-5.582.562.562 0 01-.029-.902l.008-.007a.56.56 0 01.668-.021 7.943 7.943 0 013.388 6.512c0 4.369-3.61 7.915-7.97 7.952v-1.134c3.734-.037 6.836-3.075 6.836-6.818z"/><path d="M8.838 18.56l-2.083-1.426a.192.192 0 010-.317l2.083-1.425c.128-.088.301.004.301.158v2.85a.192.192 0 01-.3.16z"/><path stroke="#4882c7" d="M12.528 8.727l-3.412 2.83-.86.714a1.132 1.132 0 01-.851.251 1.129 1.129 0 01-.769-.443L5.31 10.31a.905.905 0 011.448-1.085l.896 1.194.007-.006 3.713-3.08a.905.905 0 011.155 1.394h0z"/></g></svg>`
+};
+export const svgIconUserGroup: {
+  name: 'icon_user_group';
+  data: string;
+} = {
+  name: 'icon_user_group',
+  data: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc.--><path d="M144 160c-44.2 0-80-35.8-80-80S99.8 0 144 0s80 35.8 80 80-35.8 80-80 80zm368 0c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7-1.3 7.2-1.9 14.7-1.9 22.3 0 38.2 16.8 72.5 43.3 96H21.3C9.6 320 0 310.4 0 298.7zM405.3 320h-.7c26.6-23.5 43.3-57.8 43.3-96 0-7.6-.7-15-1.9-22.3 13.6-6.3 28.7-9.7 44.6-9.7h42.7c58.9 0 106.7 47.8 106.7 106.7 0 11.8-9.6 21.3-21.3 21.3H405.3zm10.7-96c0 53-43 96-96 96s-96-43-96-96 43-96 96-96 96 43 96 96zM128 485.3c0-73.6 59.7-133.3 133.3-133.3h117.4c73.6 0 133.3 59.7 133.3 133.3 0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z"/></svg>`
 };
 export const svgIconUserLight: {
   name: 'icon_user_light';
@@ -1093,10 +1128,12 @@ export type svgIcon =
   | 'icon_filter_light'
   | 'icon_filter_weight'
   | 'icon_flag_alt'
+  | 'icon_flag_light'
   | 'icon_google_logo'
   | 'icon_hand_shake_angle'
   | 'icon_hand_shake'
   | 'icon_hat_cowboy'
+  | 'icon_heart_light'
   | 'icon_heatscore_cold'
   | 'icon_heatscore_hot'
   | 'icon_heatscore_interested'
@@ -1115,6 +1152,7 @@ export type svgIcon =
   | 'icon_mail_light'
   | 'icon_mail_send'
   | 'icon_mail'
+  | 'icon_map'
   | 'icon_message_color'
   | 'icon_message_unknown'
   | 'icon_message'
@@ -1159,10 +1197,12 @@ export type svgIcon =
   | 'icon_timezone'
   | 'icon_trash_restore'
   | 'icon_trash'
+  | 'icon_uer_regular'
   | 'icon_unassigned_conversation'
   | 'icon_unlink'
   | 'icon_unlock'
   | 'icon_update'
+  | 'icon_user_group'
   | 'icon_user_light'
   | 'icon_user_square'
   | 'icon_user_weight_2'

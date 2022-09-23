@@ -1,0 +1,23 @@
+<div class="user-header">
+	<div (click)="isShowMenu = true" class="name pointer">
+		{{currentAdmin.name}}
+		<i class="fas fa-chevron-down ml-2"></i>
+	</div>
+</div>
+
+<dx-popover target=".fas" position="bottom" [width]="198" [visible]="isShowMenu" (onHiding)="isShowMenu = false"
+			class="admin-menu">
+	<div class="user-menu">
+		<div class="container-item container-item--no-border-bottom">
+			<a class="d-flex menu-item pointer">
+				<div class="option-text">Profile</div>
+			</a>
+			<a class="d-flex menu-item pointer">
+				<div class="option-text">Change Password</div>
+			</a>
+			<a class="d-flex menu-item pointer" (click)="logout()">
+				<div class="option-text">Logout</div>
+			</a>
+		</div>
+	</div>
+</dx-popover>

@@ -1,0 +1,36 @@
+@import "jerry-extend";
+@import "jerry-variable";
+
+.user-header {
+	.name {
+		@include gotham-medium(500, 13px, 20px);
+		color: #fff;
+		letter-spacing: -.17px;
+	}
+
+	.name:hover {
+		color: #777777	;
+	}
+}
+
+
+::ng-deep .admin-menu {
+	.menu-item {
+        padding: 10px;
+        cursor: pointer;
+
+        .option-text {
+            margin-left: 10px;
+            color: #4882c7;
+            line-height: 18px;
+        }
+
+        &:hover {
+            background-color: $dropdown-item__bg-color__hover;
+        }
+
+        &:active {
+            background-color: $dropdown-item__bg-color__focused;
+        }
+    }
+}

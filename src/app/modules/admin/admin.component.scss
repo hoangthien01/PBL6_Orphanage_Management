@@ -1,0 +1,133 @@
+@import "jerry-extend";
+@import "jerry-variable";
+
+.admin-page {
+	position: relative;
+	height: 100%;
+
+	.board-content {
+		position: fixed;
+		width: 100%;
+		bottom: 0;
+		z-index: 1;
+		top: 54px;
+
+		.main-side {
+            position: relative;
+            margin-left: 240px;
+            width: calc(100% - 240px);
+            height: 100%;
+        }
+	}
+
+	.admin-header {
+        position: absolute;
+        width: 100%;
+        height: 54px;
+        z-index: 10;
+
+        a {
+            text-decoration-line: none;
+        }
+
+        .box-menu {
+            height: 100%;
+            width: 100%;
+            z-index: 1500;
+            background: linear-gradient(238.27deg, #00afff 0%, #0068ff 100%);
+            box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+        }
+
+		.logo-box {
+			background-image: linear-gradient(to left, rgba(0, 0, 0, 0.05) 2px, rgba(255, 255, 255, 0) 0px);
+			background-position: center;
+			background-size: 100% 20px;
+			background-repeat: no-repeat;
+			padding: 0 35px 0 25px;
+		}
+
+		.menu-selected {
+			background-color: rgba(23, 50, 64, 0.5);
+			background-size: 0 !important;
+		}
+
+		.broadcast-menu-selected {
+			background-color: rgba(23, 50, 64, 0.5);
+		}
+
+		.menu-title {
+			color: #ffffff;
+			font-family: "Gotham Medium";
+			font-size: 13px;
+			letter-spacing: -0.17px;
+			line-height: 16px;
+			padding-left: 25px;
+			font-weight: 500;
+		}
+
+		.tab-prospect {
+			height: 54px;
+			width: 135px;
+			background-image: linear-gradient(to top, rgba(0, 175, 255, 0.59), rgba(0, 129, 255, 0.59));
+			background-position: right bottom;
+			background-size: 1px 32px;
+			background-repeat: no-repeat;
+		}
+
+		.sub-prospect {
+		}
+
+		.tab-dashboard {
+			margin-left: 15px;
+			width: 145px;
+			background-image: linear-gradient(to top, #00afff, #0079ff);
+			background-image: linear-gradient(to top, rgba(0, 175, 255, 0.59), rgba(0, 121, 255, 0.59));
+			background-position: right bottom;
+			background-size: 1px 32px;
+			background-repeat: no-repeat;
+		}
+
+		.tab-conversation {
+			height: 54px;
+			width: 155px;
+			background-image: linear-gradient(to top, rgba(0, 175, 255, 0.59), rgba(0, 130, 255, 0.59));
+			background-position: right bottom;
+			background-size: 1px 32px;
+			background-repeat: no-repeat;
+		}
+
+		.sub-tab {
+			width: calc(100% - 1px);
+			height: 100%;
+			padding-left: 20px;
+		}
+
+		.tab-campaign {
+			height: 54px;
+			width: 140px;
+			background-image: linear-gradient(to top, rgba(0, 175, 255, 0.59), rgba(0, 145, 255, 0.59));
+			background-position: right bottom;
+			background-size: 1px 32px;
+			background-repeat: no-repeat;
+		}
+
+		.tab-user {
+			height: 54px;
+			width: 105px;
+			background-image: linear-gradient(to top, rgba(0, 175, 255, 0.59), rgba(0, 150, 255, 0.59));
+			background-position: right bottom;
+			background-size: 1px 32px;
+			background-repeat: no-repeat;
+		}
+
+		.tab-broadcast {
+			height: 54px;
+			width: 135px;
+		}
+
+		.avatar-box {
+			padding: 15px 30px;
+			float: right;
+		}
+	}
+}

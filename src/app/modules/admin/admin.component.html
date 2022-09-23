@@ -1,0 +1,28 @@
+<div class="admin-page">
+	<div [style.top.px]="true" class="admin-header">
+		<div class="box-menu d-flex">
+			<div class="d-flex justify-content-start mr-auto">
+				<a [routerLink]="['admin']" class="d-flex align-items-center logo-box">
+                    <app-svg-icon [name]="'icon_woosender_logo_white'"
+                                  style="width: 68px; height: 24px">
+                    </app-svg-icon>
+                </a>
+			</div>
+
+			<div class="avatar-box">
+				<app-user-header></app-user-header>
+			</div>
+		</div>
+	</div>
+
+	<div [style.top.px]="true" class="board-content">
+        <app-side-bar-menu [menu]="menu">
+        </app-side-bar-menu>
+
+        <div class="main-side">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+

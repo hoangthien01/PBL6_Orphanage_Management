@@ -1,0 +1,86 @@
+<div class="admin-login">
+	<div class="admin-login-wrap">
+		<div class="general-content">
+            <div class="logo d-flex justify-content-center">
+                <app-svg-icon [name]="'icon_woosender_logo_color'"
+                              style="width: 136px; height: 48px">
+                </app-svg-icon>
+            </div>
+            <div class="main-body">
+                <form>
+                    <div class="login-container">
+                        <div class="introduce">
+                            <span class="trial-message">WooSender Admin</span>
+                        </div>
+                        <div class="main-content">
+                            <div class="field-area form-wrapper">
+                                <div class="box-properties">
+                                    <span class="field-label">Email</span>
+                                    <dx-text-box #emailTextBox
+                                                 (onEnterKey)="signIn()"
+                                                 (onValueChanged)="dataChanged()"
+                                                 [(value)]="login.email"
+                                                 [valueChangeEvent]="'input'"
+                                                 class="field-box-lite"
+                                                 placeholder="Enter Email">
+                                        <dx-validator>
+											<dxi-validation-rule message="Email address is required" type="required">
+											</dxi-validation-rule>
+											<dxi-validation-rule message="Invalid email address"
+																 type="email"></dxi-validation-rule>
+										</dx-validator>
+									</dx-text-box>
+								</div>
+                                <div class="box-properties">
+                                    <span class="field-label">Password</span>
+                                    <dx-text-box #passwordTextBox (onEnterKey)="signIn()"
+                                                 (onValueChanged)="dataChanged()"
+                                                 [(value)]="login.password"
+                                                 [inputAttr]="{ autocomplete: 'on' }"
+                                                 [valueChangeEvent]="'input'"
+                                                 class="field-box-lite"
+                                                 mode="password"
+                                                 placeholder="Enter Password">
+                                        <dx-validator>
+                                            <dxi-validation-rule message="Password is required"
+																 type="required">
+                                            </dxi-validation-rule>
+										</dx-validator>
+									</dx-text-box>
+								</div>
+								<div class="content-footer clearfix">
+                                    <app-custom-button class="float-left mr-4"
+                                                       [disabled]="!isDataValid || login.isLogging"
+                                                       [width]="100"
+                                                       [height]="40"
+                                                       icon="{{ login.isLogging ? 'fas fa-spinner fa-spin' : '' }}"
+                                                       [text]="'SIGN IN'"
+                                                       [type]="'primary'"
+                                                       (onClick)="signIn()">
+                                    </app-custom-button>
+                                    <div class="keep-login">
+                                        <dx-check-box class="mr-2"
+                                                      [text]="'Keep me logged in'"
+                                                      [(value)]="login.rememberMe">
+                                        </dx-check-box>
+                                    </div>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="footer-text text-has-link ">Privacy Policy</div>
+		<div class="footer-text text-has-link">Term of Service</div>
+		<div class="footer-text">© {{year}} WooSender. All rights reserved.</div>
+	</div>
+</div>
+
+
+
+
+

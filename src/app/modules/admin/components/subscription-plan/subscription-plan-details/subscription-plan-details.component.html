@@ -1,0 +1,420 @@
+<dx-scroll-view [direction]="'vertical'">
+    <div class="subscription-detail">
+        <div class="plan-detail">
+            <div class="d-flex justify-content-start campaign-content">
+                <div class="d-flex justify-content-between title-bar">
+                    <div class="d-flex justify-content-start align-items-center box-title">
+                        <app-button-nav-back [name]="'ALL SUBSCRIPTION PLANS'"
+                                             [pageTitle]="currentPlan?.name"
+                                             (onBack)="backToList()">
+                        </app-button-nav-back>
+                    </div>
+                </div>
+                <div class="plan-content">
+                </div>
+            </div>
+            <div class="row ml-0 mr-0 form-wrapper">
+                <div class="col-xl-9 form-data">
+                    <span *ngIf="currentPlan?.isFree"
+                          class="notice">{{'Free Subscription Plan. No monthly payment. No card info required.'}}</span>
+                    <span *ngIf="currentPlan?.isDefault"
+                          class="notice">{{'By default, a new registered account will be assigned to ' +
+                        currentPlan.name + '.'}}</span>
+                    <div [class.mt-2]="currentPlan?.isDefault || currentPlan?.isFree"
+                         class="row mr-0 ml-0">
+                        <div class="col-md-4 col-sm-5">
+                            <div class="section-title">Subscription Details</div>
+                            <div class="box-properties">
+                                <span class="field-label">Name</span>
+                                <dx-text-box #nameTextBox
+                                             [disabled]="isProcessing"
+                                             (onValueChanged)="changeData()"
+                                             [(value)]="currentPlan.name"
+                                             [readOnly]="currentPlan.isSystem"
+                                             [valueChangeEvent]="'input'"
+                                             class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Name is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+
+                                        <dxi-validation-rule [validationCallback]="validationCallbacks.validateEmail"
+                                                             message="Subscription Plan is already exist"
+                                                             type="custom">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-text-box>
+                            </div>
+
+                            <div class="box-properties">
+                                <span class="field-label">Base Charge</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.baseCharge"
+                                               [format]="currencyFormat"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Base Charge is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+
+                            <div class="box-properties">
+                                <span class="field-label">Local Numbers</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.localNumber"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Local Numbers is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+
+                            <div class="box-properties">
+                                <span class="field-label">Local Minutes</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.localMinute"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Local Minutes is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+
+                            <div class="box-properties">
+                                <span class="field-label">Emails</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.email"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Email quantity is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+
+                            <div class="box-properties">
+                                <span class="field-label">SMS</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.sms"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="SMS quantity is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+                            <div class="box-properties">
+                                <span class="field-label">Lookup</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.lookup"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Lookup quantity is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-5 pt-20-c">
+                            <div class="section-title"></div>
+                            <div class="box-properties">
+                                <span class="field-label">Additional Local Number Cost</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.additionalLocalNumberCost"
+                                               [format]="currencyFormat"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Additional Local Number Cost is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+
+                            <div class="box-properties">
+                                <span class="field-label">Additional Local Minute Cost</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.additionalLocalMinuteCost"
+                                               [format]="currencyFormat"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Additional Local Minute Cost is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+
+                            <div class="box-properties">
+                                <span class="field-label">Additional TollFree Cost</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.additionalTollFreeCost"
+                                               [format]="currencyFormat"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Additional TollFree Cost is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+
+                            <div class="box-properties">
+                                <span class="field-label">Additional TollFree Minute Cost</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.additionalTollFreeMinuteCost"
+                                               [format]="currencyFormat"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Additional TollFree Minute Cost is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+
+                            <div class="two-field">
+                                <div class="box-properties mr-1">
+                                    <span class="field-label">Additional SMS Cost</span>
+                                    <dx-number-box [disabled]="isProcessing"
+                                                   (onValueChanged)="changeData()"
+                                                   [(value)]="currentPlan.additionalSMSCost"
+                                                   [format]="currencyFormat"
+                                                   [readOnly]="currentPlan.isSystem"
+                                                   [valueChangeEvent]="'input'"
+                                                   class="field-box">
+                                        <dx-validator>
+                                            <dxi-validation-rule message="Additional SMS Cost is required"
+                                                                 type="required">
+                                            </dxi-validation-rule>
+                                        </dx-validator>
+                                    </dx-number-box>
+                                </div>
+
+                                <div class="box-properties ml-1">
+                                    <span class="field-label">Additional MMS Cost</span>
+                                    <dx-number-box [disabled]="isProcessing"
+                                                   (onValueChanged)="changeData()"
+                                                   [(value)]="currentPlan.additionalMmsCost"
+                                                   [readOnly]="currentPlan.isSystem"
+                                                   [format]="currencyFormat"
+                                                   [valueChangeEvent]="'input'"
+                                                   class="field-box">
+                                        <dx-validator>
+                                            <dxi-validation-rule message="Additional SMS Cost is required"
+                                                                 type="required">
+                                            </dxi-validation-rule>
+                                        </dx-validator>
+                                    </dx-number-box>
+                                </div>
+                            </div>
+
+                            <div class="box-properties">
+                                <span class="field-label">Additional Email Cost</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.additionalEmailCost"
+                                               [format]="currencyFormat"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Additional Email Cost is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+                            <div class="box-properties">
+                                <span class="field-label">Additional Lookup Cost</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.additionalLookupCost"
+                                               [format]="currencyFormat"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Additional Lookup Cost is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-5">
+                            <div class="section-title">Trial Details</div>
+                            <div class="box-properties">
+                                <span class="field-label">Trial Days</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.trialDays"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Trial Days is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+                            <div class="box-properties">
+                                <span class="field-label">Trial Numbers</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.trialNumbers"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Trial Numbers is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+                            <div class="box-properties">
+                                <span class="field-label">Trial Local Minutes</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.trialLocalMinutes"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Trial Local Minutes is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+                            <div class="two-field">
+                                <div class="box-properties mr-1">
+                                    <span class="field-label">Trial SMS</span>
+                                    <dx-number-box [disabled]="isProcessing"
+                                                   (onValueChanged)="changeData()"
+                                                   [(value)]="currentPlan.trialSMS"
+                                                   [readOnly]="currentPlan.isSystem"
+                                                   [valueChangeEvent]="'input'"
+                                                   class="field-box">
+                                        <dx-validator>
+                                            <dxi-validation-rule message="Trial SMS is required"
+                                                                 type="required">
+                                            </dxi-validation-rule>
+                                        </dx-validator>
+                                    </dx-number-box>
+                                </div>
+                                <div class="box-properties ml-1">
+                                    <span class="field-label">Trial Emails</span>
+                                    <dx-number-box [disabled]="isProcessing"
+                                                   (onValueChanged)="changeData()"
+                                                   [(value)]="currentPlan.trialEmails"
+                                                   [readOnly]="currentPlan.isSystem"
+                                                   [valueChangeEvent]="'input'"
+                                                   class="field-box">
+                                        <dx-validator>
+                                            <dxi-validation-rule message="Trial Emails is required"
+                                                                 type="required">
+                                            </dxi-validation-rule>
+                                        </dx-validator>
+                                    </dx-number-box>
+                                </div>
+
+                            </div>
+
+                            <div class="box-properties">
+                                <span class="field-label">Trial Extended Days</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.trialExtendedDays"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Trial Extended Days is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+                            <div class="box-properties">
+                                <span class="field-label">Payment Extended Days</span>
+                                <dx-number-box [disabled]="isProcessing"
+                                               (onValueChanged)="changeData()"
+                                               [(value)]="currentPlan.paymentExtendedDays"
+                                               [readOnly]="currentPlan.isSystem"
+                                               [valueChangeEvent]="'input'"
+                                               class="field-box">
+                                    <dx-validator>
+                                        <dxi-validation-rule message="Payment Extended Days is required"
+                                                             type="required">
+                                        </dxi-validation-rule>
+                                    </dx-validator>
+                                </dx-number-box>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!currentPlan.isSystem"
+                         class="dx-flex justify-content-between pt-20-c button-area">
+                        <app-custom-button (onClick)="savePlan()"
+                                           [disabled]="isProcessing || disableUpdate"
+                                           [text]="isAddMode ? 'ADD' : 'SAVE'"
+                                           class="mr-3 mt-2"
+                                           [height]="40"
+                                           [width]="120"
+                                           [type]="'primary'">
+                        </app-custom-button>
+                        <app-custom-button (onClick)="backToList()"
+                                           [disabled]="isProcessing"
+                                           class="mt-2 cancel"
+                                           [height]="40"
+                                           [width]="120"
+                                           [text]="'Cancel'"
+                                           [type]="'cancel'">
+                        </app-custom-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</dx-scroll-view>

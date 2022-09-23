@@ -1,0 +1,50 @@
+@import "woosender-extend";
+@import "woosender-variable";
+@import "mixins/_button";
+
+.subscription-list-container {
+    height: 100%;
+}
+
+.grid-container {
+    height: 100%;
+    width: 100%;
+
+    ::ng-deep .subscription-grid {
+        height: 100%;
+
+        .selected-column-header {
+            margin-right: 0 !important;
+        }
+
+		.dx-datagrid-text-content {
+			white-space: initial;
+		}
+
+		.dx-pager .dx-page-sizes {
+            float: right;
+            margin-right: $grid__page-sizes__margin-right;
+        }
+
+		.action {
+
+			i {
+				font-size: 15px;
+				margin-left: 10px;
+			}
+
+			i:hover {
+				color: #E57979;
+			}
+		}
+	}
+}
+
+.subscription-list__btn-delete {
+    @include gotham-book(400, 12px, 20px);
+    color: $color-red-E57979;
+    background-color: #FFF;
+    border: 1px solid $color-red-E57979;
+    border-radius: 5px;
+    @include button-delete-outline-effect;
+}

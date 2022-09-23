@@ -1,0 +1,24 @@
+<dx-popover #popover
+            class="subscription-management-action-buttons-popover"
+            [width]="width"
+            [position]="position"
+            [shading]="false"
+            [closeOnOutsideClick]="true"
+            (onShowing)="onPopoverShowing()"
+            (onHiding)="onPopoverHiding()"
+            (onHidden)="onPopoverHidden()">
+    <div *dxTemplate="let content of 'content'">
+        <div class="popover__action-buttons__container">
+            <div class="button__item btn__delete" (click)="delete()">
+                <div class="d-flex action-button__icon-container">
+                    <app-svg-icon class="action-button__icon-content icon-delete-container"
+                                  [data]="SVG_ICONS.Delete"
+                                  [width]="20">
+                    </app-svg-icon>
+                </div>
+
+                <span class="button__item__title">Delete</span>
+            </div>
+        </div>
+    </div>
+</dx-popover>

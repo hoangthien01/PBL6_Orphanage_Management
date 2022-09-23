@@ -1,0 +1,235 @@
+<div class="subscription-list-container">
+    <app-load-panel [isLoading]="isGridLoading">
+    </app-load-panel>
+
+    <app-grid-nodata-message *ngIf="isInit && subscriptionPlans.length === 0"
+                             [visible]="!isGridLoading"
+                             [hasNotFoundMessage]="true"
+                             [notFoundMessage]="'No plans found'">
+    </app-grid-nodata-message>
+
+    <dx-data-grid #planGrid
+                  [dataSource]="subscriptionPlans"
+                  [visible]="isInit"
+                  [noDataText]="null"
+                  [allowColumnResizing]="true"
+                  [columnAutoWidth]="true"
+                  [rowAlternationEnabled]="true"
+                  [showColumnLines]="false"
+                  class="subscription-grid"
+                  height="100%">
+        <dxo-remote-operations [paging]="true" [sorting]="true">
+        </dxo-remote-operations>
+        <dxo-search-panel [highlightSearchText]="false"></dxo-search-panel>
+        <dxo-load-panel [enabled]="false"></dxo-load-panel>
+        <dxo-paging [pageSize]=25></dxo-paging>
+        <dxo-pager [allowedPageSizes]="allowPageSizes"
+                   [showNavigationButtons]="true"
+                   [showPageSizeSelector]="true"
+                   [visible]="subscriptionPlans?.length > 0">
+        </dxo-pager>
+
+        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.name.key,$event)"
+                    [cellTemplate]="'nameCellTemplate'" caption="PLAN NAME" minWidth="120" dataField="name"
+                    headerCellTemplate="nameHeaderTemplate">
+            <div *dxTemplate="let data of 'nameHeaderTemplate'"
+                 class="d-flex justify-content-start align-items-center selected-column-header">
+                {{data.column.caption}}
+
+                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.name.value">
+                </app-grid-column-sort-icon>
+            </div>
+            <div (click)="showPlanDetail(data.data.id)" *dxTemplate="let data of 'nameCellTemplate'"
+                 class="text-has-link">
+                {{data.value}}
+            </div>
+        </dxi-column>
+
+        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.baseCharge.key,$event)"
+                    [format]="currencyFormat" caption="BASE CHARGE" dataField="baseCharge"
+                    [allowSearch]=false
+                    headerCellTemplate="baseChargeHeaderTemplate">
+            <div *dxTemplate="let data of 'baseChargeHeaderTemplate'"
+                 class="d-flex justify-content-start align-items-center selected-column-header">
+                {{data.column.caption}}
+
+                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.baseCharge.value">
+                </app-grid-column-sort-icon>
+            </div>
+        </dxi-column>
+
+        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.localNumber.key,$event)" caption="LOCAL NUMBER"
+                    [allowSearch]="false"
+                    dataField="localNumber" headerCellTemplate="localNumberHeaderTemplate">
+            <dxo-format type="fixedPoint"></dxo-format>
+            <div *dxTemplate="let data of 'localNumberHeaderTemplate'"
+                 class="d-flex justify-content-start align-items-center selected-column-header">
+                {{data.column.caption}}
+
+                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.localNumber.value">
+                </app-grid-column-sort-icon>
+            </div>
+        </dxi-column>
+
+        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.localMinute.key,$event)" caption="LOCAL MINUTE"
+                    [allowSearch]="false"
+                    dataField="localMinute" headerCellTemplate="localMinuteHeaderTemplate">
+            <dxo-format type="fixedPoint"></dxo-format>
+            <div *dxTemplate="let data of 'localMinuteHeaderTemplate'"
+                 class="d-flex justify-content-start align-items-center selected-column-header">
+                {{data.column.caption}}
+
+                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.localMinute.value">
+                </app-grid-column-sort-icon>
+            </div>
+        </dxi-column>
+
+        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.email.key,$event)" caption="EMAIL"
+                    [allowSearch]="false"
+                    dataField="email" headerCellTemplate="emailHeaderTemplate">
+            <dxo-format type="fixedPoint"></dxo-format>
+            <div *dxTemplate="let data of 'emailHeaderTemplate'"
+                 class="d-flex justify-content-start align-items-center selected-column-header">
+                {{data.column.caption}}
+
+                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.email.value">
+                </app-grid-column-sort-icon>
+            </div>
+        </dxi-column>
+
+        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.sms.key,$event)" caption="TEXT MESSAGE"
+                    [allowSearch]="false"
+                    dataField="sms" headerCellTemplate="smsHeaderTemplate">
+            <dxo-format type="fixedPoint"></dxo-format>
+            <div *dxTemplate="let data of 'smsHeaderTemplate'"
+                 class="d-flex justify-content-start align-items-center selected-column-header">
+                {{data.column.caption}}
+
+                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.sms.value">
+                </app-grid-column-sort-icon>
+            </div>
+        </dxi-column>
+
+        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.additionalLocalNumberCost.key,$event)"
+                    [format]="currencyFormat" caption="ADDITIONAL LOCAL NUMBER COST"
+                    [allowSearch]="false"
+                    dataField="additionalLocalNumberCost"
+                    headerCellTemplate="additionalLocalNumberCostHeaderTemplate">
+            <div *dxTemplate="let data of 'additionalLocalNumberCostHeaderTemplate'"
+                 class="d-flex justify-content-start align-items-center selected-column-header">
+                {{data.column.caption}}
+
+                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.additionalLocalNumberCost.value">
+                </app-grid-column-sort-icon>
+            </div>
+        </dxi-column>
+
+        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.additionalLocalMinuteCost.key,$event)"
+                    [format]="currencyFormat" caption="ADDITIONAL LOCAL MINUTE COST"
+                    [allowSearch]="false"
+                    dataField="additionalLocalMinuteCost"
+                    headerCellTemplate="additionalLocalMinuteCostHeaderTemplate">
+            <div *dxTemplate="let data of 'additionalLocalMinuteCostHeaderTemplate'"
+                 class="d-flex justify-content-start align-items-center selected-column-header">
+                {{data.column.caption}}
+
+                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.additionalLocalMinuteCost.value">
+                </app-grid-column-sort-icon>
+            </div>
+        </dxi-column>
+
+        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.additionalTollFreeCost.key,$event)"
+                    [format]="currencyFormat" caption="ADDITIONAL TOLLFREE COST" dataField="additionalTollFreeCost"
+                    [allowSearch]="false"
+                    headerCellTemplate="additionalTollFreeCostHeaderTemplate">
+            <div *dxTemplate="let data of 'additionalTollFreeCostHeaderTemplate'"
+                 class="d-flex justify-content-start align-items-center selected-column-header">
+                {{data.column.caption}}
+
+                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.additionalTollFreeCost.value">
+                </app-grid-column-sort-icon>
+            </div>
+        </dxi-column>
+
+        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.additionalTollFreeMinuteCost.key,$event)"
+                    [width]="310"
+                    [format]="currencyFormat" caption="ADDITIONAL TOLLFREE MINUTE COST"
+                    [allowSearch]="false"
+                    dataField="additionalTollFreeMinuteCost"
+                    headerCellTemplate="additionalTollFreeMinuteCostHeaderTemplate">
+            <div *dxTemplate="let data of 'additionalTollFreeMinuteCostHeaderTemplate'"
+                 class="d-flex justify-content-start align-items-center selected-column-header">
+                {{data.column.caption}}
+
+                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.additionalTollFreeMinuteCost.value">
+                </app-grid-column-sort-icon>
+            </div>
+        </dxi-column>
+
+        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.additionalSMSCost.key,$event)"
+                    [allowSearch]="false"
+                    [format]="currencyFormat" caption="ADDITIONAL SMS COST" dataField="additionalSMSCost"
+                    headerCellTemplate="additionalSMSCostHeaderTemplate">
+            <div *dxTemplate="let data of 'additionalSMSCostHeaderTemplate'"
+                 class="d-flex justify-content-start align-items-center selected-column-header">
+                {{data.column.caption}}
+
+                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.additionalSMSCost.value">
+                </app-grid-column-sort-icon>
+            </div>
+        </dxi-column>
+
+        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.additionalMmsCost.key,$event)"
+                    [allowSearch]="false"
+                    [format]="currencyFormat" caption="ADDITIONAL MMS COST" dataField="additionalMmsCost"
+                    headerCellTemplate="additionalMMSCostHeaderTemplate">
+            <div *dxTemplate="let data of 'additionalMMSCostHeaderTemplate'"
+                 class="d-flex justify-content-start align-items-center selected-column-header">
+                {{data.column.caption}}
+
+                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.additionalMmsCost.value">
+                </app-grid-column-sort-icon>
+            </div>
+        </dxi-column>
+
+        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.additionalEmailCost.key,$event)"
+                    [allowSearch]="false"
+                    [format]="currencyFormat" caption="ADDITIONAL EMAIL COST" dataField="additionalEmailCost"
+                    headerCellTemplate="additionalEmailCostHeaderTemplate">
+            <div *dxTemplate="let data of 'additionalEmailCostHeaderTemplate'"
+                 class="d-flex justify-content-start align-items-center selected-column-header">
+                {{data.column.caption}}
+
+                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.additionalEmailCost.value">
+                </app-grid-column-sort-icon>
+            </div>
+        </dxi-column>
+
+        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.trialDays.key,$event)" caption="TRIAL DAYS"
+                    [allowSearch]="false"
+                    dataField="trialDays" headerCellTemplate="trialDaysHeaderTemplate">
+            <div *dxTemplate="let data of 'trialDaysHeaderTemplate'"
+                 class="d-flex justify-content-start align-items-center selected-column-header">
+                {{data.column.caption}}
+
+                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.trialDays.value">
+                </app-grid-column-sort-icon>
+            </div>
+        </dxi-column>
+
+        <dxi-column [cellTemplate]="'actionTemplate'" alignment="center" caption="ACTION"
+                    headerCellTemplate="headerActionTemplate" style="text-align: center">
+            <div *dxTemplate="let data of 'actionTemplate'" class="action pointer">
+                <button *ngIf="!data.data.isSystem && !data.data.isDefault"
+                        class="subscription-list__btn-delete"
+                        (click)="confirmDeletePlan(data.data)">
+                    Delete
+                </button>
+            </div>
+            <div *dxTemplate="let data of 'headerActionTemplate'" class="d-flex justify-content-start"
+                 style="text-align: center">
+                {{data.column.caption}}
+            </div>
+        </dxi-column>
+    </dx-data-grid>
+</div>

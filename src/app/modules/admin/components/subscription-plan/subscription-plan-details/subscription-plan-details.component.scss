@@ -1,0 +1,125 @@
+@import "woosender-extend";
+@import "woosender-variable";
+
+.subscription-detail {
+	.plan-detail {
+        .title-bar .box-title {
+            padding: 15px 0 15px 40px;
+        }
+
+        .form-data {
+            padding: 15px 25px;
+
+            .button-area {
+                padding-left: 15px;
+            }
+
+            .notice {
+                padding: 15px;
+                color: $color-red-E57979;
+            }
+		}
+
+		.title-panel {
+			color: #555555;
+			@include gotham-medium(500, 14px, 14px);
+			display: inline-block;
+		}
+
+		.box-properties {
+			.field-description {
+				color: #737070;
+				@include gotham-book(300, 12px, 19px);
+				margin-top: 0;
+				display: inline-block;
+
+				&.warning-text {
+					color: #ce1818;
+				}
+			}
+
+			.switch-label {
+				padding-top: 2px;
+				margin: 0 10px;
+			}
+
+			.title-notification {
+				margin-bottom: 10px;
+				color: #555555;
+				display: inline-block;
+				@include gotham-medium(500, 12px, 14px);
+			}
+
+			.notification-box {
+				margin-bottom: 10px;
+			}
+
+			dx-button {
+				&.add-recipients {
+					margin-left: 10px;
+					border: 1px solid #00a6ff;
+					border-radius: 5px;
+					width: 100px;
+
+					&:focus, &:active {
+						background-color: #ffffff;
+					}
+
+					&:hover {
+						background-color: #E2E7ED;
+					}
+
+					::ng-deep.dx-button-text {
+						color: #00a6ff;
+						font-weight: bold;
+					}
+				}
+			}
+
+			&.phone-wrapper {
+				.selected-flag {
+					padding: 13px;
+				}
+
+				dx-text-box {
+					&.phone {
+						padding: 0;
+					}
+
+					&.phone:hover + dx-select-box {
+						border: 1px solid #61bbe7;
+					}
+
+					&::placeholder {
+						color: #bbbbbb;
+					}
+				}
+
+				.dx-dropdowneditor-button {
+					padding: 0 !important;
+				}
+
+				.flag-button {
+					&:hover {
+						background-color: #e6e6e6;
+					}
+
+					.dial-code {
+						margin-left: 5px;
+						margin-top: 1px;
+						color: #333;
+					}
+
+					dx-text-box.btn-show-country {
+						display: none;
+						margin: 4px 18px;
+					}
+				}
+			}
+		}
+
+		.two-field {
+			display: flex;
+		}
+	}
+}

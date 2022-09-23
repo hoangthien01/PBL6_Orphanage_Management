@@ -1,0 +1,280 @@
+<app-default-layout [headerTemplate]="headerTemplate"
+                    [isInit]="isInit"
+                    [mainTemplate]="mainTemplate"
+                    [mainContentType]="'grid-without-title'"
+                    class="subscription-assignment-container">
+    <ng-template #headerTemplate>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-start">
+                <div class="page-header__title">Subscription Assignment</div>
+            </div>
+            <div class="d-flex justify-start">
+                <dx-text-box (onKeyUp)="searchTextBoxKeyPress($event)"
+                             (onValueChanged)="searchAccount($event)"
+                             [(value)]="searchKeyword"
+                             height="30"
+                             mode="search"
+                             placeholder="Search"
+                             valueChangeEvent="input"
+                             width="216">
+                </dx-text-box>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template #mainTemplate>
+        <div class="d-flex justify-content-start account-list">
+            <div class="data-grid content-transition">
+                <div class="subscription-assignment">
+                    <app-load-panel *ngIf="isInit"
+                                    [isApplyToGridLoading]="true"
+                                    [isLoading]="isGridLoading">
+                    </app-load-panel>
+
+                    <app-grid-nodata-message *ngIf="isInit && totalCount === 0"
+                                             [hasNotFoundMessage]="true"
+                                             [notFoundMessage]="'No accounts found'"
+                                             [visible]="!isGridLoading">
+                    </app-grid-nodata-message>
+
+                    <dx-data-grid #accountGrid
+                                  [allowColumnResizing]="false"
+                                  [columnAutoWidth]="true"
+                                  [dataSource]="dataSource"
+                                  [noDataText]="null"
+                                  [rowAlternationEnabled]="true"
+                                  [showColumnLines]="false"
+                                  [visible]="isInit"
+                                  class="assignment-grid"
+                                  height="100%">
+                        <dxo-remote-operations [paging]="true" [sorting]="true">
+                        </dxo-remote-operations>
+
+                        <dxo-load-panel [enabled]="false"></dxo-load-panel>
+                        <dxo-paging (pageSizeChange)="isPageSizeChange=true"
+                                    [pageSize]=25>
+                        </dxo-paging>
+                        <dxo-pager [allowedPageSizes]="allowPageSizes"
+                                   [showNavigationButtons]="true"
+                                   [showPageSizeSelector]="true"
+                                   [visible]="totalCount > 0">
+                        </dxo-pager>
+
+                        <dxi-column dataField="identifierNumber"
+                                    [caption]="''"
+                                    sortIndex="1"
+                                    [fixed]="true"
+                                    [width]="0"
+                                    [visible]="false">
+                        </dxi-column>
+
+                        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.identifierNumber.key,$event)"
+                                    [allowSorting]="totalCount > 0"
+                                    [minWidth]="150"
+                                    caption="ACCOUNT ID"
+                                    dataField="identifierNumber"
+                                    headerCellTemplate="identifierNumberHeaderTemplate">
+                            <div *dxTemplate="let data of 'identifierNumberHeaderTemplate'"
+                                 class="d-flex justify-content-start selected-column-header">
+                                {{data.column.caption}}
+                                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.identifierNumber.value"
+                                                           [visible]="totalCount > 0">
+                                </app-grid-column-sort-icon>
+                            </div>
+                        </dxi-column>
+
+                        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.accountName.key,$event)"
+                                    [allowSorting]="totalCount > 0"
+                                    [minWidth]="200" caption="ACCOUNT NAME"
+                                    dataField="name"
+                                    headerCellTemplate="accountNameHeaderTemplate"
+                                    sortOrder="asc">
+                            <div *dxTemplate="let data of 'accountNameHeaderTemplate'"
+                                 class="d-flex justify-content-start selected-column-header">
+                                {{data.column.caption}}
+                                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.accountName.value"
+                                                           [visible]="totalCount > 0">
+                                </app-grid-column-sort-icon>
+                            </div>
+                        </dxi-column>
+
+                        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.phoneNumber.key,$event)"
+                                    [allowSorting]="totalCount > 0" [minWidth]="170"
+                                    caption="PHONE NUMBER"
+                                    cellTemplate="phoneNumberTemplate"
+                                    dataField="phoneNumber"
+                                    headerCellTemplate="phoneNumberHeaderTemplate">
+                            <div *dxTemplate="let data of 'phoneNumberHeaderTemplate'"
+                                 class="d-flex justify-content-start selected-column-header">
+                                {{data.column.caption}}
+                                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.phoneNumber.value"
+                                                           [visible]="totalCount > 0">
+                                </app-grid-column-sort-icon>
+                            </div>
+
+                            <div *dxTemplate="let cellData of 'phoneNumberTemplate'">
+                                <span>{{!cellData.value ? '-' : cellData.value | toNationalNumber }}</span>
+                            </div>
+                        </dxi-column>
+
+                        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.email.key,$event)"
+                                    [allowSorting]="totalCount > 0" [minWidth]="200"
+                                    caption="EMAIL"
+                                    cellTemplate="emailTemplate"
+                                    dataField="email"
+                                    headerCellTemplate="emailHeaderTemplate">
+                            <div *dxTemplate="let data of 'emailHeaderTemplate'"
+                                 class="d-flex justify-content-start selected-column-header">
+                                {{data.column.caption}}
+                                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.email.value"
+                                                           [visible]="totalCount > 0">
+                                </app-grid-column-sort-icon>
+                            </div>
+                            <div *dxTemplate="let cellData of 'emailTemplate'">
+                                <span>{{!cellData.value ? '-' : cellData.value }}</span>
+                            </div>
+                        </dxi-column>
+
+                        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.createdAt.key,$event)"
+                                    [allowSorting]="totalCount > 0" [minWidth]="200" allowSorting="false"
+                                    caption="REGISTRATION DATE"
+                                    cellTemplate="createdAtTemplate"
+                                    dataField="createdAt"
+                                    headerCellTemplate="registrationHeaderTemplate">
+                            <div *dxTemplate="let data of 'registrationHeaderTemplate'"
+                                 class="d-flex justify-content-start selected-column-header">
+                                {{data.column.caption}}
+                                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.createdAt.value"
+                                                           [visible]="totalCount > 0">
+                                </app-grid-column-sort-icon>
+                            </div>
+
+                            <div *dxTemplate="let cellData of 'createdAtTemplate'">
+                                <span>{{!cellData.value ? '-' : cellData.value | date }}</span>
+                            </div>
+                        </dxi-column>
+
+                        <dxi-column (sortOrderChange)="onSortOrderChange(columnSortOrder.subscriptionPlanId.key,$event)"
+                                    [allowSorting]="totalCount > 0" [minWidth]="220"
+                                    caption="SUBSCRIPTION PLAN"
+                                    cellTemplate="subscriptionPlanTemplate"
+                                    dataField="subscriptionPlanId"
+                                    headerCellTemplate="subscriptionPlanHeaderTemplate">
+
+                            <div *dxTemplate="let data of 'subscriptionPlanHeaderTemplate'"
+                                 class="d-flex justify-content-start selected-column-header">
+                                {{data.column.caption}}
+                                <app-grid-column-sort-icon [sortingValue]="columnSortOrder.subscriptionPlanId.value"
+                                                           [visible]="totalCount > 0">
+                                </app-grid-column-sort-icon>
+                            </div>
+
+                            <div *dxTemplate="let cellData of 'subscriptionPlanTemplate'">
+                                <dx-lookup #basePlanLookup
+                                           [dataSource]="subscriptionPlans"
+                                           class="field-box"
+                                           displayExpr="name"
+                                           placeholder="Select A Plan"
+                                           searchPlaceholder="Search"
+                                           valueExpr="id"
+                                           [value]="cellData.value"
+                                           (onItemClick)="assignPlanClicked(cellData, $event)">
+                                    <dxo-drop-down-options [closeOnOutsideClick]="true"
+                                                           [showTitle]="false">
+                                    </dxo-drop-down-options>
+                                </dx-lookup>
+                            </div>
+                        </dxi-column>
+
+                        <dxi-column [fixed]="true"
+                                    [visible]="true"
+                                    fixedPosition="right"
+                                    alignment="center"
+                                    [width]="71"
+                                    [allowSorting]="false"
+                                    [visibleIndex]="7"
+                                    cellTemplate="actionButtonCellTemplate">
+                            <div *dxTemplate="let cellData of 'actionButtonCellTemplate'"
+                                 class="d-flex align-items-center justify-content-center w-100">
+                                <div class="dx-datagrid__actions-cell__three-dots-button"
+                                     (click)="onToggleActionsButtonPopover($event, cellData.data, cellData.rowIndex)">
+                                    <app-svg-icon [color]="'#999'"
+                                                  [width]="17"
+                                                  [name]="'icon_three_dots_horizontal'">
+                                    </app-svg-icon>
+                                </div>
+                            </div>
+                        </dxi-column>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</app-default-layout>
+
+<app-subscription-management-action-buttons #actionButtonsComponent
+                                            [width]="110"
+                                            (onDelete)="onDeleteAccountButtonClicked($event)"
+                                            (onHiding)="hideActionButtonPopover()">
+</app-subscription-management-action-buttons>
+
+<ng-container *ngIf="isShowConfirmationPopup">
+    <app-popup-confirmation
+        (onCancel)="hideAssignPopup()"
+        (onConfirm)="confirmAssigneePlan()"
+        (onHiding)="hideAssignPopup()"
+        [(visible)]="isShowConfirmationPopup"
+        [cancelButtonTitle]="'No'"
+        [confirmButtonTitle]="'YES'"
+        [isHiddenWhenClickEscapedButton]="false"
+        [ngClass]="'change-subscription-popup'"
+        [title]="'Change Subscription Plan'"
+        [width]="planData.isChangeFromFreeSub ? 615 : 510">
+        <div class="confirmation-content">
+            <div *ngIf="!planData.isChangeFromFreeSub" class="popup-confirmation-content-detail pb-16-c">Changing
+                Subscription Plan will be effected from the next invoice.
+            </div>
+            <div *ngIf="planData.isChangeFromFreeSub">
+                <ng-container>
+                    <div class="popup-confirmation-content-detail pb-16-c">
+                        You're about to change the account from Free plan to {{planData.newSubscription.name}}.<br><br>
+                        If you select the option "Reset the trial days" below, the trial days will be applied.<br>
+                        Otherwise, WooSender will instantly make a payment including base charge only.
+                    </div>
+
+                    <div class="popup-confirmation-content-detail change-subscription d-flex pb-16-c">
+                        <dx-check-box [(value)]="isResetTrialDays" class="checkbox pt-4-c"></dx-check-box>
+                        <div class="consider mt-auto mb-auto ml-3">
+						<span>
+							Reset the trial days
+						</span>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            Are you sure you want to continue?
+            <br>
+            <br>
+        </div>
+    </app-popup-confirmation>
+</ng-container>
+
+<ng-container *ngIf="isShowDeleteAccountConfirmationPopup">
+    <app-popup-confirmation [(visible)]="isShowDeleteAccountConfirmationPopup"
+                            [width]="440"
+                            [title]="'Delete Account'"
+                            [deleteButtonTitle]="'DELETE'"
+                            [cancelButtonTitle]="'Cancel'"
+                            [type]="'delete'"
+                            [isHiddenWhenClickEscapedButton]="false"
+                            (onDelete)="onDeleteAccount()">
+        <div class="popup-confirmation-content-detail pb-16-c">
+            Are you sure want to delete the account
+            <span class="delete-account-popup__account-info">“{{selectedAccount.name}} - {{selectedAccount.identifierNumber}}”</span>?
+        </div>
+
+        <div class="popup-confirmation-content-detail pb-16-c">
+            This action cannot be undo.
+        </div>
+    </app-popup-confirmation>
+</ng-container>

@@ -1,0 +1,45 @@
+<div class="subscription-container">
+    <app-default-layout [hidden]="!visibleGrid"
+                        [headerTemplate]="headerTemplate"
+                        [mainTemplate]="mainTemplate"
+                        [hasLoadingDuringInit]="false"
+                        [mainContentType]="'grid-without-title'">
+        <ng-template #headerTemplate>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-start">
+                    <div class="page-header__title">Subscription Plan</div>
+                </div>
+                <div class="d-flex justify-start">
+                    <dx-text-box height="30"
+                                 width="216"
+                                 mode="search"
+                                 placeholder="Search"
+                                 valueChangeEvent="input"
+                                 class="contact-search-box"
+                                 [(value)]="searchKeyword"
+                                 (onKeyUp)="onSearchTextBoxKeyPress($event)"
+                                 (onValueChanged)="onSearchSubscriptionPlans($event)">
+                    </dx-text-box>
+                    <app-custom-button class="add-plan ml-10-c"
+                                       [width]="126"
+                                       [height]="30"
+                                       [text]="'+ Add Plan'"
+                                       (onClick)="showAddPlan()"
+                                       [type]="'primary'">
+                    </app-custom-button>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template #mainTemplate>
+            <div class="d-flex justify-content-start subscription-list">
+                <div class="data-grid content-transition">
+                    <app-subscription-list #subscriptionList></app-subscription-list>
+                </div>
+            </div>
+        </ng-template>
+    </app-default-layout>
+
+    <router-outlet></router-outlet>
+</div>
+

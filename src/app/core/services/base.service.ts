@@ -89,11 +89,11 @@ export class BaseService {
         ));
     }
 
-    getWithWSConnectionId<T>(url: string): Observable<T> {
-        return this.httpClient
-            .get<T>(`${this.baseURL}/${url}`, { headers: this._headersWithWSConnectionId()})
-            .pipe(catchError((error) => this.handleError(error)));
-    }
+    // getWithWSConnectionId<T>(url: string): Observable<T> {
+    //     return this.httpClient
+    //         .get<T>(`${this.baseURL}/${url}`, { headers: this._headersWithWSConnectionId()})
+    //         .pipe(catchError((error) => this.handleError(error)));
+    // }
     //#endregion
 
     //#region POST Methods

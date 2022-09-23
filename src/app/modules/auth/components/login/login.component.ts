@@ -9,7 +9,9 @@ import {CommonFunction, RegexObject} from 'src/app/utilities';
 import {SignInModel} from '@app/modules/account-setting/models';
 import { UserService } from '@app/modules/account-setting/services/user.service';
 import { finalize } from 'rxjs/operators';
-// import * as UserActions from '@app/core/store/user/user.actions';
+import { Store } from '@ngxs/store';
+import * as UserActions from '@app/core/store/user/user.actions';
+import { AuthResultModel } from '@app/core/store/models';
 
 @Component({
     selector: 'app-login',
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     detectAutofillSubject: Subject<void> = new Subject<void>();
 
     constructor(private router: Router,
+                private store: Store,
                 private route: ActivatedRoute,
                 private userService: UserService) {
         this.subscribeDetectAutofill();
@@ -98,7 +101,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             if (!res) {
                 // this.accountService.authErrorMessage.emit('Something was wrong. Invalid email or password combination');
             } else {
-                this.doAfterUserLoggedIn();
+                this.doAfterUserLoggedIn(res);
             }
         }, error => {
             const messageError = !!error.error && !!error.error.message ? error.error.message : 'Something bad happened; please try again later.';
@@ -106,11 +109,11 @@ export class LoginComponent implements OnInit, OnDestroy {
         });
     }
 
-    doAfterUserLoggedIn() {
-        // this.store.dispatch(new UserActions.SetAuthResult({
-        //     authResult: auth,
-        //     setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.Login
-        // }));
+    doAfterUserLoggedIn(auth: AuthResultModel) {
+        this.store.dispatch(new UserActions.SetAuthResult({
+            authResult: auth,
+            setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.Login
+        }));
         this.router.navigate(['home']).then();
     }
 

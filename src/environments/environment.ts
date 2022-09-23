@@ -5,7 +5,7 @@
 export const environment = {
   name: 'local',
   production: false,
-  baseUrl: 'https://66e0-116-110-95-159.ap.ngrok.io',
+  baseUrl: 'http://127.0.0.1:8000',
 };
 
 /*

@@ -1,0 +1,250 @@
+@import 'jerry-variable';
+@import 'mixins';
+
+.user-setting {
+	cursor: pointer;
+	position: relative;
+	@include vertical-align-flex();
+	@include rem(height, 40);
+	@include rem(margin, 4, 12);
+	@include rem(padding, 9);
+	@include rem(border-radius, 8);
+
+	&:hover,
+	&:focus,
+	&.active {
+		background: $color-black-9;
+		color: #fff;
+	}
+
+	&.compacted {
+		.info-name-rank {
+			display: none;
+		}
+	}
+
+	&.light-theme {
+		color: $color-black-7;
+
+		&.active,
+		&:hover,
+		&:focus {
+			background-color: $color-black-3;
+			color: $color-black-10;
+		}
+
+		.info-name-rank {
+			.full-name {
+				color: $color-black-10;
+			}
+
+			.rank {
+				color: $color-black-6;
+			}
+		}
+	}
+
+	.default-avatar {
+		cursor: pointer;
+		height: 32px;
+		width: 32px;
+		border-radius: 50%;
+		background-color: transparent;
+		text-align: center;
+		@include rem(font-size, 14);
+		object-fit: cover;
+		display: block;
+	}
+
+	.info-name-rank {
+		@include rem(padding-left, 10);
+		width: 100%;
+
+		.full-name {
+			display: block;
+			color: #fff;
+			font-weight: 600;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.rank {
+			display: block;
+			@include rem(font-size, 12);
+			color: $color-black-4;
+		}
+	}
+
+	.icon-warning {
+		@include rem(width, 17);
+		@include vertical-align-absolute();
+		@include rem(right, 15);
+	}
+}
+
+.user-menu {
+	.dropdown-divider {
+		margin: 4px;
+	}
+
+	.cleesky {
+		&--icon-target {
+			@include rem(width, 18);
+			height: 19px;
+		}
+
+		&--icon-clipboard-list {
+			@include rem(width, 13);
+			@include rem(margin-right, 1);
+		}
+
+		&--icon-education {
+			@include rem(width, 17);
+		}
+
+		&--icon-file-profile {
+			@include rem(width, 17);
+		}
+
+		&--icon_alarm {
+			color: #fff;
+		}
+
+		&--icon_account_setting {
+			@include rem(width, 16);
+			height: 18px;
+		}
+
+		&--con_shield_lock,
+		&--icon_request {
+			height: 19px;
+		}
+	}
+
+	.upgrade-service-pack {
+		background: #f8c800;
+		border-top-left-radius: 12px;
+		border-top-right-radius: 12px;
+		@include rem(padding, 10, 15);
+
+		.text-info {
+			color: #fff !important;
+			margin-bottom: 8px;
+
+			&:first-letter {
+				text-transform: capitalize;
+			}
+		}
+
+		.remaining-days-btn-upgrade {
+			justify-content: space-between;
+
+			.remaining-days-icon {
+				line-height: 28px;
+
+				.text-remaining-days {
+					color: #fff;
+					font-size: 12px;
+					font-weight: bold;
+				}
+			}
+
+			.btn-upgrade-service {
+				background: #f8c800;
+				border: 1px solid #fff;
+				color: #fff;
+				font-size: 12px;
+				border-radius: 8px;
+
+				&:hover,
+				&:focus {
+					background: #f8c800;
+				}
+			}
+		}
+	}
+
+	::ng-deep .list-tenants {
+		@include rem(padding, 4, 4, 0, 4);
+
+		.dx-list {
+			min-height: 36px;
+
+			.dx-list-item {
+				border-top: none;
+			}
+		}
+
+		.tenant-item {
+			justify-content: space-between;
+			height: 36px;
+			@include rem(padding, 6, 11);
+
+			&:hover {
+				background: #eff7ff;
+				border-radius: 8px;
+			}
+
+			.name-tenant {
+				color: #282e3e;
+				font-size: 14px;
+				font-weight: 400;
+				line-height: 23px;
+			}
+
+			.wrap-avatar {
+				@include rem(width, 24);
+				@include rem(height, 24);
+				@include borderRadius(50%);
+				@include rem(margin-right, 8);
+
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					@include borderRadius(50%);
+				}
+			}
+
+			.icon_check {
+				color: #3879f8 !important;
+			}
+		}
+	}
+
+	.list-item {
+		@include rem(padding, 0, 4);
+	}
+
+	.dropdown-item {
+		@include rem(padding, 8, 11);
+		vertical-align: middle;
+		height: 36px;
+
+		&:hover {
+			border-radius: 8px;
+			background: #f3f5f9;
+		}
+
+		&.notification,
+		&.dark-mode {
+			justify-content: space-between;
+		}
+
+		.text {
+			color: #282e3e;
+		}
+
+		&.logout {
+			text-align: center;
+			margin-bottom: 4px;
+
+			.text {
+				color: #666e83;
+			}
+		}
+	}
+}

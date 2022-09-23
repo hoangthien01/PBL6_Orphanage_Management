@@ -4,6 +4,7 @@ import { DEVICE_TOKEN, PLATFORM_NAME } from '@app/core/store/user/user.storage';
 import {
     ActivateAccountModel,
     ProfileGeneralInfoModel,
+    RegisteredAccountModel,
     SignInModel,
 } from '@app/modules/account-setting/models';
 import {ListItemModel} from '@app/shared/models';
@@ -25,6 +26,15 @@ export class UserService {
 
     login(login: SignInModel): Observable<AuthResultModel> {
         return this.baseService.post(`${this.userURL}/action/login`, login, false);
+    }
+
+    register(registerAccount: RegisteredAccountModel): Observable<AuthResultModel> {
+      const data = {
+        name: registerAccount.name,
+        email: registerAccount.email,
+        password: registerAccount.password,
+      }
+      return this.baseService.post(`${this.userURL}/action/sign_up`, data, false);
     }
 
     autoLogin(activateModel: ActivateAccountModel): Observable<AuthResultModel> {

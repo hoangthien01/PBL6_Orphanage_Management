@@ -9,9 +9,10 @@ import { DxValidatorComponent } from 'devextreme-angular/ui/validator';
 import {ACCOUNT_MESSAGE} from '@app/shared/message';
 import { svgIconCheckSharpSmall } from 'src/assets/images/svg-icons.constants';
 import { CommonFunction, DevExtremeValidationHelper } from 'src/app/utilities';
-import {RegisteredAccountModel} from '@app/modules/account-setting/models';
+import {RegisteredAccountModel, SignInModel} from '@app/modules/account-setting/models';
 import {AccountService} from '@app/modules/account-setting/services/account.service';
-// import {UserService} from '@app/modules/account-setting/services/user.service';
+import { UserService } from '@app/modules/account-setting/services/user.service';
+import { AuthResultModel } from '@app/core/store/models';
 
 @Component({
     selector: 'app-sign-up',
@@ -62,10 +63,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
         creditCard: {},
         isFormValid: false
     };
-    userLogin = {
-        userId: null,
-        token: null
-    };
+    userLogin: AuthResultModel = new AuthResultModel();
+
     trialDay: number;
     baseCharge: number;
     planName: string;
@@ -80,9 +79,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
     private _subscriptions: Subscription = new Subscription();
 
     constructor(private accountService: AccountService,
-                private router: Router
-                // private userService: UserService,
-                ) {
+                private userService: UserService,
+                private router: Router) {
         this._subscribeEmailExistedValidation();
     }
 
@@ -102,23 +100,24 @@ export class SignUpComponent implements OnInit, OnDestroy {
     }
 
     checkFormIsValid() {
-        const registerAccount = this.account;
-        if (this.account.isSaving || this.isEmailExisted) {
-            return false;
-        }
-        //
-        const hasEmptyValue: boolean = (!registerAccount.name || !registerAccount.name.trim())
-            || (!registerAccount.companyName || !registerAccount.companyName.trim())
-            || (!registerAccount.email || !registerAccount.email.trim())
-            || (!registerAccount.password || !registerAccount.password.trim())
-            || (!registerAccount.confirmPassword || !registerAccount.companyName.trim());
+        // const registerAccount = this.account;
+        // if (this.account.isSaving || this.isEmailExisted) {
+        //     return false;
+        // }
+        // //
+        // const hasEmptyValue: boolean = (!registerAccount.name || !registerAccount.name.trim())
+        //     || (!registerAccount.companyName || !registerAccount.companyName.trim())
+        //     || (!registerAccount.email || !registerAccount.email.trim())
+        //     || (!registerAccount.password || !registerAccount.password.trim())
+        //     || (!registerAccount.confirmPassword || !registerAccount.companyName.trim());
 
-        const isInputValid: boolean = this.emailTextBox.isValid
-            && this.companyNameTextBox.isValid
-            && this.fullNameTextBox.isValid
-            && this.passwordTextBox.isValid
-            && this.confirmPasswordTextBox.isValid;
-        return !hasEmptyValue && isInputValid;
+        // const isInputValid: boolean = this.emailTextBox.isValid
+        //     && this.companyNameTextBox.isValid
+        //     && this.fullNameTextBox.isValid
+        //     && this.passwordTextBox.isValid
+        //     && this.confirmPasswordTextBox.isValid;
+        // return !hasEmptyValue && isInputValid;
+        return true;
     }
 
     /**
@@ -142,7 +141,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
                 if (!email || !email.trim()) {
                     return of(false);
                 }
-                this.isEmailValidating = true;
+                // return of(true);
+                // this.isEmailValidating = true;
                 //
                 // DevExtremeValidationHelper.setValidationStatusIsPending(this.emailTextBox);
                 //
@@ -183,33 +183,24 @@ export class SignUpComponent implements OnInit, OnDestroy {
     }
 
     async registerAccount() {
-        if (this.isRegistering || !this.creditCard.isFormValid) {
+        if (this.isRegistering) {
             return;
         }
 
         this.isRegistering = true;
-        const stripe = this.creditCard.stripe as any;
-        const { token, error } = await stripe.createToken(this.creditCard.cardNumberElement, this.creditCard.creditCard);
-
-        if (error) {
-            // Inform the customer that there was an error.
+        this.userService.register(this.account).pipe(finalize(() => {
             this.isRegistering = false;
-            this.accountService.authErrorMessage.emit(error.message);
-        } else {
-            // this.accountService.register(this.account).pipe(finalize(() => {
-            //     this.isRegistering = false;
-
-            // })).subscribe(res => {
-            //     if (res) {
-            //         this.userLogin = res;
-            //         this.autoLogin();
-            //     }
-            //     // eslint-disable-next-line @typescript-eslint/no-shadow
-            // }, error => {
-            //     const messageError = !!error.error && !!error.error.message ? error.error.message : 'Something bad happened; please try again later.';
-            //     this.accountService.authErrorMessage.emit(messageError);
-            // });
-        }
+        })).subscribe(res => {
+            if (res) {
+            this.userLogin = res;
+            // this.autoLogin();
+            }
+          // eslint-disable-next-line @typescript-eslint/no-shadow
+          }, error => {
+            const messageError = !!error.error && !!error.error.message ? error.error.message : 'Something bad happened; please try again later.';
+            this.accountService.authErrorMessage.emit(messageError);
+          }
+        );
     }
 
     removeSpaces() {
@@ -234,7 +225,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     }
 
     autoLogin() {
-        const autoLoginLink = '/access/' + this.userLogin.userId + '/' + this.userLogin.token + '#fromSignUp';
-        this.router.navigateByUrl(autoLoginLink).then();
+        // const autoLoginLink = '/access/' + this.userLogin.userId + '/' + this.userLogin.token + '#fromSignUp';
+        // this.router.navigateByUrl(autoLoginLink).then();
     }
 }

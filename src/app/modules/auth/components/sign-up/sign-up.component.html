@@ -87,7 +87,7 @@
                                  [placeholder]="accountMessages.EnterPassword"
                                  [valueChangeEvent]="'input'"
                                  [(value)]="account.confirmPassword"
-                                 (onEnterKey)="nextToCreditPage()"
+                                 (onEnterKey)="registerAccount()"
                                  (onValueChanged)="dataChanged()">
                         <dx-validator #confirmPasswordValidation>
                             <dxi-validation-rule type="required"
@@ -101,10 +101,12 @@
                         </dx-validator>
                     </dx-text-box>
                 </div>
+
                 <div class="content-footer">
-                    <app-custom-button (onClick)="nextToCreditPage()"
-                                       [disabled]="!isDataValid || isRegistering || isEmailValidating"
+                    <app-custom-button (onClick)="registerAccount()"
                                        class="btn-register w-100"
+                                       [disabled]="isRegistering"
+                                        icon="{{ isRegistering ? 'fas fa-spinner fa-spin' : '' }}"
                                        [height]="40"
                                        [width]="'100%'"
                                        [text]="'CREATE ACCOUNT NOW'"

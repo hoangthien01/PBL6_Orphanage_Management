@@ -23,6 +23,7 @@ module.exports = {
           "ECFAFF": "#ECFAFF",
           "61BBE7": "#61BBE7",
           "A8E4FF": "#A8E4FF",
+          "282E3E": "#282E3E",
         },
         grey: {
           "999": "#999",
@@ -40,7 +41,8 @@ module.exports = {
           "EEE": "#EEE",
           "FCFCFD": "#FCFCFD",
           "E6E6E6": "#E6E6E6",
-          "B7B7B7": "#B7B7B7"
+          "B7B7B7": "#B7B7B7",
+          "666E83": "#666E83",
         },
         black: {
           "555": "#555"
@@ -65,6 +67,9 @@ module.exports = {
         "weight-600": "600",
         "weight-700": "700",
         "weight-bold": "700"
+      },
+      fill: {
+        "666e83": "#666e83",
       },
       fontSize: {
         "8px": "8px",

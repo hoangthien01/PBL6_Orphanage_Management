@@ -1,0 +1,79 @@
+<ng-template #defaultTemplate>
+</ng-template>
+
+<dx-popup #popup
+          class="component-popup-container {{customClass}}"
+          [class.popup-has-border-radius]="hasBorderRadius"
+          [class.popup-overlap-wrapper-has-none-background-color]="!isOverlayWrapperHasBackgroundColor"
+          [title]="title"
+          [width]="width"
+          [height]="height"
+          [(visible)]="visible"
+          [position]="position"
+          [dragEnabled]="dragEnabled"
+          [animation]="customPopupAnimation"
+          [showTitle]="!!title && !headerTemplate"
+          [fullScreen]="fullScreen"
+          [(showCloseButton)]="showCloseButton"
+          [closeOnOutsideClick]="closeOnOutsideClick"
+          [deferRendering]="deferRendering"
+          [titleTemplate]="headerTemplate"
+          (onHiding)="onPopupHiding($event)"
+          (onHidden)="onPopupHidden($event)"
+          (onShowing)="onPopupShowing($event)"
+          (onShown)="onPopupShown($event)"
+          (onInitialized)="onInitialized($event)">
+    <div *dxTemplate="let data of 'content'">
+        <div class="popup-container"
+             [class.has-footer]="!!footerTemplate">
+            <div *ngIf="!!headerTemplate" class="popup-content-header flex justify-between items-center">
+                <ng-container [ngTemplateOutlet]="headerTemplate"></ng-container>
+            </div>
+
+            <div *ngIf="!!topNavTemplate" class="popup-content-top-nav">
+                <ng-container [ngTemplateOutlet]="topNavTemplate"></ng-container>
+            </div>
+
+            <ng-container *ngIf="!contentTemplate">
+                <ng-container [ngTemplateOutlet]="defaultContentTemplate"></ng-container>
+            </ng-container>
+
+            <div *ngIf="!!contentTemplate" class="popup-content-body__custom"
+                [attr.has-header-topNav-footer]="!!headerTemplate && !!topNavTemplate && !!footerTemplate"
+                [attr.has-header-topNav]="!!headerTemplate && !!topNavTemplate"
+                [attr.has-header-footer]="!!headerTemplate && !!footerTemplate"
+                [attr.has-topNav-footer]="!!topNavTemplate && !!footerTemplate"
+                [attr.has-header-only]="!!headerTemplate"
+                [attr.has-topNav-only]="!headerTemplate && !!topNavTemplate && !footerTemplate"
+                [attr.has-footer-only]="!headerTemplate && !!footerTemplate && !topNavTemplate">
+                <ng-container [ngTemplateOutlet]="contentTemplate"></ng-container>
+            </div>
+
+            <div *ngIf="!!footerTemplate" class="popup-content-footer">
+                <ng-container [ngTemplateOutlet]="footerTemplate"></ng-container>
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+<ng-template #defaultContentTemplate>
+    <ng-container *ngIf="!!scrollEnabled">
+        <dx-scroll-view
+            #scrollViewComponent
+            class="popup-content-body popup-container-scroll-view"
+            direction="vertical">
+            <div class="popup-content-wrapper">
+                <ng-content></ng-content>
+            </div>
+        </dx-scroll-view>
+    </ng-container>
+
+    <ng-container *ngIf="!scrollEnabled">
+        <div class="popup-content-body">
+            <div class="popup-content-wrapper">
+                <ng-content select="[bodyWithoutScrollView]"></ng-content>
+            </div>
+        </div>
+    </ng-container>
+
+</ng-template>

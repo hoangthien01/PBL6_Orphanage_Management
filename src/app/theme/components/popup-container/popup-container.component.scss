@@ -1,0 +1,163 @@
+@import "jerry-extend";
+@import "jerry-variable";
+
+$header-height: 55px;
+$top-nav-height: 54px;
+$footer-height: 71px;
+
+::ng-deep .dx-popup-wrapper.component-popup-container {
+    background-color: rgba(0, 0, 0, 0.7);
+
+    .dx-popup-title.dx-toolbar {
+        @include gotham-book(600, 14px, 22px);
+        background: linear-gradient(238.27deg, #00AFFF 0%, #0068FF 100%);
+        color: #FFF;
+        padding: 9px 24px;
+        border-bottom: none;
+    }
+
+    .dx-toolbar-items-container {
+        .dx-toolbar-before {
+            width: calc(100% - 38px);
+        }
+
+        .dx-toolbar-after {
+            .dx-button-content {
+                .dx-icon.dx-icon-close {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    > .dx-overlay-content {
+        border: none;
+        border-radius: 0;
+    }
+
+    .popup-container {
+        height: 100%;
+        position: relative;
+        background: #FFF;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .popup-content-header {
+        height: $header-height;
+        padding: 0px 24px;
+        background: linear-gradient(238.27deg, #00AFFF 10.39%, #0068FF 93.93%);
+        border-radius: 0;
+
+        .title {
+            color: #ffffff;
+            @include gotham-book(600, 14px, 16.8px);
+            padding-right: 15px;
+        }
+
+        .close-button {
+            width: 21px;
+            height: 21px;
+            background-position: 3px 3px;
+            background-size: 15px 15px;
+            padding: 3px;
+            font-size: 15px;
+            text-align: center;
+            line-height: 15px;
+            color: #FFF;
+            cursor: pointer;
+        }
+    }
+
+    .popup-content-top-nav {
+        height: $top-nav-height;
+        width: 100%;
+        padding: 11.5px 20px;
+        border-bottom: 1px solid $border-color-grey-EEE;
+    }
+
+    .popup-content-body {
+        background: #FFF;
+        height: 100%;
+        width: 100%;
+
+        .popup-content-wrapper {
+            height: 100%;
+            padding: 24px;
+        }
+
+        .popup-container-scroll-view {
+            .dx-scrollable-content,
+            .dx-scrollview-content {
+                height: auto;
+                min-height: 100%;
+            }
+        }
+    }
+
+    .popup-content-body__custom {
+        height: 100%;
+
+        &[has-header-topNav-footer="true"] {
+            height: calc(100% - #{$header-height + $top-nav-height + $footer-height});
+        }
+
+        &[has-header-topNav="true"] {
+            height: calc(100% - #{$header-height + $top-nav-height});
+        }
+
+        &[has-header-footer="true"] {
+            height: calc(100% - #{$header-height+ $footer-height});
+        }
+
+        &[has-topNav-footer="true"] {
+            height: calc(100% - #{$top-nav-height + $footer-height});
+        }
+
+        &[has-header-only="true"] {
+            height: calc(100% - #{$header-height});
+        }
+
+        &[has-topNav-only="true"] {
+            height: calc(100% - #{$top-nav-height});
+        }
+
+        &[has-footer-only="true"] {
+            height: calc(100% - #{$footer-height});
+        }
+    }
+
+    .popup-content-footer {
+        height: $footer-height;
+
+        .footer-container {
+            padding: 15px 24px;
+            border-top: 1px solid $border-color-grey-EEE;
+            width: 100%;
+            background-color: #FFFFFF;
+
+            > * {
+                margin-right: 12px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    .dx-popup-content {
+        padding: 0;
+        height: 100%;
+    }
+
+    &.popup-has-border-radius {
+        > .dx-overlay-content {
+            border-radius: 7px;
+        }
+    }
+
+    &.popup-overlap-wrapper-has-none-background-color {
+        background-color: transparent;
+    }
+}

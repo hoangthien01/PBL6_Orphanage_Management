@@ -13,6 +13,8 @@ import { Select, Store } from '@ngxs/store';
 import { finalize } from 'rxjs/operators';
 import { UserSelectors, UserState } from '@app/core/store';
 import { POPUP_ANIMATION_DEFAULT } from '@app/shared/app.constants';
+import * as UserActions from '@app/core/store/user/user.actions';
+import { ENDPOINTS } from '@app/utilities';
 
 @Component({
 	selector: 'app-user-setting',
@@ -21,9 +23,7 @@ import { POPUP_ANIMATION_DEFAULT } from '@app/shared/app.constants';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserSettingComponent implements OnInit {
-	// currentUser$: Observable<IUser> = this.store.select(AppUserSelector.currentUser);
   @Select(UserSelectors.userLogged) userLogged$: Observable<UserLoggedInModel>;
-  // userLogged$: Observable<{ userLogged: UserLoggedInModel }> = this.store.select<{ userLogged: UserLoggedInModel}>(UserSelectors.userLogged);
 
 	private _isDarkThemeSelected = false;
 
@@ -69,7 +69,6 @@ export class UserSettingComponent implements OnInit {
 	ngOnInit(): void {
     this.subscription.add(this.userLogged$.subscribe((res) => {
       this.currentUser = res;
-      console.log('userLogged', this.currentUser);
     }));
 	}
 
@@ -128,7 +127,10 @@ export class UserSettingComponent implements OnInit {
 
 	logout(): void {
 		this.isUserMenuVisible = false;
-		//
-		// this.store.dispatch(new AppLogoutAction());
+    //
+    this.store.dispatch(new UserActions.Logout({
+        destroyAllIntegrations: true,
+        navigateToUrl: ENDPOINTS.LOGIN
+    }));
 	}
 }

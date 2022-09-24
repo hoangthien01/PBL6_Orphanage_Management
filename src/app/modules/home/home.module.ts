@@ -24,6 +24,12 @@ export const routes: Routes = [
         redirectTo: 'login',
         pathMatch: 'full'
       },
+      {
+        path: 'role-management',
+        loadChildren: () => import('@app/modules/role-management/role-management.module').then(m => m.RoleManagementModule),
+        canActivate: [AuthGuard],
+        data: { preload: false }
+      },
     ]
   }
 

@@ -1,0 +1,59 @@
+@import "jerry-extend";
+@import "jerry-variable";
+
+.page-not-found__wrapper {
+    position: relative;
+}
+
+.page-not-found__error {
+    font-size: 450px;
+    font-weight: 900;
+    font-family: monospace;
+    opacity: 0.1;
+    display: flex;
+    justify-content: center;
+}
+
+.page-not-found__content {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(0, 30%);
+
+    .page-not-found__title {
+        font-weight: bold;
+        font-size: 40px;
+        font-family: "Gotham Medium";
+    }
+
+    .page-not-found__description {
+        font-weight: 600;
+        font-size: 15px;
+    }
+}
+
+.page-not-found__go-home .button-primary {
+    @include gotham-medium(400, 16px, 20px);
+    color: #ffff;
+    background-color: $color-blue-00AFFF;
+    border: none;
+    width: 210px;
+    height: 40px;
+    border-radius: 5px;
+
+    &:focus {
+        background-color: $color-blue-00AFFF;
+    }
+
+    &:hover {
+        background-color: $btn-primary__bg-color__hover;
+    }
+
+    &:active {
+        background-color: $btn-primary__bg-color__active;
+        color: #ffff;
+    }
+}

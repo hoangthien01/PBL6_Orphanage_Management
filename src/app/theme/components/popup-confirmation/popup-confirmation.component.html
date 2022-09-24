@@ -1,0 +1,81 @@
+<dx-popup #popup
+          class="confirmation-popup-container {{customClass}}"
+          [(title)]="title"
+          [width]="width"
+          [height]="height"
+          [maxHeight]="maxHeight"
+          [dragEnabled]="dragEnabled"
+          [(showCloseButton)]="showCloseButton"
+          [(visible)]="visible"
+          [animation]="POPUP_ANIMATION_DEFAULT"
+          (onInitialized)="onInitialized($event)"
+          (onHiding)="onPopupHiding($event)"
+          (onHidden)="onPopupHidden($event)"
+          (onShowing)="onPopupShowing($event)"
+          (onShown)="onPopupShowed($event)">
+    <div *dxTemplate="let data of 'content'">
+        <div class="popup-container"
+             [class.has-footer]="!!footerTemplate">
+            <div class="popup-content-header d-flex justify-content-between align-items-center">
+                <div class="title">{{ title }}</div>
+
+                <span class="icon-container close-button dx-icon dx-icon-close"
+                      (click)="onCloseButtonClicked()">
+                </span>
+            </div>
+
+            <div class="popup-content">
+                <div class="popup-content-body"
+                     [attr.has-footer]="true">
+                    <dx-scroll-view #scrollView
+                                    class="popup-container-scroll-view"
+                                    direction="vertical"
+                                    showScrollbar="always">
+                        <div class="popup-content-wrapper">
+                            <ng-content></ng-content>
+                        </div>
+                    </dx-scroll-view>
+                    <div class="popup-content-conditional-agreement"
+                         *ngIf="conditionalAgreementTemplate">
+                        <ng-container [ngTemplateOutlet]="conditionalAgreementTemplate"></ng-container>
+                    </div>
+                </div>
+                <div class="popup-content-footer d-flex flex-nowrap justify-content-start gap-10-c">
+                    <ng-container [ngTemplateOutlet]="footerTemplate ? footerTemplate : footerDefaultTemplate">
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</dx-popup>
+
+<ng-template #footerDefaultTemplate>
+    <app-custom-button *ngIf="type === 'confirm'"
+                       class="confirm-button"
+                       height="40"
+                       [width]="confirmButtonWidth"
+                       [disabled]="disabled || isSaving"
+                       [text]="confirmButtonTitle"
+                       [type]="'primary'"
+                       (onClick)="onConfirmClicked()">
+    </app-custom-button>
+
+    <app-custom-button *ngIf="type === 'delete'"
+                       class="delete-button"
+                       height="40"
+                       [width]="deleteButtonWidth"
+                       [disabled]="disabled || isSaving"
+                       [text]="deleteButtonTitle"
+                       [type]="'delete'"
+                       (onClick)="delete()">
+    </app-custom-button>
+
+    <app-custom-button class="cancel-button"
+                       height="40"
+                       [disabled]="isSaving"
+                       [width]="cancelButtonWidth"
+                       [text]="cancelButtonTitle"
+                       [type]="'cancel'"
+                       (onClick)="onCancelClicked()">
+    </app-custom-button>
+</ng-template>

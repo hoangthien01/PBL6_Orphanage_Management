@@ -11,14 +11,16 @@ export interface IBaseAuthResult {
 }
 
 export class AuthResultModel implements IBaseAuthResult {
-    account: AccountLoggedInModel;
+    // account: AccountLoggedInModel;
     user: UserLoggedInModel;
     profile: UserLoggedInModel;
     permissions: string;
+    email: string;
     token: string;
     dateExpired?: Date;
     loggedId?: string;
-    refreshToken?: string;
+    refresh_token?: string;
+    avatar: string;
 
     public constructor(init?: Partial<AuthResultModel>) {
         Object.assign(this, init);
@@ -57,7 +59,8 @@ export class UserLoggedInModel {
     avatar: string;
     //
     role: UserRoleType;
-    permissions: PermissionModel[];
+    // permissions: PermissionModel[];
+    permissions: string;
     //
     isOwner: boolean;
     isInvited: boolean;

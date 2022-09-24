@@ -15,7 +15,7 @@
                           [width]="45"
                           [name]="'icon_jerry_logo'">
             </app-svg-icon>
-            <span class="text-24px text-blue-282E3E font-weight-bold ml-16-c">Jerry</span>
+            <span class="text-24px text-blue-282E3E font-weight-bold ml-16-c company-name">Jerry</span>
           </div>
 				</ng-container>
 
@@ -78,10 +78,9 @@
 
 		<div class="group-title feature-group-title animated fadeIn">
 			<span *ngIf="!isCollapsed" class="group-title--text">Tính Năng</span>
-			<app-svg-icon
-				*ngIf="isCollapsed"
-				class="group-title--icon fill-666e83"
-				[name]="'icon_rhombus'">
+			<app-svg-icon *ngIf="isCollapsed"
+                    class="group-title--icon fill-666e83"
+				            [name]="'icon_rhombus'">
 			</app-svg-icon>
 		</div>
 
@@ -191,10 +190,10 @@
 			</ul>
 		</div>
 		<div class="bottom-section">
-			<!-- <app-user-setting
+			<app-user-setting
 				[isCompacted]="isCollapsed"
 				[(isDarkThemeSelected)]="isDarkThemSelected">
-			</app-user-setting> -->
+			</app-user-setting>
 		</div>
 	</div>
 </ng-container>

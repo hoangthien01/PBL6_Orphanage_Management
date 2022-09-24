@@ -72,43 +72,10 @@ export class UserSelectors {
     }
     //#endregion
 
-    //#region Account
-    @Selector([UserState])
-    public static accountId(state: AuthResultModel): string {
-        return !!state && state.account ? state.account.id : '';
-    }
-
-    @Selector([UserState])
-    public static accountName(state: AuthResultModel): string {
-        return !!state && state.account ? state.account.name : '';
-    }
-
-    @Selector([UserState])
-    public static defaultPhoneNumberType(state: AuthResultModel): string {
-        return !!state && state.account ? state.account.defaultPhoneNumberType : null;
-    }
-    //#endregion
-
-    @Selector([UserState])
-    public static isAccountOnboarded(state: AuthResultModel): boolean {
-        return !!state && state.account ? state.account.isOnboarded : false;
-    }
-    //#endregion
-
-    //#region A2P Handler
-    @Selector([UserState])
-    public static isAccountLockedDueToRequiringRegisterA2P10DLC(state: AuthResultModel): boolean {
-        /**
-         * phoneNumber.length >= 1 && !isA2P10DLCRegistered
-         */
-        return !!state && state.account ? state.account.isRequireRegisterA2P10DLC : false;
-    }
-    //#endregion
-
     //#region Helper
     @Selector([UserState])
     public static processRoutingAfterLoggedIn(state: AuthResultModel): string {
-        if (!state || !state.account || !state.user) {
+        if (!state || !state.user) {
             return null;
         }
         //
@@ -116,15 +83,6 @@ export class UserSelectors {
             return ENDPOINTS.MANAGE_ACCOUNT;
         } else {
             return ENDPOINTS.SETTING_BILLING_CARD;
-        }
-
-        if (!this.isAccountOnboarded(state)) {
-            return ENDPOINTS.ONBOARDING;
-        }
-
-        // A2P-10DLC
-        if (!!this.isAccountLockedDueToRequiringRegisterA2P10DLC(state)) {
-            return ENDPOINTS.SETTING_ACCOUNT_INFO;
         }
         //
         return null;

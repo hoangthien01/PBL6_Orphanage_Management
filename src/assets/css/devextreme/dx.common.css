@@ -2435,7 +2435,8 @@
   height: 100%;
 }
 .dx-overlay-shader {
-  background-color: rgba(128,128,128,.5);
+  /* background-color: rgba(128,128,128,.5); */
+  background-color: transparent;
   pointer-events: auto;
 }
 .dx-overlay-content {

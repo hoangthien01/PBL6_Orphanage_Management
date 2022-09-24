@@ -82,6 +82,7 @@ import { DxiColumnModule, DxoPagerModule, DxoPagingModule, DxoSelectionModule } 
 
 import {
   CustomButtonComponent,
+  PopupConfirmationComponent,
   SideBarMenuComponent,
   SvgIconComponent
 } from './components';
@@ -106,9 +107,13 @@ import {
   svgIconJerryLogo,
   svgIconUerRegular,
   svgIconUserGroup,
-  svgIconUserLight
+  svgIconUserLight,
+  svgIconAvatarDefault
 } from 'src/assets/images/svg-icons.constants';
 import { SvgIconsRegistry } from '@app/core/services';
+import { UserSettingComponent } from './components/user-setting/user-setting.component';
+import { PopupContainerComponent } from './components/popup-container/popup-container.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const DEVEXTREME_MODULES = [
   DxDataGridModule,
@@ -175,7 +180,8 @@ const SVG_ICONS = [
   svgIconUerRegular,
   svgIconMap,
   svgIconSettingLight,
-  svgIconPencil
+  svgIconPencil,
+  svgIconAvatarDefault
 ];
 
 const COMPONENTS = [
@@ -185,7 +191,11 @@ const COMPONENTS = [
   LoadPanelComponent,
   DefaultLayoutComponent,
   SideBarMenuComponent,
-  HelpTextComponent
+  HelpTextComponent,
+  UserSettingComponent,
+  PopupContainerComponent,
+  PageNotFoundComponent,
+  PopupConfirmationComponent
 ];
 
 const PIPES = [
@@ -193,13 +203,13 @@ const PIPES = [
   TruncatePipe
 ];
 
-// const DIRECTIVES = [
+const DIRECTIVES = [
 //     AutoFocusInputDirective,
 //     AutoClickAndSelectInputDirective,
 //     DisplayTagDirective,
 //     DisplayTooltipDirective,
 //     ImageEventListenerDirective
-// ];
+];
 
 @NgModule({
   imports: [
@@ -210,14 +220,14 @@ const PIPES = [
   declarations: [
     ...COMPONENTS,
     ...PIPES,
-    // ...DIRECTIVES,
+    ...DIRECTIVES,
   ],
   exports: [
-    // ...BASE_MODULES,
+    ...BASE_MODULES,
     ...DEVEXTREME_MODULES,
     ...COMPONENTS,
     ...PIPES,
-    // ...DIRECTIVES
+    ...DIRECTIVES
   ]
 })
 export class ThemeModule {

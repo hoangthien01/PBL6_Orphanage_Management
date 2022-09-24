@@ -15,7 +15,6 @@ import {
 } from 'src/assets/images/svg-icons.constants';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { UserSettingComponent } from './components/user-setting/user-setting.component';
 
 const SVG_ICONS = [
   svgIconWarningCircle
@@ -57,7 +56,6 @@ export const routes: Routes = [
     LoginComponent,
     SignUpComponent,
     ForbiddenComponent,
-    UserSettingComponent
   ],
   imports: [
     ThemeModule,

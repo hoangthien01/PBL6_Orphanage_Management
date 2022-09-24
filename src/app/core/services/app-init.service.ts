@@ -47,22 +47,6 @@ export class AppInitService {
             //
             this._store.dispatch(new UserActions.SetAuthResult({
                 authResult: new AuthResultModel({
-                    account: new AccountLoggedInModel({
-                        id: authResult.account.id,
-                        name: authResult.account.name,
-                        email: authResult.account.email,
-                        avatar: authResult.account.avatar,
-                        //
-                        defaultPhoneNumberType: authResult.account.defaultPhoneNumberType,
-                        //
-                        timezone: authResult.account.timezone,
-                        timezoneIana: authResult.account.timezoneIana,
-                        //
-                        expiredAt: authResult.account.expiredAt,
-                        //
-                        isOnboarded: authResult.account.isOnboarded,
-                        isRequireRegisterA2P10DLC: authResult.account.isRequireRegisterA2P10DLC,
-                    }),
                     user: new UserLoggedInModel({
                         ...authResult.user,
                     })

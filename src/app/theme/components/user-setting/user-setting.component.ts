@@ -1,3 +1,4 @@
+import { UserLoggedInModel } from '@app/core/store/models';
 import {
 	ChangeDetectionStrategy,
 	ChangeDetectorRef,
@@ -8,8 +9,10 @@ import {
 	Output,
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { finalize } from 'rxjs/operators';
+import { UserSelectors, UserState } from '@app/core/store';
+import { POPUP_ANIMATION_DEFAULT } from '@app/shared/app.constants';
 
 @Component({
 	selector: 'app-user-setting',
@@ -19,6 +22,8 @@ import { finalize } from 'rxjs/operators';
 })
 export class UserSettingComponent implements OnInit {
 	// currentUser$: Observable<IUser> = this.store.select(AppUserSelector.currentUser);
+  @Select(UserSelectors.userLogged) userLogged$: Observable<UserLoggedInModel>;
+  // userLogged$: Observable<{ userLogged: UserLoggedInModel }> = this.store.select<{ userLogged: UserLoggedInModel}>(UserSelectors.userLogged);
 
 	private _isDarkThemeSelected = false;
 
@@ -36,10 +41,10 @@ export class UserSettingComponent implements OnInit {
 
 	@Output() isDarkThemeSelectedChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-	// themeSetting: UserThemeSettingModel = new UserThemeSettingModel();
+  POPUP_ANIMATION_DEFAULT = POPUP_ANIMATION_DEFAULT;
 
-	// selectTenant: SwitchTenantModel = new SwitchTenantModel();
-	// currentUser: IUser;
+	// themeSetting: UserThemeSettingModel = new UserThemeSettingModel();
+	currentUser: UserLoggedInModel;
 	subscription: Subscription = new Subscription();
 	isLoading = false;
 	selectedTimePause: any;
@@ -62,6 +67,10 @@ export class UserSettingComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+    this.subscription.add(this.userLogged$.subscribe((res) => {
+      this.currentUser = res;
+      console.log('userLogged', this.currentUser);
+    }));
 	}
 
 	checkChanges() {

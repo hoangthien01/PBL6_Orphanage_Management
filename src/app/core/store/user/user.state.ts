@@ -26,8 +26,9 @@ const INIT_STATE: AuthResultModel = {
     user: null,
     permissions: null,
     profile: null,
-    account: null,
     token: null,
+    email: null,
+    avatar: null,
 };
 @State<AuthResultModel>({
     name: AppFeatureKeys.AuthResult,
@@ -142,11 +143,11 @@ export class UserState implements NgxsOnInit {
 
       context.patchState({
           user: new UserLoggedInModel({
-              ...payload.authResult.profile,
+            ...payload.authResult.profile,
+            permissions: payload.authResult.permissions,
+            email: payload.authResult.email,
+            avatar: payload.authResult.avatar,
           }),
-          // account: new AccountLoggedInModel({
-          //     ...payload.authResult.account
-          // })
       });
     }
 
@@ -221,75 +222,7 @@ export class UserState implements NgxsOnInit {
     }
     //#endregion
 
-    //#region Account
-    @Action(UserActions.UpdateAccountName)
-    updateAccountName(context: StateContext<AuthResultModel>, { payload }: UserActions.UpdateAccountName) {
-        context.patchState({
-            account: {
-                ...context.getState().account,
-                name: payload
-            }
-        });
-    }
-
-    @Action(UserActions.UpdateAccountTimezone)
-    updateAccountTimezone(context: StateContext<AuthResultModel>, { payload }: UserActions.UpdateAccountTimezone) {
-        sessionStorage.setItem(ACCOUNT_TIMEZONE, JSON.stringify(payload));
-        //
-        context.patchState({
-            account: {
-                ...context.getState().account,
-                timezone: payload.timezone,
-                timezoneIana: payload.timezoneIana
-            }
-        });
-    }
-
-    @Action(UserActions.UpdateAccountDefaultPhoneNumberType)
-    updateAccountDefaultPhoneNumberType(context: StateContext<AuthResultModel>, { payload }: UserActions.UpdateAccountDefaultPhoneNumberType) {
-        context.patchState({
-            account: {
-                ...context.getState().account,
-                defaultPhoneNumberType: payload
-            }
-        });
-    }
-
-    @Action(UserActions.UpdateAccountIsRequiredToRegisterA2P)
-    updateAccountIsRequiredToRegisterA2P(context: StateContext<AuthResultModel>, { payload }: UserActions.UpdateAccountIsRequiredToRegisterA2P) {
-        context.patchState({
-            account: {
-                ...context.getState().account,
-                isRequireRegisterA2P10DLC: payload
-            }
-        });
-    }
-
-    @Action(UserActions.UpdateAccountIsOnboarded)
-    updateAccountIsOnboarded(context: StateContext<AuthResultModel>, { payload }: UserActions.UpdateAccountIsOnboarded) {
-        context.patchState({
-            account: {
-                ...context.getState().account,
-                isOnboarded: payload
-            }
-        });
-    }
-    //#endregion
-
     //#region Actions
-    @Action(UserActions.StartOnboarding)
-    startOnboarding(context: StateContext<AuthResultModel>) {
-        localStorage.setItem(USER_ACCESS_TOKEN, sessionStorage.getItem(USER_ACCESS_TOKEN));
-        localStorage.setItem(USER_ID, sessionStorage.getItem(USER_ID));
-        localStorage.setItem(TWILIO_CAPABILITY_TOKEN, sessionStorage.getItem(TWILIO_CAPABILITY_TOKEN));
-        localStorage.setItem(USER_PERMISSIONS, JSON.stringify(sessionStorage.getItem(USER_PERMISSIONS)));
-        //
-        this._storeLoggedUser({
-            authResult: context.getState(),
-            setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.StartOnboarding
-        });
-    }
-
     @Action(UserActions.OpenNewTabWithAnotherAccount)
     switchAccountAndOpenNewTab(context: StateContext<AuthResultModel>, { payload }: UserActions.OpenNewTabWithAnotherAccount) {
         if (!payload

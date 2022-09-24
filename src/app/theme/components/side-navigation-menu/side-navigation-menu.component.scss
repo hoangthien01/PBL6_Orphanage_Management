@@ -17,6 +17,13 @@ $sub-menu-border-color-dark: $color-black-9;
 $sub-menu-border-color-light: $color-black-3;
 
 :host {
+  .dark-theme {
+    .company-name, .item-icon {
+      color: white !important;
+      fill: white!important;
+    }
+
+  }
 	.onboarding-help-shown,
 	.onboarding-help-shown * {
 		transition: none !important;

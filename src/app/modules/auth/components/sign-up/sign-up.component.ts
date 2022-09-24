@@ -1,3 +1,4 @@
+import { Store } from '@ngxs/store';
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
@@ -13,6 +14,7 @@ import {RegisteredAccountModel, SignInModel} from '@app/modules/account-setting/
 import {AccountService} from '@app/modules/account-setting/services/account.service';
 import { UserService } from '@app/modules/account-setting/services/user.service';
 import { AuthResultModel } from '@app/core/store/models';
+import * as UserActions from '@app/core/store/user/user.actions';
 
 @Component({
     selector: 'app-sign-up',
@@ -80,7 +82,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
     constructor(private accountService: AccountService,
                 private userService: UserService,
-                private router: Router) {
+                private router: Router,
+                private store: Store) {
         this._subscribeEmailExistedValidation();
     }
 
@@ -203,6 +206,14 @@ export class SignUpComponent implements OnInit, OnDestroy {
         );
     }
 
+    doAfterUserLoggedIn(auth: AuthResultModel) {
+      this.store.dispatch(new UserActions.SetAuthResult({
+          authResult: auth,
+          setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.Login
+      }));
+      this.router.navigate(['home']).then();
+  }
+
     removeSpaces() {
         if (this.account.email) {
             this.account.email = this.account.email.replace(/\s/g, '');
@@ -215,13 +226,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
     goToPrivacyPolicy() {
         CommonFunction.goToPrivacyPolicy();
-    }
-
-    nextToCreditPage() {
-        if (!this.isDataValid || this.isRegistering) {
-            return;
-        }
-        this.currentStep = this.stepSignUp.creditCard;
     }
 
     autoLogin() {

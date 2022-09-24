@@ -1,0 +1,121 @@
+<ng-container >
+  <div *ngIf="currentUser"
+		   id="UserAvatar"
+		   class="user-setting"
+       [ngClass]="{ 'compacted': isCompacted,
+                    'dark-theme': isDarkThemeSelected,
+                    'light-theme': !isDarkThemeSelectedChange}"
+		   (click)="showUserMenu($event)">
+		<img *ngIf="currentUser?.avatar?.url; else usernameAvatar"
+			   class="default-avatar"
+			   alt="avatar"
+			   loading="lazy" />
+		<ng-template #usernameAvatar>
+			<app-svg-icon class="default-avatar"
+                    [name]="'icon_avatar_default'"
+                    [title]="currentUser?.name">
+			</app-svg-icon>
+		</ng-template>
+
+		<div [title]="currentUser?.name"
+         class="info-name-rank">
+			<span class="full-name">{{ currentUser?.name }}</span>
+		</div>
+	</div>
+
+<dx-popover *ngIf="isUserMenuVisible"
+            target="#UserAvatar"
+            position="top"
+            [(visible)]="isUserMenuVisible"
+            [animation]="POPUP_ANIMATION_DEFAULT"
+            [width]="355"
+            [height]="'fit-content'">
+  <div class="user-menu">
+    <div class="menu-wrapper">
+      <div class="dropdown-divider"></div>
+      <div class="list-item notification-dark-mode">
+        <a class="dropdown-item pointer notification flex items-center">
+          <div class="icon-text">
+            <app-svg-icon
+              class="cleesky--icon-target w-14-c mr-2-c"
+              [name]="'icon_bell_notification'">
+            </app-svg-icon>
+            <span class="text">Thông báo</span>
+          </div>
+          <dx-switch [width]="32"
+                     [height]="18"
+                     [value]="false"
+                     id="switchNotification">
+            <!-- (onValueChanged)="changeNotificationValue($event)" -->
+          </dx-switch>
+        </a>
+        <a class="dropdown-item pointer dark-mode flex items-center">
+          <div class="icon-text">
+            <app-svg-icon
+              class="cleesky--icon-target w-14-c mr-2-c"
+              [name]="'icon_dark_mode'">
+            </app-svg-icon>
+            <span class="text">Chế độ tối</span>
+          </div>
+          <dx-switch
+            [width]="32"
+            [height]="18"
+            [(value)]="isDarkThemeSelected"
+            [switchedOnText]="'Light'"
+            [switchedOffText]="'Dark'"
+            (onValueChanged)="changeTheme($event)">
+          </dx-switch>
+        </a>
+      </div>
+
+      <div class="dropdown-divider"></div>
+      <div class="list-item">
+        <a class="dropdown-item pointer flex items-center" (click)="isUserMenuVisible = false">
+          <!-- <app-svg-icon
+            class="cleesky--icon-target w-14-c mr-2"
+            [name]="'icon_user'">
+          </app-svg-icon> -->
+          <span class="text">Thông tin cá nhân</span>
+        </a>
+        <a class="dropdown-item pointer flex items-center" (click)="openAccountSettingPopup()">
+          <!-- <app-svg-icon
+            class="cleesky--icon_account_setting mr-2"
+            [name]="'icon_account_setting'">
+          </app-svg-icon> -->
+          <span class="text">Cài đặt tài khoản</span>
+        </a>
+        <!-- *ngIf="currentUser.isTenantManager" -->
+        <a class="dropdown-item pointer flex items-center" >
+          <!-- <app-svg-icon
+            class="cleesky--icon_settings w-14-c mr-2"
+            [name]="'icon_settings'">
+          </app-svg-icon> -->
+          <span class="text">Thiết lập hệ thống</span>
+        </a>
+      </div>
+      <div class="dropdown-divider"></div>
+      <div class="list-item help-security">
+        <a class="dropdown-item pointer flex items-center" (click)="isUserMenuVisible = false">
+          <app-svg-icon
+            class="cleesky--icon_request w-14-c mr-2"
+            [name]="'icon_request'">
+          </app-svg-icon>
+          <span class="text">Trung tâm trợ giúp</span>
+        </a>
+        <a class="dropdown-item pointer flex items-center" (click)="isUserMenuVisible = false">
+          <app-svg-icon
+            class="cleesky--icon_shield_lock w-14-c mr-2"
+            [name]="'icon_privacy'">
+          </app-svg-icon>
+          <span class="text">Chính sách bảo mật</span>
+        </a>
+      </div>
+      <div class="dropdown-divider"></div>
+      <div class="list-item footer-logout pb-1-c">
+        <a class="dropdown-item pointer flex items-center logout" (click)="logout()">
+          <span class="text">Đăng xuất</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</dx-popover>

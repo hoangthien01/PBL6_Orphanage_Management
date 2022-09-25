@@ -27,6 +27,7 @@ export const routes: Routes = [
 
 @NgModule({
   declarations: [
+    RoleManagementComponent
   ],
   imports: [
     ThemeModule,

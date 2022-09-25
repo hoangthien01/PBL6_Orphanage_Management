@@ -159,7 +159,7 @@ const DEVEXTREME_MODULES = [
   DxTabsModule,
   DxPieChartModule,
   DxTreeViewModule,
-  DxSortableModule
+  DxSortableModule,
 ];
 
 const BASE_MODULES = [

@@ -49,10 +49,15 @@ export class BaseService {
     }
 
     get headers(): HttpHeaders {
+      if(this.accessToken) {
         return new HttpHeaders({
             'Content-Type': 'application/json',
-            // Authorization: this.bearerAuthentication,
+            Authorization: this.bearerAuthentication,
         });
+      }
+      return new HttpHeaders({
+        'Content-Type': 'application/json',
+      });
     }
 
     get options() {

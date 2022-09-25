@@ -4,6 +4,28 @@
   </div>
 
   <div class="role-management__content">
-
+    <div>
+      <dx-lookup #accountLookup
+                 class="role-lookup field-box"
+                 height="40px"
+                 width="250px"
+                 [dataSource]="roleDataSource"
+                 [disabled]="false"
+                 [visible]="true"
+                 [placeholder]="'Select Role'"
+                 [noDataText]="'No role to display'"
+                 displayExpr="name"
+                 valueExpr="id"
+                 searchExpr="value"
+                 [searchPlaceholder]="'Search'">
+                 <!-- [(value)]="" -->
+              <!-- (onValueChanged)="accountItemChanged($event)" -->
+        <dxo-drop-down-options [closeOnOutsideClick]="true"
+                               [height]="'auto'"
+                               [maxHeight]="300"
+                               [showTitle]="false">
+        </dxo-drop-down-options>
+      </dx-lookup>
+    </div>
   </div>
 </div>

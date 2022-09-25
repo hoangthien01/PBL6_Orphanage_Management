@@ -1,6 +1,7 @@
 export class ScopeItemModel {
   scope: string;
   label: string;
+  group: string;
 
   public constructor(init?: Partial<ScopeItemModel>) {
       Object.assign(this, init);

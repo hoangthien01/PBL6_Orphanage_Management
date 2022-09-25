@@ -196,6 +196,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
         })).subscribe(res => {
             if (res) {
             this.userLogin = res;
+            this.router.navigate(['home']).then();
             // this.autoLogin();
             }
           // eslint-disable-next-line @typescript-eslint/no-shadow
@@ -226,6 +227,10 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
     goToPrivacyPolicy() {
         CommonFunction.goToPrivacyPolicy();
+    }
+
+    goToLoginPage() {
+      this.router.navigate(['login']).then();
     }
 
     autoLogin() {

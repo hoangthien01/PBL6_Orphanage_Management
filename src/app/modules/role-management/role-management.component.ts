@@ -1,4 +1,4 @@
-import { ScopeModel } from './models/scope.model';
+import { ScopeItemModel, ScopeModel } from './models/scope.model';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import DataSource from 'devextreme/data/data_source';
 import { ListRolesModel, RoleModel } from './models/role.model';
@@ -12,7 +12,7 @@ import { StringHelper } from '@app/utilities';
 })
 export class RoleManagementComponent implements OnInit, OnDestroy {
   roleDataSource: RoleModel[];
-  scopeDataSource: ScopeModel[];
+  scopeDataSource: ScopeItemModel[];
   scopeText: Map<string, boolean>;
   //
   roleSelected: string;

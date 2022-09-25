@@ -19,7 +19,6 @@
                                  [valueChangeEvent]="'input'"
                                  [(value)]="account.name"
                                  [placeholder]="accountMessages.EnterFullName"
-                                 (onEnterKey)="nextToCreditPage()"
                                  (onValueChanged)="dataChanged()">
                         <dx-validator>
                             <dxi-validation-rule type="required"
@@ -38,7 +37,6 @@
                                  [placeholder]="accountMessages.EnterEmail"
                                  [valueChangeEvent]="'input'"
                                  [(value)]="account.email"
-                                 (onEnterKey)="nextToCreditPage()"
                                  (onFocusOut)="removeSpaces()"
                                  (onValueChanged)="onEmailChanged($event)">
                         <dx-validator #emailValidator>
@@ -66,7 +64,6 @@
                                  [placeholder]="accountMessages.EnterPassword"
                                  [valueChangeEvent]="'input'"
                                  [(value)]="account.password"
-                                 (onEnterKey)="nextToCreditPage()"
                                  (onValueChanged)="onCreatePasswordChanged($event)">
                         <dx-validator>
                             <dxi-validation-rule type="required"
@@ -105,12 +102,22 @@
                 <div class="content-footer">
                     <app-custom-button (onClick)="registerAccount()"
                                        class="btn-register w-100"
-                                       [disabled]="isRegistering"
+                                       [disabled]="isRegistering || !isDataValid"
                                         icon="{{ isRegistering ? 'fas fa-spinner fa-spin' : '' }}"
                                        [height]="40"
                                        [width]="'100%'"
                                        [text]="'CREATE ACCOUNT NOW'"
                                        [type]="'primary'">
+                    </app-custom-button>
+                  </div>
+                  <div class="text-center mt-2 text-grey-777 text-14px flex items-center">
+                    <p class="mr-16-c">Are you have an account?</p>
+                    <app-custom-button class="get-free-trial"
+                                       [height]="35"
+                                       [width]="120"
+                                       [text]="'Login Now'"
+                                       [type]="'primary-outline'"
+                                       (onClick)="goToLoginPage()">
                     </app-custom-button>
                 </div>
             </div>

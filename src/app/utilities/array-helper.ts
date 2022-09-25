@@ -15,6 +15,16 @@ export class ArrayHelper {
         return result;
     }
 
+    public static convertToString(array: any[]): string {
+        let result:string;
+        if (!array || !Array.isArray(array)) {
+            return result;
+        }
+        //
+        result = array.toString().replace(new RegExp(',', 'g'), ' ');
+        return result;
+    }
+
     public static getUnDuplicatedItemsFromChildrenItems<T>(params: {
         ArrayModel: new () => T;
         parentItems: T[];

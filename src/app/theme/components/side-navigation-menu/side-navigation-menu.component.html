@@ -43,12 +43,12 @@
 					class="menu-item parent-menu justify-center"
 					routerLinkActive="active"
 					routerLink="notification">
-					<a class="menu-item--link" [title]="isCollapsed ? 'Thông báo' : ''">
+					<a class="menu-item--link" [title]="isCollapsed ? 'Notification' : ''">
 						<span class="item-left items-center">
 							<app-svg-icon class="item-icon text-grey-666E83" [name]="'icon_bell_light'">
 							</app-svg-icon>
 							<span *ngIf="!isCollapsed" class="item-text">
-								Thông báo
+								Notification
 							</span>
 						</span>
 					</a>
@@ -58,7 +58,7 @@
 					<a
 						class="menu-item--link"
 						(click)="onSettingLinkClicked()"
-						[title]="isCollapsed ? 'Thiết lập' : ''">
+						[title]="isCollapsed ? 'Settings' : ''">
 						<span class="item-left">
               <app-svg-icon class="item-icon fill-666e83"
                                 [name]="'icon_pencil'"
@@ -66,7 +66,7 @@
                                 [width]="16">
                   </app-svg-icon>
 							<span *ngIf="!isCollapsed" class="item-text">
-								Thiết lập
+								Settings
 							</span>
 						</span>
 					</a>
@@ -77,7 +77,7 @@
 		<div class="line-separator"></div>
 
 		<div class="group-title feature-group-title animated fadeIn">
-			<span *ngIf="!isCollapsed" class="group-title--text">Tính Năng</span>
+			<span *ngIf="!isCollapsed" class="group-title--text">Feature</span>
 			<app-svg-icon *ngIf="isCollapsed"
                     class="group-title--icon fill-666e83"
 				            [name]="'icon_rhombus'">
@@ -92,14 +92,14 @@
               <a
                 class="menu-item--link"
                 (click)="onSettingLinkClicked()"
-                [title]="isCollapsed ? 'Thiết lập' : ''">
+                [title]="isCollapsed ? 'Children' : ''">
                 <span class="item-left items-center">
                   <app-svg-icon class="item-icon fill-666e83"
                                 [name]="'icon_uer_regular'"
                                 [width]="16">
                   </app-svg-icon>
                   <span *ngIf="!isCollapsed" class="item-text">
-                    Trẻ em
+                    Children
                   </span>
                 </span>
               </a>
@@ -109,14 +109,14 @@
               <a
                 class="menu-item--link"
                 (click)="onSettingLinkClicked()"
-                [title]="isCollapsed ? 'Thiết lập' : ''">
+                [title]="isCollapsed ? 'Staff' : ''">
                 <span class="item-left items-center">
                   <app-svg-icon class="item-icon fill-666e83"
                                 [name]="'icon_uer_regular'"
                                 [width]="16">
                   </app-svg-icon>
                   <span *ngIf="!isCollapsed" class="item-text">
-                    Nhân sự
+                    Staff
                   </span>
                 </span>
               </a>
@@ -126,7 +126,7 @@
               <a
                 class="menu-item--link"
                 (click)="onSettingLinkClicked()"
-                [title]="isCollapsed ? 'Thiết lập' : ''">
+                [title]="isCollapsed ? 'Donate' : ''">
                 <span class="item-left items-center">
                   <app-svg-icon class="item-icon fill-666e83"
                                 [name]="'icon_heart_light'"
@@ -134,7 +134,7 @@
                                 [width]="16">
                   </app-svg-icon>
                   <span *ngIf="!isCollapsed" class="item-text">
-                    Ủng hộ
+                    Donate
                   </span>
                 </span>
               </a>
@@ -144,7 +144,7 @@
               <a
                 class="menu-item--link"
                 (click)="onSettingLinkClicked()"
-                [title]="isCollapsed ? 'Thiết lập' : ''">
+                [title]="isCollapsed ? 'Events' : ''">
                 <span class="item-left items-center">
                   <app-svg-icon class="item-icon fill-666e83"
                                 [name]="'icon_map'"
@@ -152,7 +152,7 @@
                                 [width]="16">
                   </app-svg-icon>
                   <span *ngIf="!isCollapsed" class="item-text">
-                    Sự kiện
+                    Events
                   </span>
                 </span>
               </a>
@@ -178,7 +178,7 @@
 							<app-svg-icon class="item-icon fill-666e83"
                             name="icon_flag_light">
               </app-svg-icon>
-							<span *ngIf="!isCollapsed" class="item-text">Báo cáo</span>
+							<span *ngIf="!isCollapsed" class="item-text">Report</span>
 						</span>
 
 						<span

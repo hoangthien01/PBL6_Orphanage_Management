@@ -40,7 +40,7 @@
               class="cleesky--icon-target w-14-c mr-2-c"
               [name]="'icon_bell_notification'">
             </app-svg-icon>
-            <span class="text">Thông báo</span>
+            <span class="text">Notification</span>
           </div>
           <dx-switch [width]="32"
                      [height]="18"
@@ -55,7 +55,7 @@
               class="cleesky--icon-target w-14-c mr-2-c"
               [name]="'icon_dark_mode'">
             </app-svg-icon>
-            <span class="text">Chế độ tối</span>
+            <span class="text">Drak Mode</span>
           </div>
           <dx-switch
             [width]="32"
@@ -71,49 +71,28 @@
       <div class="dropdown-divider"></div>
       <div class="list-item">
         <a class="dropdown-item pointer flex items-center" (click)="isUserMenuVisible = false">
-          <!-- <app-svg-icon
-            class="cleesky--icon-target w-14-c mr-2"
-            [name]="'icon_user'">
-          </app-svg-icon> -->
-          <span class="text">Thông tin cá nhân</span>
+          <span class="text">Pesonal Infomation</span>
         </a>
         <a class="dropdown-item pointer flex items-center" (click)="openAccountSettingPopup()">
-          <!-- <app-svg-icon
-            class="cleesky--icon_account_setting mr-2"
-            [name]="'icon_account_setting'">
-          </app-svg-icon> -->
-          <span class="text">Cài đặt tài khoản</span>
+          <span class="text">Account Settings</span>
         </a>
-        <!-- *ngIf="currentUser.isTenantManager" -->
         <a class="dropdown-item pointer flex items-center" (click)="goToManageRolePage()">
-          <!-- <app-svg-icon
-            class="cleesky--icon_settings w-14-c mr-2"
-            [name]="'icon_settings'">
-          </app-svg-icon> -->
-          <span class="text">Thiết lập hệ thống</span>
+          <span class="text">System Settings</span>
         </a>
       </div>
       <div class="dropdown-divider"></div>
       <div class="list-item help-security">
         <a class="dropdown-item pointer flex items-center" (click)="isUserMenuVisible = false">
-          <app-svg-icon
-            class="cleesky--icon_request w-14-c mr-2"
-            [name]="'icon_request'">
-          </app-svg-icon>
-          <span class="text">Trung tâm trợ giúp</span>
+          <span class="text">Help Center</span>
         </a>
         <a class="dropdown-item pointer flex items-center" (click)="isUserMenuVisible = false">
-          <app-svg-icon
-            class="cleesky--icon_shield_lock w-14-c mr-2"
-            [name]="'icon_privacy'">
-          </app-svg-icon>
-          <span class="text">Chính sách bảo mật</span>
+          <span class="text">Security Policy</span>
         </a>
       </div>
       <div class="dropdown-divider"></div>
       <div class="list-item footer-logout pb-1-c">
         <a class="dropdown-item pointer flex items-center logout" (click)="logout()">
-          <span class="text">Đăng xuất</span>
+          <span class="text">Logout</span>
         </a>
       </div>
     </div>

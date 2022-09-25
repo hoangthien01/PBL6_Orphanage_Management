@@ -9,3 +9,4 @@ export * from './array-helper';
 export * from './api-endpoints';
 export * from './devExtreme-helper';
 export * from './dom-helper';
+export * from './string-helper';

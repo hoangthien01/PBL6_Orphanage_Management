@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import DataSource from 'devextreme/data/data_source';
 import { ListRolesModel, RoleModel } from './models/role.model';
 import { RoleService } from './services/role-management.service';
+import { StringHelper } from '@app/utilities';
 
 @Component({
   selector: 'app-role-management',
@@ -12,6 +13,7 @@ import { RoleService } from './services/role-management.service';
 export class RoleManagementComponent implements OnInit, OnDestroy {
   roleDataSource: RoleModel[];
   scopeDataSource: ScopeModel[];
+  scopeText: Map<string, boolean>;
   //
   roleSelected: string;
 
@@ -30,7 +32,10 @@ export class RoleManagementComponent implements OnInit, OnDestroy {
     return this.roleService.getRoles().subscribe(
       (res) => {
         this.roleDataSource = res.results;
-        this.roleSelected = res.results[0].id;
+        if (!this.roleSelected) {
+          this.roleSelected = res.results[0].id;
+        }
+        this.scopeText = StringHelper.split_scope_text(res.results[0].scope_text);
       }
     )
   }
@@ -38,17 +43,11 @@ export class RoleManagementComponent implements OnInit, OnDestroy {
   getScopeDatasource() {
     this.roleService.getScopesOfRole().subscribe(res => {
       this.scopeDataSource = res.scope;
-      console.log(this.scopeDataSource);
 
     });
   }
 
   roleItemChanged(e){
-    console.log(e);
-
-    this.roleService.getScopesOfRole().subscribe(res => {
-      console.log(res);
-
-    });
+    this.getRolesDatasource();
   }
 }

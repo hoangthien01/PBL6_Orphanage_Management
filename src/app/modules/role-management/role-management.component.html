@@ -43,8 +43,8 @@
             <ng-container *dxTemplate="let item of 'labelCellTemplate'">
               <dx-check-box
                 id="autoExpand"
-                [value]="false"
-                [text]="item.value">
+                [value]="scopeText?.get(item.data.scope) ? true : false"
+                [text]="item.data.scope">
               </dx-check-box>
             </ng-container>
           </dxi-column>

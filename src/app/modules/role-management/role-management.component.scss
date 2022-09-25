@@ -15,6 +15,22 @@
       border-top-right-radius: 8px;
     }
 
+    .dx-column-lines  {
+      background-color: #fff !important;
+    }
+
+    .dx-group-row{
+      border: none;
+    }
+
+    .dx-group-row + .dx-data-row{
+      border-top: 1px solid #e6e9f0 !important;
+    }
+
+    .dx-datagrid-table .dx-row .dx-command-expand.dx-datagrid-group-space {
+      padding-top: 15px;
+    }
+
     .dx-datagrid-rowsview .dx-group-row.dx-row > td {
       border: none;
     }
@@ -28,7 +44,7 @@
 
     .dx-datagrid-rowsview .dx-row {
       border-color: #e6e9f0;
-      border-bottom: none;
+      border-top: none;
     }
   }
 }

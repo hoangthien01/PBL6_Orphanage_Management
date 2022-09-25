@@ -156,24 +156,6 @@ export class SideNavigationMenuComponent implements OnInit, OnDestroy {
 		void this.router.navigateByUrl('/setting').then();
 	}
 
-
-	filterWorkItem = (items: Partial<INavBarItem>[]): Partial<INavBarItem> =>
-		items.find(_ => _.routerLink === 'work');
-
-	filterOrkItem = (items: Partial<INavBarItem>[]): Partial<INavBarItem> =>
-		items.find(_ => _.routerLink === 'okr');
-
-	filterBusinessProcessItem = (items: Partial<INavBarItem>[]): Partial<INavBarItem> =>
-		items.find(_ => _.routerLink === 'business-process');
-
-	filterOtherItems = (items: Partial<INavBarItem>[]): Partial<INavBarItem>[] =>
-		items.filter(
-			_ =>
-				_.routerLink !== 'okr' &&
-				_.routerLink !== 'business-process' &&
-				_.routerLink !== 'work'
-		);
-
 	ngOnDestroy(): void {
 		this.subscription?.unsubscribe();
 	}

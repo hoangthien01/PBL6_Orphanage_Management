@@ -44,7 +44,8 @@
               <dx-check-box
                 id="autoExpand"
                 [value]="scopeText?.get(item.data.scope) ? true : false"
-                [text]="item.data.scope">
+                [text]="item.data.scope"
+                (onValueChanged)="onScopeChanged(item.data)">
               </dx-check-box>
             </ng-container>
           </dxi-column>

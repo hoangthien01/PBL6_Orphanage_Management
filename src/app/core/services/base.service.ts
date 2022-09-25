@@ -108,6 +108,12 @@ export class BaseService {
             .pipe(catchError(isCatchError ? this.handleError : (error) => throwError(error)));
     }
 
+    patch<T>(url: string, data: any, isCatchError: boolean = true): Observable<T> {
+        return this.httpClient
+            .patch<T>(`${this.baseURL}/${url}`, data, this.options)
+            .pipe(catchError(isCatchError ? this.handleError : (error) => throwError(error)));
+    }
+
     async postAsync<T>(url: string, data: any, isCatchError: boolean = true): Promise<T> {
         return this.httpClient
             .post<T>(`${this.baseURL}/${url}`, data, this.options)

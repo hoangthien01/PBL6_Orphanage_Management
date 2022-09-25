@@ -22,4 +22,10 @@ export class RoleService {
   getScopesOfRole(): Observable<any> {
     return this.baseService.get(`${this.userURL}/auth/retrieve_all_scopes`);
   }
+
+  updateScopeOfRole(roleId: string, data): Observable<any> {
+    console.log(data);
+
+    return this.baseService.patch(`${this.userURL}/role/${roleId}`, data);
+  }
 }

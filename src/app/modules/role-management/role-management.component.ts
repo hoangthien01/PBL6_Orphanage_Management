@@ -50,4 +50,13 @@ export class RoleManagementComponent implements OnInit, OnDestroy {
   roleItemChanged(e){
     this.getRolesDatasource();
   }
+
+  async onScopeChanged(data) {
+    let form = {
+      'scope_text': data.scope
+    }
+    //
+    this.roleService.updateScopeOfRole(this.roleSelected, form).subscribe(res => {
+    });
+  }
 }

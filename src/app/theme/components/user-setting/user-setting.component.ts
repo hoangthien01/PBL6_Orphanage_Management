@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserLoggedInModel } from '@app/core/store/models';
 import {
 	ChangeDetectionStrategy,
@@ -64,6 +65,7 @@ export class UserSettingComponent implements OnInit {
 	constructor(
 		private store: Store,
 		private cdr: ChangeDetectorRef,
+    private router: Router
 	) {}
 
 	ngOnInit(): void {
@@ -133,4 +135,10 @@ export class UserSettingComponent implements OnInit {
         navigateToUrl: ENDPOINTS.LOGIN
     }));
 	}
+
+  goToManageRolePage(): void {
+    console.log('sasa');
+
+    this.router.navigate([ENDPOINTS.MANAGE_ROLE_PAGE]).then();
+  }
 }

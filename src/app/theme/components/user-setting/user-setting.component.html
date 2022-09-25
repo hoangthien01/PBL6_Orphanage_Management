@@ -85,7 +85,7 @@
           <span class="text">Cài đặt tài khoản</span>
         </a>
         <!-- *ngIf="currentUser.isTenantManager" -->
-        <a class="dropdown-item pointer flex items-center" >
+        <a class="dropdown-item pointer flex items-center" (click)="goToManageRolePage()">
           <!-- <app-svg-icon
             class="cleesky--icon_settings w-14-c mr-2"
             [name]="'icon_settings'">

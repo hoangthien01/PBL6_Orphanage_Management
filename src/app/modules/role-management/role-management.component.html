@@ -4,7 +4,7 @@
   </div>
 
   <div class="role-management__content">
-    <div>
+    <div class="role-selection">
       <dx-lookup #accountLookup
                  class="role-lookup field-box"
                  height="40px"
@@ -17,15 +17,38 @@
                  displayExpr="name"
                  valueExpr="id"
                  searchExpr="value"
+                 [(value)]="roleSelected"
+                 (onValueChanged)="roleItemChanged($event)"
                  [searchPlaceholder]="'Search'">
-                 <!-- [(value)]="" -->
-              <!-- (onValueChanged)="accountItemChanged($event)" -->
         <dxo-drop-down-options [closeOnOutsideClick]="true"
                                [height]="'auto'"
                                [maxHeight]="300"
                                [showTitle]="false">
         </dxo-drop-down-options>
       </dx-lookup>
+    </div>
+
+    <div class="mt-16-c">
+      <dx-data-grid class="scopes-grid-container"
+                    [dataSource]="scopeDataSource"
+                    height="600px"
+                    [showBorders]="true"
+                    [noDataText]="'No data to display'">
+          <dxo-scrolling [useNative]="false">
+          </dxo-scrolling>
+          <dxi-column dataField="group" [groupIndex]="0"> </dxi-column>
+          <dxi-column dataField="label"
+                      [caption]="'Permissions'"
+                      [cellTemplate]="'labelCellTemplate'">
+            <ng-container *dxTemplate="let item of 'labelCellTemplate'">
+              <dx-check-box
+                id="autoExpand"
+                [value]="false"
+                [text]="item.value">
+              </dx-check-box>
+            </ng-container>
+          </dxi-column>
+      </dx-data-grid>
     </div>
   </div>
 </div>

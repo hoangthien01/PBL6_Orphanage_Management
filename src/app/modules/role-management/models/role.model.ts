@@ -1,12 +1,12 @@
 export class RoleModel {
-  id: String;
-  created_at: String;
-  updated_at:String;
+  id: string;
+  created_at: string;
+  updated_at:string;
   is_active: boolean;
-  name: String;
-  scope_text:String;
-  description:String;
-  last_modified_by: String
+  name: string;
+  scope_text:string;
+  description:string;
+  last_modified_by: string
 
   public constructor(init?: Partial<RoleModel>) {
       Object.assign(this, init);

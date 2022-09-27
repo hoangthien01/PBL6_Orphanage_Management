@@ -5,7 +5,9 @@
   height: 100vh;
 
   .role-management__header {
-    border-bottom: 1px solid #e6e9f0;
+    // border-bottom: 1px solid #e6e9f0;
+    border: none;
+    overflow: hidden;
   }
 
   .role-management__content {
@@ -31,7 +33,7 @@
     }
 
     .dx-group-row + .dx-data-row{
-      border-top: 1px solid #e6e9f0 !important;
+      // border-top: 1px solid #e6e9f0 !important;
     }
 
     .dx-datagrid-table .dx-row .dx-command-expand.dx-datagrid-group-space {
@@ -43,15 +45,23 @@
     }
 
     .dx-datagrid-rowsview {
-      border-color: #e6e9f0;
+      // border-color: #e6e9f0;
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
-      // border-bottom: none;
+      border: none;
+      overflow: hidden;
     }
 
-    .dx-datagrid-rowsview .dx-row {
+    .dx-scrollable-content {
+      margin: 0 30px;
+      min-width: unset !important;
+    }
+
+    .dx-datagrid-rowsview .dx-data-row {
       border-color: #e6e9f0;
-      border-top: none;
+      border-bottom: none;
+      border-top: 1px solid #e6e9f0 !important;
+
     }
   }
 }

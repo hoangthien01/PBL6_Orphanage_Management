@@ -1,71 +1,53 @@
-<div class="role-management__container">
-  <div class="text-20px font-gotham-bold px-24-c py-16-c flex items-center justify-between text-blue-282E3E role-management__header">
+<div class="children-management__container">
+  <div class="text-20px font-gotham-bold px-24-c py-16-c flex items-center justify-between text-blue-282E3E children-management__header">
     <span>
       Manage Children
     </span>
-  </div>
 
-  <div class="role-management__content">
     <div class="flex items-center justify-between role-selection">
-      <!-- <dx-lookup #accountLookup
-                 class="role-lookup field-box"
-                 height="35px"
-                 width="250px"
-                 [dataSource]="roleDataSource"
-                 [disabled]="false"
-                 [visible]="true"
-                 [placeholder]="'Select Role'"
-                 [noDataText]="'No role to display'"
-                 displayExpr="name"
-                 valueExpr="id"
-                 searchExpr="value"
-                 [(value)]="roleSelected"
-                 (onValueChanged)="roleItemChanged($event)"
-                 [searchPlaceholder]="'Search'">
-        <dxo-drop-down-options [closeOnOutsideClick]="true"
-                               [height]="'auto'"
-                               [maxHeight]="300"
-                               [showTitle]="false">
-        </dxo-drop-down-options>
-      </dx-lookup> -->
-
-      <!-- <app-custom-button class="get-free-trial"
+      <app-custom-button class="get-free-trial"
                          [height]="35"
                          [width]="120"
-                         [disabled]="isLoading || !isDataChanged"
-                         [text]="'Update'"
+                         [disabled]="isLoading"
+                         [text]="'Add Children +'"
                          [type]="'primary-outline'"
-                         (onClick)="onUpdateScopeSetting()">
-      </app-custom-button> -->
+                         (onClick)="onAddChildren()">
+      </app-custom-button>
     </div>
+  </div>
 
-    <div class="mt-16-c">
-      <!-- <dx-data-grid #roleDataGrid
-                    class="scopes-grid-container"
-                    [dataSource]="scopeDataSource"
-                    height="600px"
-                    [showBorders]="true"
+  <div class="children-management__content">
+
+    <div class="mt-16-c children-grid-container">
+      <dx-data-grid #roleDataGrid
+                    [dataSource]="childrenDataSource"
+                    [showBorders]="false"
+                    [showRowLines]="false"
+                    [showColumnLines]="false"
+                    [rowAlternationEnabled]="true"
                     [noDataText]="'No data to display'">
-          <dxo-scrolling [useNative]="false">
           <dxo-load-panel [enabled]="true"></dxo-load-panel>
-          </dxo-scrolling>
-          <dxi-column dataField="group" [groupIndex]="0"> </dxi-column>
-          <dxi-column dataField="label"
-                      [caption]="'Permissions'"
-                      [cellTemplate]="'labelCellTemplate'">
-            <ng-container *dxTemplate="let item of 'labelCellTemplate'">
-              <span *ngIf="scopeText"
-                    class="pointer"
-                   (click)="onScopeChanged(item.data)">
-                <dx-check-box
-                  id="autoExpand"
-                  [value]="scopeText.get(item.data.scope) ? true : false"
-                  [text]="item.data.scope">
-                </dx-check-box>
-              </span>
-            </ng-container>
+          <dxi-column dataField="name"
+                      [caption]="'Name'"
+                      [alignment]="'left'">
           </dxi-column>
-      </dx-data-grid> -->
+          <dxi-column dataField="gender"
+                      [caption]="'Gender'"
+                      [alignment]="'left'">
+          </dxi-column>
+          <dxi-column dataField="age"
+                      [caption]="'Age'"
+                      [alignment]="'left'">
+          </dxi-column>
+          <dxi-column dataField="join_date"
+                      [caption]="'Start Date'"
+                      [alignment]="'left'">
+          </dxi-column>
+          <dxi-column dataField="status"
+                      [caption]="'Status'"
+                      [alignment]="'left'">
+          </dxi-column>
+      </dx-data-grid>
     </div>
   </div>
 </div>

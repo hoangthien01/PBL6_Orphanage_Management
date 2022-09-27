@@ -1,2 +1,45 @@
 @import "jerry-extend";
 @import "jerry-variable";
+
+::ng-deep .children-management__container {
+  height: 100vh;
+
+  .children-management__header {
+
+  }
+
+  .children-management__content {
+    padding: 16px 24px;
+    height: calc(100% - 90px);
+
+    .dx-datagrid-headers {
+      border: none;
+      overflow: hidden;
+    }
+
+    .dx-datagrid-rowsview {
+      border: none;
+      overflow: hidden;
+    }
+
+    .dx-data-grid .dx-datagrid .dx-row > td {
+      padding: 10px;
+    }
+
+    .dx-datagrid-rowsview .dx-row {
+      border: none;
+    }
+
+    .dx-datagrid-rowsview .dx-data-row {
+      border-color: #e6e9f0;
+    }
+
+    .children-grid-container {
+      height:  calc(100% - 50px);
+
+      dx-data-grid {
+        height: 100%;
+      }
+    }
+  }
+}

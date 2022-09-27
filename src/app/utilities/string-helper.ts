@@ -64,7 +64,7 @@ export class StringHelper {
       let scope = new Map();
       let ori_data =  text.split(' ');
       ori_data.forEach((item) => {
-        if (!item) {
+        if (!item || item == '') {
           return;
         }
         scope.set(item, true)

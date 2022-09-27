@@ -1,3 +1,4 @@
+import { UserService } from './../../modules/account-setting/services/user.service';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 //
@@ -12,10 +13,13 @@ import { AuthResultModel, AuthResultReloadModel, UserLoggedInModel, AccountLogge
 })
 export class AppInitService {
     constructor(private _store: Store,
-                private _baseService: BaseService) {
+                private _baseService: BaseService,
+                private _userService: UserService) {
     }
 
     async initApp(): Promise<boolean> {
+        console.log('initApp....');
+
         const pathname: string = window.location.pathname;
         // 1 - is Admin Page
         if (pathname.startsWith(ENDPOINTS.ADMIN)) {
@@ -29,36 +33,36 @@ export class AppInitService {
         }
         //
         if (!!UserStorage.isLoggedIn()) {
-            return this._getAPIsInitialized();
+            // return this._getAPIsInitialized();
         } else {
             this._logOut();
             return Promise.resolve(true);
         }
     }
 
-    private _getAPIsInitialized(params?: { navigateToUrl?: string }): Promise<boolean> {
-        return Promise.all([
-            this._baseService.get<AuthResultReloadModel>('api/user/auth/reload').toPromise(),
-        ]).then(([authResult]) => {
-            if (!authResult || !authResult.account || !authResult.user) {
-                this._logOut();
-                return true;
-            }
+    // private _getAPIsInitialized(params?: { navigateToUrl?: string }): Promise<boolean> {
+        // return Promise.all([
+        //     // this._userService.toPromise(),
+        // ]).then(([authResult]) => {
+        //     if (!authResult || !authResult.account || !authResult.user) {
+        //         this._logOut();
+        //         return true;
+        //     }
             //
-            this._store.dispatch(new UserActions.SetAuthResult({
-                authResult: new AuthResultModel({
-                    user: new UserLoggedInModel({
-                        ...authResult.user,
-                    })
-                }),
-                setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.ReloadPage,
-            }));
-            return true;
-        }).catch(() => {
-            this._logOut();
-            return Promise.resolve(true);
-        });
-    }
+            // this._store.dispatch(new UserActions.SetAuthResult({
+            //     authResult: new AuthResultModel({
+            //         user: new UserLoggedInModel({
+            //             ...authResult.user,
+            //         })
+            //     }),
+            //     setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.ReloadPage,
+            // }));
+            // return true;
+        // }).catch(() => {
+        //     this._logOut();
+        //     return Promise.resolve(true);
+        // });
+    // }
 
     private _logOut(params?: { navigateToUrl?: string }) {
         this._store.dispatch(new UserActions.Logout({ navigateToUrl: !!params ? params.navigateToUrl : '' }));

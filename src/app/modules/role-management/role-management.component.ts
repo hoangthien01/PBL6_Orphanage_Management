@@ -40,9 +40,9 @@ export class RoleManagementComponent implements OnInit, OnDestroy {
     this.getScopeDatasource();
     this._valueChangedSubject$.pipe(
       debounceTime(200),
-      distinctUntilChanged(),
     ).subscribe(() => {
         this.isDataChanged = this.checkIsDataChanged();
+        this.cdr.detectChanges();
     });
   }
 
@@ -50,19 +50,12 @@ export class RoleManagementComponent implements OnInit, OnDestroy {
   }
 
   checkIsDataChanged(): boolean {
-    console.log('isEqual(this.scopeActive, this.scopeActiveEditting)', isEqual(this.scopeActive, this.scopeActiveEditting));
-
-    if (isEqual(this.scopeActive, this.scopeActiveEditting)) {
-      return false;
-    }
-    return true;
+    return !isEqual(this.scopeActive, this.scopeActiveEditting);
   }
 
   getRolesDatasource(){
     this.isLoading = true;
     this.scopeText = new Map<string, boolean>();
-    console.log('this.scopeText', this.scopeText);
-
     return this.roleService.getRoles().pipe(
       finalize(() => {
         this.isLoading = false;
@@ -79,10 +72,7 @@ export class RoleManagementComponent implements OnInit, OnDestroy {
         this.roleSelected = res.results[index].id;
         this.scopeText = StringHelper.split_scope_text(res.results[index].scope_text);
         this.scopeActive = res.results[index].scope_text.split(' ');
-        console.log('this.this.scopeText', this.scopeText);
-
         this.scopeActiveEditting = cloneDeep(this.scopeActive);
-
       }
     )
   }
@@ -107,7 +97,7 @@ export class RoleManagementComponent implements OnInit, OnDestroy {
     let form = {
       'scope_text': ArrayHelper.convertToString(this.scopeActiveEditting)
     }
-
+    this.scopeActive = cloneDeep(this.scopeActiveEditting);
     this.roleService.updateScopeOfRole(this.roleSelected, form).pipe(
       finalize(() => {
         this.isLoading = false;
@@ -123,8 +113,6 @@ export class RoleManagementComponent implements OnInit, OnDestroy {
     } else {
       this.scopeActiveEditting.push(data.scope);
     }
-    console.log('this.scopeActiveEditting', this.scopeActiveEditting);
-
     this.dataChanged();
   }
 }

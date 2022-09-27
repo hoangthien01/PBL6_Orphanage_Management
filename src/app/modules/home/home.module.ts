@@ -1,3 +1,4 @@
+import { ChildrenManagementModule } from './../children/children.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -27,6 +28,12 @@ export const routes: Routes = [
       {
         path: 'manage-role',
         loadChildren: () => import('@app/modules/role-management/role-management.module').then(m => m.RoleManagementModule),
+        canActivate: [AuthGuard],
+        data: { preload: false }
+      },
+      {
+        path: 'manage-children',
+        loadChildren: () => import('@app/modules/children/children.module').then(m => m.ChildrenManagementModule),
         canActivate: [AuthGuard],
         data: { preload: false }
       },

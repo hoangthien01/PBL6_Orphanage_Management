@@ -159,4 +159,8 @@ export class SideNavigationMenuComponent implements OnInit, OnDestroy {
 	ngOnDestroy(): void {
 		this.subscription?.unsubscribe();
 	}
+
+	goToChildrenPage():void {
+		this.router.navigate(['manage-children']).then();
+	}
 }

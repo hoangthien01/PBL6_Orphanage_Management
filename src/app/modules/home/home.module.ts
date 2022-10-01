@@ -22,7 +22,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'manage-children',
         pathMatch: 'full'
       },
       {

@@ -1,6 +1,21 @@
 @import "jerry-extend";
 @import "jerry-variable";
 
+::ng-deep .dx-datagrid-export-menu {
+  .dx-list {
+    width: 230px;
+  }
+
+  .dx-overlay-content {
+    top: 5px !important;
+  }
+
+  .dx-datagrid-rowsview .dx-selection.dx-row:not(.dx-row-focused):not(.dx-row-lines) > td {
+    border-bottom: 1px solid transparent !important;
+    border-top: 1px solid transparent !important;
+  }
+}
+
 ::ng-deep .children-management__container {
   height: 100vh;
 
@@ -34,8 +49,29 @@
       border-color: #e6e9f0;
     }
 
+    .dx-datagrid-search-text {
+      color: unset;
+      background-color: unset;
+    }
+
+    .dx-datagrid-header-panel {
+      border: none;
+
+      .dx-toolbar {
+        margin: 5px 0;
+
+        .dx-datagrid-search-panel  {
+          margin-right: 5px;
+        }
+      }
+
+      .dx-button-mode-contained .dx-icon {
+        color: #555;
+      }
+    }
+
     .children-grid-container {
-      height:  calc(100% - 50px);
+      height:  calc(100% - 10px);
 
       dx-data-grid {
         height: 100%;

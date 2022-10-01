@@ -33,36 +33,32 @@ export class AppInitService {
         }
         //
         if (!!UserStorage.isLoggedIn()) {
-            // return this._getAPIsInitialized();
+            return this._getAPIsInitialized();
         } else {
             this._logOut();
             return Promise.resolve(true);
         }
     }
 
-    // private _getAPIsInitialized(params?: { navigateToUrl?: string }): Promise<boolean> {
-        // return Promise.all([
-        //     // this._userService.toPromise(),
-        // ]).then(([authResult]) => {
-        //     if (!authResult || !authResult.account || !authResult.user) {
-        //         this._logOut();
-        //         return true;
-        //     }
-            //
-            // this._store.dispatch(new UserActions.SetAuthResult({
-            //     authResult: new AuthResultModel({
-            //         user: new UserLoggedInModel({
-            //             ...authResult.user,
-            //         })
-            //     }),
-            //     setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.ReloadPage,
-            // }));
-            // return true;
-        // }).catch(() => {
-        //     this._logOut();
-        //     return Promise.resolve(true);
-        // });
-    // }
+    private _getAPIsInitialized(params?: { navigateToUrl?: string }): Promise<boolean> {
+        return Promise.all([
+            this._userService.reloadUserData().toPromise(),
+        ]).then(([authResult]) => {
+            if (!authResult || !authResult.user) {
+                this._logOut();
+                return true;
+            }
+
+            this._store.dispatch(new UserActions.SetAuthResult({
+                authResult: authResult,
+                setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.ReloadPage,
+            }));
+            return true;
+        }).catch(() => {
+            this._logOut();
+            return Promise.resolve(true);
+        });
+    }
 
     private _logOut(params?: { navigateToUrl?: string }) {
         this._store.dispatch(new UserActions.Logout({ navigateToUrl: !!params ? params.navigateToUrl : '' }));

@@ -37,6 +37,10 @@ export class UserService {
       return this.baseService.post(`${this.userURL}/action/sign_up`, data, false);
     }
 
+    reloadUserData(): Observable<AuthResultModel> {
+      return this.baseService.post(`${this.userURL}/account/reload_page`, false);
+    }
+
     autoLogin(activateModel: ActivateAccountModel): Observable<AuthResultModel> {
         return this.baseService.post(`${this.userURL}/auto-login`, activateModel);
     }

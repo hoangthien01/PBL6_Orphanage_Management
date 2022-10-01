@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Injector, NgModule } from '@angular/core';
+import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { environment } from '@environment';
@@ -13,6 +13,8 @@ import { UserLookupState } from './core/store/user-lookup/user-lookup.state';
 import { UserState } from './core/store/user/user.state';
 
 function initializeApp(injector: Injector) {
+  console.log('Initializing App Component');
+
   return (): Promise<boolean> => {
       const appInitService = injector.get(AppInitService);
       return appInitService.initApp();
@@ -39,7 +41,14 @@ function initializeApp(injector: Injector) {
     }),
     // NgxsSelectSnapshotModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [Injector],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

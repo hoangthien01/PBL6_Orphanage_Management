@@ -4,7 +4,7 @@ export class ChildrenModel {
   is_active: boolean;
   name: string;
   gender: number;
-  age: number
+  age: number = 21;
   personal_picture: string;
   join_date: Date;
   status: string;

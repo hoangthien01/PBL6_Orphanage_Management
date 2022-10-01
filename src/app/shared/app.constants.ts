@@ -7,6 +7,7 @@ import {
     AddNewAccountOption,
     AvailableResponseTimeValue,
     ExportFormatTypes,
+    genderType,
     NextCampaignTriggerType,
     OutsideResponseTimeValue,
     TimePeriods,
@@ -60,6 +61,21 @@ export const PROSPECT_FIELD_NAMES = {
     revenue: 'revenue',
     company: 'company'
 };
+
+export const GENDER_TYPES = [
+  {
+    key: genderType.man,
+    value: 'Male'
+  },
+  {
+    key: genderType.woman,
+    value: 'Female'
+  },
+  {
+    key: genderType.other,
+    value: 'Other'
+  }
+]
 
 export const CAMPAIGN_DETAILS_PAGES = {
     Dashboard: 'dashboard',

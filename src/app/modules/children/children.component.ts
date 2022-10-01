@@ -19,6 +19,7 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
   pageIndexDefault: number = 1;
   //
   isLoading: boolean = false;
+  isShowAddChildPopup: boolean = false;
   //
   constructor(private childrenService: ChildrenService,
               private changeDetector: ChangeDetectorRef) {
@@ -31,15 +32,19 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
+  onAddChildClick() {
+    this.isShowAddChildPopup = true;
+  }
+
   getListChildrens() {
-    this.childrenService.getListChildrens(this.pageIndexDefault, this.pagingSize).subscribe(children => {
+    const data = {
+      page: this.pageIndexDefault,
+      pageSize: this.pagingSize,
+    }
+    this.childrenService.getListChildrens(data).subscribe(children => {
       this.childrenDataSource = children.results;
       this.changeDetector.detectChanges();
     });
-  }
-
-  onAddChildren() {
-
   }
 
   onPageIndexChanged(pageIndex: number) {

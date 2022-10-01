@@ -3,6 +3,12 @@
  * [FirstUpperCase]: [Camel Case]
  */
 
+export enum genderType {
+  man = 1,
+  woman = 2,
+  other = 3
+}
+
 export enum AppColor {
   DefaultColor = '#00AFFF'
 }

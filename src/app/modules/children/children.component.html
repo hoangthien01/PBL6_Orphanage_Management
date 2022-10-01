@@ -11,7 +11,7 @@
                          [disabled]="isLoading"
                          [text]="'Add Children +'"
                          [type]="'primary-outline'"
-                         (onClick)="onAddChildren()">
+                         (onClick)="onAddChildClick()">
       </app-custom-button>
     </div>
   </div>
@@ -76,3 +76,11 @@
     </div>
   </div>
 </div>
+
+<ng-container *ngIf="isShowAddChildPopup">
+  <app-child-add #addChildComponent
+                 [(visible)]="isShowAddChildPopup"
+                  >
+                 <!-- (refreshGrid)="onProspectAdded()" -->
+  </app-child-add>
+</ng-container>

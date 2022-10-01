@@ -51,9 +51,12 @@
                     height="600px"
                     [showBorders]="true"
                     [noDataText]="'No data to display'">
-          <dxo-scrolling [useNative]="false">
+          <!-- <dxo-scrolling [useNative]="false"> -->
           <dxo-load-panel [enabled]="true"></dxo-load-panel>
-          </dxo-scrolling>
+          <dxo-paging [enabled]="false">
+          </dxo-paging>
+          <dxo-pager [visible]="true"></dxo-pager>
+          <!-- </dxo-scrolling> -->
           <dxi-column dataField="group" [groupIndex]="0"> </dxi-column>
           <dxi-column dataField="label"
                       [caption]="'Permissions'"

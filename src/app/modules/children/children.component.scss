@@ -10,10 +10,15 @@
     top: 5px !important;
   }
 
-  .dx-datagrid-rowsview .dx-selection.dx-row:not(.dx-row-focused):not(.dx-row-lines) > td {
-    border-bottom: 1px solid transparent !important;
-    border-top: 1px solid transparent !important;
-  }
+
+}
+::ng-deep.dx-datagrid-rowsview .dx-row {
+  border-bottom: 1px solid transparent !important;
+  border-top: 1px solid transparent !important;
+}
+::ng-deep.dx-datagrid-rowsview .dx-selection.dx-row:not(.dx-row-focused):not(.dx-row-lines) > td {
+  border-bottom: 1px solid transparent !important;
+  border-top: 1px solid transparent !important;
 }
 
 ::ng-deep .children-management__container {

@@ -27,8 +27,10 @@
                     [rowAlternationEnabled]="true"
                     [noDataText]="'No data to display'"
                     (onExporting)="onExporting($event)">
-          <dxo-load-panel [enabled]="true"></dxo-load-panel>
-          <dxo-selection mode="multiple"></dxo-selection>
+          <dxo-load-panel [enabled]="false"></dxo-load-panel>
+          <dxo-selection mode="multiple"
+                         [showCheckBoxesMode]="'always'">
+          </dxo-selection>
           <dxo-paging [pageIndex]="pageIndexDefault"
                       [pageSize]="pagingSize"
                       (pageIndexChange)="onPageIndexChanged($event)"

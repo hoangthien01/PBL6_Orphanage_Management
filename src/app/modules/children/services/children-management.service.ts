@@ -14,7 +14,22 @@ export class ChildrenService {
   constructor(private baseService: BaseService) {
   }
 
-  getListChildrens(page: number = 1, pageSize: number = 10): Observable<ListChildrenResponseModel> {
-    return this.baseService.get(`${this.userURL}?page=${page}&page_size=${pageSize}`);
+  getListChildrens(data: {
+    page: number,
+    pageSize: number,
+    name?: string,
+    age?: number,
+    gender?: number,
+    status?: number,
+  }): Observable<ListChildrenResponseModel> {
+    console.log('data', data);
+
+    return this.baseService.get(`${this.userURL}?
+      page=${data.page}
+      &page_size=${data.pageSize}
+      &name=${data.name}
+      &age=${data.age}
+      &gender=${data.gender}
+      &status=${data.status}`);
   }
 }

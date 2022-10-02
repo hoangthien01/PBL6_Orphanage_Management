@@ -37,7 +37,8 @@
                                valueExpr="key"
                                width="100%"
                                [(value)]="child.gender"
-                               [itemTemplate]="'assigneeItemTemplate'">
+                               [itemTemplate]="'assigneeItemTemplate'"
+                               (onValueChanged)="dataChanged()">
                         <dxo-drop-down-options [closeOnOutsideClick]="true"
                                                [height]="'auto'"
                                                [maxHeight]="300"
@@ -55,7 +56,8 @@
                     <div class="field-label">Age</div>
                     <dx-number-box [(value)]="child.age"
                                    [showSpinButtons]="true"
-                                   [showClearButton]="true">
+                                   [showClearButton]="true"
+                                   (onValueChanged)="dataChanged()">
                     </dx-number-box>
                 </div>
 
@@ -65,8 +67,8 @@
 
     <ng-template #footerTemplate>
         <div class="flex justify-between footer-container">
-            <app-custom-button (onClick)="addProspect(false)"
-                               [disabled]="isProcessing || !isDataValid || isEmailValidating"
+            <app-custom-button (onClick)="addChild(true)"
+                               [disabled]="isProcessing || !isDataValid"
                                icon="{{ isProcessing ? 'fas fa-spinner fa-spin' : '' }}"
                                height="40"
                                width="92"

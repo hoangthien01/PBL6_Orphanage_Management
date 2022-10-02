@@ -1,0 +1,72 @@
+@import "jerry-extend";
+
+
+::ng-deep .dx-overlay-content {
+  border: none !important;
+
+  .popup-container {
+    height: 95%;
+  }
+}
+
+::ng-deep .dx-fileuploader-wrapper {
+  padding: 0 !important;
+
+  .dx-fileuploader-input-wrapper {
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .dx-fileuploader-files-container {
+    padding: 0 !important;
+  }
+}
+
+::ng-deep .add-prospect-popup {
+    position: relative;
+
+    .add-prospect-form {
+
+        .box-properties {
+            .country-name {
+                overflow: hidden;
+                -ms-text-overflow: ellipsis;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                display: table-cell;
+                width: 100%;
+            }
+
+            .selected-flag {
+                padding: 13px;
+            }
+
+            &.phone-number {
+                position: relative;
+            }
+        }
+    }
+
+    .prospect-email-container {
+        position: relative;
+    }
+
+    .prospect-email-indicator {
+        position: absolute;
+        top: 50%;
+        right: 4px;
+        transform: translateY(-50%);
+    }
+
+    .prospect-email-text-box {
+        &.dx-invalid {
+            .dx-texteditor-input {
+                padding-right: 50px;
+            }
+
+            + .prospect-email-indicator {
+                right: 30px;
+            }
+        }
+    }
+}

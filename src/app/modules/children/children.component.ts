@@ -18,6 +18,7 @@ import { GENDER_TYPES } from '@app/shared/app.constants';
 })
 export class ChildrenManagementComponent implements OnInit, OnDestroy {
   childrenDataSource: DataSource;
+  chidlDetail: ChildrenModel;
   //
   pagingSize: number = 10;
   pageIndexDefault: number = 0;
@@ -129,6 +130,7 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
 
   onViewChildInfo(e: any) {
     console.log(e);
+    this.chidlDetail = e.data;
     this.isShowChildDetailPopup = true;
   }
 }

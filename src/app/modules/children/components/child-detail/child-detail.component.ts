@@ -41,16 +41,13 @@ export class ChildDetailComponent implements OnInit, OnDestroy {
         this._visible = value;
         this.visibleChange.emit(value);
     }
-    @Input() userAssignSource: ListItemModel<string, string>[] = [];
-
+    @Input() child: ChildrenModel;
     @Output() refreshGrid: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     prospectMessages = PROSPECT_MESSAGE;
     POPUP_ANIMATION = POPUP_ANIMATION;
     genderLookup = GENDER_TYPES;
-
-    child: ChildrenModel = new ChildrenModel();
 
     isDataValid: boolean = false;
     isProcessing: boolean = false;
@@ -62,17 +59,10 @@ export class ChildDetailComponent implements OnInit, OnDestroy {
                 private cdr: ChangeDetectorRef,
                 private baseService: BaseService,
                 private childrenService: ChildrenService) {
-        this._subscriptions.add(this._valueChanged$.pipe(debounceTime(300)).subscribe(() => {
-            this.isDataValid = this.checkIsDataValid();
-            this.cdr.detectChanges();
-        }));
-    }
-
-    @HostListener('document:keydown.escape', ['$event']) onEscapeHandle(event: KeyboardEvent) {
-        const isEscClicked = CommonFunction.IsKeyCodeMatch(event, Key.Escape, 'Escape');
-        if (isEscClicked && this.visible) { // ESC
-            this.hidePopup();
-        }
+        // this._subscriptions.add(this._valueChanged$.pipe(debounceTime(300)).subscribe(() => {
+        //     this.isDataValid = this.checkIsDataValid();
+        //     this.cdr.detectChanges();
+        // }));
     }
 
     ngOnInit() {
@@ -82,46 +72,6 @@ export class ChildDetailComponent implements OnInit, OnDestroy {
         this._subscriptions.unsubscribe();
     }
 
-    focusToFirstNameTextBox() {
-        setTimeout(() => {
-            this.firstNameTextBox.instance.focus();
-        }, 300);
-    }
-
-    checkIsDataValid(): boolean {
-        if ((!this.child.name || !this.child.name.trim())
-            || !this.child.age || !this.child.gender) {
-            return false;
-        }
-        return true;
-    }
-
-    addChild(isKeepPopup: boolean) {
-        if (!this.isDataValid) {
-
-            return;
-        }
-        //
-        this.isProcessing = true;
-        this.childrenService.addChild(this.child)
-            .pipe(finalize(() => {
-              this.isProcessing = false;
-              this.cdr.detectChanges();
-            }))
-            .subscribe(res => {
-                if (res) {
-                    AppNotify.success(AppNotify.generateSuccessMessage('child', 'added'));
-                    if (isKeepPopup) {
-                        this.resetPopup();
-                        this.focusToFirstNameTextBox();
-                    } else {
-                        this.hidePopup();
-                    }
-
-                    this.refreshGrid.emit(true);
-                }
-            });
-    }
 
     resetPopup() {
         this.child = new ChildrenModel();
@@ -134,12 +84,4 @@ export class ChildDetailComponent implements OnInit, OnDestroy {
     dataChanged() {
         this._valueChanged$.next();
     }
-
-    /**
-     * Event Handler
-     */
-
-    /**
-     * Handle validation
-     */
 }

@@ -96,9 +96,8 @@
 </ng-container>
 
 <ng-container *ngIf="isShowChildDetailPopup">
-  <app-child-add #childDetailComponent
+  <app-child-detail #childDetailComponent
                  [(visible)]="isShowChildDetailPopup"
-                  >
-                 <!-- (refreshGrid)="onProspectAdded()" -->
-  </app-child-add>
+                 [child]="chidlDetail">
+  </app-child-detail>
 </ng-container>

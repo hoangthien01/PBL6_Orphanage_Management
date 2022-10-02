@@ -1,7 +1,7 @@
 <app-popup-container #addProspectPopup
                      [height]="'100%'"
                      [width]="426"
-                     [title]="'Add Child'"
+                     [title]="'Child Info'"
                      [(visible)]="visible"
                      [customClass]="'add-prospect-popup'"
                      [footerTemplate]="footerTemplate"
@@ -11,54 +11,22 @@
         <dx-validation-group #addNewProspectValidationGroup>
             <div class="add-prospect-form form-wrapper">
                 <div class="box-properties">
-                    <span class="field-label">Name</span>
-                    <dx-text-box #firstNameTextBox
-                                 class="field-box"
-                                 appAutoFocusInput
-                                 [disabled]="isProcessing"
-                                 valueChangeEvent="input"
-                                 placeholder="Enter Name"
-                                 [(value)]="child.name"
-                                 (onValueChanged)="dataChanged()">
-                    </dx-text-box>
+                    <span class="field-label">Picture:</span>
+                    <div class="max-w-200 m-auto">
+                      <img :src="{{child.personal_picture}}" alt="">
+                    </div>
                 </div>
 
                 <div class="box-properties">
-                    <div class="field-label">Gender</div>
-                    <dx-lookup #assignLookup
-                               [disabled]="isProcessing"
-                               [dataSource]="genderLookup"
-                               [noDataText]="'No data to display'"
-                               [showCancelButton]="false"
-                               class="field-box"
-                               displayExpr="value"
-                               placeholder="Select Gender"
-                               searchPlaceholder="Search"
-                               valueExpr="key"
-                               width="100%"
-                               [(value)]="child.gender"
-                               [itemTemplate]="'assigneeItemTemplate'"
-                               (onValueChanged)="dataChanged()">
-                        <dxo-drop-down-options [closeOnOutsideClick]="true"
-                                               [height]="'auto'"
-                                               [maxHeight]="300"
-                                               [showTitle]="false">
-                        </dxo-drop-down-options>
-
-                        <div *dxTemplate="let item of 'assigneeItemTemplate'"
-                             [title]="item.value">
-                            {{item.value}}
-                        </div>
-                    </dx-lookup>
+                    <span class="field-label">Name: {{child.name}}</span>
                 </div>
 
                 <div class="box-properties">
-                    <div class="field-label">Age</div>
-                    <dx-number-box [(value)]="child.age"
-                                   [showSpinButtons]="true"
-                                   [showClearButton]="true"
-                                   (onValueChanged)="dataChanged()">
-                    </dx-number-box>
+                    <div class="field-label">Gender: {{child.gender | lookupValue : genderLookup: 'key': 'value'}}</div>
+                </div>
+
+                <div class="box-properties">
+                    <div class="field-label">Age: {{child.age}}</div>
                 </div>
 
             </div>
@@ -67,7 +35,7 @@
 
     <ng-template #footerTemplate>
         <div class="flex justify-between footer-container">
-            <app-custom-button (onClick)="addChild(true)"
+            <!-- <app-custom-button (onClick)="addChild(true)"
                                [disabled]="isProcessing || !isDataValid"
                                icon="{{ isProcessing ? 'fas fa-spinner fa-spin' : '' }}"
                                height="40"
@@ -83,7 +51,7 @@
                                width="100"
                                [text]="'Cancel'"
                                [type]="'cancel'">
-            </app-custom-button>
+            </app-custom-button> -->
         </div>
     </ng-template>
 </app-popup-container>

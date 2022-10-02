@@ -5,6 +5,9 @@ import { ChildrenModel } from './models';
 import { ListChildrenResponseModel } from './models/children-response.model';
 import { ChildrenService } from './services/children-management.service';
 import { saveAs } from 'file-saver-es';
+import { LoadOptions } from 'devextreme/data';
+import { LoadResultModel } from '@app/shared/models';
+import DataSource from 'devextreme/data/data_source';
 
 @Component({
   selector: 'app-children-management',
@@ -13,43 +16,86 @@ import { saveAs } from 'file-saver-es';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChildrenManagementComponent implements OnInit, OnDestroy {
-  childrenDataSource: ChildrenModel[];
+  childrenDataSource: DataSource;
   //
   pagingSize: number = 10;
-  pageIndexDefault: number = 1;
+  pageIndexDefault: number = 0;
   //
   isLoading: boolean = false;
   isShowAddChildPopup: boolean = false;
+  isShowChildDetailPopup: boolean = false;
+  totalCount: any;
   //
   constructor(private childrenService: ChildrenService,
               private changeDetector: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
-    this.getListChildrens();
+    this.loadGridData();
   }
 
   ngOnDestroy(): void {
+  }
+
+  loadGridData() {
+    this.childrenDataSource = new DataSource({
+        key: 'id',
+        load: (option) => this.gridLoadOption(option),
+        // sort: [{
+        //     selector: this.sortColumnDefault,
+        //     desc: this.sortOrderDefault === FilterParamsSortingTypes.Descending
+        // }]
+    });
+}
+
+  gridLoadOption(loadOptions: LoadOptions): Promise<LoadResultModel<ChildrenModel[]>> {
+    // if (!loadOptions || !loadOptions.take) {
+    //     return;
+    // }
+
+    this.isLoading = true;
+    //
+    const data = {
+      page: this.pageIndexDefault + 1,
+      pageSize: this.pagingSize,
+      name: '',
+      status: 'all',
+    }
+    // this.getSearchParamsBeforeSending(loadOptions);
+    return this.childrenService.getListChildrens(data).toPromise()
+        .finally(() => {
+            this.isLoading = false;
+        })
+        .then((res) => {
+            this.totalCount = res.count;
+            //
+            return {
+                data: res.results,
+                totalCount: res.count
+            };
+        });
   }
 
   onAddChildClick() {
     this.isShowAddChildPopup = true;
   }
 
-  getListChildrens() {
-    const data = {
-      page: this.pageIndexDefault,
-      pageSize: this.pagingSize,
-    }
-    this.childrenService.getListChildrens(data).subscribe(children => {
-      this.childrenDataSource = children.results;
-      this.changeDetector.detectChanges();
-    });
-  }
+  // getListChildrens() {
+  //   const data = {
+  //     page: this.pageIndexDefault,
+  //     pageSize: this.pagingSize,
+  //     name: '',
+  //     status: 'all',
+  //   }
+  //   this.childrenService.getListChildrens(data).subscribe(children => {
+  //     this.childrenDataSource = children.results;
+  //     this.changeDetector.detectChanges();
+  //   });
+  // }
 
   onPageIndexChanged(pageIndex: number) {
     this.pageIndexDefault = pageIndex;
-    this.getListChildrens();
+    this.loadGridData();
     // this._store.dispatch(new ProspectsActiveActions.SetProspectsPageIndex(pageIndex));
   }
 
@@ -60,7 +106,7 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
     }
     //
     this.pagingSize = pagingSize;
-    this.getListChildrens();
+    this.loadGridData();
   }
 
   onExporting(e) {
@@ -77,5 +123,10 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
       });
     });
     e.cancel = true;
+  }
+
+  onViewChildInfo(e: any) {
+    console.log(e);
+    this.isShowChildDetailPopup = true;
   }
 }

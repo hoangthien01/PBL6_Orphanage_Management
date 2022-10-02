@@ -26,8 +26,12 @@
                     [showColumnLines]="false"
                     [rowAlternationEnabled]="true"
                     [noDataText]="'No data to display'"
-                    (onExporting)="onExporting($event)">
+                    (onExporting)="onExporting($event)"
+                    (onRowClick)="onViewChildInfo($event)">
           <dxo-load-panel [enabled]="false"></dxo-load-panel>
+          <dxo-remote-operations [paging]="true"
+                                 [sorting]="true">
+          </dxo-remote-operations>
           <dxo-selection mode="multiple"
                          [showCheckBoxesMode]="'always'">
           </dxo-selection>
@@ -80,6 +84,14 @@
 <ng-container *ngIf="isShowAddChildPopup">
   <app-child-add #addChildComponent
                  [(visible)]="isShowAddChildPopup"
+                  >
+                 <!-- (refreshGrid)="onProspectAdded()" -->
+  </app-child-add>
+</ng-container>
+
+<ng-container *ngIf="isShowChildDetailPopup">
+  <app-child-add #childDetailComponent
+                 [(visible)]="isShowChildDetailPopup"
                   >
                  <!-- (refreshGrid)="onProspectAdded()" -->
   </app-child-add>

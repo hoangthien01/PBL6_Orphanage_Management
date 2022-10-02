@@ -44,7 +44,7 @@ export class AppInitService {
         return Promise.all([
             this._userService.reloadUserData().toPromise(),
         ]).then(([authResult]) => {
-            if (!authResult || !authResult.user) {
+            if (!authResult) {
                 this._logOut();
                 return true;
             }

@@ -57,7 +57,13 @@
           <dxi-column dataField="gender"
                       [caption]="'Gender'"
                       [alignment]="'left'"
+                      cellTemplate="genderCelltemplate"
                       [allowSorting]="true">
+            <<ng-container *dxTemplate="let item of 'genderCelltemplate'">
+              <div>
+                {{item.value | lookupValue: genderLookup: 'key': 'value'}}
+              </div>
+            </ng-container>
           </dxi-column>
           <dxi-column dataField="age"
                       [caption]="'Age'"

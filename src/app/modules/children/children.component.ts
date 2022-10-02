@@ -8,6 +8,7 @@ import { saveAs } from 'file-saver-es';
 import { LoadOptions } from 'devextreme/data';
 import { LoadResultModel } from '@app/shared/models';
 import DataSource from 'devextreme/data/data_source';
+import { GENDER_TYPES } from '@app/shared/app.constants';
 
 @Component({
   selector: 'app-children-management',
@@ -25,6 +26,7 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
   isShowAddChildPopup: boolean = false;
   isShowChildDetailPopup: boolean = false;
   totalCount: any;
+  genderLookup = GENDER_TYPES;
   //
   constructor(private childrenService: ChildrenService,
               private changeDetector: ChangeDetectorRef) {

@@ -59,26 +59,9 @@ import {
 } from 'devextreme-angular';
 import { DxiColumnModule, DxoPagerModule, DxoPagingModule, DxoSelectionModule } from 'devextreme-angular/ui/nested';
 
-// import {
-//     DisplayNameNullValuePipe,
-//     GridColumnNullValuePipe,
-//     OrderByPipe,
-//     SecondsToTimePipe,
-//     SecondsToWordTime,
-//     SeparateDateTimeToDatePipe,
-//     SeparateDateTimeToTimeExceptSecPipe,
-//     SeparateDateTimeToTimePipe,
-//     StringToDatePipe,
-//     TruncatePipe,
-//     ValuePipe,
-//     FunctionPipe,
-//     RemoveHtmlTagPipe,
-//     TimeEventPipe,
-//     TimeAgoPipe,
-//     LookupValuePipe,
-//     TimeSecondPipe,
-//     IsItemExistInLookupPipe
-// } from './pipes';
+import {
+    LookupValuePipe,
+} from './pipes';
 
 import {
   CustomButtonComponent,
@@ -200,7 +183,8 @@ const COMPONENTS = [
 
 const PIPES = [
   FunctionPipe,
-  TruncatePipe
+  TruncatePipe,
+  LookupValuePipe
 ];
 
 const DIRECTIVES = [

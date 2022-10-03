@@ -11,13 +11,15 @@ import { AuthComponent } from './auth.component';
 import { SvgIconsRegistry } from '@app/core/services';
 //
 import {
+  svgIconGoogleLogo,
   svgIconWarningCircle,
 } from 'src/assets/images/svg-icons.constants';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const SVG_ICONS = [
-  svgIconWarningCircle
+  svgIconWarningCircle,
+  svgIconGoogleLogo
 ];
 
 export const routes: Routes = [

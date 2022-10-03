@@ -196,7 +196,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
         })).subscribe(res => {
             if (res) {
             this.userLogin = res;
-            this.router.navigate(['home']).then();
+            this.doAfterUserRegister(res);
             // this.autoLogin();
             }
           // eslint-disable-next-line @typescript-eslint/no-shadow
@@ -206,14 +206,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
           }
         );
     }
-
-    doAfterUserLoggedIn(auth: AuthResultModel) {
-      this.store.dispatch(new UserActions.SetAuthResult({
-          authResult: auth,
-          setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.Login
-      }));
-      this.router.navigate(['home']).then();
-  }
 
     removeSpaces() {
         if (this.account.email) {
@@ -232,6 +224,14 @@ export class SignUpComponent implements OnInit, OnDestroy {
     goToLoginPage() {
       this.router.navigate(['login']).then();
     }
+
+    doAfterUserRegister(auth: AuthResultModel) {
+      this.store.dispatch(new UserActions.SetAuthResult({
+          authResult: auth,
+          setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.Login
+      }));
+      this.router.navigate(['home']).then();
+  }
 
     autoLogin() {
         // const autoLoginLink = '/access/' + this.userLogin.userId + '/' + this.userLogin.token + '#fromSignUp';

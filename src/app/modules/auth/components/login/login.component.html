@@ -44,7 +44,7 @@
                     </dx-text-box>
                 </div>
                 <div class="content-footer clearfix">
-                    <div class="login-button">
+                    <div class="login-button flex items-center">
                         <app-custom-button class="float-left mr-4 w-100"
                                            [disabled]="!isDataValid || login.isLogging"
                                            [height]="40"
@@ -53,7 +53,19 @@
                                            [type]="'primary'"
                                            (onClick)="signIn()">
                         </app-custom-button>
-                    </div>
+                      </div>
+
+                      <app-custom-button class="ml-16 w-160-c cursor-pointer"
+                                         [disabled]="!isDataValid || login.isLogging"
+                                         [height]="40"
+                                         icon="{{ login.isLogging ? 'fas fa-spinner fa-spin' : '' }}"
+                                         [type]="'primary-outline'"
+                                         (onClick)="signIn()">
+                        <app-svg-icon [name]="'icon_google_logo'"
+                                       [width]="16">
+                        </app-svg-icon>
+                        <span class="ml-8-c">Login with google</span>
+                      </app-custom-button>
 
                     <div class="text-has-link forgot-password text-forgot">
                       <span (click)="forgotPassword()">

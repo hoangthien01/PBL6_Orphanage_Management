@@ -7,6 +7,7 @@ export class ChildrenModel {
   age: number = 21;
   personal_picture: string;
   join_date: Date;
+  updated_at: Date;
   status: string;
 
   public constructor(init?: Partial<ChildrenModel>) {

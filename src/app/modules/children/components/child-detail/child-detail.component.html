@@ -10,6 +10,15 @@
     <div class="add-prospect-popup-container">
         <dx-validation-group #addNewProspectValidationGroup>
             <div class="add-prospect-form form-wrapper">
+                <div class="mb-16-c flex justify-end">
+                  <app-custom-button [disabled]="isProcessing || !isDataValid"
+                                      icon="{{ isProcessing ? 'fas fa-spinner fa-spin' : '' }}"
+                                      height="40"
+                                      width="92"
+                                      text="Register"
+                                      [type]="'primary'">
+                  </app-custom-button>
+                </div>
                 <div class="box-properties">
                     <span class="field-label">Picture:</span>
                     <div class="max-w-200 m-auto">
@@ -17,7 +26,7 @@
                     </div>
                 </div>
 
-                <div class="box-properties">
+                <div class="box-properties mt-32-c">
                     <span class="field-label">Name: {{child.name}}</span>
                 </div>
 
@@ -29,6 +38,17 @@
                     <div class="field-label">Age: {{child.age}}</div>
                 </div>
 
+                <div class="box-properties">
+                    <div class="field-label">Date Joined: {{child.join_date |date}}</div>
+                </div>
+
+                <div class="box-properties">
+                    <div class="field-label">Last update: {{child.updated_at | date}}</div>
+                </div>
+
+                <div class="box-properties">
+                  <div class="field-label">Status: {{child.status}}</div>
+              </div>
             </div>
         </dx-validation-group>
     </div>

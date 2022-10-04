@@ -49,11 +49,16 @@
                             [highlightCaseSensitive]="true"
           ></dxo-search-panel>
 
-          <dxi-column dataField="name"
+          <dxi-column  dataField="name"
                       [caption]="'Name'"
                       [alignment]="'left'"
-                      [allowSorting]="true">
+                      [allowSorting]="true"
+                      [cellTemplate]="'nameCellTemplate'">
+            <ng-container *dxTemplate="let item of 'nameCellTemplate'">
+              <span class="text-blue-00AFFF cursor-pointer">{{item.value}}</span>
+            </ng-container>
           </dxi-column>
+
           <dxi-column dataField="gender"
                       [caption]="'Gender'"
                       [alignment]="'left'"

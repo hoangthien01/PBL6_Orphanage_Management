@@ -51,7 +51,7 @@ export class BaseService {
     get headers(): HttpHeaders {
       if(this.accessToken) {
         return new HttpHeaders({
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json multipart/form-data',
             Authorization: this.bearerAuthentication,
         });
       }
@@ -241,6 +241,8 @@ export class BaseService {
     }
 
     private addDataToFormData(formData: FormData, data, name: string = null) {
+      console.log('formData', formData);
+
         for (const property in data) {
             if (data.hasOwnProperty(property)) {
                 let formName = name ? `${name}[${property}]` : property;
@@ -255,6 +257,8 @@ export class BaseService {
                 }
             }
         }
+        console.log('formData', formData);
+
     }
     //#endregion
 

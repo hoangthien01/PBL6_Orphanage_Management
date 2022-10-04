@@ -27,12 +27,6 @@ export class ChildrenService {
   }
 
   addChild(child: any) :Observable<ChildrenModel> {
-    console.log('child', child);
-    const form = new FormData();
-    form.append('name', child.name);
-    form.append('age', child.age.toString());
-    form.append('gender', child.gender.toString());
-    form.append('personal_picture', child.personal_picture);
-    return this.baseService.post(`${this.userURL}`, form);
+    return this.baseService.postFile(`${this.userURL}`, child);
   }
 }

@@ -29,6 +29,7 @@
     "file-saver": "^2.0.5",
     "file-saver-es": "^2.0.5",
     "lodash-es": "^4.17.21",
+    "ngx-permissions": "^13.0.0",
     "ngx-quicklink": "^0.2.6",
     "ngxs-reset-plugin": "^2.0.0",
     "rxjs": "~6.6.0",

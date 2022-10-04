@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { environment } from '@environment';
 import { NgxsModule } from '@ngxs/store';
+import { NgxPermissionsModule } from 'ngx-permissions';
 import { AppRoutingModule } from './app-routing.module';
 //
 import { AppComponent } from './app.component';
@@ -39,7 +40,8 @@ function initializeApp(injector: Injector) {
           injectContainerState: false
       }
     }),
-    // NgxsSelectSnapshotModule.forRoot(),
+    // ngx-permissions
+		NgxPermissionsModule.forRoot(),
   ],
   providers: [
     {

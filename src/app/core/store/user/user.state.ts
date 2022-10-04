@@ -4,7 +4,7 @@ import { Action, NgxsOnInit, State, StateContext } from '@ngxs/store';
 import { StateResetAll } from 'ngxs-reset-plugin';
 import { cloneDeep } from 'lodash-es';
 //
-import { AppStorage, ArrayHelper, ENDPOINTS } from '@app/utilities';
+import { AppStorage, ArrayHelper, ENDPOINTS, StringHelper } from '@app/utilities';
 import { AppFeatureKeys } from '@app/core/store/app-feature-key.enums';
 import {
     UserStorage,
@@ -21,6 +21,7 @@ import {
 import * as UserActions from '@app/core/store/user/user.actions';
 import { AccountLoggedInModel, AuthResultModel, UserLoggedInModel } from '@app/core/store/models';
 import { BaseService } from '@app/core/services';
+import { NgxRolesService } from 'ngx-permissions';
 
 const INIT_STATE: AuthResultModel = {
     user: null,
@@ -38,7 +39,8 @@ const INIT_STATE: AuthResultModel = {
 @Injectable()
 export class UserState implements NgxsOnInit {
     constructor(private _router: Router,
-                private _baseService: BaseService) {
+                private _baseService: BaseService,
+                private _ngxRolesService: NgxRolesService) {
     }
 
     //#region OnInitialized
@@ -139,7 +141,24 @@ export class UserState implements NgxsOnInit {
           authResult: payload.authResult,
           setUpNewAuthResultType: payload.setUpNewAuthResultType
       });
-      //
+      // ngx-permissions
+      let scope = new Map();
+      let ori_data =  payload.authResult.permissions.split(' ');
+      ori_data.forEach((item) => {
+        if (!item || item == '') {
+          return;
+        }
+        let data = item.split(':');
+        if (scope.has(data[0])) {
+          scope.get(data[0]).push(data[1]);
+        } else {
+          scope.set(data[0], new Array(data[1]));
+        }
+      })
+      for (let [key, value] of scope) {
+        this._ngxRolesService.addRole(key, value);
+      }
+      console.log('NgxRoles', this._ngxRolesService.getRoles());
 
       context.patchState({
           user: new UserLoggedInModel({

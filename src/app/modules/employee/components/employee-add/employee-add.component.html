@@ -1,0 +1,99 @@
+<app-popup-container #addProspectPopup
+                     [height]="'100%'"
+                     [width]="426"
+                     [title]="'Add Employee'"
+                     [(visible)]="visible"
+                     [customClass]="'add-prospect-popup'"
+                     [footerTemplate]="footerTemplate"
+                     [customPopupAnimation]="POPUP_ANIMATION"
+                     (onHiding)="hidePopup()">
+    <div class="add-prospect-popup-container">
+        <dx-validation-group #addNewProspectValidationGroup>
+            <div class="add-prospect-form form-wrapper">
+                <div class="box-properties">
+                    <span class="field-label">Name</span>
+                    <dx-text-box #firstNameTextBox
+                                 class="field-box"
+                                 appAutoFocusInput
+                                 [disabled]="isProcessing"
+                                 valueChangeEvent="input"
+                                 placeholder="Enter Name"
+                                 [(value)]="child.name"
+                                 (onValueChanged)="dataChanged()">
+                    </dx-text-box>
+                </div>
+
+                <div class="box-properties">
+                    <div class="field-label">Gender</div>
+                    <dx-lookup #assignLookup
+                               [disabled]="isProcessing"
+                               [dataSource]="genderLookup"
+                               [noDataText]="'No data to display'"
+                               [showCancelButton]="false"
+                               class="field-box"
+                               displayExpr="value"
+                               placeholder="Select Gender"
+                               searchPlaceholder="Search"
+                               valueExpr="key"
+                               width="100%"
+                               [(value)]="child.gender"
+                               [itemTemplate]="'assigneeItemTemplate'"
+                               (onValueChanged)="dataChanged()">
+                        <dxo-drop-down-options [closeOnOutsideClick]="true"
+                                               [height]="'auto'"
+                                               [maxHeight]="300"
+                                               [showTitle]="false">
+                        </dxo-drop-down-options>
+
+                        <div *dxTemplate="let item of 'assigneeItemTemplate'"
+                             [title]="item.value">
+                            {{item.value}}
+                        </div>
+                    </dx-lookup>
+                </div>
+
+                <div class="box-properties">
+                    <div class="field-label">Age</div>
+                    <dx-number-box [(value)]="child.age"
+                                   [showSpinButtons]="true"
+                                   [showClearButton]="true"
+                                   (onValueChanged)="dataChanged()">
+                    </dx-number-box>
+                </div>
+
+                <div class="box-properties">
+                    <div class="field-label">Picture</div>
+                    <dx-file-uploader selectButtonText="Select photo"
+                                      labelText=""
+                                      accept="image/*"
+                                      [multiple]="false"
+                                      uploadMode="useForm"
+                                      [(value)]="file">
+                    </dx-file-uploader>
+                </div>
+            </div>
+        </dx-validation-group>
+    </div>
+
+    <ng-template #footerTemplate>
+        <div class="flex justify-between footer-container">
+            <app-custom-button (onClick)="addChild(true)"
+                               [disabled]="isProcessing || !isDataValid"
+                               icon="{{ isProcessing ? 'fas fa-spinner fa-spin' : '' }}"
+                               height="40"
+                               width="92"
+                               text="ADD"
+                               [type]="'primary'">
+            </app-custom-button>
+
+            <app-custom-button (onClick)="hidePopup()"
+                               [disabled]="isProcessing"
+                               class="!border-0px cancel"
+                               height="40"
+                               width="100"
+                               [text]="'Cancel'"
+                               [type]="'cancel'">
+            </app-custom-button>
+        </div>
+    </ng-template>
+</app-popup-container>

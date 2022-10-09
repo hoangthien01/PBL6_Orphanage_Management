@@ -1,0 +1,108 @@
+<div class="children-management__container">
+  <div class="text-20px font-gotham-bold px-24-c py-16-c flex items-center justify-between text-blue-282E3E children-management__header">
+    <span>
+      Manage Employee
+    </span>
+
+    <div class="flex items-center justify-between role-selection">
+      <app-custom-button class="get-free-trial"
+                         [height]="35"
+                         [width]="120"
+                         [disabled]="isLoading"
+                         [text]="'Add Employee +'"
+                         [type]="'primary-outline'"
+                         (onClick)="onAddChildClick()">
+      </app-custom-button>
+    </div>
+  </div>
+
+  <div class="children-management__content">
+
+    <div class="children-grid-container">
+      <dx-data-grid #roleDataGrid
+                    [dataSource]="childrenDataSource"
+                    [showBorders]="false"
+                    [showRowLines]="false"
+                    [showColumnLines]="false"
+                    [rowAlternationEnabled]="true"
+                    [noDataText]="'No data to display'"
+                    (onExporting)="onExporting($event)"
+                    (onRowClick)="onViewChildInfo($event)">
+          <dxo-load-panel [enabled]="false"></dxo-load-panel>
+          <dxo-remote-operations [paging]="true"
+                                 [sorting]="true">
+          </dxo-remote-operations>
+          <dxo-selection mode="multiple"
+                         [showCheckBoxesMode]="'always'">
+          </dxo-selection>
+          <dxo-paging [pageIndex]="pageIndexDefault"
+                      [pageSize]="pagingSize"
+                      (pageIndexChange)="onPageIndexChanged($event)"
+                      (pageSizeChange)="setPagingSize($event)">
+          </dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true"
+                     [visible]="true"
+                     [showNavigationButtons]="true"
+                     [allowedPageSizes]="[10, 25, 50, 100]"
+          ></dxo-pager>
+          <dxo-search-panel [visible]="true"
+                            [highlightCaseSensitive]="true"
+          ></dxo-search-panel>
+
+          <dxi-column  dataField="name"
+                      [caption]="'Name'"
+                      [alignment]="'left'"
+                      [allowSorting]="true"
+                      [cellTemplate]="'nameCellTemplate'">
+            <ng-container *dxTemplate="let item of 'nameCellTemplate'">
+              <span class="text-blue-00AFFF cursor-pointer">{{item.value}}</span>
+            </ng-container>
+          </dxi-column>
+
+          <dxi-column dataField="gender"
+                      [caption]="'Gender'"
+                      [alignment]="'left'"
+                      cellTemplate="genderCelltemplate"
+                      [allowSorting]="true">
+            <<ng-container *dxTemplate="let item of 'genderCelltemplate'">
+              <div>
+                {{item.value | lookupValue: genderLookup: 'key': 'value'}}
+              </div>
+            </ng-container>
+          </dxi-column>
+          <dxi-column dataField="age"
+                      [caption]="'Age'"
+                      [alignment]="'left'"
+                      [allowSorting]="true">
+          </dxi-column>
+          <dxi-column dataField="join_date"
+                      [caption]="'Start Date'"
+                      [alignment]="'left'"
+                      [allowSorting]="true">
+          </dxi-column>
+          <dxi-column dataField="status"
+                      [caption]="'Status'"
+                      [alignment]="'left'"
+                      [allowSorting]="true">
+          </dxi-column>
+
+          <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+      </dx-data-grid>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="isShowAddChildPopup">
+  <app-employee-add #addChildComponent
+                 [(visible)]="isShowAddChildPopup"
+                  >
+                 <!-- (refreshGrid)="onProspectAdded()" -->
+  </app-employee-add>
+</ng-container>
+
+<ng-container *ngIf="isShowChildDetailPopup">
+  <app-employee-detail #childDetailComponent
+                 [(visible)]="isShowChildDetailPopup"
+                 [child]="chidlDetail">
+  </app-employee-detail>
+</ng-container>

@@ -37,6 +37,12 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         data: { preload: false }
       },
+      {
+        path: 'manage-employee',
+        loadChildren: () => import('@app/modules/employee/employee.module').then(m => m.EmployeeManagementModule),
+        canActivate: [AuthGuard],
+        data: { preload: false }
+      },
     ]
   }
 

@@ -163,4 +163,8 @@ export class SideNavigationMenuComponent implements OnInit, OnDestroy {
 	goToChildrenPage():void {
 		this.router.navigate(['manage-children']).then();
 	}
+
+	goToEmployeePage():void {
+		this.router.navigate(['manage-employee']).then();
+	}
 }

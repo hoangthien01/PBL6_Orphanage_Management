@@ -1,5 +1,5 @@
 import { svgIconSettingLight, svgIconPencil } from './../../../dist/pbl/assets/images/svg-icons.constants';
-import { svgIconMap } from './../../assets/images/svg-icons.constants';
+import { svgIconMap, svgIconHome } from './../../assets/images/svg-icons.constants';
 import { HelpTextComponent } from './components/help-text/help-text.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { DefaultLayoutComponent } from './components/default-layout/default-layout.component';
@@ -164,7 +164,8 @@ const SVG_ICONS = [
   svgIconMap,
   svgIconSettingLight,
   svgIconPencil,
-  svgIconAvatarDefault
+  svgIconAvatarDefault,
+  svgIconHome
 ];
 
 const COMPONENTS = [

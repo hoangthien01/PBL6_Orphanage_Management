@@ -30,6 +30,9 @@ $sub-menu-border-color-light: $color-black-3;
 	}
 
 	.menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 		transition: all 0.3s ease;
 		position: relative;
 		height: 100%;
@@ -266,7 +269,8 @@ $sub-menu-border-color-light: $color-black-3;
 		}
 
 		.navigation-section {
-			height: calc(100vh - 290px - 27px); // TODO: Update when have setting icon
+      flex: 1
+			// height: calc(100vh - 290px - 27px); // TODO: Update when have setting icon
 		}
 
 		.logo {

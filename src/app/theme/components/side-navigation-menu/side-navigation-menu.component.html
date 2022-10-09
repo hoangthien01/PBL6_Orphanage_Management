@@ -42,6 +42,23 @@
 				<li
 					class="menu-item parent-menu justify-center"
 					routerLinkActive="active"
+					routerLink="home">
+					<a class="menu-item--link" [title]="isCollapsed ? 'Home' : ''">
+						<span class="item-left items-center">
+							<app-svg-icon class="item-icon text-grey-666E83"
+                            [name]="'icon_home'"
+                            [width]="18">
+							</app-svg-icon>
+							<span *ngIf="!isCollapsed" class="item-text">
+								Home
+							</span>
+						</span>
+					</a>
+				</li>
+
+				<li
+					class="menu-item parent-menu justify-center"
+					routerLinkActive="active"
 					routerLink="notification">
 					<a class="menu-item--link" [title]="isCollapsed ? 'Notification' : ''">
 						<span class="item-left items-center">
@@ -88,35 +105,35 @@
 			<dx-scroll-view [useNative]="isUseNative" [scrollByContent]="true" [scrollByThumb]="true">
 				<div class="menu-section">
 					<ul class="menu-wrapper position-relative">
-            <li class="menu-item parent-menu" routerLinkActive="active">
+            <li class="menu-item parent-menu" routerLinkActive="active" routerLink="manage-children">
               <a
                 class="menu-item--link"
                 (click)="goToChildrenPage()"
-                [title]="isCollapsed ? 'Children' : ''">
+                [title]="isCollapsed ? 'Manage Children' : ''">
                 <span class="item-left items-center">
                   <app-svg-icon class="item-icon fill-666e83"
                                 [name]="'icon_uer_regular'"
                                 [width]="16">
                   </app-svg-icon>
                   <span *ngIf="!isCollapsed" class="item-text">
-                    Children
+                    Manage Children
                   </span>
                 </span>
               </a>
             </li>
 
-            <li class="menu-item parent-menu" routerLinkActive="active">
+            <li class="menu-item parent-menu" routerLinkActive="active" routerLink="manage-employee">
               <a
                 class="menu-item--link"
                 (click)="goToEmployeePage()"
-                [title]="isCollapsed ? 'Staff' : ''">
+                [title]="isCollapsed ? 'Manage Employee' : ''">
                 <span class="item-left items-center">
                   <app-svg-icon class="item-icon fill-666e83"
                                 [name]="'icon_uer_regular'"
                                 [width]="16">
                   </app-svg-icon>
                   <span *ngIf="!isCollapsed" class="item-text">
-                    Staff
+                    Manage Employee
                   </span>
                 </span>
               </a>

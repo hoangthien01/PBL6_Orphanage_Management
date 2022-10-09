@@ -11,6 +11,6 @@ export class PageNotFoundComponent{
     constructor(private _router: Router,) { }
 
     takeMeHome(): void {
-        this._router.navigate(['/']).then();
+        this._router.navigate(['/home']).then();
     }
 }

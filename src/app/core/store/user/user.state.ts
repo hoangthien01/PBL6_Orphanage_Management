@@ -21,7 +21,7 @@ import {
 import * as UserActions from '@app/core/store/user/user.actions';
 import { AccountLoggedInModel, AuthResultModel, UserLoggedInModel } from '@app/core/store/models';
 import { BaseService } from '@app/core/services';
-import { NgxRolesService } from 'ngx-permissions';
+import { NgxPermissionsService, NgxRolesService } from 'ngx-permissions';
 
 const INIT_STATE: AuthResultModel = {
     user: null,
@@ -40,7 +40,7 @@ const INIT_STATE: AuthResultModel = {
 export class UserState implements NgxsOnInit {
     constructor(private _router: Router,
                 private _baseService: BaseService,
-                private _ngxRolesService: NgxRolesService) {
+                private _permissionsService: NgxPermissionsService) {
     }
 
     //#region OnInitialized
@@ -87,11 +87,12 @@ export class UserState implements NgxsOnInit {
     //#region
     @Action(UserActions.Logout)
     logout({ dispatch }: StateContext<UserState>, { payload }: UserActions.Logout) {
+      this._permissionsService.flushPermissions();
         if (!!payload && !!payload.isForcedToLogOut) {
             UserStorage.removeSessionStorage();
             UserStorage.removeLocalStorage();
             //
-            window.location.href = window.location.origin + '/login';
+            window.location.href = window.location.origin + '/auth/login';
         }
         //
         if (!!payload && !!payload.navigateToUrl) {
@@ -156,9 +157,11 @@ export class UserState implements NgxsOnInit {
         }
       })
       for (let [key, value] of scope) {
-        this._ngxRolesService.addRole(key, value);
+        // this._ngxRolesService.addRole(key, value);
+        this._permissionsService.addPermission(value);
       }
-      console.log('NgxRoles', this._ngxRolesService.getRoles());
+      // console.log('NgxRoles', this._ngxRolesService.getRoles());
+      console.log('Permissions', this._permissionsService.getPermissions());
 
       context.patchState({
           user: new UserLoggedInModel({

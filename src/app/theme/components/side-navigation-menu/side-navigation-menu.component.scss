@@ -40,6 +40,12 @@ $sub-menu-border-color-light: $color-black-3;
 		color: $text-color-dark;
 		border-right: pxToRem(1) solid $color-black-2;
 
+    .group-section {
+      .menu-wrapper {
+        margin-top: 30px;
+      }
+    }
+
 		.feature-group-title {
 			display: inline-block;
 			width: 100%;
@@ -51,7 +57,7 @@ $sub-menu-border-color-light: $color-black-3;
 		}
 
 		ul.menu-wrapper {
-			@include rem(margin, 30, 16, 0);
+			@include rem(margin, 0, 16);
       padding: 0;
 
 			li {

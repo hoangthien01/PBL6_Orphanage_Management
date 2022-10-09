@@ -105,39 +105,45 @@
 			<dx-scroll-view [useNative]="isUseNative" [scrollByContent]="true" [scrollByThumb]="true">
 				<div class="menu-section">
 					<ul class="menu-wrapper position-relative">
-            <li class="menu-item parent-menu" routerLinkActive="active" routerLink="manage-children">
-              <a
-                class="menu-item--link"
-                (click)="goToChildrenPage()"
-                [title]="isCollapsed ? 'Manage Children' : ''">
-                <span class="item-left items-center">
-                  <app-svg-icon class="item-icon fill-666e83"
-                                [name]="'icon_uer_regular'"
-                                [width]="16">
-                  </app-svg-icon>
-                  <span *ngIf="!isCollapsed" class="item-text">
-                    Manage Children
+            <ng-template [ngxPermissionsOnly]="['view_children_info']">
+              <li class="menu-item parent-menu"
+                  routerLinkActive="active"
+                  routerLink="manage-children">
+                <a
+                  class="menu-item--link"
+                  (click)="goToChildrenPage()"
+                  [title]="isCollapsed ? 'Manage Children' : ''">
+                  <span class="item-left items-center">
+                    <app-svg-icon class="item-icon fill-666e83"
+                                  [name]="'icon_uer_regular'"
+                                  [width]="16">
+                    </app-svg-icon>
+                    <span *ngIf="!isCollapsed" class="item-text">
+                      Manage Children
+                    </span>
                   </span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
+            </ng-template>
 
-            <li class="menu-item parent-menu" routerLinkActive="active" routerLink="manage-employee">
-              <a
-                class="menu-item--link"
-                (click)="goToEmployeePage()"
-                [title]="isCollapsed ? 'Manage Employee' : ''">
-                <span class="item-left items-center">
-                  <app-svg-icon class="item-icon fill-666e83"
-                                [name]="'icon_uer_regular'"
-                                [width]="16">
-                  </app-svg-icon>
-                  <span *ngIf="!isCollapsed" class="item-text">
-                    Manage Employee
+            <ng-template [ngxPermissionsOnly]="['view_employee_info']">
+              <li class="menu-item parent-menu" routerLinkActive="active" routerLink="manage-employee">
+                <a
+                  class="menu-item--link"
+                  (click)="goToEmployeePage()"
+                  [title]="isCollapsed ? 'Manage Employee' : ''">
+                  <span class="item-left items-center">
+                    <app-svg-icon class="item-icon fill-666e83"
+                                  [name]="'icon_uer_regular'"
+                                  [width]="16">
+                    </app-svg-icon>
+                    <span *ngIf="!isCollapsed" class="item-text">
+                      Manage Employee
+                    </span>
                   </span>
-                </span>
-              </a>
-            </li>
+                </a>
+              </li>
+            </ng-template>
 
             <li class="menu-item parent-menu" routerLinkActive="active">
               <a

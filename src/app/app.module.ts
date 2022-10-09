@@ -41,7 +41,7 @@ function initializeApp(injector: Injector) {
       }
     }),
     // ngx-permissions
-		NgxPermissionsModule.forRoot(),
+    NgxPermissionsModule.forRoot()
   ],
   providers: [
     {

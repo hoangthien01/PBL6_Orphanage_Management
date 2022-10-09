@@ -11,6 +11,7 @@ import { HeaderComponent } from './components';
 import { AvatarComponent } from './components/header/avatar/avatar.component';
 import { AuthGuard } from '@app/core/guards';
 import { HomeContentComponent } from './components/home-content/home-content.component';
+import { NgxPermissionsGuard, NgxPermissionsModule } from 'ngx-permissions';
 
 const SVG_ICONS = [
 ];
@@ -30,20 +31,35 @@ export const routes: Routes = [
       {
         path: 'manage-role',
         loadChildren: () => import('@app/modules/role-management/role-management.module').then(m => m.RoleManagementModule),
-        canActivate: [AuthGuard],
-        data: { preload: false }
+        canActivate: [AuthGuard, NgxPermissionsGuard],
+        data: {
+          permissions: {
+            only: 'view_children_info'
+          },
+          preload: false
+        }
       },
       {
         path: 'manage-children',
         loadChildren: () => import('@app/modules/children/children.module').then(m => m.ChildrenManagementModule),
-        canActivate: [AuthGuard],
-        data: { preload: false }
+        canActivate: [AuthGuard, NgxPermissionsGuard],
+        data: {
+          permissions: {
+            only: 'view_children_info'
+          },
+          preload: false
+        }
       },
       {
         path: 'manage-employee',
         loadChildren: () => import('@app/modules/employee/employee.module').then(m => m.EmployeeManagementModule),
-        canActivate: [AuthGuard],
-        data: { preload: false }
+        canActivate: [AuthGuard, NgxPermissionsGuard],
+        data: {
+          permissions: {
+            only: 'view_employee_info'
+          },
+          preload: false
+        }
       },
     ]
   }
@@ -62,7 +78,7 @@ export const routes: Routes = [
     ThemeModule,
     RouterModule,
     RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
   ],
   exports: [
     HomeComponent,

@@ -222,7 +222,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     }
 
     goToLoginPage() {
-      this.router.navigate(['login']).then();
+      this.router.navigate(['auth/login']).then();
     }
 
     doAfterUserRegister(auth: AuthResultModel) {

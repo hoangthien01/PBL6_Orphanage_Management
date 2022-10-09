@@ -132,7 +132,7 @@ export class UserSettingComponent implements OnInit {
     //
     this.store.dispatch(new UserActions.Logout({
         destroyAllIntegrations: true,
-        navigateToUrl: ENDPOINTS.LOGIN
+        navigateToUrl: 'auth/login'
     }));
 	}
 

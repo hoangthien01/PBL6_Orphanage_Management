@@ -97,6 +97,7 @@ import { SvgIconsRegistry } from '@app/core/services';
 import { UserSettingComponent } from './components/user-setting/user-setting.component';
 import { PopupContainerComponent } from './components/popup-container/popup-container.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 const DEVEXTREME_MODULES = [
   DxDataGridModule,
@@ -212,7 +213,8 @@ const DIRECTIVES = [
     ...DEVEXTREME_MODULES,
     ...COMPONENTS,
     ...PIPES,
-    ...DIRECTIVES
+    ...DIRECTIVES,
+    NgxPermissionsModule
   ]
 })
 export class ThemeModule {

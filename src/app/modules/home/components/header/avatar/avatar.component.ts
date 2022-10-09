@@ -54,7 +54,7 @@ export class AvatarComponent implements OnInit, OnDestroy {
         this.moreMenuVisible = false;
         this._store.dispatch(new UserActions.Logout({
             destroyAllIntegrations: true,
-            navigateToUrl: ENDPOINTS.LOGIN
+            navigateToUrl: `auth/login`
         }));
     }
 

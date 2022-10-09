@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     getFreeTrial() {
-        this.router.navigate(['sign-up']).then();
+        this.router.navigate(['auth/sign-up']).then();
     }
 
     signIn() {
@@ -118,7 +118,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     forgotPassword() {
-        this.router.navigate(['forgot-password']).then();
+        this.router.navigate(['auth/forgot-password']).then();
     }
 
     checkRemember() {

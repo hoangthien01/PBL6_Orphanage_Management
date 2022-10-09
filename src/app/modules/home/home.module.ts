@@ -10,6 +10,7 @@ import { HomeComponent } from './home.component';
 import { HeaderComponent } from './components';
 import { AvatarComponent } from './components/header/avatar/avatar.component';
 import { AuthGuard } from '@app/core/guards';
+import { HomeContentComponent } from './components/home-content/home-content.component';
 
 const SVG_ICONS = [
 ];
@@ -21,8 +22,9 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: '',
-        redirectTo: 'manage-children',
+        path: 'home',
+        component: HomeContentComponent,
+        // redirectTo: 'manage-children',
         pathMatch: 'full'
       },
       {

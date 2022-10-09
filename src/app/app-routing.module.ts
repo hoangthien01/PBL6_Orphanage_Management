@@ -10,7 +10,7 @@ const routes: Routes = [
       loadChildren: () => import('@app/modules/home/home.module').then(m => m.HomeModule),
   },
   {
-    path: '',
+    path: 'auth',
     loadChildren: () => import('@app/modules/auth/auth.module').then(m => m.AuthModule),
   },
   // {
@@ -18,11 +18,11 @@ const routes: Routes = [
   //     loadChildren: () => import('@app/modules/admin/admin.module').then(m => m.AdminModule),
   //     data: { preload: false }
   // },
-  {
-    path: 'home',
-    loadChildren: () => import('@app/modules/home/home.module').then(m => m.HomeModule),
-    data: { preload: false }
-  },
+  // {
+  //   path: '',
+  //   loadChildren: () => import('@app/modules/home/home.module').then(m => m.HomeModule),
+  //   data: { preload: false }
+  // },
   { path: '**', component: PageNotFoundComponent },
 ];
 

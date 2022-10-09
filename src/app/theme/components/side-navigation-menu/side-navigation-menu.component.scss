@@ -51,7 +51,7 @@ $sub-menu-border-color-light: $color-black-3;
 		}
 
 		ul.menu-wrapper {
-			@include rem(margin, 0, 16);
+			@include rem(margin, 30, 16, 0);
       padding: 0;
 
 			li {

@@ -1,0 +1,92 @@
+a {
+	text-decoration-line: none;
+}
+
+.box-menu {
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    z-index: 1500;
+    background: linear-gradient(238.27deg, #00afff 0%, #0068ff 100%);
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+
+    .icon-menu {
+        align-items: center;
+        height: 100%;
+    }
+}
+
+.logo-box {
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.05) 2px, rgba(255, 255, 255, 0) 0px);
+    background-position: center;
+    background-size: 100% 20px;
+    background-repeat: no-repeat;
+    padding: 0 35px 0 25px;
+
+    :hover {
+        cursor: pointer;
+    }
+}
+
+.menu-selected {
+	background-color: rgba(23, 50, 64, 0.5);
+	background-size: 0 !important;
+}
+
+.broadcast-menu-selected {
+	background-color: rgba(23, 50, 64, 0.5);
+}
+
+.menu-title {
+	color: #ffffff;
+    font-family: "Gotham Medium", sans-serif;
+	font-size: 13px;
+	letter-spacing: -0.17px;
+	line-height: 25px;
+	padding-left: 10px;
+	font-weight: 500;
+}
+
+.tab-item {
+	height: 54px;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.0001) 0%, rgba(255, 255, 255, 0.05) 31.46%, rgba(255, 255, 255, 0.4) 100%);
+	background-position: right bottom;
+	background-size: 1px 32px;
+	background-repeat: no-repeat;
+
+	:hover{
+		cursor: pointer;
+	}
+}
+
+.sub-tab {
+  text-transform: uppercase;
+	height: 100%;
+	padding: 0 20px;
+    color: #FFF;
+}
+
+.avatar-box {
+	padding: 10px 30px 10px 10px;
+}
+
+.locked-account {
+	a {
+		pointer-events: none;
+		cursor: default;
+	}
+}
+
+.bubble {
+	font-size: 11px;
+	background-color: #E57979;
+	color: white;
+	border-radius: 500%;
+	width: 25px;
+	text-align: center;
+	margin-left: 5px;
+
+	&.large-number {
+		font-size: 10px;
+	}
+}

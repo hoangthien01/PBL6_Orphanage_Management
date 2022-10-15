@@ -1,0 +1,30 @@
+.banner {
+  height: 650px;
+  flex-direction: row;
+  align-items: center;
+  grid-template-columns: 2fr 1fr;
+  display: grid;
+
+  .banner-image {
+    position: relative;
+
+    div {
+      background-image: url(../../../../../../assets/images/app-common/banner.jpg);
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      max-height: 700px;
+      background-size: cover;
+    }
+  }
+
+  .banner-content {
+    padding: 60px 30px;
+    background-color: #1CABE2;
+  }
+}

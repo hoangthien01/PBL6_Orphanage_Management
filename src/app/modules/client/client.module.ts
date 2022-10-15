@@ -8,6 +8,7 @@ import { SvgIconsRegistry } from '@app/core/services';
 import { AuthGuard } from '@app/core/guards';
 import { ClientComponent } from './components/client.component';
 import { AvatarComponent, HeaderComponent } from './components/header';
+import { BannerComponent } from './components/home/banner/banner.component';
 
 const SVG_ICONS = [
 ];
@@ -18,7 +19,11 @@ export const routes: Routes = [
     component: ClientComponent,
     canActivate: [AuthGuard],
     children: [
-
+      {
+        path: '',
+        component: BannerComponent,
+        pathMatch: 'full'
+      },
     ]
 }
 
@@ -28,7 +33,8 @@ export const routes: Routes = [
 const COMPONENTS = [
   ClientComponent,
   HeaderComponent,
-  AvatarComponent
+  AvatarComponent,
+  BannerComponent
 ];
 
 @NgModule({

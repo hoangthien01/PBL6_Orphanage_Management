@@ -1,0 +1,42 @@
+@import "jerry-extend";
+@import "jerry-variable";
+$notification-height: 46px;
+$header-height: 54px;
+.app-container {
+    position: relative;
+    height: 100%;
+
+    .app-header-notification {
+        height: $notification-height;
+        background: $color-red-E57979;
+    }
+    .app-header {
+        position: fixed;
+        width: 100%;
+        height: $header-height;
+        z-index: 2;
+        top: 0;
+    }
+
+    .app-content {
+        position: fixed;
+        width: 100%;
+        z-index: 1;
+        bottom: 0;
+        top: $header-height;
+    }
+
+    @for $i from 1 through 3 {
+        &[number-of-notification="#{$i}"] {
+            .app-header-notification {
+                height: $notification-height * $i;
+            }
+            .app-header {
+                top: $notification-height * $i;
+            }
+            .app-content {
+                top: $header-height + $notification-height * $i;
+            }
+        }
+    }
+}

@@ -9,17 +9,19 @@ const routes: Routes = [
 	{
     	path: '',
     	loadChildren: () => import('@app/modules/client/client.module').then(m => m.ClientModule),
+      data: { preload: false }
   	},
   	{
     	path: 'auth',
     	loadChildren: () => import('@app/modules/auth/auth.module').then(m => m.AuthModule),
+      data: { preload: false }
   	},
   	{
       	path: 'admin',
       	loadChildren: () => import('@app/modules/home/home.module').then(m => m.HomeModule),
       	data: { preload: false }
 	},
-	{ path: '**', component: PageNotFoundComponent },
+	// { path: '**', component: PageNotFoundComponent },
 ];
 
 // Load develop module if not in prod environment

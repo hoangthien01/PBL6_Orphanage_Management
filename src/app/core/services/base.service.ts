@@ -270,7 +270,7 @@ export class BaseService {
                 UserStorage.removeSessionStorage();
                 //
                 if (window.location.hostname !== 'localhost') {
-                    window.location.href = window.location.origin + '/login';
+                    window.location.href = window.location.origin + '/auth/login';
                 }
                 break;
             case 403:

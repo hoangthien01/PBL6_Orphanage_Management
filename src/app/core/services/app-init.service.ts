@@ -19,7 +19,6 @@ export class AppInitService {
 
     async initApp(): Promise<boolean> {
         console.log('initApp....');
-
         const pathname: string = window.location.pathname;
         // 1 - is Admin Page
         if (pathname.startsWith(ENDPOINTS.ADMIN)) {

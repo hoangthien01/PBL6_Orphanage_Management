@@ -99,7 +99,9 @@ module.exports = {
         "19.2px": "19.2px",
         "19.6px": "19.6px",
         "20px": "20px",
-        "28px": "28px"
+        "28px": "28px",
+        "31px": "31px",
+        "38px": "38px",
       },
       fontFamily: {
         "gotham-book": ['"Gotham Book"', '"sans-serif"'],

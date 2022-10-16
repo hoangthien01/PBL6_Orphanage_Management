@@ -23,20 +23,7 @@ $header-height: 54px;
         width: 100%;
         z-index: 1;
         bottom: 0;
+        overflow-y: scroll;
         top: $header-height;
-    }
-
-    @for $i from 1 through 3 {
-        &[number-of-notification="#{$i}"] {
-            .app-header-notification {
-                height: $notification-height * $i;
-            }
-            .app-header {
-                top: $notification-height * $i;
-            }
-            .app-content {
-                top: $header-height + $notification-height * $i;
-            }
-        }
     }
 }

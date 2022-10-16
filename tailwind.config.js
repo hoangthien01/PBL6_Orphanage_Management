@@ -84,6 +84,7 @@ module.exports = {
         "16px": "16px",
         "18px": "18px",
         "20px": "20px",
+        "22px": "22px",
         "24px": "24px",
         "28px": "28px",
         "30px": "30px",
@@ -99,6 +100,7 @@ module.exports = {
         "19.2px": "19.2px",
         "19.6px": "19.6px",
         "20px": "20px",
+        "22px": "22px",
         "28px": "28px",
         "31px": "31px",
         "38px": "38px",
@@ -201,7 +203,8 @@ module.exports = {
         "210-c": "210px"
       },
       height: {
-        "340": "340px"
+        "340": "340px",
+        "200": "200px"
       },
       zIndex: {
         "1": "1",

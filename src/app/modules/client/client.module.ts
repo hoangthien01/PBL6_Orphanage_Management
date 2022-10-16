@@ -9,6 +9,8 @@ import { AuthGuard } from '@app/core/guards';
 import { ClientComponent } from './components/client.component';
 import { AvatarComponent, HeaderComponent } from './components/header';
 import { BannerComponent } from './components/home/banner/banner.component';
+import { NewsComponent } from './components/home/news/news.component';
+import { HomeClientComponent } from './components/home/home.component';
 
 const SVG_ICONS = [
 ];
@@ -20,7 +22,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: BannerComponent,
+        component: HomeClientComponent,
         pathMatch: 'full'
       },
     ]
@@ -33,7 +35,9 @@ const COMPONENTS = [
   ClientComponent,
   HeaderComponent,
   AvatarComponent,
-  BannerComponent
+  BannerComponent,
+  NewsComponent,
+  HomeClientComponent
 ];
 
 @NgModule({

@@ -1,11 +1,17 @@
 .news {
   min-height: 500px;
-  padding: 60px 30px;
   background-color: #F1F1F1;
 
-  .news-content {
-    max-width: 1170px;
+  .content-box {
     margin: 0 auto;
+    max-width: 1170px;
+
+    iframe {
+      width: 100%;
+    }
+  }
+
+  .news-content {
     display: grid;
     // grid-template-columns: minmax(min-content, 309px) minmax(min-content, 309px);
     grid-template-columns: repeat(4, 1fr);
@@ -60,10 +66,32 @@
       }
     }
   }
+
+  .article-donation {
+    display: grid;
+    flex-direction: row;
+    align-items: center;
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .footer {
+    padding: 40px 100px 50px 100px;
+
+    .grid-box {
+      grid-template-columns: repeat(auto-fit, minmax(min-content, 210px));
+      grid-gap: 30px;
+    }
+  }
 }
 
 @media only screen and (min-width: 992px) {
-  .news-content {
+  .content-box {
       max-width: 932px !important;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .content-box {
+    max-width: 1140px !important;
   }
 }

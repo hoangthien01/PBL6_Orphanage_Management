@@ -230,7 +230,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
           authResult: auth,
           setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.Login
       }));
-      this.router.navigate(['home']).then();
+      this.router.navigate(['admin/home']).then();
   }
 
     autoLogin() {

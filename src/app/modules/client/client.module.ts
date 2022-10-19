@@ -11,6 +11,7 @@ import { AvatarComponent, HeaderComponent } from './components/header';
 import { BannerComponent } from './components/home/banner/banner.component';
 import { NewsComponent } from './components/home/news/news.component';
 import { HomeClientComponent } from './components/home/home.component';
+import { NewsDetailComponent } from './components/home/news-detail/news-detail.component';
 
 const SVG_ICONS = [
 ];
@@ -25,6 +26,11 @@ export const routes: Routes = [
         component: HomeClientComponent,
         pathMatch: 'full'
       },
+      {
+        path: 'news/:id',
+        component: NewsDetailComponent,
+        pathMatch: 'full'
+      },
     ]
 }
 
@@ -37,7 +43,8 @@ const COMPONENTS = [
   AvatarComponent,
   BannerComponent,
   NewsComponent,
-  HomeClientComponent
+  HomeClientComponent,
+  NewsDetailComponent
 ];
 
 @NgModule({

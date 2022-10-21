@@ -1,0 +1,32 @@
+
+<div class="px-24-c h-full">
+  <div class="text-20px font-gotham-bold py-16-c flex items-center justify-between text-blue-282E3E children-management__header">
+    <span>
+      Add new activity
+    </span>
+    <app-custom-button
+      class="ml-16 w-80-c cursor-pointer"
+      [height]="35"
+      [text]="'Publish'"
+      [type]="'primary'">
+    </app-custom-button>
+  </div>
+
+  <div class="box-properties mt-20-c">
+    <dx-text-box class="field-box"
+                 [inputAttr]="{ autocomplete: 'on' }"
+                 placeholder="Nhập tiêu đề..."
+                 [valueChangeEvent]="'input'">
+    </dx-text-box>
+  </div>
+
+  <div class="mt-30-c h-3/4">
+    <quill-editor
+      class="content-editor"
+      [(ngModel)]="content"
+      [placeholder]="''"
+      [styles]="{'height': '500px'}"
+    >
+    </quill-editor>
+  </div>
+</div>

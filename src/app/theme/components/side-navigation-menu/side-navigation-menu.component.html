@@ -180,6 +180,24 @@
                 </span>
               </a>
             </li>
+
+            <li class="menu-item parent-menu" routerLinkActive="active">
+              <a
+                class="menu-item--link"
+                (click)="onActivityButtonClicked()"
+                [title]="isCollapsed ? 'Events' : ''">
+                <span class="item-left items-center">
+                  <app-svg-icon class="item-icon fill-666e83"
+                                [name]="'icon_map'"
+                                [height]="16"
+                                [width]="16">
+                  </app-svg-icon>
+                  <span *ngIf="!isCollapsed" class="item-text">
+                    Activites
+                  </span>
+                </span>
+              </a>
+            </li>
 					</ul>
 				</div>
 			</dx-scroll-view>

@@ -276,16 +276,19 @@
 <dx-popup
   class="register-popup-container"
   [width]="600"
-  [height]="300"
+  [height]="350"
   [showTitle]="true"
   title="Đăng kí nhận thông tin"
   [dragEnabled]="false"
   [hideOnOutsideClick]="true"
+  [shading]="true"
+  [shadingColor]="'rgba(0,0,0,0.7)'"
   [showCloseButton]="true"
   [(visible)]="isShowRegisterPopup"
 >
   <div>
     <div class="field-area form-wrapper" appAutoFocusInput>
+      <p class="text-16px leading-20px">Vui lòng điền đầy đủ thông tin bên dưới để luôn nhận được những thông tin, sự kiện mới nhất từ chúng tôi.</p>
       <div class="box-properties">
           <span class="field-label">Email</span>
           <dx-text-box #emailTextBox
@@ -320,7 +323,8 @@
           <div class="login-button flex items-center">
               <app-custom-button class="float-left mr-4"
                                  [height]="40"
-                                 [text]="'Gửi thông tin'"
+                                 [width]="70"
+                                 [text]="'GỬi'"
                                  [type]="'primary'"
                                  (onClick)="sendInfo()">
               </app-custom-button>

@@ -28,7 +28,7 @@ export const ENDPOINTS = {
     CONTACTS_DELETED: '/contacts/deleted',
 
     //Manage role
-    MANAGE_ROLE_PAGE: '/manage-role',
+    MANAGE_ROLE_PAGE: 'admin/manage-role',
 
     // Account Setting
     SETTING: '/setting',

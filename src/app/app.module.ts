@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { environment } from '@environment';
 import { NgxsModule } from '@ngxs/store';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { QuillModule } from 'ngx-quill';
 import { AppRoutingModule } from './app-routing.module';
 //
 import { AppComponent } from './app.component';
@@ -41,7 +42,8 @@ function initializeApp(injector: Injector) {
       }
     }),
     // ngx-permissions
-    NgxPermissionsModule.forRoot()
+    NgxPermissionsModule.forRoot(),
+    QuillModule.forRoot()
   ],
   providers: [
     {

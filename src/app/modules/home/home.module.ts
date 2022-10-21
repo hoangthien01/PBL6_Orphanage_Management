@@ -61,6 +61,14 @@ export const routes: Routes = [
           preload: false
         }
       },
+      {
+        path: 'activity',
+        loadChildren: () => import('@app/modules/activity/activity.module').then(m => m.ActivityModule),
+        canActivate: [AuthGuard],
+        data: {
+          preload: false
+        }
+      },
     ]
   }
 

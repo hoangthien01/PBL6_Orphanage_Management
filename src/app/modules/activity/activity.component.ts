@@ -8,6 +8,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 })
 export class ActivityComponent implements OnInit, OnDestroy {
   content = '';
+  isDataValid: boolean = false;
   //
   constructor(private changeDetector: ChangeDetectorRef) {
   }

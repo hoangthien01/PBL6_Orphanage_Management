@@ -2288,7 +2288,7 @@
   line-height: 1.35715;
 }
 .dx-popup-wrapper .dx-state-focused.dx-overlay-content {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
 }
 .dx-loadpanel-content {
   border: 1px solid #ccc;
@@ -4846,7 +4846,7 @@
   padding: 5px 10px;
 }
 .dx-popup-wrapper > .dx-overlay-content {
-  border: 1px solid #ccc;
+  border: none;
   background: #fff;
   -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
   box-shadow: 0 6px 12px rgba(0,0,0,.175);

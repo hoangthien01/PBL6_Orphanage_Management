@@ -21,9 +21,9 @@ export class AppInitService {
         console.log('initApp....');
         const pathname: string = window.location.pathname;
         // 1 - is Admin Page
-        if (pathname.startsWith(ENDPOINTS.ADMIN)) {
-            return Promise.resolve(true);
-        }
+        // if (pathname.startsWith(ENDPOINTS.ADMIN)) {
+        //     return Promise.resolve(true);
+        // }
         //
         if (PageUrlHelper.isUrlThatWeMustRemoveUserInfo(pathname)) {
             this._logOut();

@@ -2,17 +2,19 @@
 @import "jerry-variable";
 
 .banner {
-  height: 650px;
+  height: 700px;
   flex-direction: row;
   align-items: center;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   display: grid;
+  gap: 20px;
 
   .banner-image {
     position: relative;
 
     div {
-      background-image: url(../../../../../../assets/images/app-common/banner.jpg);
+      border-radius: 180px 40px 180px 40px;
+      background-image: url(https://junkodanang.com/assets/images/campaign/trip-mua-xuan.jpg);
       display: inline-block;
       position: absolute;
       left: 0;
@@ -28,6 +30,6 @@
 
   .banner-content {
     padding: 60px 30px;
-    background-color: #1CABE2;
+    // background-color: #1CABE2;
   }
 }

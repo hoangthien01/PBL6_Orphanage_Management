@@ -89,6 +89,7 @@ module.exports = {
         "28px": "28px",
         "30px": "30px",
         "36px": "36px",
+        "50px": "50px",
         "60px": "60px",
       },
       lineHeight: {

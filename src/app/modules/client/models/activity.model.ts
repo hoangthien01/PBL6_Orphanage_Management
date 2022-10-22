@@ -4,6 +4,7 @@ export class ActivityModel {
   content: string;
   location: string;
   start_date: Date;
+  created_at: Date;
   end_date: Date;
   cover_picture: string;
   expense: string;

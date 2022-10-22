@@ -48,7 +48,7 @@ a {
 }
 
 .tab-item {
-	height: 54px;
+  padding: 12px;
 	background-image: linear-gradient(rgba(255, 255, 255, 0.0001) 0%, rgba(255, 255, 255, 0.05) 31.46%, rgba(255, 255, 255, 0.4) 100%);
 	background-position: right bottom;
 	background-size: 1px 32px;
@@ -62,8 +62,6 @@ a {
 .sub-tab {
   text-transform: uppercase;
 	height: 100%;
-	padding: 0 20px;
-    color: #FFF;
 }
 
 .avatar-box {

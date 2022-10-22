@@ -88,7 +88,8 @@ module.exports = {
         "24px": "24px",
         "28px": "28px",
         "30px": "30px",
-        "36px": "36px"
+        "36px": "36px",
+        "60px": "60px",
       },
       lineHeight: {
         "normal": "normal",

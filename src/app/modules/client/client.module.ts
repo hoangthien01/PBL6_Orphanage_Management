@@ -12,8 +12,11 @@ import { BannerComponent } from './components/home/banner/banner.component';
 import { NewsComponent } from './components/home/news/news.component';
 import { HomeClientComponent } from './components/home/home.component';
 import { NewsDetailComponent } from './components/home/news-detail/news-detail.component';
+import { svgIconCalendar, svgIconUserLight } from 'src/assets/images/svg-icons.constants';
 
 const SVG_ICONS = [
+  svgIconUserLight,
+  svgIconCalendar
 ];
 
 export const routes: Routes = [

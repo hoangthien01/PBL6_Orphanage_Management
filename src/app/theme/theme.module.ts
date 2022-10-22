@@ -1,20 +1,9 @@
-import { svgIconSettingLight, svgIconPencil } from './../../../dist/pbl/assets/images/svg-icons.constants';
-import { svgIconMap, svgIconHome } from './../../assets/images/svg-icons.constants';
 import { HelpTextComponent } from './components/help-text/help-text.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { DefaultLayoutComponent } from './components/default-layout/default-layout.component';
 import { SideNavigationMenuComponent } from './components/side-navigation-menu/side-navigation-menu.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { RouterModule } from '@angular/router';
-// import { FormsModule } from '@angular/forms';
-//
-// import {PickerModule} from '@ctrl/ngx-emoji-mart';
-// import {VirtualScrollerModule} from 'ngx-virtual-scroller';
-// import {Daterangepicker} from 'ng2-daterangepicker';
-// import {ClickOutsideModule} from 'ng-click-outside';
-// import {QuicklinkModule} from 'ngx-quicklink';
-// import { ScrollingModule } from '@angular/cdk/scrolling';
 //
 import {
   DxAccordionModule,
@@ -91,7 +80,11 @@ import {
   svgIconUerRegular,
   svgIconUserGroup,
   svgIconUserLight,
-  svgIconAvatarDefault
+  svgIconAvatarDefault,
+  svgIconSettingLight,
+  svgIconMap,
+  svgIconHome,
+  svgIconPencil
 } from 'src/assets/images/svg-icons.constants';
 import { SvgIconsRegistry } from '@app/core/services';
 import { UserSettingComponent } from './components/user-setting/user-setting.component';

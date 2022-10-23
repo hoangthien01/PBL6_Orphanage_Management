@@ -2,6 +2,7 @@ import { ActivityModel } from './../../../models/activity.model';
 import { Component, OnDestroy } from '@angular/core';
 import { ActivityService } from '@app/modules/client/services/activity.service';
 import { Router } from '@angular/router';
+import { ActivityTypeModel } from '@app/modules/client/models/activity-type.model';
 
 @Component({
   selector: 'app-news',
@@ -10,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class NewsComponent implements OnDestroy {
   activites: ActivityModel[];
+  activityTypes: ActivityTypeModel[];
+  //
   page: number = 1;
   page_size: number = 6;
   type: string = 'all';
@@ -21,6 +24,7 @@ export class NewsComponent implements OnDestroy {
   }
 
   ngOnInit(): void {
+    this.getActivityTypes();
     this.getListActivities();
   }
 
@@ -38,6 +42,15 @@ export class NewsComponent implements OnDestroy {
       res => {
         this.activites = res.results;
       })
+  }
+
+  getActivityTypes() {
+    this.activityService.getActivityTypes().subscribe(
+      res => {
+        console.log('result', res);
+        this.activityTypes = res;
+      }
+    )
   }
 
   visibleRegisterPopup() {

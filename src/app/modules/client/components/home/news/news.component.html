@@ -25,18 +25,14 @@
 				<div
 					*ngFor="let activity of activites"
 					class="card flex flex-col items-center">
-					<div class="">
-						<div class="">
-							<div class="">
-								<img class="w-full h-200 object-cover" loading="lazy"
-									:src="{{activity.cover_picture}}" width="480" height="320"
-									alt="What you need to know about COVID-19 vaccines" typeof="foaf:Image">
-							</div>
-						</div>
+					<div class="w-full">
+            <img class="w-full h-200 object-cover" loading="lazy"
+              :src="{{activity.cover_picture}}" width="480" height="320"
+              alt="What you need to know about COVID-19 vaccines" typeof="foaf:Image">
 					</div>
 
 					<div class="content">
-						<div class="pb-10-c pt-6-c">{{activity.activity_type}}</div>
+						<div class="pb-10-c pt-6-c text-blue-00AFFF">{{activity.activity_type | lookupValue : activityTypes : 'id' : 'name'}}</div>
 						<p class="text-22px leading-28px">{{activity.title}}</p>
 						<p class="text-16px leading-22px">  </p>
 						<div class="button">
@@ -135,41 +131,7 @@
 		</div>
 	</div>
 
-	<footer class="bg-blue-00AFFF text-white footer">
-		<div class="w-4/5 mx-auto flex justify-center items-center">
-			<div class="grid text-left grid-box w-2/3 text-14px">
-				<div>
-					<div class="font-bold mb-12-c">Trang chủ</div>
-					<div class="mt-6-c">Chúng tôi làm gì</div>
-					<div class="mt-6-c">Nghiên cứu và báo cáo</div>
-					<div class="mt-6-c">Chuyện của chúng tôi</div>
-					<div class="mt-6-c">Hành động</div>
-				</div>
-
-				<div>
-					<div class="font-bold mb-12-c">Giới thiệu</div>
-					<div class="mt-6-c">Trẻ em Việt Nam</div>
-					<div class="mt-6-c">Thông cáo báo chí</div>
-					<div class="mt-6-c">Liên hệ</div>
-					<div class="mt-6-c">Làm việc với F5DUT</div>
-				</div>
-			</div>
-
-			<div class="flex flex-col items-center justify-around w-1/3 mx-auto">
-				<app-custom-button
-					class="uppercase !text-red-CE1818 hover:bg-white rounded-5px"
-					[text]="'Quyên góp'"
-					[type]="'primary-outline'">
-				</app-custom-button>
-
-				<div class="flex items-center justify-center mt-20-c">
-					<span>Thông tin pháp lý</span>
-					<div class="mx-8-c w-1-c h-12-c bg-white"></div>
-					<span>Liên hệ</span>
-				</div>
-			</div>
-		</div>
-	</footer>
+  <app-client-footer></app-client-footer>
 </div>
 
 <dx-popup
@@ -189,23 +151,7 @@
 		<div class="field-area form-wrapper" appAutoFocusInput>
 			<p class="text-16px leading-20px">Cung cấp những thông tin dưới đây để luôn nhận được những cập nhật thông tin, sự kiện mới nhất từ chúng tôi. </p>
 			<div class="box-properties">
-					<span class="field-label">Email</span>
-					<dx-text-box #emailTextBox
-											 class="field-box"
-											 placeholder="Enter Email"
-											 [valueChangeEvent]="'input'">
-							<dx-validator>
-									<dxi-validation-rule type="required"
-																			 message="Email address is required">
-									</dxi-validation-rule>
-									<dxi-validation-rule type="email"
-																			 message="Invalid email address">
-									</dxi-validation-rule>
-							</dx-validator>
-					</dx-text-box>
-			</div>
-			<div class="box-properties">
-					<span class="field-label">Name</span>
+					<span class="field-label">Họ và tên</span>
 					<dx-text-box #passwordTextBox
 											 class="field-box"
 											 mode="text"
@@ -218,12 +164,29 @@
 							</dx-validator>
 					</dx-text-box>
 			</div>
+
+      <div class="box-properties">
+        <span class="field-label">Địa chỉ Email</span>
+        <dx-text-box #emailTextBox
+                     class="field-box"
+                     placeholder="Enter Email"
+                     [valueChangeEvent]="'input'">
+            <dx-validator>
+                <dxi-validation-rule type="required"
+                                     message="Email address is required">
+                </dxi-validation-rule>
+                <dxi-validation-rule type="email"
+                                     message="Invalid email address">
+                </dxi-validation-rule>
+            </dx-validator>
+        </dx-text-box>
+    </div>
 			<div class="content-footer clearfix">
 					<div class="login-button flex items-center">
 							<app-custom-button class="float-left mr-4"
 																 [height]="40"
 																 [width]="70"
-																 [text]="'GỬi'"
+																 [text]="'Theo dõi'"
 																 [type]="'primary'"
 																 (onClick)="sendInfo()">
 							</app-custom-button>

@@ -1,0 +1,8 @@
+.footer {
+  padding: 100px 0;
+
+  .grid-box {
+    grid-template-columns: repeat(auto-fit, minmax(min-content, 210px));
+    grid-gap: 30px;
+  }
+}

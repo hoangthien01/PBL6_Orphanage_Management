@@ -13,6 +13,8 @@ import { NewsComponent } from './components/home/news/news.component';
 import { HomeClientComponent } from './components/home/home.component';
 import { NewsDetailComponent } from './components/home/news-detail/news-detail.component';
 import { svgIconCalendar, svgIconUserLight } from 'src/assets/images/svg-icons.constants';
+import { DonateComponent } from './components/donate/donate.component';
+import { FooterComponent } from './components/home/footer/footer.component';
 
 const SVG_ICONS = [
   svgIconUserLight,
@@ -47,7 +49,9 @@ const COMPONENTS = [
   BannerComponent,
   NewsComponent,
   HomeClientComponent,
-  NewsDetailComponent
+  NewsDetailComponent,
+  DonateComponent,
+  FooterComponent
 ];
 
 @NgModule({

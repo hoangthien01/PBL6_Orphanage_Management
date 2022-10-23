@@ -6,7 +6,7 @@ export const environment = {
   name: 'local',
   production: false,
   // baseUrl: 'http://127.0.0.1:8000',
-  baseUrl: 'https://d968-2001-ee0-1a4-17fe-e847-506b-c66a-95d9.ap.ngrok.io/api/v1',
+  baseUrl: 'https://cf5e-14-174-34-11.ap.ngrok.io/api/v1',
 };
 
 /*

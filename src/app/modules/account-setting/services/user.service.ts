@@ -25,7 +25,7 @@ export class UserService {
     }
 
     login(login: SignInModel): Observable<AuthResultModel> {
-        return this.baseService.post(`${this.userURL}/action/login`, login, false);
+        return this.baseService.post(`user/action/login`, login, false);
     }
 
     register(registerAccount: RegisteredAccountModel): Observable<AuthResultModel> {
@@ -34,21 +34,21 @@ export class UserService {
         email: registerAccount.email,
         password: registerAccount.password,
       }
-      return this.baseService.post(`${this.userURL}/action/sign_up`, data, false);
+      return this.baseService.post(`user/action/sign_up`, data, false);
     }
 
     reloadUserData(): Observable<AuthResultModel> {
-      return this.baseService.post(`${this.userURL}/account/reload_page`, false);
+      return this.baseService.post(`user/account/reload_page`, false);
     }
 
     autoLogin(activateModel: ActivateAccountModel): Observable<AuthResultModel> {
-        return this.baseService.post(`${this.userURL}/auto-login`, activateModel);
+        return this.baseService.post(`user/auto-login`, activateModel);
     }
 
     // forgotPassword(email: string): Observable<string> {
         // const emailObj = new SingleFieldModel<string>();
         // emailObj.data = email;
-        // return this.baseService.post(`${this.userURL}/reset`, emailObj);
+        // return this.baseService.post(`user/reset`, emailObj);
     // }
 
     checkingExistEmail(id: string, email: string): Observable<boolean> {
@@ -56,7 +56,7 @@ export class UserService {
         emailObj.key = id;
         emailObj.value = email;
 
-        return this.baseService.post(`${this.userURL}/email/exists`, emailObj);
+        return this.baseService.post(`user/email/exists`, emailObj);
     }
 
 
@@ -74,21 +74,21 @@ export class UserService {
     //     const avatar = new AvatarUpdatingModel();
     //     avatar.data = file;
     //     avatar.excludeConnectionId = excludeConnectionId;
-    //     const url = `${this.userURL}/avatar`;
+    //     const url = `user/avatar`;
     //     return this.baseService.postFile(url, avatar);
     // }
 
     // deleteAvatar(excludeConnectionId: string): Observable<boolean> {
     //     const avatar = new AvatarUpdatingModel();
     //     avatar.excludeConnectionId = excludeConnectionId;
-    //     const url = `${this.userURL}/avatar/delete`;
+    //     const url = `user/avatar/delete`;
     //     return this.baseService.post(url, avatar);
     // }
 
     // comparePassword(password: string): Observable<boolean> {
     //     const data = new SingleFieldModel<string>();
     //     data.data = password;
-    //     const url = `${this.userURL}/password/compare`;
+    //     const url = `user/password/compare`;
     //     return this.baseService.post(url, data);
     // }
 
@@ -96,36 +96,36 @@ export class UserService {
         const data = new ListItemModel<string, string>();
         data.key = oldPassword;
         data.value = newPassword;
-        const url = `${this.userURL}/password`;
+        const url = `user/password`;
         return this.baseService.put(url, data);
     }
 
     // addUser(user: UserModel): Observable<string> {
-    //     return this.baseService.post(`${this.userURL}`, user);
+    //     return this.baseService.post(`user`, user);
     // }
 
     // updateUser(user: UserModel): Observable<string> {
-    //     return this.baseService.put(`${this.userURL}`, user);
+    //     return this.baseService.put(`user`, user);
     // }
 
     removeUser(userId: string, isDelete: boolean): Observable<boolean> {
-        return this.baseService.delete(`${this.userURL}/${userId}/${isDelete ? 'true' : 'false'}`);
+        return this.baseService.delete(`user/${userId}/${isDelete ? 'true' : 'false'}`);
     }
 
     // getUser(userId: string): Observable<UserModel> {
-    //     return this.baseService.get(`${this.userURL}/${userId}`);
+    //     return this.baseService.get(`user/${userId}`);
     // }
 
     // getUsers(): Observable<UserModel[]> {
-    //     return this.baseService.get(`${this.userURL}/users`);
+    //     return this.baseService.get(`user/users`);
     // }
 
     getUserAssigns(isUnassignInclude: boolean): Observable<ListItemModel<string, string>[]> {
-        return this.baseService.get(`${this.userURL}/assignees?isUnassignInclude=${isUnassignInclude ? 'true' : 'false'}`);
+        return this.baseService.get(`user/assignees?isUnassignInclude=${isUnassignInclude ? 'true' : 'false'}`);
     }
 
     getProspectGridColumnSetting(): Observable<string> {
-        return this.baseService.get(`${this.userURL}/account/prospect-grid-column/setting`);
+        return this.baseService.get(`user/account/prospect-grid-column/setting`);
     }
 
     // switchAccount(accountId: string): Observable<AuthResultModel> {
@@ -134,18 +134,18 @@ export class UserService {
     //     switchAccount.deviceToken = sessionStorage.getItem(DEVICE_TOKEN);
     //     switchAccount.platform = sessionStorage.getItem(PLATFORM_NAME) || 'iOS';
 
-    //     return this.baseService.post(`${this.userURL}/switch`, switchAccount);
+    //     return this.baseService.post(`user/switch`, switchAccount);
     // }
 
     // getUserByEmail(email: string): Observable<UserModel> {
-    //     return this.baseService.get(`${this.userURL}/info/${email}`);
+    //     return this.baseService.get(`user/info/${email}`);
     // }
 
     // makeAsAccountOwner(userId: string): Observable<string> {
     //     const userObj = new SingleFieldModel<string>();
     //     userObj.data = userId;
 
-    //     return this.baseService.put(`${this.userURL}/owner`, userObj);
+    //     return this.baseService.put(`user/owner`, userObj);
     // }
 }
 

@@ -1,0 +1,91 @@
+@import "jerry-extend";
+@import "jerry-variable";
+
+.profile-avatar {
+	#upload-avatar {
+		visibility: hidden;
+		position: absolute;
+	}
+
+	.title-panel {
+		margin-bottom: 15px;
+		color: #555555;
+		@include gotham-book(300, 12px, 14px);
+	}
+
+	.avatar {
+        min-width: 60px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 0 8px 0 rgb(0 0 0 / 10%);
+
+        .icon-avatar-container {
+            width: 60px;
+        }
+
+        img {
+            min-width: 60px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #FFF;
+            cursor: pointer;
+        }
+	}
+
+	.button-group {
+        margin-left: 20px;
+        display: flex;
+    }
+}
+
+::ng-deep .dx-popup-wrapper {
+	&.drag-drop-avatar {
+		.dx-popup-normal {
+			&.dx-overlay-content {
+				image-cropper {
+					&.image-cropper {
+						max-height: 400px;
+
+						div:first-child {
+							position: relative;
+							width: 100%;
+						}
+
+						.cropper {
+							position: absolute;
+							display: flex;
+							color: #53535c;
+							background: 0 0;
+							touch-action: none;
+							outline: rgba(255, 255, 255, 0.3) solid 100vw;
+						}
+					}
+				}
+
+				.row {
+					.button-group {
+						position: fixed;
+						bottom: 0;
+						padding: 15px 10px;
+						display: flex;
+						width: 100%;
+						text-align: right;
+						justify-content: flex-end;
+						background: #fbfbfe;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { exportDataGrid } from 'devextreme/excel_exporter';
 import { Workbook } from 'exceljs';
-import { ChildrenModel } from './models';
-import { ListChildrenResponseModel } from './models/children-response.model';
+import { EmployeeModel } from './models';
+import { ListEmployeeResponseModel } from './models/employee-response.model';
 import { EmployeeService } from './services/employee-management.service';
 import { saveAs } from 'file-saver-es';
 import { LoadOptions } from 'devextreme/data';
@@ -17,8 +17,8 @@ import { GENDER_TYPES } from '@app/shared/app.constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeeManagementComponent implements OnInit, OnDestroy {
-  childrenDataSource: DataSource;
-  chidlDetail: ChildrenModel;
+  employeeSource: DataSource;
+  employeeDetail: EmployeeModel;
   //
   pagingSize: number = 10;
   pageIndexDefault: number = 0;
@@ -41,7 +41,7 @@ export class EmployeeManagementComponent implements OnInit, OnDestroy {
   }
 
   loadGridData() {
-    this.childrenDataSource = new DataSource({
+    this.employeeSource = new DataSource({
         key: 'id',
         load: (option) => this.gridLoadOption(option),
         // sort: [{
@@ -51,7 +51,7 @@ export class EmployeeManagementComponent implements OnInit, OnDestroy {
     });
 }
 
-  gridLoadOption(loadOptions: LoadOptions): Promise<LoadResultModel<ChildrenModel[]>> {
+  gridLoadOption(loadOptions: LoadOptions): Promise<LoadResultModel<EmployeeModel[]>> {
     // if (!loadOptions || !loadOptions.take) {
     //     return;
     // }
@@ -100,7 +100,7 @@ export class EmployeeManagementComponent implements OnInit, OnDestroy {
 
   onExporting(e) {
     const workbook = new Workbook();
-    const worksheet = workbook.addWorksheet('Childrens');
+    const worksheet = workbook.addWorksheet('Employees');
 
     exportDataGrid({
       component: e.component,
@@ -116,7 +116,7 @@ export class EmployeeManagementComponent implements OnInit, OnDestroy {
 
   onViewChildInfo(e: any) {
     console.log(e);
-    this.chidlDetail = e.data;
+    this.employeeDetail = e.data;
     this.isShowChildDetailPopup = true;
   }
 }

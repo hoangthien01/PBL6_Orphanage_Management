@@ -20,7 +20,7 @@
 
     <div class="children-grid-container">
       <dx-data-grid #roleDataGrid
-                    [dataSource]="childrenDataSource"
+                    [dataSource]="employeeSource"
                     [showBorders]="false"
                     [showRowLines]="false"
                     [showColumnLines]="false"
@@ -28,7 +28,7 @@
                     [noDataText]="'No data to display'"
                     (onExporting)="onExporting($event)"
                     (onRowClick)="onViewChildInfo($event)">
-          <dxo-load-panel [enabled]="false"></dxo-load-panel>
+          <dxo-load-panel [enabled]="true"></dxo-load-panel>
           <dxo-remote-operations [paging]="true"
                                  [sorting]="true">
           </dxo-remote-operations>
@@ -70,20 +70,27 @@
               </div>
             </ng-container>
           </dxi-column>
-          <dxi-column dataField="age"
-                      [caption]="'Age'"
+
+          <dxi-column dataField="personal_email"
+                      [caption]="'Email'"
                       [alignment]="'left'"
                       [allowSorting]="true">
           </dxi-column>
-          <dxi-column dataField="join_date"
-                      [caption]="'Start Date'"
+
+          <dxi-column dataField="address"
+                      [caption]="'Address'"
                       [alignment]="'left'"
                       [allowSorting]="true">
           </dxi-column>
-          <dxi-column dataField="status"
-                      [caption]="'Status'"
+
+          <dxi-column dataField="created_at"
+                      [caption]="'Create At'"
                       [alignment]="'left'"
-                      [allowSorting]="true">
+                      [allowSorting]="true"
+                      [cellTemplate]="'dateCellTemplate'">
+            <ng-container *dxTemplate="let item of 'dateCellTemplate'">
+              <span>{{item.value | date}}</span>
+            </ng-container>
           </dxi-column>
 
           <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
@@ -103,6 +110,6 @@
 <ng-container *ngIf="isShowChildDetailPopup">
   <app-employee-detail #childDetailComponent
                  [(visible)]="isShowChildDetailPopup"
-                 [child]="chidlDetail">
+                 [child]="employeeDetail">
   </app-employee-detail>
 </ng-container>

@@ -1,0 +1,53 @@
+<div class="profile-avatar">
+    <div class="field-label">{{logoTitle}}</div>
+    <div class="d-flex align-items-center">
+        <div class="avatar">
+            <app-svg-icon *ngIf="avatarParentComponent == AVATAR_PARENT_COMPONENT.profile"
+                          class="icon-avatar-container"
+                          [data]="SVG_ICONS.AvatarDefault">
+            </app-svg-icon>
+            <app-svg-icon *ngIf="avatarParentComponent == AVATAR_PARENT_COMPONENT.chatBoxAppearance"
+                          class="icon-avatar-container"
+                          [data]="SVG_ICONS.AvatarLogo">
+            </app-svg-icon>
+
+            <!-- <img *ngIf="!!fileAvatarName"
+                 #avatar
+                 id="profile-avatar"
+                 [src]="(avatarParentComponent == AVATAR_PARENT_COMPONENT.profile ? avatarObj.avatarUrl : avatarObj.chatBoxLogoUrl) + '/' + fileAvatarName"
+                 alt="avatar-image"
+                 type="image"
+                 [title]="'View Picture'"
+                 (click)="previewAvatar(avatar.src)"/> -->
+        </div>
+        <div class="button-group">
+            <app-custom-button class="mr-12-c"
+                               [width]="150"
+                               [height]="32"
+                               [type]="'primary-outline'"
+                               [text]="'Upload Photo'"
+                               [icon]="isUpdating ? 'fas fa-spinner fa-spin' : ''"
+                               [disabled]="disabled || isUpdating || isDeleting"
+                               (onClick)="updateImg()">
+            </app-custom-button>
+
+            <app-custom-button [height]="32"
+                               [width]="150"
+                               [text]="'REMOVE PHOTO'"
+                               [type]="'delete-outline'"
+                               [hidden]="!fileAvatarName"
+                               [icon]="isDeleting ? 'fas fa-spinner fa-spin' : ''"
+                               [disabled]="disabled || !fileAvatarName || isUpdating || isDeleting"
+                               (onClick)="removeAvatar()">
+            </app-custom-button>
+        </div>
+    </div>
+
+    <input #uploadImg (change)="fileChangeEvent($event)" accept="image/*" id="upload-avatar" type="file"/>
+</div>
+<!--
+<ng-container *ngIf="showAttachmentPreviewPopup">
+    <app-attachment-preview-popup [attachment]="attachmentPreviewed"
+                                  [(visible)]="showAttachmentPreviewPopup">
+    </app-attachment-preview-popup>
+</ng-container> -->

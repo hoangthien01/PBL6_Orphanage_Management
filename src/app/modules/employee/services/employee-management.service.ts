@@ -1,8 +1,8 @@
-import { ChildrenModel } from '../models/children.model';
+import { EmployeeModel } from '../models/employee.model';
 import { Injectable } from '@angular/core';
 import { BaseService } from '@app/core/services';
 import { Observable } from 'rxjs';
-import { ListChildrenResponseModel } from '../models/children-response.model';
+import { ListEmployeeResponseModel } from '../models/employee-response.model';
 //
 
 @Injectable({
@@ -19,11 +19,11 @@ export class EmployeeService {
     page: number,
     pageSize: number,
     name?: string,
-  }): Observable<ListChildrenResponseModel> {
-    return this.baseService.get(`${this.userURL}/get_list_employee?page=${data.page}&page_size=${data.pageSize}&name=${data.name}`);
+  }): Observable<ListEmployeeResponseModel> {
+    return this.baseService.get(`user/get_list_employee?page=${data.page}&page_size=${data.pageSize}&name=${data.name}`);
   }
 
-  addChild(child: any) :Observable<ChildrenModel> {
-    return this.baseService.postFile(`${this.userURL}`, child);
+  addEmployee(employee: any) :Observable<EmployeeModel> {
+    return this.baseService.postFile(`user`, employee);
   }
 }

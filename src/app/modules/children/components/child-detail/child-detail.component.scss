@@ -9,6 +9,15 @@
   }
 }
 
+
+::ng-deep .dx-popup-content {
+  padding-right: 0 !important;
+
+  .dx-scrollable-wrapper {
+    padding-right: 16px;
+  }
+}
+
 ::ng-deep .add-prospect-popup {
     position: relative;
 

@@ -2,12 +2,13 @@
 @import "jerry-variable";
 
 .banner {
-  height: 500px;
+  height: 650px;
   flex-direction: row;
   align-items: center;
   grid-template-columns: 1fr 1fr;
   display: grid;
   gap: 20px;
+  background-color: #fff;
 
   .banner-image {
     position: relative;

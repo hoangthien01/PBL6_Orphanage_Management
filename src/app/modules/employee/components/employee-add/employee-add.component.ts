@@ -15,7 +15,7 @@ import {PROSPECT_MESSAGE} from '@app/shared/message';
 import {GENDER_TYPES, POPUP_ANIMATION, PROSPECT_FIELD_NAMES} from '@app/shared/app.constants';
 import {ListItemModel } from '@app/shared/models';
 import {BaseService} from '@app/core/services';
-import { ChildrenModel } from '../../models';
+import { EmployeeModel } from '../../models';
 import { EmployeeService } from '../../services/employee-management.service';
 
 @Component({
@@ -50,7 +50,7 @@ export class EmployeeAddComponent implements OnInit, OnDestroy {
     POPUP_ANIMATION = POPUP_ANIMATION;
     genderLookup = GENDER_TYPES;
 
-    child: ChildrenModel = new ChildrenModel();
+    child: EmployeeModel = new EmployeeModel();
     file: any[] = [];
 
     isDataValid: boolean = false;
@@ -111,7 +111,7 @@ export class EmployeeAddComponent implements OnInit, OnDestroy {
 
         }
         this.isProcessing = true;
-        this.employeeService.addChild(data)
+        this.employeeService.addEmployee(data)
             .pipe(finalize(() => {
               this.isProcessing = false;
               this.cdr.detectChanges();
@@ -132,7 +132,7 @@ export class EmployeeAddComponent implements OnInit, OnDestroy {
     }
 
     resetPopup() {
-        this.child = new ChildrenModel();
+        this.child = new EmployeeModel();
     }
 
     hidePopup() {

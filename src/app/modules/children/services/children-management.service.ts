@@ -23,10 +23,10 @@ export class ChildrenService {
     gender?: number,
     status?: string,
   }): Observable<ListChildrenResponseModel> {
-    return this.baseService.get(`${this.userURL}?page=${data.page}&page_size=${data.pageSize}&name=${data.name}&age=${data.age}&gender=${data.gender}&status=${data.status}`);
+    return this.baseService.get(`children?page=${data.page}&page_size=${data.pageSize}&name=${data.name}&age=${data.age}&gender=${data.gender}&status=${data.status}`);
   }
 
   addChild(child: any) :Observable<ChildrenModel> {
-    return this.baseService.postFile(`${this.userURL}`, child);
+    return this.baseService.postFile(`children`, child);
   }
 }

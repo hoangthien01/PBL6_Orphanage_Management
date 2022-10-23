@@ -32,6 +32,10 @@
         flex-flow: column !important;
       }
     }
+
+    .article-donation {
+      grid-template-columns:  1fr 1fr !important;
+    }
   }
 
   .news-content {

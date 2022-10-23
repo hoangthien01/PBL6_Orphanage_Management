@@ -15,7 +15,7 @@ import {PROSPECT_MESSAGE} from '@app/shared/message';
 import {GENDER_TYPES, POPUP_ANIMATION, PROSPECT_FIELD_NAMES} from '@app/shared/app.constants';
 import {ListItemModel } from '@app/shared/models';
 import {BaseService} from '@app/core/services';
-import { ChildrenModel } from '../../models';
+import { EmployeeModel } from '../../models';
 import { EmployeeService } from '../../services/employee-management.service';
 
 @Component({
@@ -41,7 +41,7 @@ export class EmployeeDetailComponent implements OnInit, OnDestroy {
         this._visible = value;
         this.visibleChange.emit(value);
     }
-    @Input() child: ChildrenModel;
+    @Input() child: EmployeeModel;
     @Output() refreshGrid: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -74,7 +74,7 @@ export class EmployeeDetailComponent implements OnInit, OnDestroy {
 
 
     resetPopup() {
-        this.child = new ChildrenModel();
+        this.child = new EmployeeModel();
     }
 
     hidePopup() {

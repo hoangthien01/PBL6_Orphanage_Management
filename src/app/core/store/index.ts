@@ -6,3 +6,6 @@ export * from './user/user.storage';
 //
 export * from './user-lookup/user-lookup.state';
 export * from './user-lookup/user-lookup.selectors';
+//
+export * from './activities/activities.selectors';
+export * from './activities/activities.state';

@@ -1,3 +1,4 @@
+import { ActivitiesState } from './core/store/activities/activities.state';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
@@ -34,7 +35,7 @@ function initializeApp(injector: Injector) {
     //
     AppRoutingModule,
     //
-    NgxsModule.forRoot([UserState, UserLookupState], {
+    NgxsModule.forRoot([UserState, UserLookupState, ActivitiesState], {
       developmentMode: !environment.production,
       selectorOptions: {
           suppressErrors: false,

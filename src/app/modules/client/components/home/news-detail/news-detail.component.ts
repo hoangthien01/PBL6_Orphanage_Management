@@ -11,6 +11,8 @@ import { ActivityModel } from '@app/modules/client/models/activity.model';
 export class NewsDetailComponent implements OnDestroy {
   activity: ActivityModel;
   //
+  isLoading: boolean = false;
+  //
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -21,8 +23,10 @@ export class NewsDetailComponent implements OnDestroy {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     const id = this.route.snapshot.paramMap.get('id')!;
+    this.isLoading = true;
     this.activityService.getActivity(id).subscribe((res) => {
       this.activity = res;
+      this.isLoading = false;
     });
   }
 

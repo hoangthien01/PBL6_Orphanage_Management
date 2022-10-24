@@ -39,7 +39,6 @@
               "src/assets/css/devextreme/dx.common.css",
               "src/assets/css/fontawesome/css/fontawesome.css",
               "src/assets/css/bootstrap/bootstrap.css",
-              "src/assets/css/components/index.scss",
               "src/assets/css/devextreme/generic.light.custom.css",
               "src/assets/css/jerry.scss",
               "./node_modules/quill/dist/quill.core.css",

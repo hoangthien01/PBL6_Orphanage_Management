@@ -8,7 +8,7 @@
         <div class="profile-general-info-wrapper pl-10-c pr-30-c">
             <div class="form-wrapper">
                 <div class="general-info-section">
-                    <div class="left-section pb-64-c">
+                    <div class="left-section pb-40-c">
                         <div class="section-summary__title pb-24-c">Thông tin người dùng</div>
                         <div class="box-properties">
                             <app-profile-avatar [avatarParentComponent]="AVATAR_PARENT_COMPONENT.profile"
@@ -19,7 +19,7 @@
                             </app-profile-avatar>
                         </div>
 
-                        <div class="box-properties" appAutoFocusInput>
+                        <div class="box-properties mt-16-c" appAutoFocusInput>
                             <span class="field-label">Họ và tên</span>
                             <dx-text-box class="field-box"
                                          [disabled]="isSaving"
@@ -56,21 +56,6 @@
                                          (onValueChanged)="dataChanged()">
                             </dx-text-box>
                         </div>
-
-                        <!-- <div class="call-forwarding d-flex align-items-center">
-                            <dx-switch [disabled]="isSaving || !phoneNumberDataSource.postfix"
-                                       [(value)]="profileGeneralInfo.isEnableCallForwarding"
-                                       (onValueChanged)="dataChanged()">
-                            </dx-switch>
-                            <span class="switch-label">Call Forwarding</span>
-                            <app-help-text class="ml-2"
-                                           [targetClass]="'profile-general-info-call-forwarding__tooltip'"
-                                           [position]="'top'"
-                                           [tooltipWidth]="190">
-                                When a contact calls the WooSender number, the call will be forwarded to their
-                                <span class="font-weight-bold">Assignee’s phone number.</span>
-                            </app-help-text>
-                        </div> -->
                     </div>
 
                     <div class="left-section">

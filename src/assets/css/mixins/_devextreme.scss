@@ -1,5 +1,5 @@
-@import "../jerry-extend";
-@import "../jerry-variable";
+@import "jerry-extend";
+@import "jerry-variable";
 
 /*------------Input (TextBox, NumberBox, Selectbox, etc) --------------*/
 @mixin field-input {

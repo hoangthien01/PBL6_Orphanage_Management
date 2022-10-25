@@ -1,20 +1,21 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { EMPTY, Observable, of, Subject, Subscription } from 'rxjs';
-import { catchError, debounceTime, finalize, switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { EmployeeService } from './../../../services/employee-management.service';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { debounceTime, finalize } from 'rxjs/operators';
 import { isEqual, cloneDeep } from 'lodash-es';
 import { DxTextBoxComponent } from 'devextreme-angular/ui/text-box';
 import { DxValidatorComponent } from 'devextreme-angular/ui/validator';
 import { Store } from '@ngxs/store';
 //
-import { DevExtremeValidationHelper } from '@app/utilities';
 import { COMMON_MESSAGE } from '@app/shared/message';
 import { AVATAR_PARENT_COMPONENT } from '@app/shared/app.constants';
-import { AppNotify, CommonFunction } from 'src/app/utilities';
-import { ProfileGeneralInfoModel } from '@app/modules/account-setting/models';
+import { CommonFunction } from 'src/app/utilities';
 import { UserService } from '@app/modules/account-setting/services/user.service';
 import { CanComponentDeactivate } from '@app/core/guards';
-import { UserLookupSelectors, UserStorage } from '@app/core/store';
-import * as UserActions from '@app/core/store/user/user.actions';
+import { EmployeeModel } from '@app/modules/employee/models';
+import { ProfileService } from '@app/modules/profile/services/employee-management.service';
+import { UserSelectors } from '@app/core/store';
 
 @Component({
     selector: 'app-profile-general-info',
@@ -24,15 +25,16 @@ import * as UserActions from '@app/core/store/user/user.actions';
 export class ProfileGeneralInfoComponent implements OnInit, OnDestroy, CanComponentDeactivate {
     @ViewChild('accountEmailTextBox') accountEmailTextBox: DxTextBoxComponent;
     @ViewChild('emailValidator') emailValidator: DxValidatorComponent;
-
-    AVATAR_PARENT_COMPONENT = AVATAR_PARENT_COMPONENT;
-    profileGeneralInfo = new ProfileGeneralInfoModel();
-    profileCloned: { profileGeneralInfo: ProfileGeneralInfoModel; postfixPhoneNumber: string; selectedCountryCode: string } = {
-        profileGeneralInfo: null,
-        postfixPhoneNumber: '',
-        selectedCountryCode: null,
-    };
     //
+    @Input() employeeId: string;
+    //
+    userId$: Observable<string> = this._store.select<string>(UserSelectors.userId);
+    //
+    AVATAR_PARENT_COMPONENT = AVATAR_PARENT_COMPONENT;
+    //
+    employee: EmployeeModel = new EmployeeModel();
+    employeeCloned: EmployeeModel;
+    userId: string;
     isInit: boolean = false;
     isSaving: boolean = false;
     isDataChanged: boolean = false;
@@ -48,9 +50,10 @@ export class ProfileGeneralInfoComponent implements OnInit, OnDestroy, CanCompon
 
     constructor(private _cdr: ChangeDetectorRef,
                 private _store: Store,
+                private _route: ActivatedRoute,
+                private _employeeService: EmployeeService,
+                private _profileService: ProfileService,
                 private _userService: UserService) {
-        this._subscribeEmailExistedValidation();
-        //
         this._subscriptions.add(this._valueChanged$.pipe(debounceTime(300)).subscribe(() => {
             this.isDataChanged = this.checkIsDataChanged();
             this.isDataValid = this.checkIsDataValid();
@@ -58,6 +61,9 @@ export class ProfileGeneralInfoComponent implements OnInit, OnDestroy, CanCompon
     }
 
     ngOnInit() {
+        this._subscriptions.add(this.userId$.subscribe((userId) => {
+          this.userId = userId;
+        }))
         this.getProfileGeneralInfo();
     }
 
@@ -81,16 +87,26 @@ export class ProfileGeneralInfoComponent implements OnInit, OnDestroy, CanCompon
 
     getProfileGeneralInfo() {
         this.isLoading = true;
-
-        // this._userService.getProfileGeneralInfo().pipe(finalize(() => {
-        //     this.isLoading = false;
-        //     this.isInit = true;
-        // })).subscribe((res) => {
-        //     // handle the case, DB haven't had or updated this field
-        //     this.profileGeneralInfo = new ProfileGeneralInfoModel(res);
-        //     //
-        //     this.profileCloned.profileGeneralInfo = cloneDeep(this.profileGeneralInfo);
-        // });
+        if (!this.employeeId) {
+          this._profileService .getProfile(this.userId).pipe(finalize(() => {
+            this.isLoading = false;
+            this.isInit = true;
+        })).subscribe((res) => {
+            this.employee = res;
+            this.employeeCloned = cloneDeep(this.employee);
+        });
+        } else {
+          const id = this._route.snapshot.paramMap.get('id')!;
+          this._employeeService.getEmployee(id).pipe(finalize(() => {
+              this.isLoading = false;
+              this.isInit = true;
+          })).subscribe((res) => {
+              // handle the case, DB haven't had or updated this field
+              this.employee = res;
+              //
+              this.employeeCloned = cloneDeep(this.employee);
+          });
+        }
     }
 
     updateProfileGeneralInfo() {
@@ -100,17 +116,17 @@ export class ProfileGeneralInfoComponent implements OnInit, OnDestroy, CanCompon
 
         this.isSaving = true;
         //
-        this._userService.updateProfileGeneralInfo(this.profileGeneralInfo).pipe(finalize(() => {
-            this.isSaving = false;
-        })).subscribe(() => {
-            AppNotify.success(AppNotify.generateSuccessMessage('profile', 'updated'));
-            //
-            this.cloneDataAfterSavingSuccess();
-            // this._userService.updateUserName.emit(this.profileGeneralInfo.name);
-            this._store.dispatch(new UserActions.UpdateUserName(this.profileGeneralInfo.name));
-            //
-            this.dataChanged();
-        });
+        // this._userService.updateProfileGeneralInfo(this.profileGeneralInfo).pipe(finalize(() => {
+        //     this.isSaving = false;
+        // })).subscribe(() => {
+        //     AppNotify.success(AppNotify.generateSuccessMessage('profile', 'updated'));
+        //     //
+        //     this.cloneDataAfterSavingSuccess();
+        //     // this._userService.updateUserName.emit(this.profileGeneralInfo.name);
+        //     this._store.dispatch(new UserActions.UpdateUserName(this.profileGeneralInfo.name));
+        //     //
+        //     this.dataChanged();
+        // });
     }
 
     async cancelUpdate() {
@@ -125,11 +141,11 @@ export class ProfileGeneralInfoComponent implements OnInit, OnDestroy, CanCompon
     }
 
     cloneDataAfterSavingSuccess() {
-        this.profileCloned.profileGeneralInfo = cloneDeep(this.profileGeneralInfo);
+        this.employeeCloned = cloneDeep(this.employee);
     }
 
     rollbackToNonEditingData() {
-        this.profileGeneralInfo = cloneDeep(this.profileCloned.profileGeneralInfo);
+        this.employee = cloneDeep(this.employeeCloned);
     }
 
     openChangePassword() {
@@ -142,14 +158,11 @@ export class ProfileGeneralInfoComponent implements OnInit, OnDestroy, CanCompon
     }
 
     checkIsDataChanged(): boolean {
-      return true;
-        // return !isEqual(this.profileCloned.profileGeneralInfo, this.profileGeneralInfo)
-        //     || phoneNumber !== phoneBackupNumber
-        //     || this.phoneNumberDataSource.selectedCountry.iso2 !== this.profileCloned.selectedCountryCode;
+      return !isEqual(this.employeeCloned, this.employee);
     }
 
     checkIsDataValid(): boolean {
-        return !!this.profileGeneralInfo.name && this.isPhoneNumberValid && !this.isEmailExisted;
+        return !!this.employeeCloned.name && !!this.employeeCloned.personal_email;
     }
     //#endregion
 
@@ -167,35 +180,35 @@ export class ProfileGeneralInfoComponent implements OnInit, OnDestroy, CanCompon
             : !this.isEmailExisted;
     };
 
-    private _subscribeEmailExistedValidation() {
-        this._subscriptions.add(this._emailChanged$.pipe(
-            debounceTime(350),
-            switchMap((email: string) => {
-                if (!email || !email.trim()) {
-                    return of(false);
-                }
-                //
-                DevExtremeValidationHelper.setValidationStatusIsPending(this.accountEmailTextBox);
-                //
-                return this._userService.checkingExistEmail(this.profileGeneralInfo.id, email.trim()).pipe(
-                    catchError((_error) => EMPTY),
-                    finalize(() => {
-                        this.dataChanged();
-                    }),
-                );
-            })
-        ).subscribe((isExisted: boolean) => {
-            this.isEmailExisted = isExisted;
-            this.emailValidator.instance.validate();
-        }));
-    }
+    // private _subscribeEmailExistedValidation() {
+    //     this._subscriptions.add(this._emailChanged$.pipe(
+    //         debounceTime(350),
+    //         switchMap((email: string) => {
+    //             if (!email || !email.trim()) {
+    //                 return of(false);
+    //             }
+    //             //
+    //             DevExtremeValidationHelper.setValidationStatusIsPending(this.accountEmailTextBox);
+    //             //
+    //             return this._userService.checkingExistEmail(this.profileGeneralInfo.id, email.trim()).pipe(
+    //                 catchError((_error) => EMPTY),
+    //                 finalize(() => {
+    //                     this.dataChanged();
+    //                 }),
+    //             );
+    //         })
+    //     ).subscribe((isExisted: boolean) => {
+    //         this.isEmailExisted = isExisted;
+    //         this.emailValidator.instance.validate();
+    //     }));
+    // }
 
     //#endregion
 
     //#region Avatar
     onAvatarUpdated(avatarUrl: string) {
-        this.profileGeneralInfo.avatar = avatarUrl;
-        this.profileCloned.profileGeneralInfo.avatar = avatarUrl;
+        this.employee.avatar = avatarUrl;
+        this.employeeCloned.avatar = avatarUrl;
     }
 
     //#endregion

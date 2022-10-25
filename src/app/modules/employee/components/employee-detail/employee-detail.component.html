@@ -4,34 +4,10 @@
                      [title]="'Chi tiết thông tin nhân viên'"
                      [(visible)]="visible"
                      [customClass]="'add-prospect-popup'"
-                     [footerTemplate]="footerTemplate"
-                     [customPopupAnimation]="POPUP_ANIMATION"
                      (onHiding)="hidePopup()">
     <div class="add-prospect-popup-container">
         <dx-validation-group #addNewProspectValidationGroup>
            <app-profile-general-info></app-profile-general-info>
         </dx-validation-group>
     </div>
-
-    <ng-template #footerTemplate>
-        <div class="flex justify-between footer-container">
-            <!-- <app-custom-button (onClick)="addChild(true)"
-                               [disabled]="isProcessing || !isDataValid"
-                               icon="{{ isProcessing ? 'fas fa-spinner fa-spin' : '' }}"
-                               height="40"
-                               width="92"
-                               text="ADD"
-                               [type]="'primary'">
-            </app-custom-button>
-
-            <app-custom-button (onClick)="hidePopup()"
-                               [disabled]="isProcessing"
-                               class="!border-0px cancel"
-                               height="40"
-                               width="100"
-                               [text]="'Cancel'"
-                               [type]="'cancel'">
-            </app-custom-button> -->
-        </div>
-    </ng-template>
 </app-popup-container>

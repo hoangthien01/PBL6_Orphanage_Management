@@ -5,14 +5,15 @@
     <dx-scroll-view class="profile-general-info-scroll-view"
                     [showScrollbar]="'always'"
                     [direction]="'both'">
-        <div class="profile-general-info-wrapper pl-10-c pr-30-c">
+        <div class="profile-general-info-wrapper "
+              [ngClass]="employeeId ? 'pl-10-c pr-30-c' : 'px-40-c py-20-c'">
             <div class="form-wrapper">
                 <div class="general-info-section">
                     <div class="left-section pb-64-c">
                         <div class="section-summary__title pb-24-c">Thông tin người dùng</div>
                         <div class="box-properties">
                             <app-profile-avatar [avatarParentComponent]="AVATAR_PARENT_COMPONENT.profile"
-                                                [fileAvatarName]="profileGeneralInfo.avatar"
+                                                [fileAvatarName]="employee.avatar"
                                                 [logoTitle]="'Ảnh cá nhân'"
                                                 [disabled]="isSaving"
                                                 (avatarUpdated)="onAvatarUpdated($event)">
@@ -25,7 +26,7 @@
                                          [disabled]="isSaving"
                                          [placeholder]="'John Smith'"
                                          [valueChangeEvent]="'input'"
-                                         [(value)]="profileGeneralInfo.name"
+                                         [(value)]="employee.name"
                                          (onValueChanged)="dataChanged()">
                                 <dx-validator>
                                     <dxi-validation-rule type="required"
@@ -41,7 +42,7 @@
                                          [disabled]="isSaving"
                                          [placeholder]="'Da Nang...'"
                                          [valueChangeEvent]="'input'"
-                                         [(value)]="profileGeneralInfo.name"
+                                         [(value)]="employee.name"
                                          (onValueChanged)="dataChanged()">
                             </dx-text-box>
                         </div>
@@ -52,25 +53,10 @@
                                          [disabled]="isSaving"
                                          [placeholder]="'0013131....'"
                                          [valueChangeEvent]="'input'"
-                                         [(value)]="profileGeneralInfo.name"
+                                         [(value)]="employee.name"
                                          (onValueChanged)="dataChanged()">
                             </dx-text-box>
                         </div>
-
-                        <!-- <div class="call-forwarding d-flex align-items-center">
-                            <dx-switch [disabled]="isSaving || !phoneNumberDataSource.postfix"
-                                       [(value)]="profileGeneralInfo.isEnableCallForwarding"
-                                       (onValueChanged)="dataChanged()">
-                            </dx-switch>
-                            <span class="switch-label">Call Forwarding</span>
-                            <app-help-text class="ml-2"
-                                           [targetClass]="'profile-general-info-call-forwarding__tooltip'"
-                                           [position]="'top'"
-                                           [tooltipWidth]="190">
-                                When a contact calls the WooSender number, the call will be forwarded to their
-                                <span class="font-weight-bold">Assignee’s phone number.</span>
-                            </app-help-text>
-                        </div> -->
                     </div>
 
                     <div class="left-section">
@@ -83,7 +69,7 @@
                                              [disabled]="isSaving"
                                              [placeholder]="'Enter Email'"
                                              [valueChangeEvent]="'input'"
-                                             [(value)]="profileGeneralInfo.email"
+                                             [(value)]="employee.personal_email"
                                              (onValueChanged)="onEmailChanged($event)">
                                     <dx-validator #emailValidator>
                                         <dxi-validation-rule type="required"

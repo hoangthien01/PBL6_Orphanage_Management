@@ -40,7 +40,7 @@
               class="cleesky--icon-target w-14-c mr-2-c"
               [name]="'icon_bell_notification'">
             </app-svg-icon>
-            <span class="text">Notification</span>
+            <span class="text">Thông báo</span>
           </div>
           <dx-switch [width]="32"
                      [height]="18"
@@ -55,7 +55,7 @@
               class="cleesky--icon-target w-14-c mr-2-c"
               [name]="'icon_dark_mode'">
             </app-svg-icon>
-            <span class="text">Drak Mode</span>
+            <span class="text">Chế độ tối</span>
           </div>
           <dx-switch
             [width]="32"
@@ -70,29 +70,29 @@
 
       <div class="dropdown-divider"></div>
       <div class="list-item">
-        <a class="dropdown-item pointer flex items-center" (click)="isUserMenuVisible = false">
-          <span class="text">Pesonal Infomation</span>
+        <a class="dropdown-item pointer flex items-center" (click)="goToProfile()">
+          <span class="text">Thông tin cá nhân</span>
         </a>
         <a class="dropdown-item pointer flex items-center" (click)="openAccountSettingPopup()">
-          <span class="text">Account Settings</span>
+          <span class="text">Cài đặt tài khoản</span>
         </a>
         <a class="dropdown-item pointer flex items-center" (click)="goToManageRolePage()">
-          <span class="text">System Settings</span>
+          <span class="text">Thiết lập hệ thống</span>
         </a>
       </div>
       <div class="dropdown-divider"></div>
       <div class="list-item help-security">
         <a class="dropdown-item pointer flex items-center" (click)="isUserMenuVisible = false">
-          <span class="text">Help Center</span>
+          <span class="text">Trung tâm trợ giúp</span>
         </a>
         <a class="dropdown-item pointer flex items-center" (click)="isUserMenuVisible = false">
-          <span class="text">Security Policy</span>
+          <span class="text">Chính sách bảo mật</span>
         </a>
       </div>
       <div class="dropdown-divider"></div>
       <div class="list-item footer-logout pb-1-c">
         <a class="dropdown-item pointer flex items-center logout" (click)="logout()">
-          <span class="text">Logout</span>
+          <span class="text">Đăng xuất</span>
         </a>
       </div>
     </div>

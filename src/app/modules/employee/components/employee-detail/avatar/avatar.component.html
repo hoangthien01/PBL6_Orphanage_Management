@@ -11,14 +11,14 @@
                           [data]="SVG_ICONS.AvatarLogo">
             </app-svg-icon>
 
-            <!-- <img *ngIf="!!fileAvatarName"
+            <img *ngIf="!!fileAvatarName"
                  #avatar
                  id="profile-avatar"
-                 [src]="(avatarParentComponent == AVATAR_PARENT_COMPONENT.profile ? avatarObj.avatarUrl : avatarObj.chatBoxLogoUrl) + '/' + fileAvatarName"
+                 [src]="fileAvatarName"
                  alt="avatar-image"
                  type="image"
                  [title]="'View Picture'"
-                 (click)="previewAvatar(avatar.src)"/> -->
+                 (click)="previewAvatar(avatar.src)"/>
         </div>
         <div class="button-group">
             <app-custom-button class="mr-12-c"

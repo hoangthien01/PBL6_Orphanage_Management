@@ -12,6 +12,7 @@ import { AvatarComponent } from './components/header/avatar/avatar.component';
 import { AuthGuard } from '@app/core/guards';
 import { HomeContentComponent } from './components/home-content/home-content.component';
 import { NgxPermissionsGuard, NgxPermissionsModule } from 'ngx-permissions';
+import { ProfileGeneralInfoComponent } from '../employee/components/employee-detail/profile-general-info/profile-general-info.component';
 
 const SVG_ICONS = [
 ];
@@ -64,6 +65,14 @@ export const routes: Routes = [
       {
         path: 'activity',
         loadChildren: () => import('@app/modules/activity/activity.module').then(m => m.ActivityModule),
+        canActivate: [AuthGuard],
+        data: {
+          preload: false
+        }
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('@app/modules/profile/profile.module').then(m => m.ProfileModule),
         canActivate: [AuthGuard],
         data: {
           preload: false

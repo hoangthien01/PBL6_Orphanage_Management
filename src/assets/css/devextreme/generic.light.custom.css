@@ -2273,7 +2273,8 @@
 }
 .dx-overlay-shader {
   /* background-color: rgba(255,255,255,.8); */
-  background-color: transparent;
+  background-color: rgba(128,128,128,.5);
+  /* background-color: transparent; */
 }
 .dx-overlay-wrapper {
   color: #555;
@@ -13135,7 +13136,8 @@
   border-bottom: none;
 }
 .dx-fa-button.dx-fa-button-main .dx-overlay-shader {
-  background-color: rgba(255,255,255,.8);
+  /* background-color: rgba(255,255,255,.8); */
+  background-color: rgba(0, 0, 0, 0.7);
 }
 .dx-fa-button.dx-fa-button-main .dx-overlay-content {
   min-width: 48px;

@@ -24,6 +24,13 @@ export class UserSelectors {
     }
 
     @Selector([UserState])
+    public static userId(state: AuthResultModel): string {
+        return !!state && state.user && state.user.name
+            ? state.user.id
+            : '';
+    }
+
+    @Selector([UserState])
     public static userAvatar(state: AuthResultModel): string {
         return !!state && state.user && state.user.avatar
             ? state.user.avatar

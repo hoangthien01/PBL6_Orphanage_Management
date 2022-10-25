@@ -74,6 +74,7 @@ export const ENDPOINTS = {
     SETTING_APPOINTMENT_REMINDER: '/setting/appointment/appointment-reminder',
     SETTING_APPOINTMENT_CALENDAR_INVITE: '/setting/appointment/calendar-invite',
     //
+    PROFILE: 'admin/profile',
     SETTING_PROFILE: '/setting/profile',
     SETTING_PROFILE_GENERAL_INFO:'/setting/profile/general-info',
     SETTING_PROFILE_AVAILABILITY:'/setting/profile/availability',

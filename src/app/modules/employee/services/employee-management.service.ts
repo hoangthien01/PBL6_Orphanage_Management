@@ -23,6 +23,10 @@ export class EmployeeService {
     return this.baseService.get(`user/get_list_employee?page=${data.page}&page_size=${data.pageSize}&name=${data.name}`);
   }
 
+  getEmployee(id: string): Observable<EmployeeModel> {
+    return this.baseService.get(`user/get_employee?id=${id}`);
+  }
+
   addEmployee(employee: any) :Observable<EmployeeModel> {
     return this.baseService.postFile(`user`, employee);
   }

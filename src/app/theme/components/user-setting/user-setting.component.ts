@@ -137,8 +137,11 @@ export class UserSettingComponent implements OnInit {
 	}
 
   goToManageRolePage(): void {
-    console.log('sasa');
-
     this.router.navigate([ENDPOINTS.MANAGE_ROLE_PAGE]).then();
+  }
+
+  goToProfile(): void {
+    this.isUserMenuVisible = false
+    this.router.navigate([ENDPOINTS.PROFILE]).then();
   }
 }

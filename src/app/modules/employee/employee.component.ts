@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { exportDataGrid } from 'devextreme/excel_exporter';
 import { Workbook } from 'exceljs';
 import { EmployeeModel } from './models';
-import { ListEmployeeResponseModel } from './models/employee-response.model';
 import { EmployeeService } from './services/employee-management.service';
 import { saveAs } from 'file-saver-es';
 import { LoadOptions } from 'devextreme/data';

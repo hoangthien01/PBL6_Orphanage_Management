@@ -12,6 +12,7 @@ export class EmployeeModel {
   occupation: string;
   personal_email: string;
   updated_at: Date;
+  phone: string;
 
   public constructor(init?: Partial<EmployeeModel>) {
       Object.assign(this, init);

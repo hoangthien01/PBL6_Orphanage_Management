@@ -1,5 +1,5 @@
 <div class="profile-general-info-page">
-    <app-load-panel [isLoading]="false">
+    <app-load-panel [isLoading]="isLoading">
     </app-load-panel>
 
     <dx-scroll-view class="profile-general-info-scroll-view"
@@ -9,8 +9,8 @@
               [ngClass]="employeeId ? 'pl-10-c pr-30-c' : 'px-40-c py-20-c'">
             <div class="form-wrapper">
                 <div class="general-info-section">
-                    <div class="left-section pb-64-c">
-                        <div class="section-summary__title pb-24-c">Thông tin người dùng</div>
+                    <div class="left-section pb-20-c">
+                        <div class="section-summary__title pb-16-c">Thông tin người dùng</div>
                         <div class="box-properties">
                             <app-profile-avatar [avatarParentComponent]="AVATAR_PARENT_COMPONENT.profile"
                                                 [fileAvatarName]="employee.avatar"
@@ -42,7 +42,7 @@
                                          [disabled]="isSaving"
                                          [placeholder]="'Da Nang...'"
                                          [valueChangeEvent]="'input'"
-                                         [(value)]="employee.name"
+                                         [(value)]="employee.address"
                                          (onValueChanged)="dataChanged()">
                             </dx-text-box>
                         </div>
@@ -53,14 +53,24 @@
                                          [disabled]="isSaving"
                                          [placeholder]="'0013131....'"
                                          [valueChangeEvent]="'input'"
-                                         [(value)]="employee.name"
+                                         [(value)]="employee.phone"
+                                         (onValueChanged)="dataChanged()">
+                            </dx-text-box>
+                        </div>
+
+                        <div class="box-properties" appAutoFocusInput>
+                            <span class="field-label">Chức vụ</span>
+                            <dx-text-box class="field-box"
+                                         [disabled]="true"
+                                         [valueChangeEvent]="'input'"
+                                         [(value)]="employee.occupation"
                                          (onValueChanged)="dataChanged()">
                             </dx-text-box>
                         </div>
                     </div>
 
                     <div class="left-section">
-                        <div class="section-summary__title pb-24-c">Thông tin đăng nhập</div>
+                        <div class="section-summary__title pb-16-c">Thông tin đăng nhập</div>
                         <div class="box-properties">
                             <span class="field-label">Địa chỉ Email</span>
                             <div class="profile-general-info__email-field-container">
@@ -70,7 +80,7 @@
                                              [placeholder]="'Enter Email'"
                                              [valueChangeEvent]="'input'"
                                              [(value)]="employee.personal_email"
-                                             (onValueChanged)="onEmailChanged($event)">
+                                             (onValueChanged)="dataChanged()">
                                     <dx-validator #emailValidator>
                                         <dxi-validation-rule type="required"
                                                              [message]="'This email is required'">
@@ -111,7 +121,7 @@
                                    [height]="40"
                                    [text]="'Lưu'"
                                    [type]="'primary'"
-                                   [disabled]="!(isDataChanged && isDataValid) || isSaving"
+                                   [disabled]="!isDataChanged || !isDataValid || isSaving"
                                    (onClick)="updateProfileGeneralInfo()">
                 </app-custom-button>
                 <app-custom-button [width]="120"

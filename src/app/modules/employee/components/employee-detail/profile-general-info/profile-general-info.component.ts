@@ -10,7 +10,7 @@ import { Store } from '@ngxs/store';
 //
 import { COMMON_MESSAGE } from '@app/shared/message';
 import { AVATAR_PARENT_COMPONENT } from '@app/shared/app.constants';
-import { CommonFunction } from 'src/app/utilities';
+import { AppNotify, CommonFunction } from 'src/app/utilities';
 import { UserService } from '@app/modules/account-setting/services/user.service';
 import { CanComponentDeactivate } from '@app/core/guards';
 import { EmployeeModel } from '@app/modules/employee/models';
@@ -57,6 +57,7 @@ export class ProfileGeneralInfoComponent implements OnInit, OnDestroy, CanCompon
         this._subscriptions.add(this._valueChanged$.pipe(debounceTime(300)).subscribe(() => {
             this.isDataChanged = this.checkIsDataChanged();
             this.isDataValid = this.checkIsDataValid();
+            this._cdr.detectChanges();
         }));
     }
 
@@ -87,46 +88,39 @@ export class ProfileGeneralInfoComponent implements OnInit, OnDestroy, CanCompon
 
     getProfileGeneralInfo() {
         this.isLoading = true;
-        if (!this.employeeId) {
-          this._profileService .getProfile(this.userId).pipe(finalize(() => {
+        if (this.employeeId) {
+          this.userId = this.employeeId;
+        }
+        this._employeeService.getEmployee(this.userId).pipe(finalize(() => {
             this.isLoading = false;
             this.isInit = true;
+            this._cdr.detectChanges();
         })).subscribe((res) => {
+            // handle the case, DB haven't had or updated this field
             this.employee = res;
             this.employeeCloned = cloneDeep(this.employee);
         });
-        } else {
-          const id = this._route.snapshot.paramMap.get('id')!;
-          this._employeeService.getEmployee(id).pipe(finalize(() => {
-              this.isLoading = false;
-              this.isInit = true;
-          })).subscribe((res) => {
-              // handle the case, DB haven't had or updated this field
-              this.employee = res;
-              //
-              this.employeeCloned = cloneDeep(this.employee);
-          });
-        }
     }
 
     updateProfileGeneralInfo() {
         if (!(this.isDataChanged && this.isDataValid) || this.isSaving) {
             return;
         }
-
-        this.isSaving = true;
         //
-        // this._userService.updateProfileGeneralInfo(this.profileGeneralInfo).pipe(finalize(() => {
-        //     this.isSaving = false;
-        // })).subscribe(() => {
-        //     AppNotify.success(AppNotify.generateSuccessMessage('profile', 'updated'));
-        //     //
-        //     this.cloneDataAfterSavingSuccess();
-        //     // this._userService.updateUserName.emit(this.profileGeneralInfo.name);
-        //     this._store.dispatch(new UserActions.UpdateUserName(this.profileGeneralInfo.name));
-        //     //
-        //     this.dataChanged();
-        // });
+        this.isSaving = true;
+        this._employeeService.updateEmployee(this.employee).pipe(finalize(() => {
+            this.isSaving = false;
+            this._cdr.detectChanges();
+        })).subscribe(() => {
+            AppNotify.success(AppNotify.generateSuccessMessage('profile', 'updated'));
+            //
+            this.cloneDataAfterSavingSuccess();
+            // this._userService.updateUserName.emit(this.profileGeneralInfo.name);
+            // this._store.dispatch(new UserActions.UpdateUserName(this.profileGeneralInfo.name));
+            //
+            this.dataChanged();
+        },
+        error => AppNotify.error(error));
     }
 
     async cancelUpdate() {
@@ -162,7 +156,7 @@ export class ProfileGeneralInfoComponent implements OnInit, OnDestroy, CanCompon
     }
 
     checkIsDataValid(): boolean {
-        return !!this.employeeCloned.name && !!this.employeeCloned.personal_email;
+        return !!this.employee.name && !!this.employee.personal_email;
     }
     //#endregion
 

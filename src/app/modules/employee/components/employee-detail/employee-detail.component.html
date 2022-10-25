@@ -4,10 +4,11 @@
                      [title]="'Chi tiết thông tin nhân viên'"
                      [(visible)]="visible"
                      [customClass]="'add-prospect-popup'"
+                     [customPopupAnimation]="POPUP_ANIMATION"
                      (onHiding)="hidePopup()">
     <div class="add-prospect-popup-container">
         <dx-validation-group #addNewProspectValidationGroup>
-           <app-profile-general-info></app-profile-general-info>
+           <app-profile-general-info [employeeId]="employee.id"></app-profile-general-info>
         </dx-validation-group>
     </div>
 </app-popup-container>

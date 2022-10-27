@@ -17,10 +17,10 @@ const routes: Routes = [
       data: { preload: false }
   	},
   	{
-      	path: 'admin',
-      	loadChildren: () => import('@app/modules/home/home.module').then(m => m.HomeModule),
-      	data: { preload: false }
-	},
+      path: 'admin',
+      loadChildren: () => import('@app/modules/home/home.module').then(m => m.HomeModule),
+      data: { preload: false }
+	  },
 	// { path: '**', component: PageNotFoundComponent },
 ];
 

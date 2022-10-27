@@ -16,7 +16,6 @@ import { svgIconCalendar, svgIconUserLight } from 'src/assets/images/svg-icons.c
 import { DonateComponent } from './components/donate/donate.component';
 import { FooterComponent } from './components/home/footer/footer.component';
 import { ProfileGeneralInfoComponent } from '../employee/components/employee-detail/profile-general-info/profile-general-info.component';
-import { EmployeeManagementModule } from '../employee/employee.module';
 
 const SVG_ICONS = [
   svgIconUserLight,
@@ -65,7 +64,6 @@ const COMPONENTS = [
         RouterModule,
         RouterModule.forChild(routes),
         CommonModule,
-        EmployeeManagementModule
     ],
     exports: [COMPONENTS]
     // providers: [...PROVIDERS]

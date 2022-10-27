@@ -45,11 +45,19 @@ export class UserService {
         return this.baseService.post(`user/auto-login`, activateModel);
     }
 
-    // forgotPassword(email: string): Observable<string> {
-        // const emailObj = new SingleFieldModel<string>();
-        // emailObj.data = email;
-        // return this.baseService.post(`user/reset`, emailObj);
-    // }
+    forgotPassword(email: string): Observable<string> {
+      const data = {
+        email: email,
+      }
+        return this.baseService.post(`user/action/forgot_password`, data);
+    }
+
+    changePassword(data: {
+      old_passwork: string,
+      new_passwork: string
+    }): Observable<string> {
+        return this.baseService.post(`user/action/change_password`, data);
+    }
 
     checkingExistEmail(id: string, email: string): Observable<boolean> {
         const emailObj = new ListItemModel<string, string>();

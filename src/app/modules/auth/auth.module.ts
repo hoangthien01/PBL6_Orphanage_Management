@@ -16,6 +16,7 @@ import {
 } from 'src/assets/images/svg-icons.constants';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 const SVG_ICONS = [
   svgIconWarningCircle,
@@ -42,6 +43,10 @@ export const routes: Routes = [
         component: LoginComponent,
       },
       {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
+      },
+      {
         path: 'forbidden',
         component: ForbiddenComponent
       }
@@ -50,22 +55,25 @@ export const routes: Routes = [
 
 ];
 
-// const PROVIDERS = [SubscriptionPlanService];
+const PROVIDERS = [];
+
+const COMPONENTS = [
+  AuthComponent,
+  LoginComponent,
+  SignUpComponent,
+  ForbiddenComponent,
+  ForgotPasswordComponent
+];
 
 @NgModule({
-  declarations: [
-    AuthComponent,
-    LoginComponent,
-    SignUpComponent,
-    ForbiddenComponent,
-  ],
+  declarations: [...COMPONENTS],
   imports: [
     ThemeModule,
     RouterModule,
     RouterModule.forChild(routes),
     CommonModule
   ],
-  // providers: [...PROVIDERS]
+  providers: [...PROVIDERS]
 })
 export class AuthModule {
   constructor(private svgIconRegistry: SvgIconsRegistry) {

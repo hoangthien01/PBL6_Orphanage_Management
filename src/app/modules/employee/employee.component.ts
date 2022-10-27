@@ -66,6 +66,7 @@ export class EmployeeManagementComponent implements OnInit, OnDestroy {
     return this.employeeService.getListEmployees(data).toPromise()
         .finally(() => {
             this.isLoading = false;
+            this.changeDetector.detectChanges();
         })
         .then((res) => {
             this.totalCount = res.count;

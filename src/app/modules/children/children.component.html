@@ -64,7 +64,7 @@
                       [alignment]="'left'"
                       cellTemplate="genderCelltemplate"
                       [allowSorting]="true">
-            <<ng-container *dxTemplate="let item of 'genderCelltemplate'">
+            <ng-container *dxTemplate="let item of 'genderCelltemplate'">
               <div>
                 {{item.value | lookupValue: genderLookup: 'key': 'value'}}
               </div>
@@ -78,7 +78,13 @@
           <dxi-column dataField="join_date"
                       [caption]="'Start Date'"
                       [alignment]="'left'"
+                      cellTemplate="joinDateCelltemplate"
                       [allowSorting]="true">
+            <ng-container *dxTemplate="let item of 'joinDateCelltemplate'">
+              <div>
+                {{item.value | date}}
+              </div>
+            </ng-container>
           </dxi-column>
           <dxi-column dataField="status"
                       [caption]="'Status'"
@@ -103,6 +109,6 @@
 <ng-container *ngIf="isShowChildDetailPopup">
   <app-child-detail #childDetailComponent
                  [(visible)]="isShowChildDetailPopup"
-                 [child]="chidlDetail">
+                 [childId]="chidlDetail.id">
   </app-child-detail>
 </ng-container>

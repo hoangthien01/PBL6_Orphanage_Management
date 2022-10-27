@@ -26,6 +26,14 @@ export class ChildrenService {
     return this.baseService.get(`children?page=${data.page}&page_size=${data.pageSize}&name=${data.name}&age=${data.age}&gender=${data.gender}&status=${data.status}`);
   }
 
+  getChild(id: string): Observable<ChildrenModel> {
+    return this.baseService.get(`children/${id}`);
+  }
+
+  updateChild(child: ChildrenModel): Observable<ChildrenModel> {
+    return this.baseService.put(`children/${child.id}`, child);
+  }
+
   addChild(child: any) :Observable<ChildrenModel> {
     return this.baseService.postFile(`children`, child);
   }

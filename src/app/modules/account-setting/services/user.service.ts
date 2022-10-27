@@ -52,13 +52,6 @@ export class UserService {
         return this.baseService.post(`user/action/forgot_password`, data);
     }
 
-    changePassword(data: {
-      old_passwork: string,
-      new_passwork: string
-    }): Observable<string> {
-        return this.baseService.post(`user/action/change_password`, data);
-    }
-
     checkingExistEmail(id: string, email: string): Observable<boolean> {
         const emailObj = new ListItemModel<string, string>();
         emailObj.key = id;
@@ -101,11 +94,15 @@ export class UserService {
     // }
 
     updatePassword(oldPassword: string, newPassword: string): Observable<boolean> {
-        const data = new ListItemModel<string, string>();
-        data.key = oldPassword;
-        data.value = newPassword;
-        const url = `user/password`;
-        return this.baseService.put(url, data);
+        // const data = new ListItemModel<string, string>();
+        // data.key = oldPassword;
+        // data.value = newPassword;
+        const data = {
+          old_password: oldPassword,
+          new_password: newPassword,
+        }
+        const url = `user/action/change_password`;
+        return this.baseService.post(url, data);
     }
 
     // addUser(user: UserModel): Observable<string> {

@@ -8,3 +8,4 @@ export * from './side-bar-menu/side-bar-menu.component';
 export * from './help-text/help-text.component';
 export * from './popup-container/popup-container.component';
 export * from './popup-confirmation/popup-confirmation.component';
+export * from './avatar/avatar.component';

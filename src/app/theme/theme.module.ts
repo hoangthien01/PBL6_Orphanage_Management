@@ -55,6 +55,7 @@ import {
 import {
   CustomButtonComponent,
   PopupConfirmationComponent,
+  ProfileAvatarComponent,
   SideBarMenuComponent,
   SvgIconComponent
 } from './components';
@@ -173,7 +174,8 @@ const COMPONENTS = [
   UserSettingComponent,
   PopupContainerComponent,
   PageNotFoundComponent,
-  PopupConfirmationComponent
+  PopupConfirmationComponent,
+  ProfileAvatarComponent
 ];
 
 const PIPES = [

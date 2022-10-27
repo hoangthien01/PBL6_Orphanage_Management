@@ -9,7 +9,6 @@ import { AuthGuard } from '@app/core/guards';
 import { EmployeeAddComponent } from './components/employee-add/employee-add.component';
 import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
 import { EmployeeManagementComponent } from './employee.component';
-import { ProfileAvatarComponent } from './components/employee-detail/avatar/avatar.component';
 import { ProfileGeneralInfoComponent } from './components/employee-detail/profile-general-info/profile-general-info.component';
 import { ChangePasswordComponent } from './components/employee-detail/change-password/change-password.component';
 //
@@ -20,7 +19,6 @@ const COMPONENTS = [
   EmployeeManagementComponent,
   EmployeeAddComponent,
   EmployeeDetailComponent,
-  ProfileAvatarComponent,
   ProfileGeneralInfoComponent,
   ChangePasswordComponent
 ];
@@ -45,7 +43,7 @@ const PROVIDERS = [];
     RouterModule.forChild(routes),
     CommonModule
   ],
-  exports: [],
+  exports: [  ...COMPONENTS],
   providers: [...PROVIDERS]
 })
 export class EmployeeManagementModule {

@@ -33,7 +33,8 @@ export class UserLookupState {
             return of([]);
         }
         //
-        return this.baseService.get<AssigneeLookupItemModel[]>(`${API_ENDPOINTS.USER}/assignees?isUnassignInclude=false`);
+        return of([]);
+        // return this.baseService.get<AssigneeLookupItemModel[]>(`${API_ENDPOINTS.USER}/assignees?isUnassignInclude=false`);
     }
 
     private fetchCampaignLookup(): Observable<CampaignItemModel[]> {
@@ -45,7 +46,8 @@ export class UserLookupState {
             storage: 'session',
             key: ACCOUNT_ID,
         });
-        return this.baseService.get<CampaignItemModel[]>(`${API_ENDPOINTS.CAMPAIGN}/lookup/${accountId}`);
+        return of([]);
+        // return this.baseService.get<CampaignItemModel[]>(`${API_ENDPOINTS.CAMPAIGN}/lookup/${accountId}`);
     }
 
     //#region All Lookup

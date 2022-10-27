@@ -1,7 +1,7 @@
-import {Component, EventEmitter, HostListener, OnInit, Output, ViewChild, Input, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy} from '@angular/core';
+import { cloneDeep, isEqual } from 'lodash-es';
+import {Component, EventEmitter, OnInit, Output, ViewChild, Input, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy} from '@angular/core';
 import {debounceTime, finalize} from 'rxjs/operators';
-import {Subject, Subscription} from 'rxjs';
-import {Key} from 'ts-keycode-enum';
+import {Observable, Subject, Subscription} from 'rxjs';
 import { Store } from '@ngxs/store';
 import {DxPopupComponent} from 'devextreme-angular/ui/popup';
 import {DxTextBoxComponent} from 'devextreme-angular/ui/text-box';
@@ -11,12 +11,14 @@ import { DxValidatorComponent } from 'devextreme-angular/ui/validator';
 //
 import { AppNotify, CommonFunction } from 'src/app/utilities';
 // import {ProspectStatusNewType} from '@app/shared/enums';
-import {PROSPECT_MESSAGE} from '@app/shared/message';
-import {GENDER_TYPES, POPUP_ANIMATION, PROSPECT_FIELD_NAMES} from '@app/shared/app.constants';
-import {ListItemModel } from '@app/shared/models';
+import {COMMON_MESSAGE, PROSPECT_MESSAGE} from '@app/shared/message';
+import {AVATAR_PARENT_COMPONENT, GENDER_TYPES, POPUP_ANIMATION} from '@app/shared/app.constants';
 import {BaseService} from '@app/core/services';
 import { ChildrenModel } from '../../models';
 import { ChildrenService } from '../../services/children-management.service';
+import { ActivatedRoute } from '@angular/router';
+import { UserSelectors } from '@app/core/store';
+import { UserService } from '@app/modules/account-setting/services/user.service';
 
 @Component({
     selector: 'app-child-detail',
@@ -25,13 +27,7 @@ import { ChildrenService } from '../../services/children-management.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChildDetailComponent implements OnInit, OnDestroy {
-    @ViewChild('addProspectPopup') addProspectPopup: DxPopupComponent;
-    @ViewChild('firstNameTextBox') firstNameTextBox: DxTextBoxComponent;
-    @ViewChild('lastNameTextBox') lastNameTextBox: DxTextBoxComponent;
-    @ViewChild('addNewProspectValidationGroup') addNewProspectValidationGroup: DxValidationGroupComponent;
-
     private _visible: boolean;
-
     @Input()
     get visible(): boolean {
         return this._visible;
@@ -41,31 +37,52 @@ export class ChildDetailComponent implements OnInit, OnDestroy {
         this._visible = value;
         this.visibleChange.emit(value);
     }
-    @Input() child: ChildrenModel;
+    @Input() childId: string;
+    //
     @Output() refreshGrid: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+    //
     prospectMessages = PROSPECT_MESSAGE;
     POPUP_ANIMATION = POPUP_ANIMATION;
     genderLookup = GENDER_TYPES;
 
-    isDataValid: boolean = false;
     isProcessing: boolean = false;
 
+    @ViewChild('emailValidator') emailValidator: DxValidatorComponent;
+    //
+    AVATAR_PARENT_COMPONENT = AVATAR_PARENT_COMPONENT;
+    GENDER_TYPES = GENDER_TYPES;
+    //
+    child: ChildrenModel = new ChildrenModel();
+    childCloned: ChildrenModel;
+    isInit: boolean = false;
+    isSaving: boolean = false;
+    isDataChanged: boolean = false;
+    isDataValid: boolean = false;
+    isLoading: boolean = true;
+    isPhoneNumberValid: boolean = true;
+    isEmailExisted: boolean = false;
+    //
+    private _emailChanged$: Subject<string> = new Subject<string>();
     private _valueChanged$: Subject<void> = new Subject<void>();
     private _subscriptions: Subscription = new Subscription();
 
     constructor(private _store: Store,
                 private cdr: ChangeDetectorRef,
                 private baseService: BaseService,
-                private childrenService: ChildrenService) {
-        // this._subscriptions.add(this._valueChanged$.pipe(debounceTime(300)).subscribe(() => {
-        //     this.isDataValid = this.checkIsDataValid();
-        //     this.cdr.detectChanges();
-        // }));
+                private _childService: ChildrenService,
+                private _cdr: ChangeDetectorRef,
+                private _route: ActivatedRoute,
+                private _userService: UserService) {
+        this._subscriptions.add(this._valueChanged$.pipe(debounceTime(300)).subscribe(() => {
+          this.isDataChanged = this.checkIsDataChanged();
+          this.isDataValid = this.checkIsDataValid();
+          this._cdr.detectChanges();
+      }));
     }
 
     ngOnInit() {
+      this.getProfileGeneralInfo();
     }
 
     ngOnDestroy(): void {
@@ -81,7 +98,112 @@ export class ChildDetailComponent implements OnInit, OnDestroy {
         this.visible = false;
     }
 
-    dataChanged() {
-        this._valueChanged$.next();
+    getProfileGeneralInfo() {
+      this.isLoading = true;
+      this._childService.getChild(this.childId).pipe(finalize(() => {
+          this.isLoading = false;
+          this.isInit = true;
+          this._cdr.detectChanges();
+      })).subscribe((res) => {
+          // handle the case, DB haven't had or updated this field
+          this.child = res;
+          this.childCloned = cloneDeep(this.child);
+      });
+  }
+
+  updateProfileGeneralInfo() {
+      if (!(this.isDataChanged && this.isDataValid) || this.isSaving) {
+          return;
+      }
+      //
+      this.isSaving = true;
+      this._childService.updateChild(this.child).pipe(finalize(() => {
+          this.isSaving = false;
+          this._cdr.detectChanges();
+      })).subscribe(() => {
+          AppNotify.success(AppNotify.generateSuccessMessage('profile', 'updated'));
+          //
+          this.cloneDataAfterSavingSuccess();
+          // this._userService.updateUserName.emit(this.profileGeneralInfo.name);
+          // this._store.dispatch(new UserActions.UpdateUserName(this.profileGeneralInfo.name));
+          //
+          this.dataChanged();
+      },
+      error => AppNotify.error(error));
+  }
+
+  async cancelUpdate() {
+      if (this.isDataChanged) {
+          const isConfirmed: boolean = await CommonFunction.confirmDialogPromise('Cancel editing', COMMON_MESSAGE.ConfirmToCancel);
+          if (isConfirmed) {
+              this.rollbackToNonEditingData();
+              //
+              this.dataChanged();
+          }
+      }
+  }
+
+  cloneDataAfterSavingSuccess() {
+      this.childCloned = cloneDeep(this.child);
+  }
+
+  rollbackToNonEditingData() {
+      this.child = cloneDeep(this.childCloned);
+  }
+
+  //#region Data Handler
+  dataChanged() {
+      this._valueChanged$.next();
+  }
+
+  checkIsDataChanged(): boolean {
+    return !isEqual(this.childCloned, this.child);
+  }
+
+  checkIsDataValid(): boolean {
+      return !!this.child.name;
+  }
+  //#endregion
+
+  //#region Handle Validation
+  onEmailChanged(params: { event: Event; value: string }) {
+      const isUserTyped: boolean = !!params.event;
+      if (!!isUserTyped) {
+          this._emailChanged$.next(params.value);
+      }
+  }
+
+  //#endregion
+
+  //#region Avatar
+  onAvatarUpdated(avatarUrl: string) {
+      this.child.personal_picture = avatarUrl;
+      this.childCloned.personal_picture = avatarUrl;
+  }
+
+  //#endregion
+
+  //#region Helper
+  copyToClipboard(value: string) {
+      CommonFunction.copyToClipBoard(value);
+  }
+  //#endregion
+
+  async canDeactivate(): Promise<boolean> {
+    if (this.isDataChanged) {
+        const isConfirmed: boolean = await CommonFunction.confirmDialogPromise(
+            COMMON_MESSAGE.DiscardChanges,
+            COMMON_MESSAGE.ConfirmDiscardChanges);
+        if (isConfirmed) {
+            this.isDataChanged = false;
+        }
+        return isConfirmed;
     }
+
+    return true;
+  }
 }
+
+
+
+

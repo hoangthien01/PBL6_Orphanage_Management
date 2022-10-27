@@ -130,6 +130,7 @@ export class ChangePasswordComponent implements OnDestroy {
                 //         this.dataChanged();
                 //     }),
                 // );
+                return of(true);
             })
         ).subscribe((isValid: boolean) => {
             this.isOldPasswordValid = !!isValid;

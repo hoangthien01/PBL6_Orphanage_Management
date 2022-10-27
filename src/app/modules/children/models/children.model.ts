@@ -4,6 +4,7 @@ export class ChildrenModel {
   is_active: boolean;
   name: string;
   gender: number;
+  identifier: string;
   age: number = 21;
   personal_picture: string;
   join_date: Date;

@@ -1,3 +1,4 @@
+import { EmployeeManagementModule } from './../employee/employee.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -37,7 +38,7 @@ export const routes: Routes = [
     ThemeModule,
     RouterModule,
     RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
   ],
   exports: []
   // providers: [...PROVIDERS]

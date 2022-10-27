@@ -156,7 +156,8 @@ export class ProfileGeneralInfoComponent implements OnInit, OnDestroy, CanCompon
     }
 
     checkIsDataValid(): boolean {
-        return !!this.employee.name && !!this.employee.personal_email;
+        // return !!this.employee.name && !!this.employee.personal_email;
+        return !!this.employee.name;
     }
     //#endregion
 

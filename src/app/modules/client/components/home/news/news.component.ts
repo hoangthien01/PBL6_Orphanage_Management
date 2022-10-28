@@ -29,6 +29,7 @@ export class NewsComponent implements OnDestroy {
   sendData: SendInfoModel = new SendInfoModel();
   //
   isShowRegisterPopup: boolean = false;
+  isRegistering: boolean = false;
   //
   private _subscriptions: Subscription = new Subscription();;
   //
@@ -84,16 +85,17 @@ export class NewsComponent implements OnDestroy {
   }
 
   sendInfo() {
+    this.isRegistering = true;
     this.userService.sendInfo(this.sendData)
     .pipe(
       finalize(() => {
-
+        this.isRegistering = false;
+        this.isShowRegisterPopup = false;
       })
     )
     .subscribe((res) => {
 				AppNotify.success('Đăng kí nhận thông tin thành công.');
     })
-    this.isShowRegisterPopup = false;
   }
 
   goActivityDetail(id: string) {

@@ -10,6 +10,7 @@ import {
 import {ListItemModel} from '@app/shared/models';
 import {BaseService} from '@app/core/services/base.service';
 import { AuthResultModel } from '@app/core/store/models';
+import { SendInfoModel } from '@app/modules/client/models/send-info.model';
 
 @Injectable({
     providedIn: 'root'
@@ -51,6 +52,12 @@ export class UserService {
       }
         return this.baseService.post(`user/action/forgot_password`, data);
     }
+
+    sendInfo(data: SendInfoModel): Observable<string> {
+        return this.baseService.post(`user/action/register_email`, data);
+    }
+
+    ////////////////////////////////
 
     checkingExistEmail(id: string, email: string): Observable<boolean> {
         const emailObj = new ListItemModel<string, string>();

@@ -142,7 +142,7 @@
 <dx-popup
 	class="register-popup-container"
 	[width]="600"
-	[height]="350"
+	[height]="380"
 	[showTitle]="true"
 	title="Đăng kí nhận thông tin"
 	[dragEnabled]="false"
@@ -154,13 +154,13 @@
 >
 	<div>
 		<div class="field-area form-wrapper" appAutoFocusInput>
-			<p class="text-16px leading-20px">Cung cấp những thông tin dưới đây để luôn nhận được những cập nhật thông tin, sự kiện mới nhất từ chúng tôi. </p>
 			<div class="box-properties">
 					<span class="field-label">Họ và tên</span>
 					<dx-text-box #passwordTextBox
 											 class="field-box"
 											 mode="text"
 											 placeholder="Your name"
+                       [(value)]="sendData.name"
 											 [valueChangeEvent]="'input'">
 							<dx-validator>
 									<dxi-validation-rule type="required"
@@ -175,6 +175,7 @@
         <dx-text-box #emailTextBox
                      class="field-box"
                      placeholder="Enter Email"
+                     [(value)]="sendData.email"
                      [valueChangeEvent]="'input'">
             <dx-validator>
                 <dxi-validation-rule type="required"
@@ -186,17 +187,35 @@
             </dx-validator>
         </dx-text-box>
     </div>
-			<div class="content-footer clearfix">
-					<div class="login-button flex items-center">
-							<app-custom-button class="float-left mr-4"
-																 [height]="40"
-																 [width]="70"
-																 [text]="'Theo dõi'"
-																 [type]="'primary'"
-																 (onClick)="sendInfo()">
-							</app-custom-button>
-						</div>
-			</div>
+
+    <div class="box-properties">
+      <span class="field-label">Mật khẩu</span>
+      <dx-text-box #emailTextBox
+                    class="field-box"
+                    placeholder="Mật khẩu"
+                    [(value)]="sendData.password"
+                    [valueChangeEvent]="'input'">
+          <dx-validator>
+              <dxi-validation-rule type="required"
+                                    message="This field is required">
+              </dxi-validation-rule>
+          </dx-validator>
+      </dx-text-box>
+    </div>
+
+    <div class="content-footer clearfi mt-16-c">
+      <div class="login-button flex items-center">
+          <app-custom-button class="float-left mr-4"
+                              [height]="40"
+                              [disabled]="isRegistering"
+                              icon="{{ isRegistering ? 'fas fa-spinner fa-spin' : '' }}"
+                              [width]="120"
+                              [text]="'Theo dõi ngay'"
+                              [type]="'primary'"
+                              (onClick)="sendInfo()">
+          </app-custom-button>
+        </div>
+    </div>
 	</div>
 	</div>
 </dx-popup>

@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy } from '@angular/core';
-import { ActivityService } from '@app/modules/client/services/activity.service';
-import { ActivityModel } from '@app/modules/client/models/activity.model';
+import { ActivityService } from '@app/modules/activity/services/activity.service';
+import { ActivityModel } from '@app/modules/activity/models/activity.model';
 
 @Component({
   selector: 'app-news-detail',

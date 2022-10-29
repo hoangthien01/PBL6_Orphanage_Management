@@ -27,4 +27,8 @@ export class ActivityService {
     getActivityTypes(): Observable<ActivityTypeModel[]> {
       return this.baseService.get(`activity/activity_type?group=9a6fbc15-1cda-4d93-8785-96fe1515793d`);
     }
+
+    createActivity(activity: ActivityModel): Observable<ActivityModel> {
+      return this.baseService.postFile('activity', activity);
+    }
 }

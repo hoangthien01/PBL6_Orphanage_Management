@@ -36,6 +36,7 @@
             ],
             "styles": [
               "src/styles.css",
+              "node_modules/ng2-daterangepicker/assets/daterangepicker.css",
               "src/assets/css/devextreme/dx.common.css",
               "src/assets/css/fontawesome/css/fontawesome.css",
               "src/assets/css/bootstrap/bootstrap.css",
@@ -53,7 +54,8 @@
                 ]
             },
             "scripts": [
-              "./node_modules/quill/dist/quill.min.js"
+              "./node_modules/quill/dist/quill.min.js",
+              "node_modules/jquery/dist/jquery.min.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,

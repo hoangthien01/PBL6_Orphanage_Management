@@ -1,9 +1,9 @@
 import { finalize } from 'rxjs/operators';
-import { ActivityModel } from './../../../models/activity.model';
+import { ActivityModel } from '../../../../activity/models/activity.model';
 import { Component, OnDestroy } from '@angular/core';
-import { ActivityService } from '@app/modules/client/services/activity.service';
+import { ActivityService } from '@app/modules/activity/services/activity.service';
 import { Router } from '@angular/router';
-import { ActivityTypeModel } from '@app/modules/client/models/activity-type.model';
+import { ActivityTypeModel } from '@app/modules/activity/models/activity-type.model';
 import * as ActivitiesActions from '../../../../../core/store/activities/activities.actions';
 import { Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';

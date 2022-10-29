@@ -1,4 +1,4 @@
-import { ActivityModel } from './../../../modules/client/models/activity.model';
+import { ActivityModel } from '../../../modules/activity/models/activity.model';
 import {Selector} from '@ngxs/store';
 //
 import { ActivitiesState, IActivitiesState } from './activities.state';

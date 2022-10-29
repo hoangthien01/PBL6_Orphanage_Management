@@ -92,6 +92,8 @@ import { UserSettingComponent } from './components/user-setting/user-setting.com
 import { PopupContainerComponent } from './components/popup-container/popup-container.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { DateRangePickerComponent } from './components/date-range-picker/date-range-picker.component';
+import { Daterangepicker } from 'ng2-daterangepicker';
 
 const DEVEXTREME_MODULES = [
   DxDataGridModule,
@@ -138,12 +140,11 @@ const DEVEXTREME_MODULES = [
   DxPieChartModule,
   DxTreeViewModule,
   DxSortableModule,
+  Daterangepicker
 ];
 
 const BASE_MODULES = [
   CommonModule,
-  // RouterModule,
-  // FormsModule,
 ];
 
 const SVG_ICONS = [
@@ -175,7 +176,8 @@ const COMPONENTS = [
   PopupContainerComponent,
   PageNotFoundComponent,
   PopupConfirmationComponent,
-  ProfileAvatarComponent
+  ProfileAvatarComponent,
+  DateRangePickerComponent
 ];
 
 const PIPES = [
@@ -185,11 +187,6 @@ const PIPES = [
 ];
 
 const DIRECTIVES = [
-//     AutoFocusInputDirective,
-//     AutoClickAndSelectInputDirective,
-//     DisplayTagDirective,
-//     DisplayTooltipDirective,
-//     ImageEventListenerDirective
 ];
 
 @NgModule({

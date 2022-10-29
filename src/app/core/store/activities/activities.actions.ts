@@ -1,4 +1,4 @@
-import { ActivityModel } from "@app/modules/client/models/activity.model";
+import { ActivityModel } from "@app/modules/activity/models/activity.model";
 
 export enum ActivitiesActionType {
     SET_ACTIVITIES = '[Activities] set activities',

@@ -13,13 +13,15 @@ import { QuillModule } from 'ngx-quill'
 //
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
+import { ActivitySettingPopupComponent } from './components/activity-setting-popup/activity-setting-popup.component';
 // import "quill-emoji/dist/quill-emoji.css";
 //
 const SVG_ICONS = [
 ];
 
 const COMPONENTS = [
-  ActivityComponent
+  ActivityComponent,
+  ActivitySettingPopupComponent
 ];
 
 export const routes: Routes = [

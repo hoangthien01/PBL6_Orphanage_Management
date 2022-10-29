@@ -4,19 +4,32 @@
     <span>
       Add new activity
     </span>
-    <app-custom-button
-      class="ml-16 w-80-c cursor-pointer"
-      [height]="35"
-      [text]="'Publish'"
-      [disabled]="!isDataValid"
-      [type]="'primary'">
-    </app-custom-button>
+    <div>
+      <app-custom-button
+        class="mx-16-c w-80-c cursor-pointer"
+        [height]="35"
+        [text]="'Cài đặt'"
+        [type]="'primary'"
+        (click)="openSetting()">
+      </app-custom-button>
+
+      <!-- [disabled]="!isDataValid" -->
+      <app-custom-button
+        class="ml-16 w-80-c cursor-pointer"
+        [height]="35"
+        [text]="'Đăng'"
+        icon="{{ isProcessing ? 'fas fa-spinner fa-spin' : '' }}"
+        [type]="'primary'"
+        (click)="addActivity()">
+      </app-custom-button>
+    </div>
   </div>
 
   <div class="box-properties mt-20-c">
     <dx-text-box class="field-box"
                  [inputAttr]="{ autocomplete: 'on' }"
                  placeholder="Nhập tiêu đề..."
+                 [(value)]="activity.title"
                  [valueChangeEvent]="'input'">
     </dx-text-box>
   </div>
@@ -24,10 +37,15 @@
   <div class="mt-30-c h-3/4">
     <quill-editor
       class="content-editor"
-      [(ngModel)]="content"
+      [(ngModel)]="activity.content"
       [placeholder]="''"
-      [styles]="{'height': '500px'}"
+      [styles]="{'height': '440px'}"
     >
     </quill-editor>
   </div>
 </div>
+
+
+<app-activity-setting-popup
+  [(visible)]="isShowSettingPopup"
+  (onSaveSetting)="saveActivitySetting($event)"></app-activity-setting-popup>

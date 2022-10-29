@@ -1,0 +1,98 @@
+<app-popup-container #addProspectPopup
+                     [height]="'100%'"
+                     [width]="426"
+                     [title]="'Cài đặt'"
+                     [(visible)]="visible"
+                     [customClass]="'add-prospect-popup'"
+                     [footerTemplate]="footerTemplate"
+                     [customPopupAnimation]="POPUP_ANIMATION"
+                     (onHiding)="hidePopup()">
+    <div class="add-prospect-popup-container">
+        <dx-validation-group #addNewProspectValidationGroup>
+            <div class="add-prospect-form form-wrapper">
+                <div class="box-properties">
+                    <div class="field-label">Loại hoạt động</div>
+                    <dx-lookup [disabled]="isProcessing"
+                               [dataSource]="activityTypes"
+                               [noDataText]="'No data to display'"
+                               [showCancelButton]="false"
+                               [(value)]="activity.activity_type"
+                               class="field-box"
+                               displayExpr="name"
+                               placeholder="Select type"
+                               searchPlaceholder="Search"
+                               valueExpr="id"
+                               width="100%"
+                               [itemTemplate]="'activityTypeTemplate'"
+                               (onValueChanged)="dataChanged()">
+                        <dxo-drop-down-options [closeOnOutsideClick]="true"
+                                               [height]="'auto'"
+                                               [maxHeight]="300"
+                                               [showTitle]="false">
+                        </dxo-drop-down-options>
+
+                        <div *dxTemplate="let item of 'activityTypeTemplate'"
+                             [title]="item.name">
+                            {{item.name}}
+                        </div>
+                    </dx-lookup>
+                </div>
+
+                <div class="box-properties">
+                    <div class="field-label">Chi phí</div>
+                    <dx-text-box #firstNameTextBox
+                                 class="field-box"
+                                 appAutoFocusInput
+                                 [disabled]="isProcessing"
+                                 [(value)]="activity.expense"
+                                 valueChangeEvent="input"
+                                 placeholder="Nhập chi phí"
+                                 (onValueChanged)="dataChanged()">
+                    </dx-text-box>
+                </div>
+
+                <div class="box-properties">
+                    <div class="field-label">Thời gian</div>
+                    <app-date-range-picker #campaignStartDateRangePicker
+                                       [opens]="'left'"
+                                       [drops]="'down'"
+                                       (resetDateRangePicker)="onResetDate()"
+                                       (selectedDate)="onChangeDateRange($event)">
+                    </app-date-range-picker>
+                </div>
+
+                <div class="box-properties">
+                    <div class="field-label">Chọn ảnh bìa</div>
+                    <dx-file-uploader selectButtonText="Select photo"
+                                      labelText=""
+                                      accept="image/*"
+                                      [multiple]="false"
+                                      uploadMode="useForm"
+                                      [(value)]="file">
+                    </dx-file-uploader>
+                </div>
+            </div>
+        </dx-validation-group>
+    </div>
+
+    <ng-template #footerTemplate>
+        <div class="flex justify-between footer-container">
+            <app-custom-button [disabled]="isProcessing || !isDataValid"
+                               icon="{{ isProcessing ? 'fas fa-spinner fa-spin' : '' }}"
+                               height="40"
+                               width="92"
+                               text="Lưu cài đặt"
+                               [type]="'primary'"
+                              (click)="SaveSetting()">
+            </app-custom-button>
+
+            <app-custom-button [disabled]="isProcessing"
+                               class="!border-0px cancel"
+                               height="40"
+                               width="100"
+                               [text]="'Hủy'"
+                               [type]="'cancel'">
+            </app-custom-button>
+        </div>
+    </ng-template>
+</app-popup-container>

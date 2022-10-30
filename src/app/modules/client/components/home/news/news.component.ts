@@ -20,7 +20,7 @@ import { AppNotify } from '@app/utilities';
 export class NewsComponent implements OnDestroy {
   activites$: Observable<ActivityModel[]> = this.store.select<ActivityModel[]>(ActivitiesSelectors.activities);
   //
-  activites: ActivityModel[];
+  activities: ActivityModel[];
   activityTypes: ActivityTypeModel[];
   //
   loadingArr = [1,2,3,4];
@@ -52,7 +52,7 @@ export class NewsComponent implements OnDestroy {
 
   private _subscribeActivities() {
     this._subscriptions.add(this.activites$.subscribe((activities: ActivityModel[]) => {
-        this.activites = activities;
+        this.activities = activities;
     }));
 }
 
@@ -70,9 +70,14 @@ export class NewsComponent implements OnDestroy {
       })
     ).subscribe(
       res => {
-        this.activites = res.results;
+        this.activities = res.results;
         this.store.dispatch(new ActivitiesActions.setActivities(res.results));
       })
+  }
+
+  loadMore() {
+    this.page_size = this.page_size + 4;
+    this.getListActivities();
   }
 
   getActivityTypes() {

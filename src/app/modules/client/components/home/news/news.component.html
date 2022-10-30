@@ -8,21 +8,21 @@
 			<div class="news-content">
 				<div class="card card-large"  *ngIf="!isLoading">
 					<div class="image">
-						<img :src="{{activites[0].cover_picture}}" alt="">
+						<img :src="{{activities[0].cover_picture}}" alt="">
 					</div>
 
 					<div class="content">
-						<p class="text-22px leading-28px">{{activites[0].activity_type | lookupValue : activityTypes : 'id' : 'name'}}</p>
-						<p class="text-16px leading-22px">{{activites[0].title}}</p>
+						<p class="text-22px leading-28px">{{activities[0].activity_type | lookupValue : activityTypes : 'id' : 'name'}}</p>
+						<p class="text-16px leading-22px">{{activities[0].title}}</p>
 						<div class="button cursor-pointer">
 							<span class="text-blue-00AFFF text-14px"
-              (click)="goActivityDetail(activites[0].id)">> Xem chi tiết</span>
+              (click)="goActivityDetail(activities[0].id)">> Xem chi tiết</span>
 						</div>
 					</div>
 				</div>
 
         <ng-container
-         *ngFor="let activity of activites; index as actionIndex;">
+         *ngFor="let activity of activities; index as actionIndex;">
           <div
             *ngIf="!isLoading && actionIndex >= 1"
             class="card flex flex-col items-center">
@@ -57,9 +57,15 @@
 			</div>
 		</div>
 
-		<div class="w-full text-center my-40-c">
-			<app-custom-button class="uppercase text-22px hover:bg-white rounded-5px" [height]="40" [text]="'Hiển thị thêm'"
-				[type]="'primary-outline'">
+		<div
+      class="w-full text-center my-40-c"
+      *ngIf="activities.length > 6">
+			<app-custom-button
+        class="uppercase text-22px hover:bg-white rounded-5px"
+        [height]="40"
+        [text]="'Hiển thị thêm'"
+				[type]="'primary-outline'"
+        (click)="loadMore()">
 			</app-custom-button>
 		</div>
 

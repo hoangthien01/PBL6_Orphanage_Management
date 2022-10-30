@@ -100,6 +100,6 @@ export class ActivitySettingPopupComponent implements OnInit, OnDestroy {
 
   onResetDate() {
     this.activity.start_date = null;
-    this.activity.end_date = new Date();
+    this.activity.end_date = null;
   }
 }

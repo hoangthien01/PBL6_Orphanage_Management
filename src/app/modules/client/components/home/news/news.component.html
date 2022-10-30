@@ -8,14 +8,12 @@
 			<div class="news-content">
 				<div class="card card-large">
 					<div class="image">
-						<img src="../../../../../../assets/images/app-common/safe.jpg" alt="">
+						<img :src="{{activites[0].cover_picture}}" alt="">
 					</div>
 
 					<div class="content">
-						<p class="text-22px leading-28px">Bảo vệ chính mình, gia đình và những người thân yêu của bạn</p>
-						<p class="text-16px leading-22px">Đại dịch COVID-19 suốt hai năm qua đã gây đảo lộn cuộc sống của nhiều trẻ
-							em và gia đình trên khắp thế
-							giới...</p>
+						<p class="text-22px leading-28px">{{activites[0].activity_type | lookupValue : activityTypes : 'id' : 'name'}}</p>
+						<p class="text-16px leading-22px">{{activites[0].title}}</p>
 						<div class="button cursor-pointer">
 							<span class="text-blue-00AFFF text-14px">> Xem chi tiết</span>
 						</div>
@@ -23,9 +21,9 @@
 				</div>
 
 				<div
-					*ngFor="let activity of activites"
+					*ngFor="let activity of activites; index as actionIndex;"
 					class="card flex flex-col items-center">
-					<div class="w-full">
+					<div class="w-full" *ngIf="actionIndex !== 0">
             <img class="w-full h-200 object-cover" loading="lazy"
               :src="{{activity.cover_picture}}" width="480" height="320"
               alt="What you need to know about COVID-19 vaccines" typeof="foaf:Image">

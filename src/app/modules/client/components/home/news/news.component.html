@@ -6,7 +6,7 @@
 
 		<div class="">
 			<div class="news-content">
-				<div class="card card-large">
+				<div class="card card-large"  *ngIf="!isLoading">
 					<div class="image">
 						<img :src="{{activites[0].cover_picture}}" alt="">
 					</div>
@@ -15,31 +15,45 @@
 						<p class="text-22px leading-28px">{{activites[0].activity_type | lookupValue : activityTypes : 'id' : 'name'}}</p>
 						<p class="text-16px leading-22px">{{activites[0].title}}</p>
 						<div class="button cursor-pointer">
-							<span class="text-blue-00AFFF text-14px">> Xem chi tiết</span>
-						</div>
-					</div>
-				</div>
-
-				<div
-					*ngFor="let activity of activites; index as actionIndex;"
-					class="card flex flex-col items-center">
-					<div class="w-full" *ngIf="actionIndex !== 0">
-            <img class="w-full h-200 object-cover" loading="lazy"
-              :src="{{activity.cover_picture}}" width="480" height="320"
-              alt="What you need to know about COVID-19 vaccines" typeof="foaf:Image">
-					</div>
-
-					<div class="content">
-						<div class="pb-10-c pt-6-c text-blue-00AFFF">{{activity.activity_type | lookupValue : activityTypes : 'id' : 'name'}}</div>
-						<p class="text-22px leading-28px">{{activity.title}}</p>
-						<p class="text-16px leading-22px">  </p>
-						<div class="button">
 							<span class="text-blue-00AFFF text-14px"
-										(click)="goActivityDetail(activity.id)">> Đọc câu chuyện</span>
+              (click)="goActivityDetail(activites[0].id)">> Xem chi tiết</span>
 						</div>
 					</div>
 				</div>
 
+        <ng-container
+         *ngFor="let activity of activites; index as actionIndex;">
+          <div
+            *ngIf="!isLoading && actionIndex >= 1"
+            class="card flex flex-col items-center">
+            <div class="w-full">
+              <img class="w-full h-200 object-cover" loading="lazy"
+                :src="{{activity.cover_picture}}" width="480" height="320"
+                alt="What you need to know about COVID-19 vaccines" typeof="foaf:Image">
+            </div>
+
+            <div class="content">
+              <div class="pb-10-c pt-6-c text-blue-00AFFF">{{activity.activity_type | lookupValue : activityTypes : 'id' : 'name'}}</div>
+              <p class="text-22px leading-28px">{{activity.title}}</p>
+              <p class="text-16px leading-22px">  </p>
+              <div class="button">
+                <span class="text-blue-00AFFF text-14px"
+                      (click)="goActivityDetail(activity.id)">> Đọc câu chuyện</span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- skeleton loader -->
+        <ng-container *ngFor="let activity of loadingArr">
+          <div *ngIf="isLoading" class="card is-loading">
+            <div class="image"></div>
+            <div class="content">
+              <h2></h2>
+              <p></p>
+            </div>
+          </div>
+        </ng-container>
 			</div>
 		</div>
 

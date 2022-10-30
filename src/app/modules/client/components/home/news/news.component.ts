@@ -23,6 +23,7 @@ export class NewsComponent implements OnDestroy {
   activites: ActivityModel[];
   activityTypes: ActivityTypeModel[];
   //
+  loadingArr = [1,2,3,4];
   page: number = 1;
   page_size: number = 6;
   type: string = 'all';
@@ -30,6 +31,7 @@ export class NewsComponent implements OnDestroy {
   //
   isShowRegisterPopup: boolean = false;
   isRegistering: boolean = false;
+  isLoading: boolean = false;
   //
   private _subscriptions: Subscription = new Subscription();;
   //
@@ -60,8 +62,13 @@ export class NewsComponent implements OnDestroy {
       page_size: this.page_size,
       type: this.type
     }
-
-    this.activityService.getListActivities(data).subscribe(
+    this.isLoading = true
+    this.activityService.getListActivities(data)
+    .pipe(
+      finalize(() => {
+        this.isLoading = false;
+      })
+    ).subscribe(
       res => {
         this.activites = res.results;
         this.store.dispatch(new ActivitiesActions.setActivities(res.results));

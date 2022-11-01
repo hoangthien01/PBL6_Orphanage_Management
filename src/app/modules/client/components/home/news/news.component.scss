@@ -84,6 +84,7 @@
       grid-column-end: 4;
 
       .image {
+        width: 65%;
 
         img {
           object-fit: cover;
@@ -91,6 +92,10 @@
           max-height: 500px;
           width: 100%;
         }
+      }
+
+      .content {
+        width: 35%;
       }
     }
   }

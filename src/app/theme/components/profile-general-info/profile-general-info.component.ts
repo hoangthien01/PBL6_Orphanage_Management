@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { EmployeeService } from './../../../services/employee-management.service';
+import { EmployeeService } from '../../../modules/employee/services/employee-management.service';
 import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, finalize } from 'rxjs/operators';

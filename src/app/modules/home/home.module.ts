@@ -12,7 +12,7 @@ import { AvatarComponent } from './components/header/avatar/avatar.component';
 import { AuthGuard } from '@app/core/guards';
 import { HomeContentComponent } from './components/home-content/home-content.component';
 import { NgxPermissionsGuard, NgxPermissionsModule } from 'ngx-permissions';
-import { ProfileGeneralInfoComponent } from '../employee/components/employee-detail/profile-general-info/profile-general-info.component';
+import { ProfileGeneralInfoComponent } from '../../theme/components/profile-general-info/profile-general-info.component';
 
 const SVG_ICONS = [
 ];

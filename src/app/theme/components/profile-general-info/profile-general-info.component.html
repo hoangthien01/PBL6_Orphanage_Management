@@ -137,8 +137,8 @@
     </dx-scroll-view>
 </div>
 
-<ng-container *ngIf="isShowChangePasswordPopup">
+<div *ngIf="isShowChangePasswordPopup">
     <app-change-password #changePasswordComponent
                          [(visible)]="isShowChangePasswordPopup">
     </app-change-password>
-</ng-container>
+</div>

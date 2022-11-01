@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ThemeModule } from '@app/theme/theme.module';
 //
 import { SvgIconsRegistry } from '@app/core/services';
-import { ProfileGeneralInfoComponent } from '../employee/components/employee-detail/profile-general-info/profile-general-info.component';
+import { ProfileGeneralInfoComponent } from '../../theme/components/profile-general-info/profile-general-info.component';
 //
 const SVG_ICONS = [
 ];

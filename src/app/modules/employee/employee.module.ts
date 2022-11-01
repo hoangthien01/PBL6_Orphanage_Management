@@ -9,8 +9,6 @@ import { AuthGuard } from '@app/core/guards';
 import { EmployeeAddComponent } from './components/employee-add/employee-add.component';
 import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
 import { EmployeeManagementComponent } from './employee.component';
-import { ProfileGeneralInfoComponent } from './components/employee-detail/profile-general-info/profile-general-info.component';
-import { ChangePasswordComponent } from './components/employee-detail/change-password/change-password.component';
 //
 const SVG_ICONS = [
 ];
@@ -19,8 +17,6 @@ const COMPONENTS = [
   EmployeeManagementComponent,
   EmployeeAddComponent,
   EmployeeDetailComponent,
-  ProfileGeneralInfoComponent,
-  ChangePasswordComponent
 ];
 
 export const routes: Routes = [

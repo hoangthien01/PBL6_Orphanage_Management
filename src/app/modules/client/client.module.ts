@@ -15,7 +15,7 @@ import { NewsDetailComponent } from './components/home/news-detail/news-detail.c
 import { svgIconCalendar, svgIconUserLight } from 'src/assets/images/svg-icons.constants';
 import { DonateComponent } from './components/donate/donate.component';
 import { FooterComponent } from './components/home/footer/footer.component';
-import { ProfileGeneralInfoComponent } from '../employee/components/employee-detail/profile-general-info/profile-general-info.component';
+import { ProfileGeneralInfoComponent } from '../../theme/components/profile-general-info/profile-general-info.component';
 import { CommentsComponent } from './components/home/news-detail/comments/comments.component';
 
 const SVG_ICONS = [

@@ -9,3 +9,4 @@ export * from './help-text/help-text.component';
 export * from './popup-container/popup-container.component';
 export * from './popup-confirmation/popup-confirmation.component';
 export * from './avatar/avatar.component';
+export * from './profile-general-info/profile-general-info.component';

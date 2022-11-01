@@ -56,6 +56,7 @@ import {
   CustomButtonComponent,
   PopupConfirmationComponent,
   ProfileAvatarComponent,
+  ProfileGeneralInfoComponent,
   SideBarMenuComponent,
   SvgIconComponent
 } from './components';
@@ -95,6 +96,7 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import { DateRangePickerComponent } from './components/date-range-picker/date-range-picker.component';
 import { Daterangepicker } from 'ng2-daterangepicker';
 import { AttachmentPreviewPopupComponent } from './components/attachment-preview-popup/attachment-preview-popup.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const DEVEXTREME_MODULES = [
   DxDataGridModule,
@@ -179,7 +181,9 @@ const COMPONENTS = [
   PopupConfirmationComponent,
   ProfileAvatarComponent,
   DateRangePickerComponent,
-  AttachmentPreviewPopupComponent
+  AttachmentPreviewPopupComponent,
+  ProfileGeneralInfoComponent,
+  ChangePasswordComponent
 ];
 
 const PIPES = [

@@ -17,6 +17,7 @@ import { DonateComponent } from './components/donate/donate.component';
 import { FooterComponent } from './components/home/footer/footer.component';
 import { ProfileGeneralInfoComponent } from '../../theme/components/profile-general-info/profile-general-info.component';
 import { CommentsComponent } from './components/home/news-detail/comments/comments.component';
+import { ChildrensComponent } from './components/childrens/childrens.component';
 
 const SVG_ICONS = [
   svgIconUserLight,
@@ -29,8 +30,13 @@ export const routes: Routes = [
     component: ClientComponent,
     children: [
       {
-        path: '',
+        path: 'home',
         component: HomeClientComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'childrens',
+        component: ChildrensComponent,
         pathMatch: 'full'
       },
       {
@@ -54,7 +60,8 @@ const COMPONENTS = [
   NewsDetailComponent,
   DonateComponent,
   FooterComponent,
-  CommentsComponent
+  CommentsComponent,
+  ChildrensComponent
 ];
 
 @NgModule({

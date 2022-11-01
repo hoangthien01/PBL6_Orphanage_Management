@@ -31,9 +31,10 @@
 				</ng-template>
 
 				<app-svg-icon *ngIf="!isCollapsed"
-                      [width]="10"
+                      [width]="30"
+                      [height]="30"
                       (click)="toggle($event)"
-                      class="arrow-icon pointer"
+                      class="arrow-icon pointer p-4-c rounded-1/2 bg-white ml-12-c"
                       [name]="'icon_chevron_left'">
 				</app-svg-icon>
 			</div>

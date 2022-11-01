@@ -147,6 +147,7 @@ export class ProfileAvatarComponent implements OnDestroy {
           ).subscribe((res) => {
             this.fileAvatarName = res.avatar;
             this.avatarUpdated.emit(this.data.avatar);
+
             if (this.isUpdatingProfile) {
               this._store.dispatch(new UserActions.UpdateUserAvatar(res.avatar));
             }

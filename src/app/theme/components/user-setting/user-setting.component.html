@@ -6,8 +6,8 @@
                     'dark-theme': isDarkThemeSelected,
                     'light-theme': !isDarkThemeSelectedChange}"
 		   (click)="showUserMenu($event)">
-		<img *ngIf="!!userAvatar; else usernameAvatar"
-         [src]="userAvatar"
+		<img *ngIf="currentUser?.avatar; else usernameAvatar"
+         [src]="currentUser.avatar"
 			   class="default-avatar"
 			   loading="lazy" />
 		<ng-template #usernameAvatar>

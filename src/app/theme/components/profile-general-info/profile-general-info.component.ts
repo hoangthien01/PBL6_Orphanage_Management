@@ -16,6 +16,7 @@ import { CanComponentDeactivate } from '@app/core/guards';
 import { EmployeeModel } from '@app/modules/employee/models';
 import { ProfileService } from '@app/modules/profile/services/employee-management.service';
 import { UserSelectors } from '@app/core/store';
+import * as UserActions from '@app/core/store/user/user.actions';
 
 @Component({
     selector: 'app-profile-general-info',
@@ -111,12 +112,14 @@ export class ProfileGeneralInfoComponent implements OnInit, OnDestroy, CanCompon
         this._employeeService.updateEmployee(this.employee).pipe(finalize(() => {
             this.isSaving = false;
             this._cdr.detectChanges();
-        })).subscribe(() => {
+        })).subscribe((res) => {
             AppNotify.success(AppNotify.generateSuccessMessage('profile', 'updated'));
             //
             this.cloneDataAfterSavingSuccess();
             // this._userService.updateUserName.emit(this.profileGeneralInfo.name);
-            // this._store.dispatch(new UserActions.UpdateUserName(this.profileGeneralInfo.name));
+            if (!this.employeeId) {
+              this._store.dispatch(new UserActions.UpdateUserName(res.name));
+            }
             //
             this.dataChanged();
         },

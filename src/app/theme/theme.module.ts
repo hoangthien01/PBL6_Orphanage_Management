@@ -94,6 +94,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { DateRangePickerComponent } from './components/date-range-picker/date-range-picker.component';
 import { Daterangepicker } from 'ng2-daterangepicker';
+import { AttachmentPreviewPopupComponent } from './components/attachment-preview-popup/attachment-preview-popup.component';
 
 const DEVEXTREME_MODULES = [
   DxDataGridModule,
@@ -177,7 +178,8 @@ const COMPONENTS = [
   PageNotFoundComponent,
   PopupConfirmationComponent,
   ProfileAvatarComponent,
-  DateRangePickerComponent
+  DateRangePickerComponent,
+  AttachmentPreviewPopupComponent
 ];
 
 const PIPES = [

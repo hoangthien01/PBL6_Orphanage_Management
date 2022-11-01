@@ -16,6 +16,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
   isDataValid: boolean = false;
   isShowSettingPopup: boolean = false;
   isProcessing: boolean = false;
+  isShowCreatePage: boolean = false;
   activity: ActivityModel = new ActivityModel();
   //
   constructor(private changeDetector: ChangeDetectorRef,
@@ -34,6 +35,8 @@ export class ActivityComponent implements OnInit, OnDestroy {
     .pipe(
       finalize(() => {
         this.isProcessing = false;
+        this.isShowCreatePage = false;
+        this.changeDetector.detectChanges();
       }
     )).subscribe((res) => {
       AppNotify.success(AppNotify.generateSuccessMessage('Activity', 'added'));

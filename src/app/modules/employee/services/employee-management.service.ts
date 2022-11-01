@@ -31,7 +31,7 @@ export class EmployeeService {
     return this.baseService.get(`user/${id}`);
   }
 
-  updateEmployee(employee: EmployeeModel) :Observable<boolean> {
+  updateEmployee(employee: EmployeeModel) :Observable<EmployeeModel> {
     return this.baseService.putFile(`user/${employee.id}`, employee);
   }
 }

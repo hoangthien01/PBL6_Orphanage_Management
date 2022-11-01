@@ -14,6 +14,7 @@ import { QuillModule } from 'ngx-quill'
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import { ActivitySettingPopupComponent } from './components/activity-setting-popup/activity-setting-popup.component';
+import { ActivitiesComponent } from './components/activities/activities.component';
 // import "quill-emoji/dist/quill-emoji.css";
 //
 const SVG_ICONS = [
@@ -21,7 +22,8 @@ const SVG_ICONS = [
 
 const COMPONENTS = [
   ActivityComponent,
-  ActivitySettingPopupComponent
+  ActivitySettingPopupComponent,
+  ActivitiesComponent
 ];
 
 export const routes: Routes = [

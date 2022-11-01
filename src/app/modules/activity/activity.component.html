@@ -1,6 +1,11 @@
 
-<div class="px-24-c h-full">
-  <div class="text-20px font-gotham-bold py-16-c flex items-center justify-between text-blue-282E3E children-management__header">
+<div class="px-24-c h-5/6">
+  <app-activities
+    *ngIf="!isShowCreatePage"
+    (onShowCreatePage)="isShowCreatePage = true">
+  </app-activities>
+
+  <div *ngIf="isShowCreatePage" class="text-20px font-gotham-bold py-16-c flex items-center justify-between text-blue-282E3E children-management__header">
     <span>
       Add new activity
     </span>
@@ -25,16 +30,16 @@
     </div>
   </div>
 
-  <div class="box-properties mt-20-c">
+  <div *ngIf="isShowCreatePage" class="box-properties mt-20-c">
     <dx-text-box class="field-box"
-                 [inputAttr]="{ autocomplete: 'on' }"
-                 placeholder="Nhập tiêu đề..."
-                 [(value)]="activity.title"
-                 [valueChangeEvent]="'input'">
+                  [inputAttr]="{ autocomplete: 'on' }"
+                  placeholder="Nhập tiêu đề..."
+                  [(value)]="activity.title"
+                  [valueChangeEvent]="'input'">
     </dx-text-box>
   </div>
 
-  <div class="mt-30-c h-3/4">
+  <div *ngIf="isShowCreatePage" class="mt-30-c h-3/4">
     <quill-editor
       class="content-editor"
       [(ngModel)]="activity.content"

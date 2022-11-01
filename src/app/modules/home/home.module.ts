@@ -26,7 +26,7 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomeContentComponent,
-        // redirectTo: 'manage-children',
+        redirectTo: 'manage-children',
         pathMatch: 'full'
       },
       {

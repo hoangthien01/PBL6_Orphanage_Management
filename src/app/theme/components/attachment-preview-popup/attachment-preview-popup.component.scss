@@ -1,0 +1,99 @@
+::ng-deep .attachment-preview-popup-container {
+    .dx-overlay-content {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+}
+
+.attachment-preview-popup-content {
+    height: calc(100% - 120px);
+    max-height: calc(100% - 120px);
+    background-color: white;
+    margin: 40px 40px 10px;
+    border-radius: 5px;
+
+    > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    > div,
+    iframe {
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+}
+
+.attachment-preview-popup__close-btn {
+    position: absolute;
+    cursor: pointer;
+    top: 15px;
+    right: 15px;
+    width: 24px;
+    color: white;
+
+    &:hover {
+        color: red;
+    }
+}
+
+.attachment-preview-popup__footer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.attachment-preview__file-name {
+    color: #FFF;
+}
+
+.attachment-preview__action-buttons {
+    i, span {
+        color: #ffffff !important;
+    }
+
+    a {
+        text-decoration: underline;
+        color: #ffffff !important;
+    }
+}
+
+.attachment-preview__btn {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #777;
+    }
+}
+
+.preview-popup__download-btn {
+    &.disabled {
+        cursor: not-allowed;
+    }
+
+    .fa-spinner {
+        width: 16px;
+        height: 16px;
+        background-position: 0 0;
+        background-size: 16px 16px;
+        padding: 0;
+        font-size: 16px;
+        text-align: center;
+        line-height: 16px;
+        margin-left: 0;
+    }
+}
+
+

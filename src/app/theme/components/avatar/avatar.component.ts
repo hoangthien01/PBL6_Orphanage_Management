@@ -7,11 +7,14 @@ import { AVATAR_PARENT_COMPONENT } from '@app/shared/app.constants';
 import { AttachmentModel } from '@app/shared/models';
 import { svgIconAvatarDefault, svgIconAvatarLogo } from 'src/assets/images/svg-icons.constants';
 import { UserService } from '@app/modules/account-setting/services/user.service';
+import { EmployeeService } from '@app/modules/employee/services/employee-management.service';
+import { EmployeeModel } from '@app/modules/employee/models';
+import { finalize } from 'rxjs/operators';
 
 @Component({
     selector: 'app-profile-avatar',
     templateUrl: './avatar.component.html',
-    styleUrls: ['./avatar.component.scss']
+    styleUrls: ['./avatar.component.scss'],
 })
 export class ProfileAvatarComponent implements OnDestroy {
 
@@ -23,6 +26,7 @@ export class ProfileAvatarComponent implements OnDestroy {
     @Input() chatBoxId: string;
     @Input() avatarParentComponent: string;
     @Input() disabled: boolean = false;
+    @Input() data: EmployeeModel = new EmployeeModel();
     @Output() avatarUpdated: EventEmitter<string> = new EventEmitter<string>();
 
     AVATAR_PARENT_COMPONENT = AVATAR_PARENT_COMPONENT;
@@ -41,7 +45,8 @@ export class ProfileAvatarComponent implements OnDestroy {
     private _subscriptions: Subscription = new Subscription();
 
     constructor(private _store: Store,
-                private _userService: UserService) {
+                private _userService: UserService,
+                private _employeeService: EmployeeService) {
     }
 
     ngOnDestroy(): void {
@@ -71,6 +76,7 @@ export class ProfileAvatarComponent implements OnDestroy {
         const confirm = await CommonFunction.confirmDeleteDialogPromise(confirmTitle,
             confirmMessage, 'REMOVE');
         if (confirm) {
+          this.removeProfilePhoto();
         }
     }
 
@@ -101,6 +107,8 @@ export class ProfileAvatarComponent implements OnDestroy {
             }
 
             this.file = file;
+            this.data.avatar = this.file;
+            this.setAsProfilePhoto();
         }
     }
 
@@ -108,37 +116,36 @@ export class ProfileAvatarComponent implements OnDestroy {
         if (this.isUpdating) {
             return;
         }
-
         this.isUpdating = true;
-        // this._userService.updateAvatar(this.file, this._webSocketService.connectionId).pipe(
-        //     finalize(() => {
-        //         this.isUpdating = false;
-
-        //         (document.getElementById('upload-avatar') as any).value = null;
-        //     })
-        // ).subscribe((avatar) => {
-        //     this.fileAvatarName = avatar;
-        //     this.avatarUpdated.emit(avatar);
-        //     this._store.dispatch(new UserActions.UpdateUserAvatar(avatar));
-        //     //
-        //     AppNotify.success(AppNotify.generateSuccessMessage('avatar', 'changed'));
-        // });
+        this._employeeService.updateEmployee(this.data).pipe(
+          finalize(() => {
+              this.isUpdating = false;
+              (document.getElementById('upload-avatar') as any).value = null;
+          })
+        ).subscribe((res) => {
+          this.fileAvatarName = res.avatar;
+          this.avatarUpdated.emit(this.data.avatar);
+          // this._store.dispatch(new UserActions.UpdateUserAvatar(avatar));
+          //
+          AppNotify.success(AppNotify.generateSuccessMessage('avatar', 'changed'));
+        });
     }
 
     private removeProfilePhoto() {
         this.isDeleting = true;
-        // this._userService.deleteAvatar(this._webSocketService.connectionId).pipe(
-        //     finalize(() => {
-        //         this.isDeleting = false;
-        //         (document.getElementById('upload-avatar') as any).value = null;
-        //     })
-        // ).subscribe(() => {
-        //     this.fileAvatarName = null;
-        //     this.avatarUpdated.emit(null);
-        //     this._store.dispatch(new UserActions.UpdateUserAvatar(null));
-        //     //
-        //     AppNotify.success(AppNotify.generateSuccessMessage('avatar', 'removed'));
-        // });
+        this.data.avatar = '';
+        this._employeeService.updateEmployee(this.data).pipe(
+            finalize(() => {
+                this.isDeleting = false;
+                (document.getElementById('upload-avatar') as any).value = null;
+            })
+        ).subscribe(() => {
+            this.fileAvatarName = null;
+            this.avatarUpdated.emit(null);
+            // this._store.dispatch(new UserActions.UpdateUserAvatar(null));
+            //
+            AppNotify.success(AppNotify.generateSuccessMessage('avatar', 'removed'));
+        });
     }
 
     previewAvatar(avatarUrl: string) {

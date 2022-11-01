@@ -1,0 +1,49 @@
+<dx-popup #previewAttachmentPopup
+          (onHidden)="hideAttachmentPopup()"
+          [fullScreen]="true"
+          [showTitle]="false"
+          [(visible)]="visible"
+          class="attachment-preview-popup-container"
+          id="attachmentPreviewPopupContainer">
+    <div *dxTemplate="let data of 'content'">
+        <div class="attachment-preview-popup-content">
+            <app-svg-icon class="attachment-preview-popup__close-btn"
+                          [data]="SVG_ICONS.CloseCircle"
+                          [title]="'Close'"
+                          (click)="hideAttachmentPopup()">
+            </app-svg-icon>
+
+            <div *ngIf="attachment.extension | function: isImageFileHandler;  else googleReader">
+                <img [src]="fileUrl">
+            </div>
+
+            <ng-template #googleReader>
+                <iframe [src]="fileUrl" frameborder="0"></iframe>
+            </ng-template>
+        </div>
+        <div *ngIf="!(attachment.extension | function: isImageFileHandler)" class="attachment-preview-popup__footer">
+            <h4 class="attachment-preview__file-name d-flex justify-content-center">{{attachment.name}}</h4>
+
+            <div class="attachment-preview__action-buttons d-flex justify-content-center">
+                <div (click)="downloadFile()" class="preview-popup__download-btn attachment-preview__btn d-flex align-items-center gap-8-c"
+                     [class.disabled]="isDownloading">
+                    <i *ngIf="isDownloading" class="fas fa-spinner fa-spin"></i>
+                    <app-svg-icon [hidden]="isDownloading"
+                                  [data]="SVG_ICONS.DownloadWeight"
+                                  [color]="'#FFF'"
+                                  [width]="18">
+                    </app-svg-icon>
+                    <span>Download</span>
+                </div>
+
+                <a [href]="fileUrl" target="_blank" class="attachment-preview__btn d-flex align-items-center gap-8-c">
+                    <app-svg-icon [data]="SVG_ICONS.ExternalLink"
+                                  [color]="'#FFF'"
+                                  [width]="14">
+                    </app-svg-icon>
+                    <span>Open in new Tab</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</dx-popup>

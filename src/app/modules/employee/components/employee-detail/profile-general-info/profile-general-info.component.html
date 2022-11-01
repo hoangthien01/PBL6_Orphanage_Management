@@ -15,6 +15,7 @@
                             <app-profile-avatar [avatarParentComponent]="AVATAR_PARENT_COMPONENT.profile"
                                                 [fileAvatarName]="employee.avatar"
                                                 [logoTitle]="'Ảnh cá nhân'"
+                                                [data]="employee"
                                                 [disabled]="isSaving"
                                                 (avatarUpdated)="onAvatarUpdated($event)">
                             </app-profile-avatar>
@@ -61,7 +62,7 @@
                         <div class="box-properties" appAutoFocusInput>
                             <span class="field-label">Chức vụ</span>
                             <dx-text-box class="field-box"
-                                         [disabled]="true"
+                                         [disabled]="false"
                                          [valueChangeEvent]="'input'"
                                          [(value)]="employee.occupation"
                                          (onValueChanged)="dataChanged()">
@@ -98,7 +99,7 @@
                             </div>
                         </div>
 
-                        <div class="box-properties">
+                        <div class="box-properties hidden">
                             <span class="field-label">Mật khẩu</span>
                             <div class="profile-general-info-title password-wrap d-flex">
                                 <app-custom-button class="change-password"
@@ -114,7 +115,7 @@
                 </div>
             </div>
 
-            <div class="pt-40-c pb-15-c">
+            <div class="pt-20-c pb-10-c">
                 <app-custom-button class="mr-10-c"
                                    icon="{{ isSaving ? 'fas fa-spinner fa-spin' : '' }}"
                                    [width]="120"

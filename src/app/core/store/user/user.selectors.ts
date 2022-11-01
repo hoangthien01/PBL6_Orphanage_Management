@@ -33,8 +33,8 @@ export class UserSelectors {
     @Selector([UserState])
     public static userAvatar(state: AuthResultModel): string {
         return !!state && state.user && state.user.avatar
-            ? state.user.avatar
-            : AVATAR_PROFILE_DEFAULT;
+            ? state.user.avatar : ''
+            // : AVATAR_PROFILE_DEFAULT;
     }
 
     @Selector([UserState])

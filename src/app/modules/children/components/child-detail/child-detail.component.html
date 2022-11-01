@@ -22,7 +22,8 @@
                                 <div class="box-properties">
                                     <app-profile-avatar [avatarParentComponent]="AVATAR_PARENT_COMPONENT.profile"
                                                         [fileAvatarName]="child.personal_picture"
-                                                        [logoTitle]="'Ảnh cá nhân'"
+                                                        [logoTitle]="'Ảnh cá nhân'"\
+                                                        [child]="child"
                                                         [disabled]="isSaving"
                                                         (avatarUpdated)="onAvatarUpdated($event)">
                                     </app-profile-avatar>

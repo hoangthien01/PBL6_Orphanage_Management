@@ -25,6 +25,7 @@ import { ENDPOINTS } from '@app/utilities';
 })
 export class UserSettingComponent implements OnInit {
   @Select(UserSelectors.userLogged) userLogged$: Observable<UserLoggedInModel>;
+  @Select(UserSelectors.userAvatar) userAvatar$: Observable<string>;
 
 	private _isDarkThemeSelected = false;
 
@@ -47,20 +48,19 @@ export class UserSettingComponent implements OnInit {
 	// themeSetting: UserThemeSettingModel = new UserThemeSettingModel();
 	currentUser: UserLoggedInModel;
 	subscription: Subscription = new Subscription();
+  userAvatar: string;
+  //
 	isLoading = false;
 	selectedTimePause: any;
-
 	isUserMenuVisible = false;
-
+  //
 	positionTimePausePopover: any = {
 		my: 'top left',
 		at: 'bottom right',
 		collision: 'fit flip',
 	};
-
 	selectedTenantElement: Element;
 	switchTenantConfirmBoxVisible = false;
-
 
 	constructor(
 		private store: Store,
@@ -71,6 +71,12 @@ export class UserSettingComponent implements OnInit {
 	ngOnInit(): void {
     this.subscription.add(this.userLogged$.subscribe((res) => {
       this.currentUser = res;
+    }));
+
+    this.subscription.add(this.userAvatar$.subscribe((res) => {
+      this.userAvatar = res;
+      console.log('this.userAvatar', this.userAvatar);
+
     }));
 	}
 

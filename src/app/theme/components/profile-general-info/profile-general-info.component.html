@@ -15,6 +15,7 @@
                             <app-profile-avatar [avatarParentComponent]="AVATAR_PARENT_COMPONENT.profile"
                                                 [fileAvatarName]="employee.avatar"
                                                 [logoTitle]="'Ảnh cá nhân'"
+                                                [isUpdatingProfile]="!employeeId"
                                                 [data]="employee"
                                                 [disabled]="isSaving"
                                                 (avatarUpdated)="onAvatarUpdated($event)">

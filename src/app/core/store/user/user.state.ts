@@ -170,6 +170,7 @@ export class UserState implements NgxsOnInit {
             email: payload.authResult.email,
             avatar: payload.authResult.avatar,
           }),
+          avatar: payload.authResult.avatar,
       });
     }
 

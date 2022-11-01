@@ -31,7 +31,7 @@ export class ChildrenService {
   }
 
   updateChild(child: ChildrenModel): Observable<ChildrenModel> {
-    return this.baseService.put(`children/${child.id}`, child);
+    return this.baseService.putFile(`children/${child.id}`, child);
   }
 
   addChild(child: any) :Observable<ChildrenModel> {

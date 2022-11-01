@@ -37,4 +37,8 @@ export class ChildrenService {
   addChild(child: any) :Observable<ChildrenModel> {
     return this.baseService.postFile(`children`, child);
   }
+
+  removeAvatar(id: string): Observable<ChildrenModel> {
+    return this.baseService.delete(`user/${id}/remove_photo`);
+  }
 }

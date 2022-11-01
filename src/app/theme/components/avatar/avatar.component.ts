@@ -135,7 +135,7 @@ export class ProfileAvatarComponent implements OnDestroy {
             })
           ).subscribe((res) => {
             this.fileAvatarName = res.personal_picture;
-            this.avatarUpdated.emit(this.data.avatar);
+            this.avatarUpdated.emit(res.personal_picture);
             AppNotify.success(AppNotify.generateSuccessMessage('avatar', 'changed'));
           });
         } else {
@@ -146,7 +146,7 @@ export class ProfileAvatarComponent implements OnDestroy {
             })
           ).subscribe((res) => {
             this.fileAvatarName = res.avatar;
-            this.avatarUpdated.emit(this.data.avatar);
+            this.avatarUpdated.emit(res.avatar);
 
             if (this.isUpdatingProfile) {
               this._store.dispatch(new UserActions.UpdateUserAvatar(res.avatar));
@@ -161,7 +161,17 @@ export class ProfileAvatarComponent implements OnDestroy {
         this.isDeleting = true;
         this.data.avatar = '';
         if (this.child) {
-
+          this._childService.removeAvatar(this.child.id).pipe(
+            finalize(() => {
+                this.isDeleting = false;
+                (document.getElementById('upload-avatar') as any).value = null;
+            })
+        ).subscribe(() => {
+            this.fileAvatarName = null;
+            this.avatarUpdated.emit(null);
+            //
+            AppNotify.success(AppNotify.generateSuccessMessage('avatar', 'removed'));
+        });
         } else {
           this._employeeService.removeAvatar(this.data.id).pipe(
               finalize(() => {

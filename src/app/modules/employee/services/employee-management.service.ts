@@ -34,4 +34,8 @@ export class EmployeeService {
   updateEmployee(employee: EmployeeModel) :Observable<EmployeeModel> {
     return this.baseService.putFile(`user/${employee.id}`, employee);
   }
+
+  removeAvatar(id: string): Observable<EmployeeModel> {
+    return this.baseService.delete(`user/${id}/remove_avatar`);
+  }
 }

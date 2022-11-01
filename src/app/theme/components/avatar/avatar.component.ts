@@ -134,7 +134,7 @@ export class ProfileAvatarComponent implements OnDestroy {
     private removeProfilePhoto() {
         this.isDeleting = true;
         this.data.avatar = '';
-        this._employeeService.updateEmployee(this.data).pipe(
+        this._employeeService.removeAvatar(this.data.id).pipe(
             finalize(() => {
                 this.isDeleting = false;
                 (document.getElementById('upload-avatar') as any).value = null;

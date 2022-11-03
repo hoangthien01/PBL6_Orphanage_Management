@@ -18,6 +18,7 @@ import { FooterComponent } from './components/home/footer/footer.component';
 import { ProfileGeneralInfoComponent } from '../../theme/components/profile-general-info/profile-general-info.component';
 import { CommentsComponent } from './components/home/news-detail/comments/comments.component';
 import { ChildrensComponent } from './components/childrens/childrens.component';
+import { homedir } from 'os';
 
 const SVG_ICONS = [
   svgIconUserLight,
@@ -29,6 +30,11 @@ export const routes: Routes = [
     path: '',
     component: ClientComponent,
     children: [
+      {
+        path: '',
+        component: HomeClientComponent,
+        pathMatch: 'full'
+      },
       {
         path: 'home',
         component: HomeClientComponent,

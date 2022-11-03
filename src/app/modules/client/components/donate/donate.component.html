@@ -1,1 +1,61 @@
-donate
+<div class="donate-container">
+  <div class="banner">
+    <div class="m-auto">
+      <p class="text-60px leading-normal text-white mb-20-c">Quyên góp</p>
+      <p class="text-20px text-white text-center">
+        <span class="cursor-pointer hover:text-red-DC6565" [routerLink]="['/']">Trang chủ </span>
+        <span class="text-grey-EAF0F6">/ Quyên góp</span></p>
+    </div>
+  </div>
+
+  <div class="wpo-donation-page-area section-padding">
+    <div class="container text-blue-00AFFF">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="wpo-donate-header text-blue-00AFFF text-center mb-52-c">
+                    <h2>Hàng ngàn trẻ em có thêm cơ hội vượt lên nghịch cảnh - nhờ có bạn đồng hành!</h2>
+                </div>
+                <div id="Donations" class="tab-pane">
+                    <form name="form-donation" action="#" method="post">
+                        <div class="wpo-donations-amount">
+                            <h2>Thông điệp của bạn gửi đến các em</h2>
+                            <input type="text" class="form-control" name="text" id="text" placeholder="Viết lời nhắn tại đây" required="">
+                        </div>
+                        <div class="wpo-donations-details">
+                            <h2>Thông tin chi tiết</h2>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group">
+                                    <input type="text" class="form-control" name="fullname" id="fullname" placeholder="Tên của bạn" required="">
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group">
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Họ đầy đủ" required="">
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group clearfix">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Địa chỉ Email" required="">
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group">
+                                    <input type="number" class="form-control" name="phone" id="phone" placeholder="Số điện thoại" required="">
+                                </div>
+                                <div class="col-lg-12 col-12 form-group">
+                                    <textarea class="form-control" name="note" id="note" placeholder="Lời nhắn" required=""></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wpo-doanation-payment">
+                            <h2>Nhập số tiền bạn muốn quyên góp</h2>
+
+                            <app-custom-button class="float-left mr-4"
+                                                [height]="40"
+                                                [width]="120"
+                                                [text]="'Quyên góp'"
+                                                [type]="'primary'"
+                                                (click)="makePayment(15)">
+                            </app-custom-button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

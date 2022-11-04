@@ -66,6 +66,7 @@ export class UserLoggedInModel {
     isInvited: boolean;
     hasMultipleAccounts: boolean;
     isOnlyAssignedData: boolean;
+    is_vip_donor: boolean;
     // Settings
     settings: { name: string; value: string }[];
 

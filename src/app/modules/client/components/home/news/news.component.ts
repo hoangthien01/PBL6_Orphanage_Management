@@ -11,6 +11,7 @@ import { ActivitiesSelectors } from '@app/core/store/activities/activities.selec
 import { UserService } from '@app/modules/account-setting/services/user.service';
 import { SendInfoModel } from '@app/modules/client/models/send-info.model';
 import { AppNotify } from '@app/utilities';
+import {UserSelectors} from "@app/core/store";
 
 @Component({
   selector: 'app-news',
@@ -19,6 +20,7 @@ import { AppNotify } from '@app/utilities';
 })
 export class NewsComponent implements OnDestroy {
   activites$: Observable<ActivityModel[]> = this.store.select<ActivityModel[]>(ActivitiesSelectors.activities);
+  isRegisteredInfo$: Observable<boolean> = this.store.select<boolean>(UserSelectors.isUserRegisteredInfo);
   //
   activities: ActivityModel[];
   activityTypes: ActivityTypeModel[];
@@ -32,8 +34,9 @@ export class NewsComponent implements OnDestroy {
   isShowRegisterPopup: boolean = false;
   isRegistering: boolean = false;
   isLoading: boolean = false;
+  isRegisteredInfo :boolean = false;
   //
-  private _subscriptions: Subscription = new Subscription();;
+  private _subscriptions: Subscription = new Subscription();
   //
   constructor(private activityService: ActivityService,
               private userService: UserService,
@@ -53,6 +56,10 @@ export class NewsComponent implements OnDestroy {
   private _subscribeActivities() {
     this._subscriptions.add(this.activites$.subscribe((activities: ActivityModel[]) => {
         this.activities = activities;
+    }));
+
+    this._subscriptions.add(this.isRegisteredInfo$.subscribe((isRegisteredInfo: boolean) => {
+        this.isRegisteredInfo = isRegisteredInfo;
     }));
 }
 

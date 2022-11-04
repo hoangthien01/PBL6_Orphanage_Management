@@ -5,7 +5,7 @@
 		</div>
 
 		<div class="">
-			<div class="news-content">
+			<div class="news-content mb-52-c">
 				<div class="card card-large"  *ngIf="!isLoading">
 					<div class="image">
 						<img :src="{{activities[0].cover_picture}}" alt="">
@@ -83,7 +83,7 @@
 			</app-custom-button>
 		</div>
 
-		<div class="py-60-c flex items-start justify-center">
+		<div class="py-60-c flex items-start justify-center" *ngIf="!isRegisteredInfo">
 			<div class="w-1/3 rounded-5px overflow-hidden">
 				<img class="max-w-none w-full "
 					src="../../../../../../assets/images/app-common/orphane1.avif"

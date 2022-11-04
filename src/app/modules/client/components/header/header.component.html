@@ -47,12 +47,20 @@
           </a>
       </div>
       <div class="flex items-center mx-16-c">
-        <app-custom-button class="float-left hover:bg-white rounded-5px"
+        <app-custom-button *ngIf="!isUserLoggedIn" class="float-left hover:bg-white rounded-5px"
               [height]="40"
               icon="'fas fa-spinner fa-spin'"
-              [text]="'SIGN IN'"
+              [text]="'LOGIN'"
               [type]="'primary-outline'"
               (onClick)="signIn()">
+        </app-custom-button>
+
+        <app-custom-button *ngIf="isUserLoggedIn" class="float-left hover:bg-white rounded-5px"
+              [height]="40"
+              icon="'fas fa-spinner fa-spin'"
+              [text]="'LOGOUT'"
+              [type]="'primary-outline'"
+              (onClick)="signOut()">
         </app-custom-button>
       </div>
     </div>

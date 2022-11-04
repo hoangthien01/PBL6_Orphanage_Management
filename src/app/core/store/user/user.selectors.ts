@@ -58,6 +58,13 @@ export class UserSelectors {
             : false;
     }
 
+    @Selector([UserState])
+    public static isUserRegisteredInfo(state: AuthResultModel): boolean {
+        return !!state && state.user && state.user.is_vip_donor
+            ? state.user.is_vip_donor
+            : false;
+    }
+
     /** TODO: These do not support for reloading cases - UserInfoReloadModel
     @Selector([UserState])
     public static isUserInAdminOwnerRole(state: AuthResultModel): boolean {

@@ -7,6 +7,7 @@ import { Component, OnDestroy } from '@angular/core';
 })
 export class DonateComponent implements OnDestroy {
   paymentHandler: any = null;
+  money: number = 10000;
   //
   constructor() {}
 

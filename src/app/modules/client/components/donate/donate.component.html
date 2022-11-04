@@ -4,7 +4,7 @@
       <p class="text-60px leading-normal text-white mb-20-c">Quyên góp</p>
       <p class="text-20px text-white text-center">
         <span class="cursor-pointer hover:text-red-DC6565" [routerLink]="['/']">Trang chủ </span>
-        <span class="text-grey-EAF0F6">/ Quyên góp</span></p>
+        <span class="text-grey-EAF0F6 opacity-70">/ Quyên góp</span></p>
     </div>
   </div>
 
@@ -41,16 +41,26 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="wpo-doanation-payment">
                             <h2>Nhập số tiền bạn muốn quyên góp</h2>
+                            <dx-number-box class="field-box"
+                                           format="VND #,##0.##"
+                                           [min]="10000"
+                                           [placeholder]="'......'"
+                                           [valueChangeEvent]="'input'"
+                                           [(value)]="money">
+                            </dx-number-box>
 
-                            <app-custom-button class="float-left mr-4"
-                                                [height]="40"
-                                                [width]="120"
-                                                [text]="'Quyên góp'"
-                                                [type]="'primary'"
-                                                (click)="makePayment(15)">
-                            </app-custom-button>
+                            <div>
+                                <app-custom-button  class="float-left my-20-c"
+                                                    [height]="40"
+                                                    [width]="120"
+                                                    [text]="'Quyên góp'"
+                                                    [type]="'primary'"
+                                                    (click)="makePayment(15)">
+                                </app-custom-button>
+                            </div>
                         </div>
                     </form>
                 </div>

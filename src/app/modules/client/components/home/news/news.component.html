@@ -22,7 +22,8 @@
                                  [height]="40"
                                  [width]="120"
                                  [text]="'Quyên góp'"
-                                 [type]="'primary'">
+                                 [type]="'primary'"
+                                 (click)="goToDonate(activities[0].id)">
               </app-custom-button>
 						</div>
 					</div>
@@ -51,7 +52,8 @@
                                   [height]="40"
                                   [width]="120"
                                   [text]="'Quyên góp'"
-                                  [type]="'primary'">
+                                  [type]="'primary'"
+                                  (click)="goToDonate(activity.id)">
                 </app-custom-button>
               </div>
             </div>

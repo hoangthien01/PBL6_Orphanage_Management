@@ -74,10 +74,12 @@ const COMPONENTS = [
   CommentsComponent,
   ChildrensComponent
 ];
+const PROVIDERS = [
+]
 
 @NgModule({
     declarations: [
-        COMPONENTS
+        ...COMPONENTS
     ],
     imports: [
         ThemeModule,
@@ -85,8 +87,8 @@ const COMPONENTS = [
         RouterModule.forChild(routes),
         CommonModule,
     ],
-    exports: [COMPONENTS]
-    // providers: [...PROVIDERS]
+    exports: [...COMPONENTS],
+    providers: [...PROVIDERS]
 })
 export class ClientModule {
     constructor(private svgIconRegistry: SvgIconsRegistry) {

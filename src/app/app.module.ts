@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { AppInitService } from './core/services';
 import { UserLookupState } from './core/store/user-lookup/user-lookup.state';
 import { UserState } from './core/store/user/user.state';
+import {NgxsResetPluginModule} from "ngxs-reset-plugin";
 
 function initializeApp(injector: Injector) {
   console.log('Initializing App Component');
@@ -42,6 +43,7 @@ function initializeApp(injector: Injector) {
           injectContainerState: false
       }
     }),
+    NgxsResetPluginModule.forRoot(),
     // ngx-permissions
     NgxPermissionsModule.forRoot(),
     QuillModule.forRoot()

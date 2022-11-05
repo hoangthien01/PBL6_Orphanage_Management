@@ -17,28 +17,66 @@
                 </div>
                 <div id="Donations" class="tab-pane">
                     <form name="form-donation" action="#" method="post">
-                        <div class="wpo-donations-amount">
-                            <h2>Thông điệp của bạn gửi đến các em</h2>
-                            <input type="text" class="form-control" name="text" id="text" placeholder="Viết lời nhắn tại đây" required="">
-                        </div>
                         <div class="wpo-donations-details">
                             <h2>Thông tin chi tiết</h2>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group">
-                                    <input type="text" class="form-control" name="fullname" id="fullname" placeholder="Tên của bạn" required="">
+                                    <div class="box-properties">
+                                        <span class="field-label">Họ và tên</span>
+                                        <dx-text-box class="field-box mb-20-c"
+                                                     appAutoFocusInput
+                                                     mode="text"
+                                                     [placeholder]="'Họ và tên'"
+                                                     [valueChangeEvent]="'input'"
+                                                     [(value)]="currentUser.name">
+                                        </dx-text-box>
+                                    </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group">
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Họ đầy đủ" required="">
+                                    <div class="box-properties">
+                                        <span class="field-label">Họ đầy đủ</span>
+                                        <dx-text-box class="field-box mb-20-c"
+                                                     mode="text"
+                                                     [placeholder]="'Địa chỉ    '"
+                                                     [valueChangeEvent]="'input'"
+                                                     [(value)]="currentUser.address">
+                                        </dx-text-box>
+                                    </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group clearfix">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Địa chỉ Email" required="">
+                                    <div class="box-properties">
+                                        <span class="field-label">Địa chỉ email</span>
+                                        <dx-text-box class="field-box mb-20-c"
+                                                     mode="text"
+                                                     [placeholder]="'Địa chỉ email'"
+                                                     [valueChangeEvent]="'input'"
+                                                     [(value)]="currentUser.email">
+                                        </dx-text-box>
+                                    </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group">
-                                    <input type="number" class="form-control" name="phone" id="phone" placeholder="Số điện thoại" required="">
+                                    <div class="box-properties">
+                                        <span class="field-label">Số điện thoại</span>
+                                        <dx-text-box class="field-box mb-20-c"
+                                                     mode="text"
+                                                     [placeholder]="'Số điện thoại'"
+                                                     [valueChangeEvent]="'input'"
+                                                     [(value)]="currentUser.phone">
+                                        </dx-text-box>
+                                    </div>
                                 </div>
-                                <div class="col-lg-12 col-12 form-group">
-                                    <textarea class="form-control" name="note" id="note" placeholder="Lời nhắn" required=""></textarea>
-                                </div>
+                            </div>
+                        </div>
+                        <div class="wpo-donations-amount">
+                            <h2>Thông điệp của bạn gửi đến các em</h2>
+                            <div class="box-properties">
+                                <span class="field-label">Lời nhắn</span>
+                                <dx-text-area class="field-box mb-20-c"
+                                              height="200"
+                                              [placeholder]="'Viết lời nhắn của bạn tại đây'"
+                                              [valueChangeEvent]="'input'"
+                                              [(value)]="message">
+                                </dx-text-area>
                             </div>
                         </div>
 

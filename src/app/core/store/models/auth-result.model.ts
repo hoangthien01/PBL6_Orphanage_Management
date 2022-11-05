@@ -57,9 +57,16 @@ export class UserLoggedInModel {
     name: string;
     email: string;
     avatar: string;
+    phone: string;
+    address: string;
+    birthday: string;
+    created_at: string;
+    gender: number;
+    updated_at: string;
     //
     role: UserRoleType;
     // permissions: PermissionModel[];
+    occupation: string;
     permissions: string;
     //
     isOwner: boolean;

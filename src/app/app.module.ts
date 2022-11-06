@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { AppInitService } from './core/services';
 import { UserLookupState } from './core/store/user-lookup/user-lookup.state';
 import { UserState } from './core/store/user/user.state';
+import { StripeModule } from 'stripe-angular';
 
 function initializeApp(injector: Injector) {
   console.log('Initializing App Component');
@@ -44,7 +45,8 @@ function initializeApp(injector: Injector) {
     }),
     // ngx-permissions
     NgxPermissionsModule.forRoot(),
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    StripeModule.forRoot("pk_test_51M066MIV4V5C5hgG2RRmkFGiwNiCTyvf1OV9zVDYvhbPxlAuAKs7K8QCtK6qbGN4HYuJsxopcCGwmCUrJ848pvNy00Bco1q7uF")
   ],
   providers: [
     {

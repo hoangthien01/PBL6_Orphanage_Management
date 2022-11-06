@@ -1,0 +1,28 @@
+<div class="container">
+    <app-load-panel [isLoading]="isLoading">
+    </app-load-panel>
+
+    <h2 class="text-center text-blue-00AFFF text-36px">Đồng hành cùng chúng tôi giúp đỡ nhưng hoàn cảnh đáng thương - trao cho trẻ em một cơ hội phát triển mới.</h2>
+    <div class="childrens">
+        <div class="card" [ngStyle]="{ 'background-image': 'url(' + children.personal_picture + ')'}" *ngFor="let children of childrenDataSource">
+            <div class="info">
+                <div class="title text-20px bg-blue-61BBE7 ">{{children.name}}</div>
+                <div class="description relative bg-blue-61BBE7 text-14px leading-22px">
+                    <div>{{children.age}} tuổi</div>
+                    <div>CMND: {{children.identifier}}</div>
+                    <div>Giới tính: {{children.gender | lookupValue : genderLookup}}</div>
+                    <div>Ngày: {{children.join_date | date}}</div>
+                    <div>Trạng thái:{{children.status}}</div>
+                    <app-custom-button
+                        class="mx-16-c w-80-c cursor-pointer register-btn"
+                        [height]="35"
+                        [text]="'Đăng kí'"
+                        [type]="'primary'"
+                        (click)="register(children)">
+                    </app-custom-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

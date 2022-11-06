@@ -32,6 +32,12 @@
             translateY(-45px)
             translateZ(0);
             transition: transform 0.5s ease-out;
+
+            .register-btn {
+                position: absolute !important;
+                bottom: 55px;
+                left: -5px;
+            }
         }
 
         .info:before {

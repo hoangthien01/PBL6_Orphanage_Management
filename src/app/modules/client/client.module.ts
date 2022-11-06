@@ -19,6 +19,9 @@ import { ProfileGeneralInfoComponent } from '../../theme/components/profile-gene
 import { CommentsComponent } from './components/home/news-detail/comments/comments.component';
 import { ChildrensComponent } from './components/childrens/childrens.component';
 import { homedir } from 'os';
+import {
+    RegisterChildrenComponent
+} from "@app/modules/client/components/childrens/register-form/register-form.component";
 
 const SVG_ICONS = [
   svgIconUserLight,
@@ -43,6 +46,11 @@ export const routes: Routes = [
       {
         path: 'childrens',
         component: ChildrensComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'children/:id/register',
+        component: RegisterChildrenComponent,
         pathMatch: 'full'
       },
       {
@@ -72,7 +80,8 @@ const COMPONENTS = [
   DonateComponent,
   FooterComponent,
   CommentsComponent,
-  ChildrensComponent
+  ChildrensComponent,
+  RegisterChildrenComponent
 ];
 const PROVIDERS = [
 ]

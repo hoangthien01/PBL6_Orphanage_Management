@@ -6,9 +6,9 @@ export const ENDPOINTS = {
     ADMIN_SUBSCRIPTION_ASSIGNMENT: '/admin/subscription-assignment',
 
     // Client
-    LOGIN: '/login',
+    LOGIN: 'auth/login',
     SIGN_UP: '/sign-up-now',
-    FORGOT_PASSWORD: '/forgot-password',
+    FORGOT_PASSWORD: 'auth/forgot-password',
     SWITCH_ACCOUNT: '/switch-account',
     FORBIDDEN: '/forbidden',
 

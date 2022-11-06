@@ -88,9 +88,11 @@ export class UserState implements NgxsOnInit {
     @Action(UserActions.Logout)
     logout({ dispatch }: StateContext<UserState>, { payload }: UserActions.Logout) {
       this._permissionsService.flushPermissions();
+    dispatch(new StateResetAll());
         if (!!payload && !!payload.isForcedToLogOut) {
             UserStorage.removeSessionStorage();
             UserStorage.removeLocalStorage();
+            dispatch(new StateResetAll());
             //
             window.location.href = window.location.origin + '/auth/login';
         }
@@ -98,10 +100,6 @@ export class UserState implements NgxsOnInit {
         if (!!payload && !!payload.navigateToUrl) {
             this._router.navigateByUrl(payload.navigateToUrl).then((isSuccess: boolean) => {
                 if (isSuccess) {
-                    // // 1 - Destroy Integration
-                    // if (!!payload && !!payload.destroyAllIntegrations) {
-                    //     this._baseService.deleteDeviceToken();
-                    // }
                     // 2 - Clear data in Storage
                     UserStorage.removeSessionStorage();
                     UserStorage.removeLocalStorage();
@@ -110,10 +108,6 @@ export class UserState implements NgxsOnInit {
                 }
             });
         } else {
-            // 1 - Destroy Integration
-            // if (!!payload && !!payload.destroyAllIntegrations) {
-            //     this._baseService.deleteDeviceToken();
-            // }
             // 2 - Clear data in Storage
             UserStorage.removeSessionStorage();
             UserStorage.removeLocalStorage();

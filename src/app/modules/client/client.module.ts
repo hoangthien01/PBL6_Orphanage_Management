@@ -18,6 +18,10 @@ import { FooterComponent } from './components/home/footer/footer.component';
 import { ProfileGeneralInfoComponent } from '../../theme/components/profile-general-info/profile-general-info.component';
 import { CommentsComponent } from './components/home/news-detail/comments/comments.component';
 import { ChildrensComponent } from './components/childrens/childrens.component';
+import { homedir } from 'os';
+import {
+    RegisterChildrenComponent
+} from "@app/modules/client/components/childrens/register-form/register-form.component";
 
 const SVG_ICONS = [
   svgIconUserLight,
@@ -30,6 +34,11 @@ export const routes: Routes = [
     component: ClientComponent,
     children: [
       {
+        path: '',
+        component: HomeClientComponent,
+        pathMatch: 'full'
+      },
+      {
         path: 'home',
         component: HomeClientComponent,
         pathMatch: 'full'
@@ -37,11 +46,26 @@ export const routes: Routes = [
       {
         path: 'childrens',
         component: ChildrensComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'children/:id/register',
+        component: RegisterChildrenComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: 'donate',
+        component: DonateComponent,
         pathMatch: 'full'
       },
       {
         path: 'activities/:id',
         component: NewsDetailComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'activities/:id/donate',
+        component: DonateComponent,
         pathMatch: 'full'
       },
     ]
@@ -61,12 +85,15 @@ const COMPONENTS = [
   DonateComponent,
   FooterComponent,
   CommentsComponent,
-  ChildrensComponent
+  ChildrensComponent,
+  RegisterChildrenComponent
 ];
+const PROVIDERS = [
+]
 
 @NgModule({
     declarations: [
-        COMPONENTS
+        ...COMPONENTS
     ],
     imports: [
         ThemeModule,
@@ -74,8 +101,8 @@ const COMPONENTS = [
         RouterModule.forChild(routes),
         CommonModule,
     ],
-    exports: [COMPONENTS]
-    // providers: [...PROVIDERS]
+    exports: [...COMPONENTS],
+    providers: [...PROVIDERS]
 })
 export class ClientModule {
     constructor(private svgIconRegistry: SvgIconsRegistry) {

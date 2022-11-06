@@ -61,6 +61,11 @@ export const routes: Routes = [
       {
         path: 'activities/:id',
         component: NewsDetailComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'activities/:id/donate',
+        component: DonateComponent,
         pathMatch: 'full'
       },
     ]

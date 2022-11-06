@@ -1,0 +1,17 @@
+.form-wrapper {
+    padding: 60px 90px;
+
+    .general-info {
+        margin: auto;
+
+        ::ng-deep .dx-radiobutton {
+            line-height: 35px;
+        }
+    }
+
+    @media only screen and (min-width: 992px) {
+        .general-info {
+            max-width: 932px !important;
+        }
+    }
+}

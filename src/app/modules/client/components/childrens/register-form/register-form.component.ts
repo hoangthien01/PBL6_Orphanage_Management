@@ -17,7 +17,16 @@ export class RegisterChildrenComponent implements OnDestroy, OnInit {
     pageIndexDefault: number = 0;
     //
     isLoading: boolean = false;
+    isSaving: boolean = false;
     genderLookup = GENDER_TYPES;
+    maritalStatus = [
+        'Độc thân',
+        'Đã kết hôn'
+    ];
+    familyStatus = [
+        'Sống cùng bố mẹ',
+        'Sống riêng'
+    ]
     //
     constructor(private childrenService: ChildrenService,
                 private changeDetector: ChangeDetectorRef) {
@@ -45,7 +54,7 @@ export class RegisterChildrenComponent implements OnDestroy, OnInit {
             });
     }
 
-    register(children: ChildrenModel) {
+    register() {
 
     }
 }

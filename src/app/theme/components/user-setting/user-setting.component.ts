@@ -69,10 +69,10 @@ export class UserSettingComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-    this.subscription.add(this.userLogged$.subscribe((res) => {
-      this.currentUser = res;
-      this.cdr.detectChanges();
-    }));
+        this.subscription.add(this.userLogged$.subscribe((res) => {
+          this.currentUser = res;
+          this.cdr.detectChanges();
+        }));
 
     // this.subscription.add(this.userAvatar$.subscribe((res) => {
     //   this.userAvatar = res;

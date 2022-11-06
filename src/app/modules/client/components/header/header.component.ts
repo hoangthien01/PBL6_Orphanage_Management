@@ -2,6 +2,9 @@ import {Component, OnDestroy, OnInit, ViewChild, NgZone} from '@angular/core';
 import { Router } from '@angular/router';
 import {ReplaySubject, Subscription} from 'rxjs';
 import { Store } from '@ngxs/store';
+import {UserStorage} from "@app/core/store";
+import {ENDPOINTS} from "@app/utilities";
+import * as UserActions from '@app/core/store/user/user.actions';
 //
 
 export enum TAB_ENUM {
@@ -22,6 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     isMadePhoneCall: boolean = false;
     isAccountLocked: boolean = false;
     isAccountLockedDueToRequiringRegisterA2P10DLC: boolean = false;
+    isUserLoggedIn: boolean = false;
 
     private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
     private subscription: Subscription = new Subscription();
@@ -33,6 +37,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.setSelectedTab(this.router.url);
+        this.isUserLoggedIn = !!UserStorage.isLoggedIn();
     }
 
     ngOnDestroy(): void {
@@ -82,5 +87,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     signIn() {
         this.router.navigate(['auth/login']).then();
+    }
+
+    signOut() {
+      this._store.dispatch(new UserActions.Logout({
+        destroyAllIntegrations: true,
+        navigateToUrl: ENDPOINTS.LOGIN
+      }));
     }
 }

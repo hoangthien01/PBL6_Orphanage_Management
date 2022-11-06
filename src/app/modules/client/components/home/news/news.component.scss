@@ -30,6 +30,10 @@
         grid-column-start: unset!important;
         grid-column-end: unset !important;
         flex-flow: column !important;
+
+        .image {
+          width: 100% !important;
+        }
       }
     }
 

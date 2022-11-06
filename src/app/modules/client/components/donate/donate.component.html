@@ -1,1 +1,109 @@
-donate
+<div class="donate-container">
+  <div class="banner">
+    <div class="m-auto">
+      <p class="text-60px leading-normal text-white mb-20-c">Quyên góp</p>
+      <p class="text-20px text-white text-center">
+        <span class="cursor-pointer hover:text-red-DC6565" [routerLink]="['/']">Trang chủ </span>
+        <span class="text-grey-EAF0F6 opacity-70">/ Quyên góp</span></p>
+    </div>
+  </div>
+
+  <div class="wpo-donation-page-area section-padding">
+    <div class="container text-blue-00AFFF">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="wpo-donate-header text-blue-00AFFF text-center mb-52-c font-weight-600">
+                    <h2>Hàng ngàn trẻ em có thêm cơ hội vượt lên nghịch cảnh - nhờ có bạn đồng hành!</h2>
+                </div>
+                <div id="Donations" class="tab-pane">
+                    <form name="form-donation" action="#" method="post">
+                        <div class="wpo-donations-details">
+                            <h2>Thông tin chi tiết</h2>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group">
+                                    <div class="box-properties">
+                                        <span class="field-label">Họ và tên</span>
+                                        <dx-text-box class="field-box mb-20-c"
+                                                     appAutoFocusInput
+                                                     mode="text"
+                                                     [placeholder]="'Họ và tên'"
+                                                     [valueChangeEvent]="'input'"
+                                                     [(value)]="currentUser.name">
+                                        </dx-text-box>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group">
+                                    <div class="box-properties">
+                                        <span class="field-label">Họ đầy đủ</span>
+                                        <dx-text-box class="field-box mb-20-c"
+                                                     mode="text"
+                                                     [placeholder]="'Địa chỉ    '"
+                                                     [valueChangeEvent]="'input'"
+                                                     [(value)]="currentUser.address">
+                                        </dx-text-box>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group clearfix">
+                                    <div class="box-properties">
+                                        <span class="field-label">Địa chỉ email</span>
+                                        <dx-text-box class="field-box mb-20-c"
+                                                     mode="text"
+                                                     [placeholder]="'Địa chỉ email'"
+                                                     [valueChangeEvent]="'input'"
+                                                     [(value)]="currentUser.email">
+                                        </dx-text-box>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group">
+                                    <div class="box-properties">
+                                        <span class="field-label">Số điện thoại</span>
+                                        <dx-text-box class="field-box mb-20-c"
+                                                     mode="text"
+                                                     [placeholder]="'Số điện thoại'"
+                                                     [valueChangeEvent]="'input'"
+                                                     [(value)]="currentUser.phone">
+                                        </dx-text-box>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wpo-donations-amount">
+                            <h2>Thông điệp của bạn gửi đến các em</h2>
+                            <div class="box-properties">
+                                <span class="field-label">Lời nhắn</span>
+                                <dx-text-area class="field-box mb-20-c"
+                                              height="200"
+                                              [placeholder]="'Viết lời nhắn của bạn tại đây'"
+                                              [valueChangeEvent]="'input'"
+                                              [(value)]="message">
+                                </dx-text-area>
+                            </div>
+                        </div>
+
+                        <div class="wpo-doanation-payment">
+                            <h2>Nhập số tiền bạn muốn quyên góp</h2>
+                            <dx-number-box class="field-box"
+                                           format="VND #,##0.##"
+                                           [min]="10000"
+                                           [placeholder]="'......'"
+                                           [valueChangeEvent]="'input'"
+                                           [(value)]="money">
+                            </dx-number-box>
+
+                            <div>
+                                <app-custom-button  class="float-left my-20-c"
+                                                    [height]="40"
+                                                    [width]="120"
+                                                    [text]="'Quyên góp'"
+                                                    [type]="'primary'"
+                                                    (click)="makePayment(money)">
+                                </app-custom-button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

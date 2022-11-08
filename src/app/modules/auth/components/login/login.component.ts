@@ -114,7 +114,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             authResult: auth,
             setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.Login
         }));
-        this.router.navigate(['admin/home']).then();
+        this.router.navigate(['']).then();
     }
 
     forgotPassword() {

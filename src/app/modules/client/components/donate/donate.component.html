@@ -9,7 +9,7 @@
   </div>
 
   <div class="wpo-donation-page-area section-padding">
-    <div class="container text-blue-00AFFF">
+    <div class="container text-grey-777">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="wpo-donate-header text-blue-00AFFF text-center mb-52-c font-weight-600">
@@ -32,17 +32,8 @@
                                         </dx-text-box>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group">
-                                    <div class="box-properties">
-                                        <span class="field-label">Họ đầy đủ</span>
-                                        <dx-text-box class="field-box mb-20-c"
-                                                     mode="text"
-                                                     [placeholder]="'Địa chỉ    '"
-                                                     [valueChangeEvent]="'input'"
-                                                     [(value)]="currentUser.address">
-                                        </dx-text-box>
-                                    </div>
-                                </div>
+
+
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group clearfix">
                                     <div class="box-properties">
                                         <span class="field-label">Địa chỉ email</span>
@@ -51,9 +42,18 @@
                                                      [placeholder]="'Địa chỉ email'"
                                                      [valueChangeEvent]="'input'"
                                                      [(value)]="currentUser.email">
+                                                    <dx-validator #emailValidator>
+                                                        <dxi-validation-rule type="required"
+                                                                             [message]="'This email is required'">
+                                                        </dxi-validation-rule>
+                                                        <dxi-validation-rule type="email"
+                                                                             [message]="'This email is invalid'">
+                                                        </dxi-validation-rule>
+                                                    </dx-validator>
                                         </dx-text-box>
                                     </div>
                                 </div>
+
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group">
                                     <div class="box-properties">
                                         <span class="field-label">Số điện thoại</span>
@@ -62,6 +62,18 @@
                                                      [placeholder]="'Số điện thoại'"
                                                      [valueChangeEvent]="'input'"
                                                      [(value)]="currentUser.phone">
+                                        </dx-text-box>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12 form-group">
+                                    <div class="box-properties">
+                                        <span class="field-label">Địa chỉ</span>
+                                        <dx-text-box class="field-box mb-20-c"
+                                                     mode="text"
+                                                     [placeholder]="'Địa chỉ'"
+                                                     [valueChangeEvent]="'input'"
+                                                     [(value)]="currentUser.address">
                                         </dx-text-box>
                                     </div>
                                 </div>

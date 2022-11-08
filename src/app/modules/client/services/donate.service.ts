@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BaseService} from "@app/core/services";
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -10,9 +11,13 @@ export class DonateService {
     }
 
     public donate(data: {
-        activity: number,
-        amount: number
-    }): void {
-        this.baseService.post(`/statistic/donate`, data);
+        activity: string,
+        amount: number,
+        note: string,
+        email: string,
+        name: string,
+        address: string,
+    }): Observable<any> {
+        return this.baseService.post(`statistic/donate`, data);
     }
 }

@@ -44,11 +44,9 @@ export class DonateComponent implements OnDestroy {
             console.log(stripeToken);
             const data = {
                 activity: '',
-                amount: this.money,
+                amount: this.money / 1000,
                 email: this.currentUser.email,
                 note: this.message,
-                name: this.currentUser.name,
-                address: this.currentUser.address
             }
             this._donateService.donate(data).subscribe(
                 res => {

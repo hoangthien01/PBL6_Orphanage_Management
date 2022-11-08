@@ -15,8 +15,6 @@ export class DonateService {
         amount: number,
         note: string,
         email: string,
-        name: string,
-        address: string,
     }): Observable<any> {
         return this.baseService.post(`statistic/donate`, data);
     }

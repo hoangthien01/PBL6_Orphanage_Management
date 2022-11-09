@@ -1,0 +1,136 @@
+<div class="form-wrapper">
+    <div class="general-info">
+        <div class="text-uppercase text-36px mb-30-c text-blue-00AFFF text-center w-full"> Đăng kí nhận nuôi trẻ</div>
+        <div class="left-section pb-20-c">
+            <div class="box-properties" appAutoFocusInput>
+                <span class="field-label text-blue-00AFFF">Họ và tên</span>
+                <dx-text-box class="field-box"
+                             [disabled]="isSaving"
+                             [placeholder]="'John Smith'"
+                             [valueChangeEvent]="'input'"
+                             [(value)]="currentUser.name">
+                    <dx-validator>
+                        <dxi-validation-rule type="required"
+                                             [message]="'This full name is required'">
+                        </dxi-validation-rule>
+                    </dx-validator>
+                </dx-text-box>
+            </div>
+
+            <div class="box-properties" appAutoFocusInput>
+                <span class="field-label text-blue-00AFFF">Địa chỉ</span>
+                <dx-text-box class="field-box"
+                             [disabled]="isSaving"
+                             [placeholder]="'Da Nang...'"
+                             [valueChangeEvent]="'input'"
+                             [(value)]="currentUser.address">
+                </dx-text-box>
+            </div>
+
+            <div class="box-properties flex gap-40-c">
+                <div class="box-properties w-1/2" appAutoFocusInput>
+                    <span class="field-label text-blue-00AFFF">Số điện thoại</span>
+                    <dx-text-box class="field-box"
+                                 [disabled]="isSaving"
+                                 [placeholder]="'0013131....'"
+                                 [valueChangeEvent]="'input'"
+                                 [(value)]="currentUser.phone">
+                    </dx-text-box>
+                </div>
+
+                <div class="box-properties w-1/2">
+                    <span class="field-label text-blue-00AFFF">Địa chỉ Email</span>
+                    <div class="profile-general-info__email-field-container">
+                        <dx-text-box class="field-box"
+                                     [placeholder]="'Enter Email'"
+                                     [valueChangeEvent]="'input'"
+                                     [(value)]="currentUser.email">
+                            <dx-validator #emailValidator>
+                                <dxi-validation-rule type="required"
+                                                     [message]="'This email is required'">
+                                </dxi-validation-rule>
+                                <dxi-validation-rule type="email"
+                                                     [message]="'This email is invalid'">
+                                </dxi-validation-rule>
+                            </dx-validator>
+                        </dx-text-box>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box-properties flex gap-40-c">
+                <div class="box-properties w-1/2" appAutoFocusInput>
+                    <span class="field-label text-blue-00AFFF">Nghề nghiệp</span>
+                    <dx-text-box class="field-box"
+                                 [disabled]="isSaving"
+                                 [placeholder]="'Nghề nghiệp'"
+                                 [valueChangeEvent]="'input'">
+                    </dx-text-box>
+                </div>
+
+                <div class="box-properties w-1/2" appAutoFocusInput>
+                    <span class="field-label text-blue-00AFFF">Mức thu nhập hằng tháng</span>
+                    <dx-number-box class="field-box"
+                                 [disabled]="isSaving"
+                                 [placeholder]="'...'"
+                                 [valueChangeEvent]="'input'"
+                                 [(value)]="requestChild.income">
+                    </dx-number-box>
+                </div>
+            </div>
+
+            <div class="box-properties flex gap-40-c">
+                <div class="w-1/2">
+                    <div class="box-properties border-1px border-dashed border-grey-CCC p-12-c rounded-6px" appAutoFocusInput>
+                        <span class="field-label text-blue-00AFFF">Tình trạng hôn nhân</span>
+                        <dx-radio-group
+                            [items]="MARITAL_STATUS"
+                            valueExpr="key"
+                            displayExpr="value"
+                            [(value)]="requestChild.marital_status">
+                        </dx-radio-group>
+                    </div>
+
+                    <div class="box-properties mt-30-c border-1px border-dashed border-grey-CCC p-12-c rounded-6px" appAutoFocusInput>
+                        <span class="field-label text-blue-00AFFF">Tình trạng gia đình</span>
+                        <dx-radio-group
+                            [items]="FAMILY_STATUS"
+                            valueExpr="key"
+                            displayExpr="value"
+                            [(value)]="requestChild.family_status">
+                        </dx-radio-group>
+                    </div>
+                </div>
+
+                <div class="box-properties w-1/2 border-1px border-dashed border-grey-CCC p-12-c rounded-6px">
+                    <dx-file-uploader selectButtonText="Tải minh chứng"
+                                      labelText=""
+                                      accept="image/*"
+                                      [multiple]="true"
+                                      uploadMode="useForm"
+                                      [(value)]="file">
+                    </dx-file-uploader>
+                </div>
+            </div>
+
+            <div class="box-properties" appAutoFocusInput>
+                <span class="field-label text-blue-00AFFF">Ghi chú</span>
+                <dx-text-box class="field-box"
+                             [disabled]="isSaving"
+                             [placeholder]="'...'"
+                             [valueChangeEvent]="'input'">
+                </dx-text-box>
+            </div>
+        </div>
+
+        <div class="box-properties text-center">
+            <app-custom-button [height]="40"
+                               [type]="'primary'"
+                               [disabled]="isLoading"
+                               icon="{{ isLoading ? 'fas fa-spinner fa-spin' : '' }}"
+                               [text]="'Gửi thông tin'"
+                               (onClick)="register()">
+            </app-custom-button>
+        </div>
+    </div>
+</div>

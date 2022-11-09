@@ -8,7 +8,7 @@
     </div>
   </div>
 
-  <div class="wpo-donation-page-area section-padding">
+  <div class="wpo-donation-page-area section-padding" *ngIf="!isDonated">
     <div class="container text-grey-777">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -118,4 +118,9 @@
         </div>
     </div>
   </div>
+
+  <div *ngIf="isDonated" class="text-36px text-center mt-40-c ">
+        Những chia sẻ dù nhỏ nhất đều đáng quý. Cảm ơn bạn.
+  </div>
 </div>
+

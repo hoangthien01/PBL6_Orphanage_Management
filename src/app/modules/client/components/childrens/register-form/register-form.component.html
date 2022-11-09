@@ -70,25 +70,46 @@
 
                 <div class="box-properties w-1/2" appAutoFocusInput>
                     <span class="field-label text-blue-00AFFF">Mức thu nhập hằng tháng</span>
-                    <dx-text-box class="field-box"
+                    <dx-number-box class="field-box"
                                  [disabled]="isSaving"
                                  [placeholder]="'...'"
-                                 [valueChangeEvent]="'input'">
-                    </dx-text-box>
+                                 [valueChangeEvent]="'input'"
+                                 [(value)]="requestChild.income">
+                    </dx-number-box>
                 </div>
             </div>
 
             <div class="box-properties flex gap-40-c">
-                <div class="box-properties w-1/2 border-1px border-dashed border-grey-CCC p-12-c rounded-6px" appAutoFocusInput>
-                    <span class="field-label text-blue-00AFFF">Tình trạng hôn nhân</span>
-                    <dx-radio-group [items]="maritalStatus" [value]="maritalStatus[0]">
-                    </dx-radio-group>
+                <div class="w-1/2">
+                    <div class="box-properties border-1px border-dashed border-grey-CCC p-12-c rounded-6px" appAutoFocusInput>
+                        <span class="field-label text-blue-00AFFF">Tình trạng hôn nhân</span>
+                        <dx-radio-group
+                            [items]="MARITAL_STATUS"
+                            valueExpr="key"
+                            displayExpr="value"
+                            [(value)]="requestChild.marital_status">
+                        </dx-radio-group>
+                    </div>
+
+                    <div class="box-properties mt-30-c border-1px border-dashed border-grey-CCC p-12-c rounded-6px" appAutoFocusInput>
+                        <span class="field-label text-blue-00AFFF">Tình trạng gia đình</span>
+                        <dx-radio-group
+                            [items]="FAMILY_STATUS"
+                            valueExpr="key"
+                            displayExpr="value"
+                            [(value)]="requestChild.family_status">
+                        </dx-radio-group>
+                    </div>
                 </div>
 
-                <div class="box-properties w-1/2 border-1px border-dashed border-grey-CCC p-12-c rounded-6px" appAutoFocusInput>
-                    <span class="field-label text-blue-00AFFF">Tình trạng gia đình</span>
-                    <dx-radio-group [items]="familyStatus" [value]="familyStatus[0]">
-                    </dx-radio-group>
+                <div class="box-properties w-1/2 border-1px border-dashed border-grey-CCC p-12-c rounded-6px">
+                    <dx-file-uploader selectButtonText="Tải minh chứng"
+                                      labelText=""
+                                      accept="image/*"
+                                      [multiple]="true"
+                                      uploadMode="useForm"
+                                      [(value)]="file">
+                    </dx-file-uploader>
                 </div>
             </div>
 
@@ -105,6 +126,8 @@
         <div class="box-properties text-center">
             <app-custom-button [height]="40"
                                [type]="'primary'"
+                               [disabled]="isLoading"
+                               icon="{{ isLoading ? 'fas fa-spinner fa-spin' : '' }}"
                                [text]="'Gửi thông tin'"
                                (onClick)="register()">
             </app-custom-button>

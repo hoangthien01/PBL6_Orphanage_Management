@@ -49,7 +49,7 @@ export const routes: Routes = [
         pathMatch: 'full',
       },
       {
-        path: 'children/:id/register',
+        path: 'childrens/register',
         component: RegisterChildrenComponent,
         pathMatch: 'full'
       },
@@ -86,7 +86,7 @@ const COMPONENTS = [
   FooterComponent,
   CommentsComponent,
   ChildrensComponent,
-  RegisterChildrenComponent
+  RegisterChildrenComponent,
 ];
 const PROVIDERS = [
 ]

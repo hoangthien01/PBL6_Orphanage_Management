@@ -4,6 +4,7 @@ import {Select} from "@ngxs/store";
 import {UserSelectors} from "@app/core/store";
 import {Observable, Subscription} from "rxjs";
 import {UserLoggedInModel} from "@app/core/store/models";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-donate',
@@ -18,9 +19,12 @@ export class DonateComponent implements OnDestroy {
     message: string;
     money: number = 10000;
     //
+    isDonated: boolean = true;
+    //
     private _subscription : Subscription = new Subscription();
     //
     constructor(private _donateService: DonateService,
+                private router: Router,
                 private _cdr: ChangeDetectorRef) {
         this.makePayment = this.makePayment.bind(this);
     }
@@ -42,6 +46,7 @@ export class DonateComponent implements OnDestroy {
           locale: 'auto',
           token: (stripeToken: any) => {
             console.log(stripeToken);
+            this.isDonated = true;
             const data = {
                 activity: '',
                 amount: this.money / 1000,
@@ -82,5 +87,9 @@ export class DonateComponent implements OnDestroy {
       };
       window.document.body.appendChild(script);
     }
+    }
+
+    goHomePage() {
+        this.router.navigate(['home']).then();
     }
 }

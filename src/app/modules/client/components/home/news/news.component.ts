@@ -122,6 +122,6 @@ export class NewsComponent implements OnDestroy {
   }
 
   goToDonate(activityId?: string) {
-    this.router.navigate(['donate']).then();
+    this.router.navigateByUrl('/donate', {state: {activityId: activityId}}).then();
   }
 }

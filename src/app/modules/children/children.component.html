@@ -5,95 +5,107 @@
     </span>
 
     <div class="flex items-center justify-between role-selection">
+        <app-custom-button class="get-free-trial mr-16-c"
+                         *ngIf="isVisibleDeleteBtn"
+                         [height]="35"
+                         [width]="120"
+                         [disabled]="isLoading"
+                         [text]="'Delete'"
+                         [type]="'delete'"
+                         (onClick)="onDeleteChild()">
+        </app-custom-button>
+
       <app-custom-button class="get-free-trial"
                          [height]="35"
                          [width]="120"
                          [disabled]="isLoading"
                          [text]="'Add Children +'"
-                         [type]="'primary-outline'"
+                         [type]="'primary'"
                          (onClick)="onAddChildClick()">
       </app-custom-button>
     </div>
   </div>
 
   <div class="children-management__content">
-
+    <app-load-panel [isLoading]="isLoading">
+    </app-load-panel>
     <div class="children-grid-container">
-      <dx-data-grid #roleDataGrid
-                    [dataSource]="childrenDataSource"
-                    [showBorders]="false"
-                    [showRowLines]="false"
-                    [showColumnLines]="false"
-                    [rowAlternationEnabled]="true"
-                    [noDataText]="'No data to display'"
-                    (onExporting)="onExporting($event)"
-                    (onRowClick)="onViewChildInfo($event)">
-          <dxo-load-panel [enabled]="true"></dxo-load-panel>
-          <dxo-remote-operations [paging]="true"
-                                 [sorting]="true">
-          </dxo-remote-operations>
-          <dxo-selection mode="multiple"
-                         [showCheckBoxesMode]="'always'">
-          </dxo-selection>
-          <dxo-paging [pageIndex]="pageIndexDefault"
-                      [pageSize]="pagingSize"
-                      (pageIndexChange)="onPageIndexChanged($event)"
-                      (pageSizeChange)="setPagingSize($event)">
-          </dxo-paging>
-          <dxo-pager [showPageSizeSelector]="true"
-                     [visible]="true"
-                     [showNavigationButtons]="true"
-                     [allowedPageSizes]="[10, 25, 50, 100]"
-          ></dxo-pager>
-          <dxo-search-panel [visible]="true"
-                            [highlightCaseSensitive]="true"
-          ></dxo-search-panel>
+        <dx-data-grid #roleDataGrid
+                        [dataSource]="childrenDataSource"
+                        [showBorders]="false"
+                        [showRowLines]="false"
+                        [showColumnLines]="false"
+                        [rowAlternationEnabled]="true"
+                        (onSelectionChanged)="selectedRow($event)"
+                        [noDataText]="'No data to display'"
+                        (onExporting)="onExporting($event)"
+                        (onRowClick)="onViewChildInfo($event)">
+            <dxo-load-panel [enabled]="false"></dxo-load-panel>
+            <dxo-remote-operations [paging]="true"
+                                    [sorting]="true">
+            </dxo-remote-operations>
+            <dxo-selection mode="multiple"
+                           [showCheckBoxesMode]="'always'">
+            </dxo-selection>
+            <dxo-paging [pageIndex]="pageIndexDefault"
+                        [pageSize]="pagingSize"
+                        (pageIndexChange)="onPageIndexChanged($event)"
+                        (pageSizeChange)="setPagingSize($event)">
+            </dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true"
+                        [visible]="true"
+                        [showNavigationButtons]="true"
+                        [allowedPageSizes]="[10, 25, 50, 100]"
+            ></dxo-pager>
+            <dxo-search-panel [visible]="true"
+                                [highlightCaseSensitive]="true"
+            ></dxo-search-panel>
 
-          <dxi-column  dataField="name"
-                      [caption]="'Name'"
-                      [alignment]="'left'"
-                      [allowSorting]="true"
-                      [cellTemplate]="'nameCellTemplate'">
-            <ng-container *dxTemplate="let item of 'nameCellTemplate'">
-              <span class="text-blue-00AFFF cursor-pointer">{{item.value}}</span>
-            </ng-container>
-          </dxi-column>
+            <dxi-column  dataField="name"
+                        [caption]="'Name'"
+                        [alignment]="'left'"
+                        [allowSorting]="true"
+                        [cellTemplate]="'nameCellTemplate'">
+                <ng-container *dxTemplate="let item of 'nameCellTemplate'">
+                <span class="text-blue-00AFFF cursor-pointer">{{item.value}}</span>
+                </ng-container>
+            </dxi-column>
 
-          <dxi-column dataField="gender"
-                      [caption]="'Gender'"
-                      [alignment]="'left'"
-                      cellTemplate="genderCelltemplate"
-                      [allowSorting]="true">
-            <ng-container *dxTemplate="let item of 'genderCelltemplate'">
-              <div>
-                {{item.value | lookupValue: genderLookup: 'key': 'value'}}
-              </div>
-            </ng-container>
-          </dxi-column>
-          <dxi-column dataField="age"
-                      [caption]="'Age'"
-                      [alignment]="'left'"
-                      [allowSorting]="true">
-          </dxi-column>
-          <dxi-column dataField="join_date"
-                      [caption]="'Start Date'"
-                      [alignment]="'left'"
-                      cellTemplate="joinDateCelltemplate"
-                      [allowSorting]="true">
-            <ng-container *dxTemplate="let item of 'joinDateCelltemplate'">
-              <div>
-                {{item.value | date}}
-              </div>
-            </ng-container>
-          </dxi-column>
-          <dxi-column dataField="status"
-                      [caption]="'Status'"
-                      [alignment]="'left'"
-                      [allowSorting]="true">
-          </dxi-column>
+            <dxi-column dataField="gender"
+                        [caption]="'Gender'"
+                        [alignment]="'left'"
+                        cellTemplate="genderCelltemplate"
+                        [allowSorting]="true">
+                <ng-container *dxTemplate="let item of 'genderCelltemplate'">
+                <div>
+                    {{item.value | lookupValue: genderLookup: 'key': 'value'}}
+                </div>
+                </ng-container>
+            </dxi-column>
+            <dxi-column dataField="age"
+                        [caption]="'Age'"
+                        [alignment]="'left'"
+                        [allowSorting]="true">
+            </dxi-column>
+            <dxi-column dataField="join_date"
+                        [caption]="'Start Date'"
+                        [alignment]="'left'"
+                        cellTemplate="joinDateCelltemplate"
+                        [allowSorting]="true">
+                <ng-container *dxTemplate="let item of 'joinDateCelltemplate'">
+                <div>
+                    {{item.value | date}}
+                </div>
+                </ng-container>
+            </dxi-column>
+            <dxi-column dataField="status"
+                        [caption]="'Status'"
+                        [alignment]="'left'"
+                        [allowSorting]="true">
+            </dxi-column>
 
-          <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
-      </dx-data-grid>
+            <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+        </dx-data-grid>
     </div>
   </div>
 </div>
@@ -101,14 +113,14 @@
 <ng-container *ngIf="isShowAddChildPopup">
   <app-child-add #addChildComponent
                  [(visible)]="isShowAddChildPopup"
-                  >
-                 <!-- (refreshGrid)="onProspectAdded()" -->
+                 (refreshGrid)="onChildrenAdded($event)">
   </app-child-add>
 </ng-container>
 
 <ng-container *ngIf="isShowChildDetailPopup">
   <app-child-detail #childDetailComponent
                  [(visible)]="isShowChildDetailPopup"
+                 (refreshGrid)="onChildrenAdded($event)"
                  [childId]="chidlDetail.id">
   </app-child-detail>
 </ng-container>

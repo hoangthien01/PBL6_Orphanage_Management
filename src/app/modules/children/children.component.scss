@@ -29,8 +29,14 @@
   }
 
   .children-management__content {
+    position: relative;
     padding: 16px 24px 0;
     height: calc(100% - 70px);
+    background-color: #FAFBFE;
+
+    .load-panel-wrapper {
+        background-color: #FAFBFE;
+    }
 
     .dx-datagrid-headers {
       border: none;

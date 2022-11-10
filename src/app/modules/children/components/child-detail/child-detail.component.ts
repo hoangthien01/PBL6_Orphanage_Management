@@ -59,7 +59,7 @@ export class ChildDetailComponent implements OnInit, OnDestroy {
     isSaving: boolean = false;
     isDataChanged: boolean = false;
     isDataValid: boolean = false;
-    isLoading: boolean = true;
+    isLoading: boolean = false;
     isPhoneNumberValid: boolean = true;
     isEmailExisted: boolean = false;
     //
@@ -124,6 +124,7 @@ export class ChildDetailComponent implements OnInit, OnDestroy {
           AppNotify.success(AppNotify.generateSuccessMessage('profile', 'updated'));
           //
           this.cloneDataAfterSavingSuccess();
+          this.refreshGrid.emit(true);
           // this._userService.updateUserName.emit(this.profileGeneralInfo.name);
           // this._store.dispatch(new UserActions.UpdateUserName(this.profileGeneralInfo.name));
           //

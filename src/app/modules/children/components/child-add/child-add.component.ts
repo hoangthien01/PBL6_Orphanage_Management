@@ -121,6 +121,7 @@ export class ChildAddComponent implements OnInit, OnDestroy {
                     AppNotify.success(AppNotify.generateSuccessMessage('child', 'added'));
                     if (isKeepPopup) {
                         this.resetPopup();
+                        this.file = [];
                         this.focusToFirstNameTextBox();
                     } else {
                         this.hidePopup();

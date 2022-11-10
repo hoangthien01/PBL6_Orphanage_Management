@@ -51,7 +51,8 @@ export const routes: Routes = [
       {
         path: 'childrens/register',
         component: RegisterChildrenComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
+        canActivate: [AuthGuard],
       },
       {
         path: 'donate',

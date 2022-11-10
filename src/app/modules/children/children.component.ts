@@ -26,6 +26,7 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   isShowAddChildPopup: boolean = false;
   isShowChildDetailPopup: boolean = false;
+  isVisibleDeleteBtn: boolean = false;
   totalCount: any;
   genderLookup = GENDER_TYPES;
   //
@@ -49,14 +50,13 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
         //     desc: this.sortOrderDefault === FilterParamsSortingTypes.Descending
         // }]
     });
+    this.isLoading = true;
 }
 
   gridLoadOption(loadOptions: LoadOptions): Promise<LoadResultModel<ChildrenModel[]>> {
     // if (!loadOptions || !loadOptions.take) {
     //     return;
     // }
-
-    this.isLoading = true;
     //
     const data = {
       page: this.pageIndexDefault + 1,
@@ -68,6 +68,7 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
     return this.childrenService.getListChildrens(data).toPromise()
         .finally(() => {
             this.isLoading = false;
+            this.changeDetector.detectChanges();
         })
         .then((res) => {
             this.totalCount = res.count;
@@ -83,18 +84,9 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
     this.isShowAddChildPopup = true;
   }
 
-  // getListChildrens() {
-  //   const data = {
-  //     page: this.pageIndexDefault,
-  //     pageSize: this.pagingSize,
-  //     name: '',
-  //     status: 'all',
-  //   }
-  //   this.childrenService.getListChildrens(data).subscribe(children => {
-  //     this.childrenDataSource = children.results;
-  //     this.changeDetector.detectChanges();
-  //   });
-  // }
+  onDeleteChild() {
+    this.loadGridData();
+  }
 
   onPageIndexChanged(pageIndex: number) {
     this.pageIndexDefault = pageIndex;
@@ -132,5 +124,19 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
     console.log(e);
     this.chidlDetail = e.data;
     this.isShowChildDetailPopup = true;
+  }
+
+  onChildrenAdded(event: boolean) {
+    this.loadGridData();
+  }
+
+  selectedRow(e: any) {
+    console.log(e);
+    if (e.selectedRowKeys.length > 0) {
+        this.isVisibleDeleteBtn = true;
+    } else {
+        this.isVisibleDeleteBtn = false;
+    }
+
   }
 }

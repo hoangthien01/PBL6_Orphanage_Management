@@ -19,7 +19,7 @@ export class DonateComponent implements OnDestroy {
     message: string;
     money: number = 10000;
     //
-    isDonated: boolean = true;
+    isDonated: boolean = false;
     //
     private _subscription : Subscription = new Subscription();
     //
@@ -35,6 +35,7 @@ export class DonateComponent implements OnDestroy {
           this._cdr.detectChanges();
         }));
         this.invokeStripe();
+        console.log(history.state)
     }
 
     ngOnDestroy(): void {
@@ -48,7 +49,7 @@ export class DonateComponent implements OnDestroy {
             console.log(stripeToken);
             this.isDonated = true;
             const data = {
-                activity: '',
+                activity: history.state.activityId,
                 amount: this.money / 1000,
                 email: this.currentUser.email,
                 note: this.message,

@@ -49,7 +49,7 @@
 
   .news-content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     // -ms-grid-rows: auto 30px auto;
     grid-gap: 30px;
     margin-left: 0px;
@@ -90,7 +90,7 @@
       min-height: 200;
       flex-flow: row;
       grid-column-start: 1;
-      grid-column-end: 4;
+      grid-column-end: 3;
 
       .image {
         width: 65%;

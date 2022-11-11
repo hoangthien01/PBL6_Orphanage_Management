@@ -1,77 +1,80 @@
 <div class="news">
   <div class="w-full pt-24-c flex justify-end h-71-c">
-    <app-custom-button class="float-left mr-4"
-      [height]="40"
-      [disabled]="isRegistering"
-      icon="{{ isRegistering ? 'fas fa-spinner fa-spin' : '' }}"
-      [width]="90"
-      [text]="'Chỉnh sửa'"
-      [type]="'primary'"
-      (onClick)="toggleEditActivity()">
+    <app-custom-button
+        class="float-left mr-4"
+        [height]="40"
+        [disabled]="isRegistering"
+        icon="{{ isRegistering ? 'fas fa-spinner fa-spin' : '' }}"
+        [width]="90"
+        [text]="'Chỉnh sửa'"
+        [type]="'primary'"
+        (onClick)="toggleEditActivity()">
     </app-custom-button>
 
-    <app-custom-button class="float-left"
-      [height]="40"
-      [disabled]="isRegistering"
-      icon="{{ isRegistering ? 'fas fa-spinner fa-spin' : '' }}"
-      [width]="120"
-      [text]="'Tạo bài viết'"
-      [type]="'primary'"
-      (onClick)="openCreatePage()">
+    <app-custom-button
+        class="float-left"
+        [height]="40"
+        [disabled]="isRegistering"
+        icon="{{ isRegistering ? 'fas fa-spinner fa-spin' : '' }}"
+        [width]="120"
+        [text]="'Tạo bài viết'"
+        [type]="'primary'"
+        (onClick)="openCreatePage()">
     </app-custom-button>
   </div>
 
   <hr>
 
   <dx-scroll-view>
-	  <div class="content-box">
-		<div class="">
-			<div class="news-content">
-          <ng-container
-           *ngFor="let activity of activities; index as actionIndex;">
-            <div
-              *ngIf="!isLoading"
-              class="card flex flex-col items-center">
-              <div class="w-full">
-                <img class="w-full h-200 object-cover" loading="lazy"
-                  :src="{{activity.cover_picture}}" width="480" height="320"
-                  alt="What you need to know about COVID-19 vaccines" typeof="foaf:Image">
-              </div>
+        <div class="content-box">
+            <div class="">
+                <div class="news-content">
+                <ng-container *ngFor="let activity of activities; index as actionIndex;">
+                    <div
+                        *ngIf="!isLoading"
+                        class="card flex flex-col items-center">
+                        <div class="w-full">
+                        <img class="w-full h-200 object-cover" loading="lazy"
+                            :src="{{activity.cover_picture}}" width="480" height="320"
+                            alt="What you need to know about COVID-19 vaccines" typeof="foaf:Image">
+                        </div>
 
-              <div class="content">
-                <div class="pb-10-c pt-6-c text-blue-00AFFF">{{activity.activity_type | lookupValue : activityTypes : 'id' : 'name'}}</div>
-                <p class="text-22px leading-28px">{{activity.title}}</p>
-                <p class="text-16px leading-22px">  </p>
-                <div class="button">
-                  <span class="text-blue-00AFFF text-14px"
-                        (click)="goActivityDetail(activity.id)">> Đọc câu chuyện</span>
+                        <div class="content">
+                            <div class="pb-10-c pt-6-c text-blue-00AFFF">{{activity.activity_type | lookupValue : activityTypes : 'id' : 'name'}}</div>
+                            <p class="text-22px leading-28px">{{activity.title}}</p>
+                            <p class="text-16px leading-22px">  </p>
+                            <div class="button">
+                                <span
+                                    class="text-blue-00AFFF text-14px"
+                                    (click)="goActivityDetail(activity.id)">
+                                    > Đọc câu chuyện
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <!-- skeleton loader -->
+                <ng-container *ngFor="let activity of loadingArr">
+                <div *ngIf="isLoading" class="card is-loading">
+                    <div class="image"></div>
+                    <div class="content">
+                        <h2></h2>
+                        <p></p>
+                    </div>
                 </div>
-              </div>
+                </ng-container>
             </div>
-          </ng-container>
-
-        <!-- skeleton loader -->
-        <ng-container *ngFor="let activity of loadingArr">
-          <div *ngIf="isLoading" class="card is-loading">
-            <div class="image"></div>
-            <div class="content">
-              <h2></h2>
-              <p></p>
             </div>
-          </div>
-        </ng-container>
-			</div>
-		</div>
-
-		<div
-      class="w-full text-center my-40-c"
-      *ngIf="activities.length > 6">
+        <div
+            class="w-full text-center my-40-c"
+            *ngIf="activities.length > 6">
 			<app-custom-button
-        class="uppercase text-22px hover:bg-white rounded-5px"
-        [height]="40"
-        [text]="'Hiển thị thêm'"
+                class="uppercase text-22px hover:bg-white rounded-5px"
+                [height]="40"
+                [text]="'Hiển thị thêm'"
 				[type]="'primary-outline'"
-        (click)="loadMore()">
+                (click)="loadMore()">
 			</app-custom-button>
 		</div>
 	  </div>
@@ -89,72 +92,76 @@
 	[shading]="true"
 	[shadingColor]="'rgba(0,0,0,0.7)'"
 	[showCloseButton]="true"
-	[(visible)]="isShowRegisterPopup"
->
+	[(visible)]="isShowRegisterPopup">
 	<div>
 		<div class="field-area form-wrapper" appAutoFocusInput>
 			<div class="box-properties">
-					<span class="field-label">Họ và tên</span>
-					<dx-text-box #passwordTextBox
-											 class="field-box"
-											 mode="text"
-											 placeholder="Your name"
-                       [(value)]="sendData.name"
-											 [valueChangeEvent]="'input'">
-							<dx-validator>
-									<dxi-validation-rule type="required"
-																			 message="Password is required">
-									</dxi-validation-rule>
-							</dx-validator>
-					</dx-text-box>
+                <span class="field-label">Họ và tên</span>
+                <dx-text-box
+                    #passwordTextBox
+                    class="field-box"
+                    mode="text"
+                    placeholder="Your name"
+                    [(value)]="sendData.name"
+                    [valueChangeEvent]="'input'">
+                        <dx-validator>
+                            <dxi-validation-rule
+                                type="required"
+                                message="Password is required">
+                            </dxi-validation-rule>
+                        </dx-validator>
+                </dx-text-box>
 			</div>
 
-      <div class="box-properties">
-        <span class="field-label">Địa chỉ Email</span>
-        <dx-text-box #emailTextBox
-                     class="field-box"
-                     placeholder="Enter Email"
-                     [(value)]="sendData.email"
-                     [valueChangeEvent]="'input'">
-            <dx-validator>
-                <dxi-validation-rule type="required"
-                                     message="Email address is required">
-                </dxi-validation-rule>
-                <dxi-validation-rule type="email"
-                                     message="Invalid email address">
-                </dxi-validation-rule>
-            </dx-validator>
-        </dx-text-box>
-    </div>
+            <div class="box-properties">
+                <span class="field-label">Địa chỉ Email</span>
+                <dx-text-box #emailTextBox
+                            class="field-box"
+                            placeholder="Enter Email"
+                            [(value)]="sendData.email"
+                            [valueChangeEvent]="'input'">
+                    <dx-validator>
+                        <dxi-validation-rule type="required"
+                                            message="Email address is required">
+                        </dxi-validation-rule>
+                        <dxi-validation-rule type="email"
+                                            message="Invalid email address">
+                        </dxi-validation-rule>
+                    </dx-validator>
+                </dx-text-box>
+            </div>
 
-    <div class="box-properties">
-      <span class="field-label">Mật khẩu</span>
-      <dx-text-box #emailTextBox
+            <div class="box-properties">
+                <span class="field-label">Mật khẩu</span>
+                <dx-text-box
+                    #emailTextBox
                     class="field-box"
                     placeholder="Mật khẩu"
                     [(value)]="sendData.password"
                     [valueChangeEvent]="'input'">
-          <dx-validator>
-              <dxi-validation-rule type="required"
-                                    message="This field is required">
-              </dxi-validation-rule>
-          </dx-validator>
-      </dx-text-box>
-    </div>
+                    <dx-validator>
+                        <dxi-validation-rule
+                            type="required"
+                            message="This field is required">
+                        </dxi-validation-rule>
+                    </dx-validator>
+                </dx-text-box>
+            </div>
 
-    <div class="content-footer clearfi mt-16-c">
-      <div class="login-button flex items-center">
-          <app-custom-button class="float-left mr-4"
-                              [height]="40"
-                              [disabled]="isRegistering"
-                              icon="{{ isRegistering ? 'fas fa-spinner fa-spin' : '' }}"
-                              [width]="120"
-                              [text]="'Theo dõi ngay'"
-                              [type]="'primary'"
-                              (onClick)="sendInfo()">
-          </app-custom-button>
-        </div>
-    </div>
-	</div>
+            <div class="content-footer clearfi mt-16-c">
+                <div class="login-button flex items-center">
+                    <app-custom-button
+                        class="float-left mr-4"
+                        [height]="40"
+                        [disabled]="isRegistering"
+                        icon="{{ isRegistering ? 'fas fa-spinner fa-spin' : '' }}"
+                        [width]="120"
+                        [text]="'Theo dõi ngay'"
+                        [type]="'primary'"
+                        (onClick)="sendInfo()">
+                    </app-custom-button>
+                </div>
+            </div>
+	    </div>
 	</div>
 </dx-popup>

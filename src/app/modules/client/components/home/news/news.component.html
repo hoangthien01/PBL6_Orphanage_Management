@@ -86,10 +86,12 @@
 
 		<div
             class="w-full text-center my-40-c"
-            *ngIf="activities.length > 5">
+            *ngIf="totalCount > 5">
             <app-custom-button
                 class="uppercase text-22px hover:bg-white rounded-5px"
                 [height]="40"
+                [disabled]="isLoadingMore"
+                icon="{{ isLoadingMore ? 'fas fa-spinner fa-spin' : '' }}"
                 [text]="'Hiển thị thêm'"
 				[type]="'primary-outline'"
                 (click)="loadMore()">

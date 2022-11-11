@@ -39,6 +39,6 @@ export class ChildrenService {
   }
 
   removeAvatar(id: string): Observable<ChildrenModel> {
-    return this.baseService.delete(`user/${id}/remove_photo`);
+    return this.baseService.delete(`children/${id}/remove_photo`);
   }
 }

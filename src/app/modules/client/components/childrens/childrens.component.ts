@@ -14,7 +14,7 @@ import {Router} from "@angular/router";
 export class ChildrensComponent implements OnDestroy, OnInit {
     childrenDataSource: ChildrenModel[];
     //
-    pagingSize: number = 10;
+    pagingSize: number = 100;
     pageIndexDefault: number = 0;
     //
     isLoading: boolean = false;

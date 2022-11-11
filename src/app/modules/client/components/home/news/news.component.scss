@@ -33,6 +33,11 @@
 
         .image {
           width: 100% !important;
+          height: 200px;
+        }
+
+        .content {
+            width: 100% !important;
         }
       }
     }
@@ -54,7 +59,7 @@
       text-align: left;
       cursor: pointer;
       overflow: hidden;
-      max-height: 500px;
+    //   max-height: 500px;
       width: 100%;
       position: relative;
       -webkit-border-radius: 5px;
@@ -65,7 +70,7 @@
 
       .content {
         height: 100%;
-        padding: 20px 12px 43px 20px;
+        padding: 20px 12px 125px 20px;
         text-align: left;
         position: relative;
 

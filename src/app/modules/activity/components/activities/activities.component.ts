@@ -10,117 +10,122 @@ import { UserService } from '@app/modules/account-setting/services/user.service'
 import { SendInfoModel } from '@app/modules/client/models/send-info.model';
 import { AppNotify } from '@app/utilities';
 import { ActivityModel } from '../../models/activity.model';
-import * as ActivitiesActions  from './../../../../core/store/activities/activities.actions';
+import * as ActivitiesActions from './../../../../core/store/activities/activities.actions';
 import { id } from 'date-fns/locale';
 
 @Component({
-  selector: 'app-activities',
-  templateUrl: './activities.component.html',
-  styleUrls: ['./activities.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-activities',
+    templateUrl: './activities.component.html',
+    styleUrls: ['./activities.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActivitiesComponent implements OnDestroy {
-  activites$: Observable<ActivityModel[]> = this.store.select<ActivityModel[]>(ActivitiesSelectors.activities);
-  //
-  @Output() onShowCreatePage: EventEmitter<boolean> = new EventEmitter<boolean>();
-  //
-  activities: ActivityModel[];
-  activityTypes: ActivityTypeModel[];
-  //
-  loadingArr = [1,2,3,4,5,6,7,8];
-  page: number = 1;
-  page_size: number = 6;
-  type: string = 'all';
-  sendData: SendInfoModel = new SendInfoModel();
-  //
-  isShowRegisterPopup: boolean = false;
-  isRegistering: boolean = false;
-  isLoading: boolean = false;
-  //
-  private _subscriptions: Subscription = new Subscription();;
-  //
-  constructor(private activityService: ActivityService,
-              private userService: UserService,
-              private router: Router,
-              private store: Store,
-              private cdr: ChangeDetectorRef) {
-  }
-
-  ngOnInit(): void {
-    this.getActivityTypes();
-    this.getListActivities();
-    this._subscribeActivities();
-  }
-
-  ngOnDestroy(): void {
-  }
-
-  private _subscribeActivities() {
-    this._subscriptions.add(this.activites$.subscribe((activities: ActivityModel[]) => {
-        this.activities = activities;
-    }));
-}
-
-  getListActivities() {
-    const data = {
-      page: this.page,
-      page_size: this.page_size,
-      type: this.type
+    activites$: Observable<ActivityModel[]> = this.store.select<ActivityModel[]>(ActivitiesSelectors.activities);
+    //
+    @Output() onShowCreatePage: EventEmitter<boolean> = new EventEmitter<boolean>();
+    //
+    activities: ActivityModel[];
+    activityTypes: ActivityTypeModel[];
+    //
+    loadingArr = [1, 2, 3, 4, 5, 6, 7, 8];
+    page: number = 1;
+    page_size: number = 6;
+    type: string = 'all';
+    sendData: SendInfoModel = new SendInfoModel();
+    //
+    isShowRegisterPopup: boolean = false;
+    isRegistering: boolean = false;
+    isLoading: boolean = false;
+    isEditMode: boolean = false;
+    //
+    private _subscriptions: Subscription = new Subscription();;
+    //
+    constructor(private activityService: ActivityService,
+        private userService: UserService,
+        private router: Router,
+        private store: Store,
+        private cdr: ChangeDetectorRef) {
     }
-    this.isLoading = true
-    this.activityService.getListActivities(data)
-    .pipe(
-      finalize(() => {
-        this.isLoading = false;
-        this.cdr.detectChanges();
-      })
-    ).subscribe(
-      res => {
-        this.activities = res.results;
-        this.store.dispatch(new ActivitiesActions.setActivities(res.results));
-      })
-  }
 
-  loadMore() {
-    this.page_size = this.page_size + 4;
-    this.getListActivities();
-  }
+    ngOnInit(): void {
+        this.getActivityTypes();
+        this.getListActivities();
+        this._subscribeActivities();
+    }
 
-  getActivityTypes() {
-    this.activityService.getActivityTypes().subscribe(
-      res => {
-        this.activityTypes = res;
-      }
-    )
-  }
+    ngOnDestroy(): void {
+    }
 
-  visibleRegisterPopup() {
-    this.isShowRegisterPopup =!this.isShowRegisterPopup;
-  }
+    private _subscribeActivities() {
+        this._subscriptions.add(this.activites$.subscribe((activities: ActivityModel[]) => {
+            this.activities = activities;
+        }));
+    }
 
-  hideRegisterPopup() {
-    this.isShowRegisterPopup = false;
-  }
+    toggleEditActivity() {
+        this.isEditMode = !this.isEditMode;
+    }
 
-  openCreatePage() {
-    this.onShowCreatePage.emit();
-  }
+    getListActivities() {
+        const data = {
+            page: this.page,
+            page_size: this.page_size,
+            type: this.type
+        }
+        this.isLoading = true
+        this.activityService.getListActivities(data)
+            .pipe(
+                finalize(() => {
+                    this.isLoading = false;
+                    this.cdr.detectChanges();
+                })
+            ).subscribe(
+                res => {
+                    this.activities = res.results;
+                    this.store.dispatch(new ActivitiesActions.setActivities(res.results));
+                })
+    }
 
-  sendInfo() {
-    this.isRegistering = true;
-    this.userService.sendInfo(this.sendData)
-    .pipe(
-      finalize(() => {
-        this.isRegistering = false;
+    loadMore() {
+        this.page_size = this.page_size + 4;
+        this.getListActivities();
+    }
+
+    getActivityTypes() {
+        this.activityService.getActivityTypes().subscribe(
+            res => {
+                this.activityTypes = res;
+            }
+        )
+    }
+
+    visibleRegisterPopup() {
+        this.isShowRegisterPopup = !this.isShowRegisterPopup;
+    }
+
+    hideRegisterPopup() {
         this.isShowRegisterPopup = false;
-      })
-    )
-    .subscribe((res) => {
-				AppNotify.success('Đăng kí nhận thông tin thành công.');
-    })
-  }
+    }
 
-  goActivityDetail(id: string) {
-		this.router.navigate(['activities', id ]).then();
-  }
+    openCreatePage() {
+        this.onShowCreatePage.emit();
+    }
+
+    sendInfo() {
+        this.isRegistering = true;
+        this.userService.sendInfo(this.sendData)
+            .pipe(
+                finalize(() => {
+                    this.isRegistering = false;
+                    this.isShowRegisterPopup = false;
+                })
+            )
+            .subscribe((res) => {
+                AppNotify.success('Đăng kí nhận thông tin thành công.');
+            })
+    }
+
+    goActivityDetail(id: string) {
+        this.router.navigate(['activities', id]).then();
+    }
 }

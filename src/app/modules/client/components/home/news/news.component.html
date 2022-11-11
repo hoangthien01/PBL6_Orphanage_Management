@@ -12,19 +12,22 @@
 					</div>
 
 					<div class="content">
-						<p class="pb-10-c pt-6-c text-blue-00AFFF">{{activities[0].activity_type | lookupValue : activityTypes : 'id' : 'name'}}</p>
+						<p class="pb-10-c text-blue-00AFFF">{{activities[0].activity_type | lookupValue : activityTypes : 'id' : 'name'}}</p>
 						<p class="text-22px leading-28px hover:text-blue-00AFFF"
-               (click)="goActivityDetail(activities[0].id)">{{activities[0].title}}</p>
-						<div class="button cursor-pointer">
-							<!-- <span class="text-blue-00AFFF text-14px "
-              (click)="goActivityDetail(activities[0].id)">> Xem chi tiết</span> -->
-              <app-custom-button class="float-left mr-4"
-                                 [height]="40"
-                                 [width]="120"
-                                 [text]="'Quyên góp'"
-                                 [type]="'primary'"
-                                 (click)="goToDonate(activities[0].id)">
-              </app-custom-button>
+                            (click)="goActivityDetail(activities[0].id)">{{activities[0].title}}</p>
+                        <div class="button cursor-pointer">
+                            <div class="mb-20-c">
+                                <div><span class="text-blue-00AFFF py-2-c">Mục tiêu: </span>{{activities[0].expense}}</div>
+                                <div><span class="text-blue-00AFFF py-2-c">Đã kêu gọi: </span>  </div>
+                                <div><span class="text-blue-00AFFF py-2-c">Diễn ra từ: </span> {{activities[0].start_date | date}} - {{activities[0].end_date | date}}</div>
+                            </div>
+                            <app-custom-button class="float-left mr-4"
+                                                [height]="40"
+                                                [width]="120"
+                                                [text]="'Quyên góp'"
+                                                [type]="'primary'"
+                                                (click)="goToDonate(activities[0].id)">
+                            </app-custom-button>
 						</div>
 					</div>
 				</div>
@@ -41,13 +44,16 @@
             </div>
 
             <div class="content w-full">
-              <div class="pb-10-c pt-6-c text-blue-00AFFF">{{activity.activity_type | lookupValue : activityTypes : 'id' : 'name'}}</div>
+              <div class="pb-10-c text-blue-00AFFF">{{activity.activity_type | lookupValue : activityTypes : 'id' : 'name'}}</div>
               <p class="text-22px leading-28px hover:text-blue-00AFFF"
                 (click)="goActivityDetail(activity.id)">{{activity.title}}</p>
               <p class="text-16px leading-22px">  </p>
               <div class="button">
-                <!-- <span class="text-blue-00AFFF text-14px"
-                      (click)="goActivityDetail(activity.id)">> Đọc câu chuyện</span> -->
+                <div class="mb-20-c">
+                    <div><span class="text-blue-00AFFF py-2-c">Mục tiêu: </span>{{activity.expense}}</div>
+                    <div><span class="text-blue-00AFFF py-2-c">Đã kêu gọi: </span>  </div>
+                    <div><span class="text-blue-00AFFF py-2-c">Diễn ra từ: </span> {{activity.start_date | date}} - {{activity.end_date | date}}</div>
+                </div>
                 <app-custom-button class="float-left mr-4"
                                   [height]="40"
                                   [width]="120"

@@ -4,12 +4,25 @@
       [height]="40"
       [disabled]="isRegistering"
       icon="{{ isRegistering ? 'fas fa-spinner fa-spin' : '' }}"
+      [width]="90"
+      [text]="'Chỉnh sửa'"
+      [type]="'primary'"
+      (onClick)="toggleEditActivity()">
+    </app-custom-button>
+
+    <app-custom-button class="float-left"
+      [height]="40"
+      [disabled]="isRegistering"
+      icon="{{ isRegistering ? 'fas fa-spinner fa-spin' : '' }}"
       [width]="120"
       [text]="'Tạo bài viết'"
       [type]="'primary'"
       (onClick)="openCreatePage()">
     </app-custom-button>
   </div>
+
+  <hr>
+
   <dx-scroll-view>
 	  <div class="content-box">
 		<div class="">

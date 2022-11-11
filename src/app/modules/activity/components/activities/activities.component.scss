@@ -4,7 +4,7 @@
 
   .content-box {
     margin: 0 auto;
-    width: 90%;
+    width: 100%;
     iframe {
       width: 100%;
     }
@@ -12,19 +12,19 @@
 
   @media only screen and (min-width: 992px) {
     .content-box {
-        max-width: 932px !important;
+        // max-width: 932px !important;
     }
   }
 
   @media only screen and (min-width: 1200px) {
     .content-box {
-      max-width: 1140px !important;
+    //   max-width: 1140px !important;
     }
   }
 
   @media only screen and (max-width: 1200px) {
     .news-content {
-      // grid-template-columns: 1fr 1fr !important;
+      grid-template-columns: repeat(2, 1fr) !important;
 
       .card-large {
         grid-column-start: unset!important;
@@ -36,7 +36,7 @@
 
   .news-content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     // -ms-grid-rows: auto 30px auto;
     grid-gap: 30px;
     margin-left: 0px;
@@ -105,7 +105,7 @@
 }
 
 .card {
-  margin: 10px;
+//   margin: 10px;
   width: 300px;
   background: #fff;
   border-radius: 5px;

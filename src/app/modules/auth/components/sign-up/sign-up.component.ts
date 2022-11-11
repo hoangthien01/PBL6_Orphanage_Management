@@ -1,17 +1,17 @@
 import { Store } from '@ngxs/store';
-import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { catchError, debounceTime, distinctUntilChanged, finalize, switchMap } from 'rxjs/operators';
 import { EMPTY, of, Subject, Subscription } from 'rxjs';
-import {DxTextBoxComponent} from 'devextreme-angular/ui/text-box';
+import { DxTextBoxComponent } from 'devextreme-angular/ui/text-box';
 import { DxValidatorComponent } from 'devextreme-angular/ui/validator';
 //
-import {ACCOUNT_MESSAGE} from '@app/shared/message';
+import { ACCOUNT_MESSAGE } from '@app/shared/message';
 import { svgIconCheckSharpSmall } from 'src/assets/images/svg-icons.constants';
 import { CommonFunction, DevExtremeValidationHelper } from 'src/app/utilities';
-import {RegisteredAccountModel, SignInModel} from '@app/modules/account-setting/models';
-import {AccountService} from '@app/modules/account-setting/services/account.service';
+import { RegisteredAccountModel, SignInModel } from '@app/modules/account-setting/models';
+import { AccountService } from '@app/modules/account-setting/services/account.service';
 import { UserService } from '@app/modules/account-setting/services/user.service';
 import { AuthResultModel } from '@app/core/store/models';
 import * as UserActions from '@app/core/store/user/user.actions';
@@ -81,9 +81,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
     private _subscriptions: Subscription = new Subscription();
 
     constructor(private accountService: AccountService,
-                private userService: UserService,
-                private router: Router,
-                private store: Store) {
+        private userService: UserService,
+        private router: Router,
+        private store: Store) {
         this._subscribeEmailExistedValidation();
     }
 
@@ -157,7 +157,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
                 //     }),
                 // );
             })
-        ).subscribe((isExisted : any) => {
+        ).subscribe((isExisted: any) => {
             this.isEmailExisted = isExisted;
             this.emailValidator.instance.validate();
         }));
@@ -178,11 +178,11 @@ export class SignUpComponent implements OnInit, OnDestroy {
      */
 
     onCreatePasswordChanged(e) {
-	    if (this.account.confirmPassword) {
+        if (this.account.confirmPassword) {
             this.confirmPasswordValidation.instance.validate();
         }
-	    //
-	    this.dataChanged();
+        //
+        this.dataChanged();
     }
 
     async registerAccount() {
@@ -195,15 +195,15 @@ export class SignUpComponent implements OnInit, OnDestroy {
             this.isRegistering = false;
         })).subscribe(res => {
             if (res) {
-            this.userLogin = res;
-            this.doAfterUserRegister(res);
-            // this.autoLogin();
+                this.userLogin = res;
+                this.doAfterUserRegister(res);
+                // this.autoLogin();
             }
-          // eslint-disable-next-line @typescript-eslint/no-shadow
-          }, error => {
+            // eslint-disable-next-line @typescript-eslint/no-shadow
+        }, error => {
             const messageError = !!error.error && !!error.error.message ? error.error.message : 'Something bad happened; please try again later.';
             this.accountService.authErrorMessage.emit(messageError);
-          }
+        }
         );
     }
 
@@ -222,16 +222,20 @@ export class SignUpComponent implements OnInit, OnDestroy {
     }
 
     goToLoginPage() {
-      this.router.navigate(['auth/login']).then();
+        this.router.navigate(['auth/login']).then();
     }
 
     doAfterUserRegister(auth: AuthResultModel) {
-      this.store.dispatch(new UserActions.SetAuthResult({
-          authResult: auth,
-          setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.Login
-      }));
-      this.router.navigate(['admin/home']).then();
-  }
+        this.store.dispatch(new UserActions.SetAuthResult({
+            authResult: auth,
+            setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.Login
+        }));
+        if (auth.profile.roles.levels === 3) {
+            this.router.navigate(['']).then();
+        } else {
+            this.router.navigate(['admin/home']).then();
+        }
+    }
 
     autoLogin() {
         // const autoLoginLink = '/access/' + this.userLogin.userId + '/' + this.userLogin.token + '#fromSignUp';

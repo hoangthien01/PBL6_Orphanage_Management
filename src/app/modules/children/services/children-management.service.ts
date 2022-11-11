@@ -41,4 +41,11 @@ export class ChildrenService {
   removeAvatar(id: string): Observable<ChildrenModel> {
     return this.baseService.delete(`children/${id}/remove_photo`);
   }
+
+  deleteChild(children_ids: string[]): Observable<any> {
+    const data = {
+        children_ids: children_ids
+    }
+    return this.baseService.post(`children/destroy_multi`, data);
+  }
 }

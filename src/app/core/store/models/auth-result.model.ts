@@ -63,6 +63,11 @@ export class UserLoggedInModel {
     created_at: string;
     gender: number;
     updated_at: string;
+    roles: {
+        levels: number;
+        id: string;
+        name: string;
+    }
     //
     role: UserRoleType;
     // permissions: PermissionModel[];

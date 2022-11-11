@@ -7,9 +7,10 @@
     <div class="flex items-center justify-between role-selection">
         <app-custom-button class="get-free-trial mr-16-c"
                          *ngIf="isVisibleDeleteBtn"
+                         icon="{{ isProcessing ? 'fas fa-spinner fa-spin' : '' }}"
                          [height]="35"
                          [width]="120"
-                         [disabled]="isLoading"
+                         [disabled]="isLoading || isProcessing"
                          [text]="'Delete'"
                          [type]="'delete'"
                          (onClick)="onDeleteChild()">

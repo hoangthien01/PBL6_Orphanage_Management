@@ -5,6 +5,7 @@ export class ActivityModel {
   location: string;
   start_date: string;
   created_at: string;
+  donate: number;
   end_date: string;
   cover_picture: string;
   expense: string;

@@ -33,6 +33,11 @@
 
         .image {
           width: 100% !important;
+          height: 200px;
+        }
+
+        .content {
+            width: 100% !important;
         }
       }
     }
@@ -44,7 +49,7 @@
 
   .news-content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     // -ms-grid-rows: auto 30px auto;
     grid-gap: 30px;
     margin-left: 0px;
@@ -54,7 +59,7 @@
       text-align: left;
       cursor: pointer;
       overflow: hidden;
-      max-height: 500px;
+    //   max-height: 500px;
       width: 100%;
       position: relative;
       -webkit-border-radius: 5px;
@@ -65,7 +70,7 @@
 
       .content {
         height: 100%;
-        padding: 20px 12px 43px 20px;
+        padding: 20px 12px 125px 20px;
         text-align: left;
         position: relative;
 
@@ -85,7 +90,7 @@
       min-height: 200;
       flex-flow: row;
       grid-column-start: 1;
-      grid-column-end: 4;
+      grid-column-end: 3;
 
       .image {
         width: 65%;

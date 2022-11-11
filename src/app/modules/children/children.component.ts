@@ -1,3 +1,4 @@
+import { finalize, filter } from 'rxjs/operators';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { exportDataGrid } from 'devextreme/excel_exporter';
 import { Workbook } from 'exceljs';
@@ -19,6 +20,7 @@ import { GENDER_TYPES } from '@app/shared/app.constants';
 export class ChildrenManagementComponent implements OnInit, OnDestroy {
   childrenDataSource: DataSource;
   chidlDetail: ChildrenModel;
+  selectedChildIds: string[];
   //
   pagingSize: number = 10;
   pageIndexDefault: number = 0;
@@ -27,6 +29,7 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
   isShowAddChildPopup: boolean = false;
   isShowChildDetailPopup: boolean = false;
   isVisibleDeleteBtn: boolean = false;
+  isProcessing: boolean = false;
   totalCount: any;
   genderLookup = GENDER_TYPES;
   //
@@ -85,7 +88,13 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
   }
 
   onDeleteChild() {
-    this.loadGridData();
+    this.isProcessing = true;
+    this.childrenService.deleteChild(this.selectedChildIds).subscribe(
+        res => {
+            this.childrenDataSource.reload();
+            this.isProcessing = false;
+        }
+    );
   }
 
   onPageIndexChanged(pageIndex: number) {
@@ -133,6 +142,7 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
   selectedRow(e: any) {
     console.log(e);
     if (e.selectedRowKeys.length > 0) {
+        this.selectedChildIds = e.selectedRowKeys;
         this.isVisibleDeleteBtn = true;
     } else {
         this.isVisibleDeleteBtn = false;

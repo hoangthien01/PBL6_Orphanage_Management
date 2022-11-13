@@ -5,7 +5,7 @@
             <div class="box-properties" appAutoFocusInput>
                 <span class="field-label text-blue-00AFFF">Họ và tên</span>
                 <dx-text-box class="field-box"
-                             [disabled]="isSaving"
+                             [disabled]="true"
                              [placeholder]="'John Smith'"
                              [valueChangeEvent]="'input'"
                              [(value)]="currentUser.name">
@@ -20,7 +20,7 @@
             <div class="box-properties" appAutoFocusInput>
                 <span class="field-label text-blue-00AFFF">Địa chỉ</span>
                 <dx-text-box class="field-box"
-                             [disabled]="isSaving"
+                             [disabled]="true"
                              [placeholder]="'Da Nang...'"
                              [valueChangeEvent]="'input'"
                              [(value)]="currentUser.address">
@@ -31,7 +31,7 @@
                 <div class="box-properties w-1/2" appAutoFocusInput>
                     <span class="field-label text-blue-00AFFF">Số điện thoại</span>
                     <dx-text-box class="field-box"
-                                 [disabled]="isSaving"
+                                 [disabled]="true"
                                  [placeholder]="'0013131....'"
                                  [valueChangeEvent]="'input'"
                                  [(value)]="currentUser.phone">
@@ -42,6 +42,7 @@
                     <span class="field-label text-blue-00AFFF">Địa chỉ Email</span>
                     <div class="profile-general-info__email-field-container">
                         <dx-text-box class="field-box"
+                                     [disabled]="true"
                                      [placeholder]="'Enter Email'"
                                      [valueChangeEvent]="'input'"
                                      [(value)]="currentUser.email">
@@ -105,7 +106,7 @@
                 <div class="box-properties w-1/2 border-1px border-dashed border-grey-CCC p-12-c rounded-6px">
                     <dx-file-uploader selectButtonText="Tải minh chứng"
                                       labelText=""
-                                      accept="image/*"
+                                      accept="*"
                                       [multiple]="true"
                                       uploadMode="useForm"
                                       [(value)]="file">

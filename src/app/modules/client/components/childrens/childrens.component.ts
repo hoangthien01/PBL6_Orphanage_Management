@@ -4,6 +4,7 @@ import {GENDER_TYPES} from "@app/shared/app.constants";
 import {ChildrenService} from "@app/modules/children/services/children-management.service";
 import {finalize} from "rxjs/operators";
 import {Router} from "@angular/router";
+import { ChildrenClientService } from '../../services/children.service';
 
 @Component({
   selector: 'app-childrens',
@@ -21,6 +22,7 @@ export class ChildrensComponent implements OnDestroy, OnInit {
     genderLookup = GENDER_TYPES;
     //
     constructor(private childrenService: ChildrenService,
+                private childrenClientService: ChildrenClientService,
                 private _router: Router,
                 private changeDetector: ChangeDetectorRef) {
     }
@@ -54,6 +56,14 @@ export class ChildrensComponent implements OnDestroy, OnInit {
     }
 
     register(children: ChildrenModel) {
-        this._router.navigate([`children/${children.id}/register`]).then();
+        const data = {
+            children: children.id,
+            adopt_request_detail: history.state.adop_id,
+        }
+        this.childrenClientService.sendRegisterRequest(data).subscribe(
+            res => {
+                this._router.navigate([`children/${children.id}/register`]).then();
+            }
+        )
     }
 }

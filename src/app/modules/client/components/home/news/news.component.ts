@@ -25,7 +25,7 @@ export class NewsComponent implements OnDestroy {
     activities: ActivityModel[];
     activityTypes: ActivityTypeModel[];
     //
-    loadingArr = [1, 2, 3, 4];
+    loadingArr = [1, 2, 3];
     page: number = 1;
     page_size: number = 5;
     totalCount: number = 0;

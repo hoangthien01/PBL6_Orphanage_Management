@@ -1,0 +1,73 @@
+.title {
+  font-size: 24px;
+  font-weight: 900;
+  margin-top: 40px;
+}
+
+.subtitle {
+  margin-bottom: 40px;
+  font-weight: unset;
+}
+
+::ng-deep.location-data-grid-container {
+  .dx-pointer-events-none {
+    border: none !important;
+  }
+
+  .option-button {
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #1b76e0;
+  }
+
+  ::ng-deep .dx-datagrid-text-content {
+    color: black;
+    font-weight: bold;
+  }
+
+  ::ng-deep .dx-datagrid-headers {
+    .dx-column-indicators {
+      display: none !important;
+    }
+  }
+  ::ng-deep .dx-datagrid .dx-row > td {
+    padding: 19px;
+  }
+
+  ::ng-deep .dx-datagrid-rowsview {
+    .dx-select-checkboxes-hidden {
+      .dx-select-checkbox {
+        display: inline-block !important;
+      }
+    }
+    .dx-data-row {
+      td {
+        vertical-align: middle !important;
+      }
+    }
+  }
+
+  .column-state {
+    display: flex;
+    align-items: center;
+    p {
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+
+  ::ng-deep .btn-group {
+    display: flex;
+    justify-content: flex-end;
+    .puzzle-btn {
+      background-color: #543083;
+      color: white;
+    }
+  }
+}

@@ -1,0 +1,84 @@
+.back-btn {
+  display: flex;
+  color: #000000;
+  cursor: pointer;
+  align-items: center;
+  text-decoration: none;
+  margin-left: -8px;
+
+  nb-icon {
+    font-size: 1.75rem;
+  }
+  p {
+    margin-bottom: 0;
+    font-size: 18px;
+    color: #000000;
+  }
+}
+
+.form-wrapper {
+  .delete-btn {
+    display: inline-block;
+    height: 42px;
+    line-height: 42px;
+    color: #d60000;
+    padding: 0 10px;
+    text-decoration: underline;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .btn-group {
+    justify-content: flex-start;
+  }
+  ::ng-deep .edit__form-container {
+    padding-left: 0 !important;
+    .dx-texteditor-input {
+      min-height: 42px;
+      font-size: 16px;
+    }
+  }
+
+  ::ng-deep.dx-button-text {
+    font-size: 16px;
+  }
+
+  .email-box-container {
+    padding: 0 15px;
+    margin-top: 60px;
+
+    .email-box {
+      padding: 0;
+      border: 1px solid #c4c4c4;
+      border-radius: 5px;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+    .col-form-label {
+      font-size: 16px;
+    }
+    .required {
+      color: #b41b1b;
+    }
+    .optional {
+      color: #a8a8a8;
+    }
+    ::ng-deep.dx-texteditor-input-container {
+      font-size: 16px;
+    }
+    .text-muted {
+      padding-top: 13px;
+      font-size: 16px;
+      color: #727272;
+    }
+    .title-bg {
+      background: #f9f9fb 0% 0% no-repeat padding-box;
+    }
+  }
+
+  ::ng-deep input:disabled {
+    background-color: #efefef;
+    color: #727272;
+  }
+}

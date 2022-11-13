@@ -78,6 +78,14 @@ export const routes: Routes = [
           preload: false
         }
       },
+      {
+        path: 'child-requests',
+        loadChildren: () => import('@app/modules/child-request/child-request.module').then(m => m.ChildRequestModule),
+        canActivate: [AuthGuard],
+        data: {
+          preload: false
+        }
+      },
     ]
   }
 

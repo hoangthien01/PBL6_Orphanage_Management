@@ -113,14 +113,14 @@
                 <a
                   class="menu-item--link"
                   (click)="goToChildrenPage()"
-                  [title]="isCollapsed ? 'Manage Children' : ''">
+                  [title]="isCollapsed ? 'Childrens' : ''">
                   <span class="item-left items-center">
                     <app-svg-icon class="item-icon fill-666e83"
                                   [name]="'icon_uer_regular'"
                                   [width]="16">
                     </app-svg-icon>
                     <span *ngIf="!isCollapsed" class="item-text">
-                      Manage Children
+                      Childrens
                     </span>
                   </span>
                 </a>
@@ -132,14 +132,14 @@
                 <a
                   class="menu-item--link"
                   (click)="goToEmployeePage()"
-                  [title]="isCollapsed ? 'Manage Employee' : ''">
+                  [title]="isCollapsed ? 'Employees' : ''">
                   <span class="item-left items-center">
                     <app-svg-icon class="item-icon fill-666e83"
                                   [name]="'icon_uer_regular'"
                                   [width]="16">
                     </app-svg-icon>
                     <span *ngIf="!isCollapsed" class="item-text">
-                      Manage Employee
+                      Employees
                     </span>
                   </span>
                 </a>
@@ -164,11 +164,11 @@
               </a>
             </li>
 
-            <!-- <li class="menu-item parent-menu" routerLinkActive="active">
+            <li class="menu-item parent-menu" routerLinkActive="active">
               <a
                 class="menu-item--link"
-                (click)="onSettingLinkClicked()"
-                [title]="isCollapsed ? 'Events' : ''">
+                (click)="onChildRequestLinkClicked()"
+                [title]="isCollapsed ? 'Child Requests' : ''">
                 <span class="item-left items-center">
                   <app-svg-icon class="item-icon fill-666e83"
                                 [name]="'icon_map'"
@@ -176,17 +176,17 @@
                                 [width]="16">
                   </app-svg-icon>
                   <span *ngIf="!isCollapsed" class="item-text">
-                    Events
+                    Child Requests
                   </span>
                 </span>
               </a>
-            </li> -->
+            </li>
 
             <li class="menu-item parent-menu" routerLinkActive="active">
               <a
                 class="menu-item--link"
                 (click)="onActivityButtonClicked()"
-                [title]="isCollapsed ? 'Events' : ''">
+                [title]="isCollapsed ? 'Activites' : ''">
                 <span class="item-left items-center">
                   <app-svg-icon class="item-icon fill-666e83"
                                 [name]="'icon_map'"
@@ -194,7 +194,7 @@
                                 [width]="16">
                   </app-svg-icon>
                   <span *ngIf="!isCollapsed" class="item-text">
-                    Manage Activites
+                    Activites
                   </span>
                 </span>
               </a>

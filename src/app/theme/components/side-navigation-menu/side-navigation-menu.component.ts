@@ -171,4 +171,8 @@ export class SideNavigationMenuComponent implements OnInit, OnDestroy {
 	onActivityButtonClicked():void {
 		this.router.navigate(['admin/activity']).then();
 	}
+
+    onChildRequestLinkClicked() {
+		this.router.navigate(['admin/child-requests']).then();
+    }
 }

@@ -12,7 +12,8 @@ import { familyStatus } from '@app/modules/client/data/enum/family-status.enum';
 import { maritalStatus } from '@app/modules/client/data/enum/marital-status.enum';
 import { FAMILY_STATUS } from '@app/modules/client/data/const/family-status.const';
 import { MARITAL_STATUS } from '@app/modules/client/data/const/marital-status.const';
-import { ChildrenService } from '@app/modules/client/services/children.service';
+import { ChildrenClientService } from '../../../services/children.service';
+
 
 @Component({
     selector: 'app-children-register',
@@ -39,7 +40,7 @@ export class RegisterChildrenComponent implements OnDestroy, OnInit {
     //
     private _subscription : Subscription = new Subscription();
     //
-    constructor(private childrenService: ChildrenService,
+    constructor(private childrenService: ChildrenClientService,
                 private router: Router,
                 private changeDetector: ChangeDetectorRef) {
     }
@@ -74,7 +75,7 @@ export class RegisterChildrenComponent implements OnDestroy, OnInit {
         this.requestChild.proofs = this.file;
         this.isLoading = true
         this.childrenService.registerChild(this.requestChild).subscribe((res) => {
-            this.router.navigate(['childrens']).then();
+            this.router.navigateByUrl('/childrens', { state: { adop_id: res.id } }).then();
             this.isLoading = false;
         })
     }

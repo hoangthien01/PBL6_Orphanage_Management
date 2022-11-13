@@ -7,7 +7,7 @@ import { RegisterChildRequestModel } from '../models/request/register-child.mode
     providedIn: 'root'
 })
 
-export class ChildrenService {
+export class ChildrenClientService {
     constructor(private baseService: BaseService) {
     }
 

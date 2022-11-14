@@ -1,9 +1,20 @@
-<div class="container">
+<div class="container h-full">
     <app-load-panel [isLoading]="isLoading">
     </app-load-panel>
 
+    <dx-load-panel
+        #loadPanel
+        shadingColor="rgba(0,0,0,0.4)"
+        [position]="{ of: '#employee' }"
+        [message]="'Đang xử lí'"
+        [(visible)]="loadingVisible"
+        [showIndicator]="true"
+        [showPane]="true"
+        [shading]="true">
+</dx-load-panel>
+
     <!-- <h2 class="text-center text-blue-00AFFF text-36px">Đồng hành cùng chúng tôi giúp đỡ nhưng hoàn cảnh đáng thương - trao cho trẻ em một cơ hội phát triển mới.</h2> -->
-    <div class="childrens">
+    <div class="childrens" *ngIf="!isRegistered">
         <div class="card" [ngStyle]="{ 'background-image': 'url(' + children.personal_picture + ')'}" *ngFor="let children of childrenDataSource">
             <div class="info">
                 <div class="title text-20px bg-blue-61BBE7 ">{{children.name}}</div>
@@ -23,6 +34,19 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div *ngIf="isRegistered" class="h-full flex items-center justify-center flex-col">
+        <p class="text-22px text-blue-00AFFF text-center">
+            Đăng kí thành công. Thông tin đăng kí đã được gửi qua email của bạn, mở hộp thư đến từ F4Plus để xem thông tin chi tiết.
+        </p>
+        <app-custom-button
+        class="mx-40-c w-149-c cursor-pointer register-btn"
+        [height]="35"
+        [text]="'Trở về trang chủ'"
+        [type]="'primary'"
+        (click)="goHome()">
+    </app-custom-button>
     </div>
 </div>
 

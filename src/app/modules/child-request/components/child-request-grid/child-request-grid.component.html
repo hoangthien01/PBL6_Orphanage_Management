@@ -114,6 +114,15 @@
                     (onClick)="openCancelInvitePopup(cell.data.id)">
                 </dx-button>
             </div>
+            <div class="btn-group">
+                <dx-button
+                    *ngIf="status === requestStatus.Inactive"
+                    [ngClass]="'mx-2 puzzle-btn'"
+                    [focusStateEnabled]="false"
+                    text="Active "
+                    (onClick)="openCancelInvitePopup(cell.data.id)">
+                </dx-button>
+            </div>
         </div>
     </dxi-column>
 </dx-data-grid>

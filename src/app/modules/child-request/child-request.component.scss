@@ -1,3 +1,6 @@
+@import "jerry-extend";
+@import "jerry-variable";
+
 .title {
     font-size: 24px;
     font-weight: 900;
@@ -84,12 +87,12 @@
         font-weight: normal;
 
         &.active {
-          color: #38af71;
-          border-bottom: 4px solid #38af71;
+          color: #00AFFF;
+          border-bottom: 4px solid #0b8bc7;
         }
 
         &:hover {
-          color: #38af71;
+          color: #00AFFF;
         }
       }
     }

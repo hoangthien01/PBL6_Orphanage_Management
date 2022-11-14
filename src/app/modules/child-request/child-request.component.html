@@ -1,44 +1,60 @@
 <div class="p-24-c">
-    <h2 class="title">Children Requests</h2>
+    <h2 class="title">Yêu cầu nhận nuôi</h2>
     <p class="subtitle">
-        Manage register children requests
+        Quản lí những yêu cầu đăng kí nhận nuôi trẻ
     </p>
 
     <div class="toolbar d-flex justify-content-between align-items-end">
-      <ul class="tabs">
-        <li
-          [class.active]="selectedTab == requestStatus.active"
-          (click)="onSelectTab(requestStatus.active)"
-        >
-          Active (
-            <!-- {{ locationsCounting.activeCount }} -->
-            )
-        </li>
-        <li
-          [class.active]="selectedTab == requestStatus.pending"
-          (click)="onSelectTab(requestStatus.pending)"
-        >
-          Pending ()
-        </li>
-      </ul>
-      <dx-button class="add-btn" icon="add" type="default" text="New" (onClick)="openAddNewLocation()"></dx-button>
+        <ul class="tabs">
+            <li
+                [class.active]="selectedTab == requestStatus.active"
+                (click)="onSelectTab(requestStatus.active)">
+                Active (
+                <!-- {{ locationsCounting.activeCount }} -->
+                )
+            </li>
+            <li
+                [class.active]="selectedTab == requestStatus.pending"
+                (click)="onSelectTab(requestStatus.pending)">
+                Pending ()
+            </li>
+            <li
+                [class.active]="selectedTab == requestStatus.inactive"
+                (click)="onSelectTab(requestStatus.inactive)">
+                Inactive ()
+            </li>
+        </ul>
+        <dx-button
+            class="add-btn"
+            icon="add"
+            type="default"
+            text="New"
+            (onClick)="openAddNewLocation()">
+        </dx-button>
     </div>
 
-    <div class="tab-content">
-      <ng-container *ngIf="selectedTab == requestStatus.active">
-        <app-child-request-grid
-          (loadLocationCounting)="onLoadLocationCounting($event)"
-          [loadData]="reloadData"
-          [status]="requestStatus.active"
-        ></app-child-request-grid>
-      </ng-container>
-      <ng-container *ngIf="selectedTab == requestStatus.pending">
-        <app-child-request-grid
-          (loadLocationCounting)="onLoadLocationCounting($event)"
-          [loadData]="reloadData"
-          [status]="requestStatus.pending"
-        ></app-child-request-grid>
-      </ng-container>
+    <div class="tab-content mt-8-c">
+        <ng-container *ngIf="selectedTab == requestStatus.active">
+            <app-child-request-grid
+                (loadLocationCounting)="onLoadLocationCounting($event)"
+                [loadData]="reloadData"
+                [status]="requestStatus.active"
+            ></app-child-request-grid>
+        </ng-container>
+        <ng-container *ngIf="selectedTab == requestStatus.pending">
+            <app-child-request-grid
+                (loadLocationCounting)="onLoadLocationCounting($event)"
+                [loadData]="reloadData"
+                [status]="requestStatus.pending"
+            ></app-child-request-grid>
+        </ng-container>
+        <ng-container *ngIf="selectedTab == requestStatus.inactive">
+            <app-child-request-grid
+                (loadLocationCounting)="onLoadLocationCounting($event)"
+                [loadData]="reloadData"
+                [status]="requestStatus.inactive"
+            ></app-child-request-grid>
+        </ng-container>
     </div>
 
     <ng-container *ngIf="isShowNewLocationPopup">

@@ -31,6 +31,7 @@ export class ChildRequestsComponent implements OnInit {
   requestStatus = {
     active: RequestStatusEnum.Active,
     pending: RequestStatusEnum.Pending,
+    inactive: RequestStatusEnum.Inactive
   };
   //
   selectedTab = this.requestStatus.active;

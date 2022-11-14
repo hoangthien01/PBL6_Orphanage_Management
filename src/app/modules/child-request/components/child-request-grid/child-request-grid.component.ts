@@ -27,11 +27,14 @@ export class ChildRequestGridComponent implements OnInit {
   requestStatus = {
     Active: RequestStatusEnum.Active,
     Pending: RequestStatusEnum.Pending,
+    Inactive: RequestStatusEnum.Inactive
   };
 
-  userStatusEnum = {
-    PendingApprove: ChildRequestStatusEnum.PendingApproval,
-    PendingInvitationAcceptance: ChildRequestStatusEnum.PendingInvitationAcceptance,
+  childRequestStatusEnum = {
+    Pending: ChildRequestStatusEnum.Pending,
+    Approve: ChildRequestStatusEnum.Approve,
+    Reject: ChildRequestStatusEnum.Reject,
+    Cancel: ChildRequestStatusEnum.Cancel,
   };
   isApprovePopup: boolean = false;
   isRejectPopup: boolean = false;

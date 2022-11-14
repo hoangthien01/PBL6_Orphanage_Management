@@ -14,15 +14,15 @@ export class ChildRequestService {
   getActiveChildRequests(param: {
     page: number,
     page_size: number
-  }): Observable<any[]> {
-    return this.apiService.get<ChildRequestsResponseModel[]>(`activity/adopt_request?page=${param.page}&page_size=${param.page_size}&status=`);
+  }): Observable<ChildRequestsResponseModel> {
+    return this.apiService.get<ChildRequestsResponseModel>(`activity/adopt_request?page=${param.page}&page_size=${param.page_size}&status=`);
   }
 
   getPendingChildRequests(param: {
     page: number,
     page_size: number
-  }): Observable<any[]> {
-    return this.apiService.get<ChildRequestsResponseModel[]>(`activity/adopt_request?page=${param.page}&page_size=${param.page_size}&status=Pending`);
+  }): Observable<ChildRequestsResponseModel> {
+    return this.apiService.get<ChildRequestsResponseModel>(`activity/adopt_request?page=${param.page}&page_size=${param.page_size}&status=Pending`);
   }
 
   getLocationCounting(): Observable<any> {

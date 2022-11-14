@@ -8,7 +8,7 @@ import { LoadOptions } from 'devextreme/data';
 import DataSource from 'devextreme/data/data_source';
 import { ChildRequestStatusEnum, RequestStatusEnum } from '../../data/enum/request-status.enum';
 import { ChildRequestService } from '../../data/services/child-request.service';
-import { ChildRequestsResponseModel } from '../../models/child-request.model';
+import { ChildRequestModel, ChildRequestsResponseModel } from '../../models/child-request.model';
 
 @Component({
   selector: 'app-child-request-grid',
@@ -66,7 +66,7 @@ export class ChildRequestGridComponent implements OnInit {
     });
   }
 
-  gridLoadOption(loadOptions: LoadOptions): Promise<ChildRequestsResponseModel[]> {
+  gridLoadOption(loadOptions: LoadOptions): Promise<LoadResultModel<ChildRequestModel[]>>  {
     // if (!loadOptions.take) {
     //     return;
     //   }
@@ -80,12 +80,26 @@ export class ChildRequestGridComponent implements OnInit {
         page: this.page,
         page_size: this.page_size,
     };
-      console.log('params', params);
     if (this.status === this.requestStatus.Pending) {
-        return this.childRequestService.getPendingChildRequests(params).toPromise();
-    }
-    if (this.status === this.requestStatus.Active) {
-        return this.childRequestService.getActiveChildRequests(params).toPromise();
+        return this.childRequestService.getPendingChildRequests(params).toPromise()
+        .finally(() => {
+        })
+        .then((res) => {
+            return {
+                data: res.results,
+                totalCount: res.count
+            };
+        });
+    } else {
+        return this.childRequestService.getActiveChildRequests(params).toPromise()
+        .finally(() => {
+        })
+        .then((res) => {
+            return {
+                data: res.results,
+                totalCount: res.count
+            };
+        });
     }
   }
 

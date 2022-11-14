@@ -1,5 +1,5 @@
 import { UserService } from './../../../../account-setting/services/user.service';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { UserSelectors } from '@app/core/store';
@@ -14,6 +14,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class FooterComponent implements OnDestroy {
   isRegisteredInfo$: Observable<boolean> = this.store.select<boolean>(UserSelectors.isUserRegisteredInfo);
+  @Output() onShowRegisterPopup: EventEmitter<boolean> = new EventEmitter<boolean>();
   //
   isRegisteredInfo: boolean = false;
   //

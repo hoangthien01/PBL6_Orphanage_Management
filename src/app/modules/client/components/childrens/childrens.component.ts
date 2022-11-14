@@ -19,6 +19,8 @@ export class ChildrensComponent implements OnDestroy, OnInit {
     pageIndexDefault: number = 0;
     //
     isLoading: boolean = false;
+    isRegistered: boolean = false;
+    loadingVisible: boolean = false;
     genderLookup = GENDER_TYPES;
     //
     constructor(private childrenService: ChildrenService,
@@ -56,14 +58,26 @@ export class ChildrensComponent implements OnDestroy, OnInit {
     }
 
     register(children: ChildrenModel) {
+        this.loadingVisible = true;
         const data = {
             children: children.id,
             adopt_request_detail: history.state.adop_id,
         }
-        this.childrenClientService.sendRegisterRequest(data).subscribe(
+        this.childrenClientService.sendRegisterRequest(data)
+        .pipe(
+            finalize(() => {
+                this.loadingVisible = false;
+                this.isRegistered = true;
+                this.changeDetector.detectChanges();
+            })
+        )
+        .subscribe(
             res => {
-                this._router.navigate([`children/${children.id}/register`]).then();
             }
         )
+    }
+
+    goHome() {
+        this._router.navigate([`/`]).then();
     }
 }

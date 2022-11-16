@@ -35,7 +35,7 @@ export class ChildReuqestEditFormComponent implements OnInit {
   }
 
   getOrganization() {
-    this.childRequestService.getOrganizationById(this.organizationId).subscribe(
+    this.childRequestService.getRequestDetail(this.organizationId).subscribe(
       (result) => {
         this.organization = Object(assign(this.organization, result));
         this.oldOrganizationName = this.organization.name;
@@ -60,35 +60,35 @@ export class ChildReuqestEditFormComponent implements OnInit {
           return false;
         } else {
           this.isLoading = true;
-          this.childRequestService.updateOrganization(this.organizationId, this.organization).subscribe(
-            (result) => {
-              this.isLoading = false;
-              this.oldOrganizationName = result.name;
-              AppNotify.success('Updated organization successfully');
-              this.backToPrevious();
-            },
-            (error) => {
-              this.isLoading = false;
-              AppNotify.error(error);
-            }
-          );
+        //   this.childRequestService.updateOrganization(this.organizationId, this.organization).subscribe(
+        //     (result) => {
+        //       this.isLoading = false;
+        //       this.oldOrganizationName = result.name;
+        //       AppNotify.success('Updated organization successfully');
+        //       this.backToPrevious();
+        //     },
+        //     (error) => {
+        //       this.isLoading = false;
+        //       AppNotify.error(error);
+        //     }
+        //   );
         }
       });
   }
 
   onDeleteOrganization(status) {
     if (status) {
-      this.childRequestService.deleteOrganization(this.organizationId).subscribe(
-        (result) => {
-          this.isConfirmDeletePopup = false;
-          this.backToPrevious();
-          AppNotify.success('Delete organization successfully');
-        },
-        (error) => {
-          this.isConfirmDeletePopup = false;
-          AppNotify.error(error);
-        }
-      );
+    //   this.childRequestService.deleteOrganization(this.organizationId).subscribe(
+    //     (result) => {
+    //       this.isConfirmDeletePopup = false;
+    //       this.backToPrevious();
+    //       AppNotify.success('Delete organization successfully');
+    //     },
+    //     (error) => {
+    //       this.isConfirmDeletePopup = false;
+    //       AppNotify.error(error);
+    //     }
+    //   );
     } else {
       this.isConfirmDeletePopup = false;
     }

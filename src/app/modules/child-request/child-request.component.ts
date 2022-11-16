@@ -54,7 +54,7 @@ export class ChildRequestsComponent implements OnInit {
   }
 
   onLoadLocationCounting() {
-    this.childRequestService.getLocationCounting().subscribe((result) => {
+    this.childRequestService.getTabsCounting().subscribe((result) => {
     //   this.locationsCounting = result;
     });
   }
@@ -73,7 +73,7 @@ export class ChildRequestsComponent implements OnInit {
   }
 
   loadLocationCounting() {
-    this.childRequestService.getLocationCounting().subscribe((result) => {
+    this.childRequestService.getTabsCounting().subscribe((result) => {
     //   this.locationsCounting = result;
     });
   }

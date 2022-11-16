@@ -6,58 +6,57 @@ import { BaseService } from '@app/core/services';
 import { ChildRequestsResponseModel } from '../../models/child-request.model';
 
 @Injectable({
-    providedIn:'root'
+    providedIn: 'root'
 })
 export class ChildRequestService {
-  constructor(private httpClient: HttpClient, private apiService: BaseService) {}
+    constructor(private httpClient: HttpClient, private apiService: BaseService) { }
 
-  getActiveChildRequests(param: {
-    page: number,
-    page_size: number
-  }): Observable<ChildRequestsResponseModel> {
-    return this.apiService.get<ChildRequestsResponseModel>(`activity/adopt_request?page=${param.page}&page_size=${param.page_size}&status=`);
-  }
+    getActiveChildRequests(param: {
+        page: number,
+        page_size: number
+    }): Observable<ChildRequestsResponseModel> {
+        return this.apiService.get<ChildRequestsResponseModel>(`activity/adopt_request?page=${param.page}&page_size=${param.page_size}&status=Approve`);
+    }
 
-  getPendingChildRequests(param: {
-    page: number,
-    page_size: number
-  }): Observable<ChildRequestsResponseModel> {
-    return this.apiService.get<ChildRequestsResponseModel>(`activity/adopt_request?page=${param.page}&page_size=${param.page_size}&status=Pending`);
-  }
+    getPendingChildRequests(param: {
+        page: number,
+        page_size: number
+    }): Observable<ChildRequestsResponseModel> {
+        return this.apiService.get<ChildRequestsResponseModel>(`activity/adopt_request?page=${param.page}&page_size=${param.page_size}&status=Pending`);
+    }
 
-  getLocationCounting(): Observable<any> {
-    return this.apiService.get<any>(`organizations/status-count`);
-  }
+    getInactiveChildRequests(param: {
+        page: number,
+        page_size: number
+    }): Observable<ChildRequestsResponseModel> {
+        return this.apiService.get<ChildRequestsResponseModel>(`activity/adopt_request?page=${param.page}&page_size=${param.page_size}`);
+    }
 
-  getOrganizationById(id: string): Observable<any> {
-    return this.apiService.get(`organizations/${id}`);
-  }
+    getTabsCounting(): Observable<any> {
+        return this.apiService.get<any>(`organizations/status-count`);
+    }
 
-  updateOrganization(id: string, organization: any): Observable<any> {
-    return this.apiService.post<any>(`organizations/${id}`, organization);
-  }
+    getRequestDetail(id: string): Observable<any> {
+        return this.apiService.get(`activity/adopt_request_detail/${id}`);
+    }
 
-  deleteOrganization(id: String) {
-    return this.apiService.delete(`organizations/subsidiary-location/${id}`);
-  }
+    approveRequest(id: String) {
+        return this.apiService.post(`activity/adopt_request/${id}/do_action?action=Approve`, {});
+    }
 
-  approveRequest(id: String) {
-    return this.apiService.post(`organizations/request/${id}/approve`, {});
-  }
+    rejectRequest(id: String) {
+        return this.apiService.post(`activity/adopt_request/${id}/do_action?action=Reject`, {});
+    }
 
-  rejectRequest(id: String) {
-    return this.apiService.post(`organizations/request/${id}/reject`, {});
-  }
+    cancelInvitation(id: String) {
+        return this.apiService.post(`activity/adopt_request/${id}/do_action?action=Cancel`, {});
+    }
 
-  cancelInvitation(id: String) {
-    return this.apiService.post(`organizations/association/${id}/cancel-invite`, {});
-  }
+    //   addSubOrganizationWithEmail(organization: AdditionalLocationModel) {
+    //     return this.apiService.post('organizations/association/invite', organization);
+    //   }
 
-//   addSubOrganizationWithEmail(organization: AdditionalLocationModel) {
-//     return this.apiService.post('organizations/association/invite', organization);
-//   }
-
-//   addSubOrganization(organization: AdditionalLocationModel) {
-//     return this.apiService.post('organizations', organization);
-//   }
+    //   addSubOrganization(organization: AdditionalLocationModel) {
+    //     return this.apiService.post('organizations', organization);
+    //   }
 }

@@ -6,226 +6,166 @@
 
     <div class="toolbar d-flex justify-content-between align-items-end">
         <ul class="tabs">
-            <li
-                [class.active]="selectedTab == requestStatus.active"
-                (click)="onSelectTab(requestStatus.active)">
-                Active (
-                <!-- {{ locationsCounting.activeCount }} -->
-                )
+            <li [class.active]="selectedTab == requestStatus.active" (click)="onSelectTab(requestStatus.active)">
+                Active ({{ childRequestCounting.active}})
             </li>
-            <li
-                [class.active]="selectedTab == requestStatus.pending"
-                (click)="onSelectTab(requestStatus.pending)">
-                Pending ()
+            <li [class.active]="selectedTab == requestStatus.pending" (click)="onSelectTab(requestStatus.pending)">
+                Pending ({{ childRequestCounting.pending}})
             </li>
-            <li
-                [class.active]="selectedTab == requestStatus.inactive"
-                (click)="onSelectTab(requestStatus.inactive)">
-                Inactive ()
+            <li [class.active]="selectedTab == requestStatus.inactive" (click)="onSelectTab(requestStatus.inactive)">
+                Inactive ({{ childRequestCounting.inactive}})
             </li>
         </ul>
-        <dx-button
-            class="add-btn"
-            icon="add"
-            type="default"
-            text="New"
-            (onClick)="openAddNewLocation()">
+        <dx-button class="add-btn" icon="add" type="default" text="New" (onClick)="openAddNewLocation()">
         </dx-button>
     </div>
 
     <div class="tab-content mt-8-c">
         <ng-container *ngIf="selectedTab == requestStatus.active">
-            <app-child-request-grid
-                (loadLocationCounting)="onLoadLocationCounting($event)"
-                [loadData]="reloadData"
-                [status]="requestStatus.active"
-            ></app-child-request-grid>
+            <app-child-request-grid (loadChildRequestCounting)="onLoadChildRequestCounting()" [loadData]="reloadData"
+                [status]="requestStatus.active"></app-child-request-grid>
         </ng-container>
         <ng-container *ngIf="selectedTab == requestStatus.pending">
-            <app-child-request-grid
-                (loadLocationCounting)="onLoadLocationCounting($event)"
-                [loadData]="reloadData"
-                [status]="requestStatus.pending"
-            ></app-child-request-grid>
+            <app-child-request-grid (loadChildRequestCounting)="onLoadChildRequestCounting()" [loadData]="reloadData"
+                [status]="requestStatus.pending"></app-child-request-grid>
         </ng-container>
         <ng-container *ngIf="selectedTab == requestStatus.inactive">
-            <app-child-request-grid
-                (loadLocationCounting)="onLoadLocationCounting($event)"
-                [loadData]="reloadData"
-                [status]="requestStatus.inactive"
-            ></app-child-request-grid>
+            <app-child-request-grid (loadChildRequestCounting)="onLoadChildRequestCounting()" [loadData]="reloadData"
+                [status]="requestStatus.inactive"></app-child-request-grid>
         </ng-container>
     </div>
 
     <ng-container *ngIf="isShowNewLocationPopup">
-      <dx-popup
-        minWidth="500"
-        [wrapperAttr]="{ class: 'popup-add-organization' }"
-        maxWidth="695"
-        height="90%"
-        (onHiding)="closeAddNewLocation()"
-        [showTitle]="true"
-        title="Subsidiary Location Details"
-        [visible]="isShowNewLocationPopup"
-        [dragEnabled]="false"
-        [showCloseButton]="true"
-      >
-        <dx-scroll-view>
-          <div class="location__form-wrapper">
-            <dx-validation-group>
-              <div class="location__form-container">
-                <div class="form-group row">
-                  <div class="col">
-                      <!-- [(value)]="organization.name" -->
-                    <dx-text-box
-                      valueChangeEvent="keyup"
-                      class="field-value__placeholder"
-                      placeholder="Organization name"
-                    >
-                      <dx-validator>
-                        <dxi-validation-rule type="required" [message]="'This field is required'"> </dxi-validation-rule>
-                      </dx-validator>
-                    </dx-text-box>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col">
-                    <dx-text-area
-                      placeholder="About your organization"
-                      class="field-value__placeholder"
-                      [height]="225"
-                      >
-                      <!-- [(value)]="organization.description" -->
-                      <dx-validator>
-                        <dxi-validation-rule type="required" [message]="'This field is required'"> </dxi-validation-rule>
-                      </dx-validator>
-                    </dx-text-area>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col">
-                    <!-- [(value)]="organization.website" -->
-                    <dx-text-box  class="field-value__placeholder" placeholder="Website">
-                      <dx-validator>
-                        <dxi-validation-rule type="required" [message]="'This field is required'"> </dxi-validation-rule>
-                      </dx-validator>
-                    </dx-text-box>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col">
-                      <!-- [(value)]="organization.streetAddress" -->
-                    <dx-text-box
-                      class="field-value__placeholder"
-                      placeholder="Street address"
-                    >
-                      <dx-validator>
-                        <dxi-validation-rule type="required" [message]="'This field is required'"> </dxi-validation-rule>
-                      </dx-validator>
-                    </dx-text-box>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col">
-                    <!-- [(value)]="organization.city" -->
-                    <dx-text-box  class="field-value__placeholder" placeholder="City">
-                      <dx-validator>
-                        <dxi-validation-rule type="required" [message]="'This field is required'"> </dxi-validation-rule>
-                      </dx-validator>
-                    </dx-text-box>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col">
-                    <dx-select-box
-                      class="field-value__placeholder"
-                      placeholder="Select"
-                      displayExpr="key"
-                      valueExpr="value"
-                      >
-                      <!-- [(value)]="organization.state" -->
-                      <!-- <dx-validator>
+        <dx-popup minWidth="500" [wrapperAttr]="{ class: 'popup-add-organization' }" maxWidth="695" height="90%"
+            (onHiding)="closeAddNewLocation()" [showTitle]="true" title="Subsidiary Location Details"
+            [visible]="isShowNewLocationPopup" [dragEnabled]="false" [showCloseButton]="true">
+            <dx-scroll-view>
+                <div class="location__form-wrapper">
+                    <dx-validation-group>
+                        <div class="location__form-container">
+                            <div class="form-group row">
+                                <div class="col">
+                                    <!-- [(value)]="organization.name" -->
+                                    <dx-text-box valueChangeEvent="keyup" class="field-value__placeholder"
+                                        placeholder="Organization name">
+                                        <dx-validator>
+                                            <dxi-validation-rule type="required" [message]="'This field is required'">
+                                            </dxi-validation-rule>
+                                        </dx-validator>
+                                    </dx-text-box>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <dx-text-area placeholder="About your organization" class="field-value__placeholder"
+                                        [height]="225">
+                                        <!-- [(value)]="organization.description" -->
+                                        <dx-validator>
+                                            <dxi-validation-rule type="required" [message]="'This field is required'">
+                                            </dxi-validation-rule>
+                                        </dx-validator>
+                                    </dx-text-area>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <!-- [(value)]="organization.website" -->
+                                    <dx-text-box class="field-value__placeholder" placeholder="Website">
+                                        <dx-validator>
+                                            <dxi-validation-rule type="required" [message]="'This field is required'">
+                                            </dxi-validation-rule>
+                                        </dx-validator>
+                                    </dx-text-box>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <!-- [(value)]="organization.streetAddress" -->
+                                    <dx-text-box class="field-value__placeholder" placeholder="Street address">
+                                        <dx-validator>
+                                            <dxi-validation-rule type="required" [message]="'This field is required'">
+                                            </dxi-validation-rule>
+                                        </dx-validator>
+                                    </dx-text-box>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <!-- [(value)]="organization.city" -->
+                                    <dx-text-box class="field-value__placeholder" placeholder="City">
+                                        <dx-validator>
+                                            <dxi-validation-rule type="required" [message]="'This field is required'">
+                                            </dxi-validation-rule>
+                                        </dx-validator>
+                                    </dx-text-box>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <dx-select-box class="field-value__placeholder" placeholder="Select"
+                                        displayExpr="key" valueExpr="value">
+                                        <!-- [(value)]="organization.state" -->
+                                        <!-- <dx-validator>
                         <dxi-validation-rule type="required" [message]="'Please select state'"> </dxi-validation-rule>
                       </dx-validator> -->
-                    </dx-select-box>
-                  </div>
-                  <div class="col">
-                    <!-- [(value)]="organization.zipcode" -->
-                    <dx-text-box class="field-value__placeholder" placeholder="Zipcode">
-                      <dx-validator>
-                        <dxi-validation-rule type="required" [message]="'This field is required'"> </dxi-validation-rule>
-                      </dx-validator>
-                    </dx-text-box>
-                  </div>
+                                    </dx-select-box>
+                                </div>
+                                <div class="col">
+                                    <!-- [(value)]="organization.zipcode" -->
+                                    <dx-text-box class="field-value__placeholder" placeholder="Zipcode">
+                                        <dx-validator>
+                                            <dxi-validation-rule type="required" [message]="'This field is required'">
+                                            </dxi-validation-rule>
+                                        </dx-validator>
+                                    </dx-text-box>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <p class="more-info__title">Organization Administrator</p>
+                                    <p class="more-info__subtitle">
+                                        Assign an organization administrator to manage this subsidiary location by
+                                        sending them an invite
+                                        below. Would you like to add someone to manage this location?
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <!-- [value]="orgAdministratorRadio[0]" -->
+                                    <dx-radio-group displayExpr="text" [items]="orgAdministratorRadio"
+                                        (onValueChanged)="handleRadioValueChange($event)">
+                                    </dx-radio-group>
+                                </div>
+                            </div>
+                            <div class="form-group row" *ngIf="showInviteAdminInput">
+                                <div class="col">
+                                    <!-- [(value)]="organization.email" -->
+                                    <dx-text-box class="field-value__placeholder" placeholder="Email address">
+                                        <dx-validator>
+                                            <dxi-validation-rule type="required" [message]="'This field is required'">
+                                            </dxi-validation-rule>
+                                            <dxi-validation-rule type="email" [message]="'Email is not correct'">
+                                            </dxi-validation-rule>
+                                        </dx-validator>
+                                    </dx-text-box>
+                                </div>
+                            </div>
+                            <dx-button [ngClass]="'mt-3 mr-3'" height="42" [focusStateEnabled]="false"
+                                (onHiding)="isShowNewLocationPopup = false" type="normal"
+                                (onClick)="closeAddNewLocation()" text="Cancel">
+                            </dx-button>
+                            <dx-button *ngIf="!showInviteAdminInput" [ngClass]="'mt-3'" height="42"
+                                [focusStateEnabled]="false" type="default" text="Add Location"
+                                (onClick)="addLocation($event)"></dx-button>
+                            <dx-button *ngIf="showInviteAdminInput" [ngClass]="'mt-3'" height="42"
+                                [focusStateEnabled]="false" type="default" text="Add & Send Invite"
+                                (onClick)="addLocationWithEmail($event)">
+                            </dx-button>
+                        </div>
+                    </dx-validation-group>
                 </div>
-                <div class="form-group row">
-                  <div class="col">
-                    <p class="more-info__title">Organization Administrator</p>
-                    <p class="more-info__subtitle">
-                      Assign an organization administrator to manage this subsidiary location by sending them an invite
-                      below. Would you like to add someone to manage this location?
-                    </p>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col">
-                      <!-- [value]="orgAdministratorRadio[0]" -->
-                    <dx-radio-group
-                      displayExpr="text"
-                      [items]="orgAdministratorRadio"
-                      (onValueChanged)="handleRadioValueChange($event)"
-                    >
-                    </dx-radio-group>
-                  </div>
-                </div>
-                <div class="form-group row" *ngIf="showInviteAdminInput">
-                  <div class="col">
-                      <!-- [(value)]="organization.email" -->
-                    <dx-text-box
-                      class="field-value__placeholder"
-                      placeholder="Email address"
-                    >
-                      <dx-validator>
-                        <dxi-validation-rule type="required" [message]="'This field is required'"> </dxi-validation-rule>
-                        <dxi-validation-rule type="email" [message]="'Email is not correct'"> </dxi-validation-rule>
-                      </dx-validator>
-                    </dx-text-box>
-                  </div>
-                </div>
-                <dx-button
-                  [ngClass]="'mt-3 mr-3'"
-                  height="42"
-                  [focusStateEnabled]="false"
-                  (onHiding)="isShowNewLocationPopup = false"
-                  type="normal"
-                  (onClick)="closeAddNewLocation()"
-                  text="Cancel"
-                >
-                </dx-button>
-                <dx-button
-                  *ngIf="!showInviteAdminInput"
-                  [ngClass]="'mt-3'"
-                  height="42"
-                  [focusStateEnabled]="false"
-                  type="default"
-                  text="Add Location"
-                  (onClick)="addLocation($event)"
-                ></dx-button>
-                <dx-button
-                  *ngIf="showInviteAdminInput"
-                  [ngClass]="'mt-3'"
-                  height="42"
-                  [focusStateEnabled]="false"
-                  type="default"
-                  text="Add & Send Invite"
-                  (onClick)="addLocationWithEmail($event)"
-                >
-                </dx-button>
-              </div>
-            </dx-validation-group>
-          </div>
-        </dx-scroll-view>
-      </dx-popup>
+            </dx-scroll-view>
+        </dx-popup>
     </ng-container>
 </div>
-

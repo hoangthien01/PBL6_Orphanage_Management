@@ -33,7 +33,7 @@ export class ChildRequestService {
     }
 
     getTabsCounting(): Observable<any> {
-        return this.apiService.get<any>(`organizations/status-count`);
+        return this.apiService.get<any>(`activity/adopt_request/get_total_request`);
     }
 
     getRequestDetail(id: string): Observable<any> {
@@ -41,15 +41,15 @@ export class ChildRequestService {
     }
 
     approveRequest(id: String) {
-        return this.apiService.post(`activity/adopt_request/${id}/do_action?action=Approve`, {});
+        return this.apiService.put(`activity/adopt_request/${id}/do_action?action=Approve`, {});
     }
 
     rejectRequest(id: String) {
-        return this.apiService.post(`activity/adopt_request/${id}/do_action?action=Reject`, {});
+        return this.apiService.put(`activity/adopt_request/${id}/do_action?action=Reject`, {});
     }
 
     cancelInvitation(id: String) {
-        return this.apiService.post(`activity/adopt_request/${id}/do_action?action=Cancel`, {});
+        return this.apiService.put(`activity/adopt_request/${id}/do_action?action=Cancel`, {});
     }
 
     //   addSubOrganizationWithEmail(organization: AdditionalLocationModel) {

@@ -16,8 +16,7 @@ export class ChildRequestsComponent implements OnInit {
   showInviteAdminInput: boolean = false;
   isLoading: boolean = false;
   reloadData: boolean = false;
-//   locationsCounting = new CountLocationModel();
-  locationsCounting : any;
+    childRequestCounting : any;
   orgAdministratorRadio: object[] = [
     {
       id: 1,
@@ -43,6 +42,7 @@ export class ChildRequestsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.onLoadChildRequestCounting();
   }
 
   handleRadioValueChange(e) {
@@ -53,9 +53,9 @@ export class ChildRequestsComponent implements OnInit {
     }
   }
 
-  onLoadLocationCounting() {
+  onLoadChildRequestCounting() {
     this.childRequestService.getTabsCounting().subscribe((result) => {
-    //   this.locationsCounting = result;
+      this.childRequestCounting = result;
     });
   }
 

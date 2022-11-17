@@ -8,7 +8,7 @@ export class ActivityModel {
   donate: number;
   end_date: string;
   cover_picture: string;
-  expense: string;
+  expense: number;
   activity_type: string;
 
   constructor(init?: Partial<ActivityModel>) {

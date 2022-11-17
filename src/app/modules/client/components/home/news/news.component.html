@@ -18,9 +18,9 @@
                             (click)="goActivityDetail(activities[0].id)">{{activities[0].title}}
                         </p>
                         <div class="button cursor-pointer">
-                            <div class="mb-20-c w-10/12 text-14px">
-                                <div><span class="text-blue-00AFFF py-2-c">Mục tiêu: </span>{{activities[0].expense}} VNĐ</div>
-                                <div><span class="text-blue-00AFFF py-2-c">Đã kêu gọi: </span>{{activities[0].donate}} VNĐ</div>
+                            <div class="mb-20-c w-10/12">
+                                <div><span class="text-blue-00AFFF py-2-c">Mục tiêu: </span>{{activities[0].expense * 1000 | currency: "VND"}}</div>
+                                <div><span class="text-blue-00AFFF py-2-c">Đã kêu gọi: </span>{{activities[0].donate * 1000 | currency: "VND"}}</div>
                                 <div><span class="text-blue-00AFFF py-2-c">Diễn ra từ: </span> {{activities[0].start_date | date}} - {{activities[0].end_date | date}}</div>
                             </div>
                             <app-custom-button
@@ -53,9 +53,9 @@
                             </p>
                             <!-- <p class="text-16px leading-22px"></p> -->
                             <div class="button">
-                                <div class="mb-20-c w-10/12 text-14px">
-                                    <div><span class="text-blue-00AFFF py-2-c">Mục tiêu: </span>{{activity.expense}} VNĐ</div>
-                                    <div><span class="text-blue-00AFFF py-2-c">Đã kêu gọi: </span>{{activity.donate}} VNĐ</div>
+                                <div class="mb-20-c w-10/12">
+                                    <div><span class="text-blue-00AFFF py-2-c">Mục tiêu: </span>{{activity.expense * 1000 | currency: "VND"}}</div>
+                                    <div><span class="text-blue-00AFFF py-2-c">Đã kêu gọi: </span>{{activity.donate * 1000 | currency: "VND"}}</div>
                                     <div><span class="text-blue-00AFFF py-2-c">Diễn ra từ: </span> {{activity.start_date | date}} - {{activity.end_date | date}}</div>
                                 </div>
                                 <app-custom-button
@@ -183,7 +183,7 @@
 		</div>
 	</div>
 
-  <app-client-footer></app-client-footer>
+  <app-client-footer (onShowRegisterPopup)="visibleRegisterPopup()"></app-client-footer>
 </div>
 
 <dx-popup

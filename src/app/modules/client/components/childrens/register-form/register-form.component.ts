@@ -74,9 +74,15 @@ export class RegisterChildrenComponent implements OnDestroy, OnInit {
     register() {
         this.requestChild.proofs = this.file;
         this.isLoading = true
-        this.childrenService.registerChild(this.requestChild).subscribe((res) => {
+        this.childrenService.registerChild(this.requestChild)
+        .pipe(
+            finalize(() => {
+                this.isLoading = false;
+                this.changeDetector.detectChanges();
+            })
+        )
+        .subscribe((res) => {
             this.router.navigateByUrl('/childrens', { state: { adop_id: res.id } }).then();
-            this.isLoading = false;
         })
     }
 }

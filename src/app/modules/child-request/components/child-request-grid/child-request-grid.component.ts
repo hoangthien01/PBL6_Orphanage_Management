@@ -6,6 +6,7 @@ import { AppNotify } from '@app/utilities';
 import { DxPopoverComponent } from 'devextreme-angular';
 import { LoadOptions } from 'devextreme/data';
 import DataSource from 'devextreme/data/data_source';
+import { CHILD_REQUEST_STATUS } from '../../data/const/request-status.const';
 import { ChildRequestStatusEnum, RequestStatusEnum } from '../../data/enum/request-status.enum';
 import { ChildRequestService } from '../../data/services/child-request.service';
 import { ChildRequestModel, ChildRequestsResponseModel } from '../../models/child-request.model';
@@ -19,7 +20,6 @@ export class ChildRequestGridComponent implements OnInit {
     isLoadingPage: boolean = false;
     isShowNewLocationPopup: boolean;
     searchString: string;
-    //   ORGANIZATION_STATUS = ORGANIZATION_STATUS;
     dataSource: DataSource;
     @Input() status: number;
     @Input() loadData: boolean = false;
@@ -36,6 +36,7 @@ export class ChildRequestGridComponent implements OnInit {
         Reject: ChildRequestStatusEnum.Reject,
         Cancel: ChildRequestStatusEnum.Cancel,
     };
+    CHILD_REQUEST_STATUS = CHILD_REQUEST_STATUS;
     isApprovePopup: boolean = false;
     isRejectPopup: boolean = false;
     isCancelPopup: boolean = false;

@@ -5,7 +5,7 @@ export enum RequestStatusEnum {
 }
 
 export enum ChildRequestStatusEnum {
-    Pending = 0,
+    Pending = 1,
     Approve,
     Reject,
     Cancel

@@ -64,7 +64,11 @@
         dataField="status"
         [allowSorting]="false"
         [caption]="'Trạng thái'"
+        cellTemplate="statusCellTemplate"
         class="text-dark column-header">
+        <div *dxTemplate="let cell of 'statusCellTemplate'">
+            <div>{{cell.data.status | lookupValue : CHILD_REQUEST_STATUS }}</div>
+        </div>
     </dxi-column>
     <!-- *ngIf="status === locationStatus.Active" -->
     <!-- <dxi-column

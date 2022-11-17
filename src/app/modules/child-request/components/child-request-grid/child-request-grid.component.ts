@@ -83,26 +83,37 @@ export class ChildRequestGridComponent implements OnInit {
             page: this.page,
             page_size: this.page_size,
         };
-        if (this.status === this.requestStatus.Pending) {
-            return this.childRequestService.getPendingChildRequests(params).toPromise()
-                .finally(() => {
-                })
-                .then((res) => {
-                    return {
-                        data: res.results,
-                        totalCount: res.count
-                    };
-                });
-        } else {
-            return this.childRequestService.getActiveChildRequests(params).toPromise()
-                .finally(() => {
-                })
-                .then((res) => {
-                    return {
-                        data: res.results,
-                        totalCount: res.count
-                    };
-                });
+        switch (this.status) {
+            case this.requestStatus.Pending:
+                return this.childRequestService.getPendingChildRequests(params).toPromise()
+                    .finally(() => {
+                    })
+                    .then((res) => {
+                        return {
+                            data: res.results,
+                            totalCount: res.count
+                        };
+                    });
+            case this.requestStatus.Active:
+                return this.childRequestService.getActiveChildRequests(params).toPromise()
+                    .finally(() => {
+                    })
+                    .then((res) => {
+                        return {
+                            data: res.results,
+                            totalCount: res.count
+                        };
+                    });
+            case this.requestStatus.Inactive:
+                return this.childRequestService.getInactiveChildRequests(params).toPromise()
+                    .finally(() => {
+                    })
+                    .then((res) => {
+                        return {
+                            data: res.results,
+                            totalCount: res.count
+                        };
+                    });
         }
     }
 

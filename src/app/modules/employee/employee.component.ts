@@ -48,6 +48,7 @@ export class EmployeeManagementComponent implements OnInit, OnDestroy {
         //     desc: this.sortOrderDefault === FilterParamsSortingTypes.Descending
         // }]
     });
+    this.isLoading = true;
 }
 
   gridLoadOption(loadOptions: LoadOptions): Promise<LoadResultModel<EmployeeModel[]>> {
@@ -55,7 +56,6 @@ export class EmployeeManagementComponent implements OnInit, OnDestroy {
     //     return;
     // }
 
-    this.isLoading = true;
     //
     const data = {
       page: this.pageIndexDefault + 1,

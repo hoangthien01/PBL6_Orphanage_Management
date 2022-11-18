@@ -1,118 +1,143 @@
-<dx-load-panel
-  *ngIf="isLoading"
-  [visible]="true"
-  shadingColor="#ffffffcc"
-  [showIndicator]="true"
-  [showPane]="true"
-  [shading]="true"
->
-</dx-load-panel>
-<div>
-  <div class="back-btn my-4" (click)="backToPrevious()">
-    <!-- <nb-icon icon="arrow-ios-back-outline"></nb-icon> -->
-    <p>Back</p>
-  </div>
+<app-load-panel [isLoading]="isLoading">
+</app-load-panel>
 
-  <h2 class="title">Edit Subsidiary Organization</h2>
+<div class="profile-general-info-page">
+    <div *ngIf="!isLoading">
+        <div class="profile-general-info-wrapper pl-10-c pr-30-c">
+            <div class="form-wrapper">
+                <div class="general-info-section">
+                    <div class="left-section pb-20-c">
+                        <div class="box-properties" appAutoFocusInput>
+                            <span class="field-label">Người nhận nuôi</span>
+                            <dx-text-box class="field-box"
+                                            [disabled]="isSaving"
+                                            [placeholder]="'John Smith'"
+                                            [valueChangeEvent]="'input'"
+                                            [(value)]="requestDetail.adopter.name"
+                                            (onValueChanged)="dataChanged()">
+                                <dx-validator>
+                                    <dxi-validation-rule type="required"
+                                                            [message]="'This full name is required'">
+                                    </dxi-validation-rule>
+                                </dx-validator>
+                            </dx-text-box>
+                        </div>
 
-  <div class="form-wrapper mt-4">
-    <dx-validation-group>
-      <div class="edit__form-container col-xl-6 col-lg-8 col-sm-12">
-        <div class="form-group row">
-          <label class="col-lg-12 col-sm-12 col-form-label">Organization name: </label>
-          <div class="col">
-            <dx-text-box valueChangeEvent="keyup" class="field-value__placeholder" [(value)]="organization.name">
-              <dx-validator>
-                <dxi-validation-rule type="required" [message]="'This field is required'"> </dxi-validation-rule>
-              </dx-validator>
-            </dx-text-box>
-          </div>
+                        <div class="box-properties" appAutoFocusInput>
+                            <span class="field-label">Trẻ nhận nuôi</span>
+                            <dx-text-box class="field-box"
+                                            [disabled]="isSaving"
+                                            [placeholder]="'John Smith'"
+                                            [valueChangeEvent]="'input'"
+                                            [(value)]="requestDetail.adopter.name"
+                                            (onValueChanged)="dataChanged()">
+                                <dx-validator>
+                                    <dxi-validation-rule type="required"
+                                                            [message]="'This full name is required'">
+                                    </dxi-validation-rule>
+                                </dx-validator>
+                            </dx-text-box>
+                        </div>
+
+                        <div class="box-properties" appAutoFocusInput>
+                            <span class="field-label">Địa chỉ</span>
+                            <dx-text-box class="field-box"
+                                            [disabled]="isSaving"
+                                            [placeholder]="'Da Nang...'"
+                                            [valueChangeEvent]="'input'"
+                                            [(value)]="requestDetail.adopter.address"
+                                            (onValueChanged)="dataChanged()">
+                            </dx-text-box>
+                        </div>
+
+                        <div class="box-properties" appAutoFocusInput>
+                            <span class="field-label">Số điện thoại</span>
+                            <dx-text-box class="field-box"
+                                            [disabled]="isSaving"
+                                            [placeholder]="'0013131....'"
+                                            [valueChangeEvent]="'input'"
+                                            [(value)]="requestDetail.adopter.phone"
+                                            (onValueChanged)="dataChanged()">
+                            </dx-text-box>
+                        </div>
+
+                        <div class="box-properties" appAutoFocusInput>
+                            <span class="field-label">Chức vụ</span>
+                            <dx-text-box class="field-box"
+                                            [disabled]="false"
+                                            [valueChangeEvent]="'input'"
+                                            [(value)]="requestDetail.adopter.occupation"
+                                            (onValueChanged)="dataChanged()">
+                            </dx-text-box>
+                        </div>
+
+                        <div class="box-properties">
+                            <span class="field-label">Địa chỉ Email</span>
+                            <div class="profile-general-info__email-field-container">
+                                <dx-text-box #accountEmailTextBox
+                                                class="field-box"
+                                                [disabled]="true"
+                                                [placeholder]="'Enter Email'"
+                                                [valueChangeEvent]="'input'"
+                                                [(value)]="requestDetail.adopter.email"
+                                                (onValueChanged)="dataChanged()">
+                                </dx-text-box>
+                            </div>
+                        </div>
+
+                        <div class="box-properties">
+                            <span class="field-label">Mức thu nhập</span>
+                            <dx-text-box class="field-box"
+                                            [disabled]="isSaving"
+                                            [placeholder]="'...'"
+                                            [valueChangeEvent]="'input'"
+                                            [(value)]="requestDetail.income"
+                                            (onValueChanged)="dataChanged()">
+                            </dx-text-box>
+                        </div>
+
+                        <div class="box-properties">
+                            <span class="field-label">Trạng thái hôn nhân</span>
+                            <dx-radio-group
+                                [items]="MARITAL_STATUS"
+                                valueExpr="key"
+                                displayExpr="value"
+                                [(value)]="requestDetail.marital_status">
+                            </dx-radio-group>
+                        </div>
+
+                        <div class="box-properties">
+                            <span class="field-label">Trạng thái gia đình</span>
+                            <dx-radio-group
+                                [items]="FAMILY_STATUS"
+                                valueExpr="key"
+                                displayExpr="value"
+                                [(value)]="requestDetail.family_status"
+                                (onValueChanged)="dataChanged()">
+                            </dx-radio-group>
+                        </div>
+                    </div>
+                </div>
         </div>
 
-        <div class="form-group row">
-          <label class="col-lg-12 col-sm-12 col-form-label">About your organization: </label>
-          <div class="col">
-            <dx-text-area class="field-value__placeholder" [height]="225" [(value)]="organization.description">
-              <dx-validator>
-                <dxi-validation-rule type="required" [message]="'This field is required'"> </dxi-validation-rule>
-              </dx-validator>
-            </dx-text-area>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label class="col-lg-12 col-sm-12 col-form-label">Website: </label>
-          <div class="col">
-            <dx-text-box class="field-value__placeholder" [(value)]="organization.website">
-              <dx-validator>
-                <dxi-validation-rule type="required" [message]="'This field is required'"> </dxi-validation-rule>
-              </dx-validator>
-            </dx-text-box>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label class="col-lg-12 col-sm-12 col-form-label">Street address: </label>
-          <div class="col">
-            <dx-text-box class="field-value__placeholder" [(value)]="organization.streetAddress">
-              <dx-validator>
-                <dxi-validation-rule type="required" [message]="'This field is required'"> </dxi-validation-rule>
-              </dx-validator>
-            </dx-text-box>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label class="col-lg-12 col-sm-12 col-form-label">City: </label>
-          <div class="col">
-            <dx-text-box class="field-value__placeholder" [(value)]="organization.city">
-              <dx-validator>
-                <dxi-validation-rule type="required" [message]="'This field is required'"> </dxi-validation-rule>
-              </dx-validator>
-            </dx-text-box>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-6 p-0">
-            <label class="col-lg-12 col-sm-12 col-form-label">State: </label>
-            <div class="col">
-              <dx-select-box
-                class="field-value__placeholder"
-                placeholder="State"
-                displayExpr="key"
-                valueExpr="value"
-                [(value)]="organization.state"
-              >
-                <!-- <dx-validator>
-                  <dxi-validation-rule type="required" [message]="'Please select role'"> </dxi-validation-rule>
-                </dx-validator> -->
-              </dx-select-box>
+            <div class="pt-20-c pb-10-c">
+                <app-custom-button class="mr-10-c"
+                                   icon="{{ isSaving ? 'fas fa-spinner fa-spin' : '' }}"
+                                   [width]="120"
+                                   [height]="40"
+                                   [text]="'Lưu'"
+                                   [type]="'primary'"
+                                   [disabled]="!isDataChanged || !isDataValid || isSaving"
+                                   (onClick)="updateProfileGeneralInfo()">
+                </app-custom-button>
+                <app-custom-button [width]="120"
+                                   [height]="40"
+                                   [text]="'Hủy'"
+                                   [type]="'cancel'"
+                                   [disabled]="isSaving || !isDataChanged"
+                                   (onClick)="cancelUpdate()">
+                </app-custom-button>
             </div>
-          </div>
-
-          <div class="col-6 p-0">
-            <label class="col-lg-12 col-sm-12 col-form-label">Zipcode: </label>
-            <div class="col">
-              <dx-text-box class="field-value__placeholder" [(value)]="organization.zipcode">
-                <dx-validator>
-                  <dxi-validation-rule type="required" [message]="'This field is required'"> </dxi-validation-rule>
-                </dx-validator>
-              </dx-text-box>
-            </div>
-          </div>
         </div>
-        <div class="btn-group" [ngClass]="'mt-5'">
-          <dx-button height="42" type="default" text="Save Changes" (onClick)="onSaveChanges($event)"> </dx-button>
-          <span class="delete-btn ml-2" (click)="openDeleteOrganizationPopup()"> Delete location </span>
-        </div>
-      </div>
-    </dx-validation-group>
-  </div>
+    </div>
 </div>
-
-<ng-container *ngIf="isConfirmDeletePopup">
-  <app-popup-confirmation [confirmButtonTitle]="'Yes'" [cancelButtonTitle]="'Cancel'" (onConfirm)="onDeleteOrganization($event)">
-    <p>Are you sure that you want to delete this location?</p>
-  </app-popup-confirmation>
-</ng-container>

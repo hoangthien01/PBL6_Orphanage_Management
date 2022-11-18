@@ -1,26 +1,28 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChildrenModel } from '@app/modules/children/models';
+import { POPUP_ANIMATION } from '@app/shared/app.constants';
 import { LoadResultModel } from '@app/shared/models';
 import { AppNotify } from '@app/utilities';
-import { DxPopoverComponent } from 'devextreme-angular';
 import { LoadOptions } from 'devextreme/data';
 import DataSource from 'devextreme/data/data_source';
 import { CHILD_REQUEST_STATUS } from '../../data/const/request-status.const';
 import { ChildRequestStatusEnum, RequestStatusEnum } from '../../data/enum/request-status.enum';
 import { ChildRequestService } from '../../data/services/child-request.service';
-import { ChildRequestModel, ChildRequestsResponseModel } from '../../models/child-request.model';
+import { ChildRequestModel } from '../../models/child-request.model';
 
 @Component({
     selector: 'app-child-request-grid',
     templateUrl: './child-request-grid.component.html',
     styleUrls: ['./child-request-grid.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChildRequestGridComponent implements OnInit {
     isLoadingPage: boolean = false;
+    isShowRequestDetailPopup: boolean = false;
     isShowNewLocationPopup: boolean;
     searchString: string;
     dataSource: DataSource;
+    requestDetail: ChildRequestModel = new ChildRequestModel();
     @Input() status: number;
     @Input() loadData: boolean = false;
     @Output() loadChildRequestCounting = new EventEmitter();
@@ -37,6 +39,7 @@ export class ChildRequestGridComponent implements OnInit {
         Cancel: ChildRequestStatusEnum.Cancel,
     };
     CHILD_REQUEST_STATUS = CHILD_REQUEST_STATUS;
+    POPUP_ANIMATION = POPUP_ANIMATION;
     isApprovePopup: boolean = false;
     isRejectPopup: boolean = false;
     isCancelPopup: boolean = false;
@@ -64,6 +67,11 @@ export class ChildRequestGridComponent implements OnInit {
         }
     }
 
+    onOpenRequestDetail(e: any) {
+        this.requestDetail = e.data;
+        this.isShowRequestDetailPopup = true;
+    }
+
     loadChildRequests() {
         this.dataSource = new DataSource({
             load: (loadOptions) => this.gridLoadOption(loadOptions),
@@ -71,13 +79,6 @@ export class ChildRequestGridComponent implements OnInit {
     }
 
     gridLoadOption(loadOptions: LoadOptions): Promise<LoadResultModel<ChildRequestModel[]>> {
-        // if (!loadOptions.take) {
-        //     return;
-        //   }
-
-        //   if (this.searchString) {
-        //     Object.assign(params, { searchString: this.searchString });
-        //   }
         this.loadChildRequestCounting.emit();
 
         const params = {
@@ -194,5 +195,9 @@ export class ChildRequestGridComponent implements OnInit {
     openCancelInvitePopup(id) {
         this.selectedRequestId = id;
         this.isCancelPopup = true;
+    }
+
+    hidePopup() {
+        this.isShowRequestDetailPopup = false;
     }
 }

@@ -1,15 +1,15 @@
 import { ChildrenModel } from "@app/modules/children/models";
 
 export class ChildRequestsResponseModel {
-  current: string;
-  page_size: string;
-  page_number: number;
-  count: number;
-  results: ChildRequestModel[];
+    current: string;
+    page_size: string;
+    page_number: number;
+    count: number;
+    results: ChildRequestModel[];
 
-  public constructor(init?: Partial<ChildRequestsResponseModel>) {
-      Object.assign(this, init);
-  }
+    public constructor(init?: Partial<ChildRequestsResponseModel>) {
+        Object.assign(this, init);
+    }
 }
 
 export class ChildRequestModel {
@@ -20,9 +20,36 @@ export class ChildRequestModel {
     status: string;
     approver: string;
     adopter_name: string;
-    adop_request_detail: string;
+    adopt_request_detail: string;
 
     public constructor(init?: Partial<ChildRequestModel>) {
         Object.assign(this, init);
     }
-  }
+}
+
+export class ChildRequestDetailModel {
+    id: string;
+    adopter: {
+        id: string,
+        name: string,
+        gender: 2,
+        occupation: string,
+        address: string,
+        phone: string,
+        email: string
+    };
+    created_at: string;
+    income: string;
+    marital_status: number;
+    family_status: boolean;
+    proof: [
+        {
+            id: string,
+            link: string
+        },
+    ]
+
+    public constructor(init?: Partial<ChildRequestDetailModel>) {
+        Object.assign(this, init);
+    }
+}

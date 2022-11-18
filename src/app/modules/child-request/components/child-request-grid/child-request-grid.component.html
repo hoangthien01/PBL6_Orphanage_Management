@@ -17,7 +17,8 @@
     [showColumnLines]="false"
     [hoverStateEnabled]="true"
     [rowAlternationEnabled]="false"
-    class="location-data-grid-container">
+    class="location-data-grid-container"
+    (onRowClick)="onOpenRequestDetail($event)">
     <dxo-paging [pageSize]="10"></dxo-paging>
     <dx-load-panel [visible]="false"></dx-load-panel>
     <dxo-pager
@@ -163,3 +164,14 @@
         <p>Bạn có chắc chắn hủy yêu cầu này ? Bạn không thể hoàn tác hành động này.</p>
     </app-popup-confirmation>
 </ng-container>
+
+<!-- Request detail  -->
+<app-popup-container *ngIf="isShowRequestDetailPopup && requestDetail.adopt_request_detail"
+                    [height]="'100%'"
+                    [width]="600"
+                    [title]="'Chi tiết yêu cầu'"
+                    [(visible)]="isShowRequestDetailPopup"
+                    [customPopupAnimation]="POPUP_ANIMATION"
+                    (onHiding)="hidePopup()">
+    <app-child-request-edit-form [requestId]="requestDetail.adopt_request_detail"></app-child-request-edit-form>
+</app-popup-container>

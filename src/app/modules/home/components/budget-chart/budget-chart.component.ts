@@ -11,6 +11,8 @@ import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngxs/store';
 //
 import { DxChartComponent } from 'devextreme-angular';
+import { DonerService } from '../../services/doner.service';
+import { BudgetChartModel } from '../../models/bugget-chart-item.model';
 
 @Component({
 	selector: 'app-budget-chart',
@@ -22,39 +24,10 @@ export class BudgetChartComponent implements OnInit, OnDestroy {
 	@ViewChild('chartComponent') chartComponent: DxChartComponent;
     //
 	projectId: number;
-	dataSource = [
-        {
-            donate: 1193900,
-            expense: 763133,
-            day: 1
-        },
-        {
-            donate: 2424242,
-            expense: 32323,
-            day: 2
-        },
-        {
-            donate: 32332,
-            expense: 32,
-            day: 3
-        },
-        {
-            donate: 32323133,
-            expense: 12112,
-            day: 4
-        },
-        {
-            donate: 323233,
-            expense: 3233,
-            day: 5
-        },
-        {
-            donate: 1314155,
-            expense: 11212,
-            day: 6
-        },
-    ];
-
+	dataSource: BudgetChartModel[];
+    startDate: string = '2022-11-15';
+    endDate: string = '2022-11-22';
+    //
 	isLoading = false;
 	isSidebarMenuExpanded = true;
 
@@ -63,34 +36,35 @@ export class BudgetChartComponent implements OnInit, OnDestroy {
 	constructor(
 		private cdr: ChangeDetectorRef,
 		private store: Store,
+        private donorService: DonerService
 	) {}
 
 	ngOnInit(): void {
+        this.getBudgetChartData();
 	}
 
 	ngOnDestroy(): void {
 		this.subscription.unsubscribe();
 	}
 
-	getTaskReportByTime() {
+	getBudgetChartData() {
 		this.isLoading = true;
 		//
-		// this.projectService
-		// 	.getProjectReportsByTime(this.projectId, this.filterOption)
-		// 	.pipe(
-		// 		finalize(() => {
-		// 			this.isLoading = false;
-		// 			//
-		// 			this.cdr.markForCheck();
-		// 		})
-		// 	)
-		// 	.subscribe(res => {
-		// 		if (!res || !res.reports || !res.reports.length) {
-		// 			return;
-		// 		}
-
-		// 		this.taskStatesByTimeDataSource = res.reports;
-		// 	});
+		this.donorService
+			.getStatisticChartData({
+                start_date: this.startDate,
+                end_date: this.endDate,
+            })
+			.pipe(
+				finalize(() => {
+					this.isLoading = false;
+					//
+					this.cdr.markForCheck();
+				})
+			)
+			.subscribe(res => {
+				this.dataSource = res.details;
+			});
 	}
 
     legendColorByStateNameHandler = (stateName: string) => {

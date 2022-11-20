@@ -16,4 +16,11 @@ export class DonerService {
   getListEmployees(): Observable<ListDonerResponseModel> {
     return this.baseService.get(`statistic/donate`);
   }
+
+  getStatisticChartData(params: {
+    start_date: string,
+    end_date: string
+  }) {
+    return this.baseService.get(`statistic/donate/get_donate_statistics?start_date=${params.start_date}&end_date=${params.end_date}`);
+  }
 }

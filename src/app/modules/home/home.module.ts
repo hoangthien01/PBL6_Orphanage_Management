@@ -15,6 +15,7 @@ import { NgxPermissionsGuard, NgxPermissionsModule } from 'ngx-permissions';
 import { ProfileGeneralInfoComponent } from '../../theme/components/profile-general-info/profile-general-info.component';
 import { HomeOverviewStatusComponent } from './components/overview-status/overview-status.component';
 import { HomeDonerComponent } from './components/doner/doner.component';
+import { BudgetChartComponent } from './components/budget-chart/budget-chart.component';
 
 const SVG_ICONS = [
 ];
@@ -99,7 +100,8 @@ const COMPONENTS = [
     AvatarComponent,
     HomeOverviewStatusComponent,
     HomeContentComponent,
-    HomeDonerComponent
+    HomeDonerComponent,
+    BudgetChartComponent
 ];
 
 @NgModule({

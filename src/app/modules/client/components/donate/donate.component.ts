@@ -64,9 +64,10 @@ export class DonateComponent implements OnDestroy {
         });
 
         paymentHandler.open({
-          name: 'Positronx',
-          description: '3 widgets',
+          name: 'F4plus Organization',
+          description: 'Card info',
           amount: amount * 100,
+          currency: 'vnd'
         });
     }
 

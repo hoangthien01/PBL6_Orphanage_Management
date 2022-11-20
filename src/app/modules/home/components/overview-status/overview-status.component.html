@@ -1,0 +1,13 @@
+<div class="overview-status-wrapper ">
+    <div class="status-boxes">
+        <div *ngFor="let item of data" class="box-container">
+            <div class="status-box d-flex align-items-center justify-content-center">
+                <div>
+                    <div class="{{item.key}}-color title">{{item.title}}</div>
+                    <div class="number-value">{{item.value | number}}</div>
+                    <div class="description">{{item.rateString}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

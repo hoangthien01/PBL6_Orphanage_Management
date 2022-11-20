@@ -1,84 +1,85 @@
-.back-btn {
-  display: flex;
-  color: #000000;
-  cursor: pointer;
-  align-items: center;
-  text-decoration: none;
-  margin-left: -8px;
+@import "jerry-extend";
+@import "jerry-variable";
 
-  nb-icon {
-    font-size: 1.75rem;
-  }
-  p {
-    margin-bottom: 0;
-    font-size: 18px;
-    color: #000000;
-  }
+.profile-general-info-page {
+    position: relative;
+    height: 100%;
 }
 
-.form-wrapper {
-  .delete-btn {
-    display: inline-block;
-    height: 42px;
-    line-height: 42px;
-    color: #d60000;
-    padding: 0 10px;
-    text-decoration: underline;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  .btn-group {
-    justify-content: flex-start;
-  }
-  ::ng-deep .edit__form-container {
-    padding-left: 0 !important;
+dx-scroll-view.profile-general-info-scroll-view {
+    width: calc(100vw - 240px);
+}
+
+.profile-general-info-wrapper {
+    ::ng-deep .dx-radiobutton {
+        line-height: 35px;
+    }
+
+    .left-section {
+        width: 520px;
+        margin-right: 30px;
+    }
+
+    .right-section {
+        width: 520px;
+    }
+
+    ::ng-deep app-profile-avatar {
+        .profile-avatar {
+            .change-picture {
+                width: 116px !important;
+            }
+        }
+    }
+
+    .box-properties {
+        &.phone-number {
+            position: relative;
+        }
+    }
+
+    .password-wrap {
+        .title-panel {
+            margin-bottom: 20px;
+            padding-top: 8px;
+            min-width: 120px;
+        }
+    }
+
+    .switch-label {
+        margin-left: 12px;
+        color: #555555;
+        @include gotham-book(400, 12px, 16.8px);
+    }
+
+
+    .disabled {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+}
+
+.profile-general-info__email-field-container {
+    position: relative;
+}
+
+::ng-deep .profile-general-info__email-field-container {
     .dx-texteditor-input {
-      min-height: 42px;
-      font-size: 16px;
+        padding-right: 48px;
     }
-  }
+}
 
-  ::ng-deep.dx-button-text {
-    font-size: 16px;
-  }
+.profile-general-info__email-field__icon-copy-container {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    color: $color-grey-999;
+    cursor: pointer;
 
-  .email-box-container {
-    padding: 0 15px;
-    margin-top: 60px;
-
-    .email-box {
-      padding: 0;
-      border: 1px solid #c4c4c4;
-      border-radius: 5px;
+    &:hover {
+        color: $color-grey-777;
     }
-  }
-
-  .form-group {
-    margin-bottom: 20px;
-    .col-form-label {
-      font-size: 16px;
-    }
-    .required {
-      color: #b41b1b;
-    }
-    .optional {
-      color: #a8a8a8;
-    }
-    ::ng-deep.dx-texteditor-input-container {
-      font-size: 16px;
-    }
-    .text-muted {
-      padding-top: 13px;
-      font-size: 16px;
-      color: #727272;
-    }
-    .title-bg {
-      background: #f9f9fb 0% 0% no-repeat padding-box;
-    }
-  }
-
-  ::ng-deep input:disabled {
-    background-color: #efefef;
-    color: #727272;
-  }
 }

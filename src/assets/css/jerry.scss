@@ -25,7 +25,9 @@ html, body {
 
 body {
     font-size: 13px;
-    font-family: "Gotham Book", sans-serif;
+    font-family: 'Roboto Mono', monospace !important;
+    // font-family: "Roboto Slab", serif;
+    // font-family: "Gotham Book", sans-serif;
     // font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

@@ -33,7 +33,7 @@ export class SideNavigationMenuComponent implements OnInit, OnDestroy {
 
 	isUseNative: boolean;
 	isCollapsed: boolean;
-	isDarkThemSelected: boolean;
+	isDarkThemSelected: boolean = true;
 	isSaveProject = false;
 	isShowConversationBox = false;
 	isCreateProjectPopupVisible = false;

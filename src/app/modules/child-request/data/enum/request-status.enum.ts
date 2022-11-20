@@ -1,9 +1,12 @@
 export enum RequestStatusEnum {
-    Active = 1,
+    Active = 0,
+    Inactive = 1,
     Pending = 2,
 }
 
 export enum ChildRequestStatusEnum {
-    PendingApproval = 1,
-    PendingInvitationAcceptance = 2,
+    Pending = 1,
+    Approve,
+    Reject,
+    Cancel
   }

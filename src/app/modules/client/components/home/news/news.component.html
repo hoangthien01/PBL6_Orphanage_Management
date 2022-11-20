@@ -12,7 +12,7 @@
 					</div>
 
 					<div class="content">
-						<p class="pb-10-c text-blue-00AFFF">{{activities[0].activity_type | lookupValue : activityTypes : 'id' : 'name'}}</p>
+						<p class="pb-10-c text-blue-00AFFF text-14px">{{activities[0].activity_type | lookupValue : activityTypes : 'id' : 'name'}}</p>
 						<p
                             class="text-22px leading-28px hover:text-blue-00AFFF"
                             (click)="goActivityDetail(activities[0].id)">{{activities[0].title}}
@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="content w-full">
-                            <div class="pb-10-c text-blue-00AFFF">{{activity.activity_type | lookupValue : activityTypes : 'id' : 'name'}}</div>
+                            <div class="pb-10-c text-blue-00AFFF text-14px">{{activity.activity_type | lookupValue : activityTypes : 'id' : 'name'}}</div>
                             <p
                                 class="text-22px leading-28px hover:text-blue-00AFFF"
                                 (click)="goActivityDetail(activity.id)">{{activity.title}}

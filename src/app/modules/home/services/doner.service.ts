@@ -18,6 +18,10 @@ export class DonerService {
         return this.baseService.get(`statistic/donate`);
     }
 
+    getOverviewStatus(): Observable<any> {
+        return this.baseService.get(`statistic/donate/get_box_dashboard`);
+    }
+
     getStatisticChartData(params: {
         start_date: string,
         end_date: string

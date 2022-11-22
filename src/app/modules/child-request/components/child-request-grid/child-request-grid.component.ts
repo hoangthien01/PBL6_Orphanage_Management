@@ -68,7 +68,7 @@ export class ChildRequestGridComponent implements OnInit {
     }
 
     onOpenRequestDetail(e: any) {
-        this.requestDetail = e.data;
+        this.requestDetail = e;
         this.isShowRequestDetailPopup = true;
     }
 

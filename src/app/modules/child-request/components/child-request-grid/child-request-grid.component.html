@@ -18,7 +18,8 @@
     [hoverStateEnabled]="true"
     [rowAlternationEnabled]="false"
     class="location-data-grid-container h-full"
-    (onRowClick)="onOpenRequestDetail($event)">
+    >
+    <!-- (onRowClick)="onOpenRequestDetail($event)" -->
     <dxo-paging [pageSize]="10"></dxo-paging>
     <dx-load-panel [visible]="false"></dx-load-panel>
     <dxo-pager
@@ -33,7 +34,11 @@
         dataField="adopter_name"
         [caption]="'Người nhận nuôi'"
         [allowSorting]="false"
-        class="text-dark column-header">
+        class="text-dark column-header"
+        cellTemplate="adopterCellTemplate">
+        <div *dxTemplate="let cell of 'adopterCellTemplate'" (click)="onOpenRequestDetail(cell.data)">
+            {{ cell.data.adopter_name }}
+        </div>
     </dxi-column>
     <!-- *ngIf="status === locationStatus.Pending" -->
     <dxi-column

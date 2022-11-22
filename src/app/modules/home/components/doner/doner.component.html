@@ -39,7 +39,11 @@
             dataField="amount"
             [caption]="'Số tiền'"
             [alignment]="'left'"
-            [allowSorting]="true">
+            [allowSorting]="true"
+            [cellTemplate]="'amountCellTemplate'">
+            <ng-container *dxTemplate="let item of 'amountCellTemplate'">
+                <span>{{item.value * 1000 | currency: "VND"}}</span>
+            </ng-container>
         </dxi-column>
 
         <dxi-column

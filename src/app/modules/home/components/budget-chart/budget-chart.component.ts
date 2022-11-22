@@ -25,8 +25,8 @@ export class BudgetChartComponent implements OnInit, OnDestroy {
     //
 	projectId: number;
 	dataSource: BudgetChartModel[];
-    startDate: string = '2022-11-15';
-    endDate: string = '2022-11-22';
+    endDate: Date = new Date();
+    startDate: Date = new Date(new Date().setDate(new Date().getDate() - 7));
     //
 	isLoading = false;
 	isSidebarMenuExpanded = true;
@@ -52,8 +52,8 @@ export class BudgetChartComponent implements OnInit, OnDestroy {
 		//
 		this.donorService
 			.getStatisticChartData({
-                start_date: this.startDate,
-                end_date: this.endDate,
+                start_date: this.startDate.toISOString().split('T')[0],
+                end_date: this.endDate.toISOString().split('T')[0],
             })
 			.pipe(
 				finalize(() => {
@@ -63,7 +63,11 @@ export class BudgetChartComponent implements OnInit, OnDestroy {
 				})
 			)
 			.subscribe(res => {
-				this.dataSource = res.details;
+				this.dataSource = res.details.map( _ =>  {
+                    _.donate = _.donate * 1000;
+                    _.expense = _.expense * 1000;
+                    return _;
+                });
 			});
 	}
 
@@ -75,4 +79,12 @@ export class BudgetChartComponent implements OnInit, OnDestroy {
 				return '#EB543C';
 		}
 	};
+
+    onChangeDateRange(e) {
+        if (e !== null) {
+            this.startDate = e.start;
+            this.endDate = e.end;
+            this.getBudgetChartData();
+        }
+    }
 }

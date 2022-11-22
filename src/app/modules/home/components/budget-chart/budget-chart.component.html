@@ -1,4 +1,14 @@
 <div class="project-reports__task-time">
+    <div class="w-1/3">
+        <app-date-range-picker
+            [opens]="'left'"
+            [drops]="'down'"
+            [startDate]="startDate"
+            [endDate]="endDate"
+            (selectedDate)="onChangeDateRange($event)">
+        </app-date-range-picker>
+    </div>
+
     <div class="task-time__chart-content">
         <ng-container *ngTemplateOutlet="chartTimeFinishedTasksTemplate"></ng-container>
         <ng-container *ngTemplateOutlet="chartTimeOverdueTasksTemplate"></ng-container>

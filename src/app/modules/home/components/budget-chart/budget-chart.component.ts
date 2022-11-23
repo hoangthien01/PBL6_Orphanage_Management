@@ -13,6 +13,8 @@ import { Store } from '@ngxs/store';
 import { DxChartComponent } from 'devextreme-angular';
 import { DonerService } from '../../services/doner.service';
 import { BudgetChartModel } from '../../models/bugget-chart-item.model';
+import { ActivityTypeModel } from '@app/modules/activity/models/activity-type.model';
+import { ActivityService } from '@app/modules/activity/services/activity.service';
 
 @Component({
 	selector: 'app-budget-chart',
@@ -26,9 +28,14 @@ export class BudgetChartComponent implements OnInit, OnDestroy {
 	projectId: number;
 	dataSource: BudgetChartModel[];
     endDate: Date = new Date();
+    activityTypes: ActivityTypeModel[] = [{
+        id: 'all',
+        name: 'All',
+    }];
     startDate: Date = new Date(new Date().setDate(new Date().getDate() - 7));
     //
 	isLoading = false;
+    activityType = 'all';
 	isSidebarMenuExpanded = true;
 
 	subscription: Subscription = new Subscription();
@@ -36,16 +43,30 @@ export class BudgetChartComponent implements OnInit, OnDestroy {
 	constructor(
 		private cdr: ChangeDetectorRef,
 		private store: Store,
+        private activityService: ActivityService,
         private donorService: DonerService
 	) {}
 
 	ngOnInit(): void {
+        this.getActivityTypes();
         this.getBudgetChartData();
 	}
 
 	ngOnDestroy(): void {
 		this.subscription.unsubscribe();
 	}
+
+    getActivityTypes() {
+        this.activityService.getActivityTypes().subscribe(
+          res => {
+            this.activityTypes = [...this.activityTypes, ...res];
+          }
+        )
+    }
+
+    filterActivityTypeChanged() {
+        this.getBudgetChartData();
+    }
 
 	getBudgetChartData() {
 		this.isLoading = true;
@@ -54,6 +75,7 @@ export class BudgetChartComponent implements OnInit, OnDestroy {
 			.getStatisticChartData({
                 start_date: this.startDate.toISOString().split('T')[0],
                 end_date: this.endDate.toISOString().split('T')[0],
+                id: this.activityType
             })
 			.pipe(
 				finalize(() => {

@@ -1,12 +1,43 @@
 <div class="project-reports__task-time">
-    <div class="w-1/3">
-        <app-date-range-picker
-            [opens]="'left'"
-            [drops]="'down'"
-            [startDate]="startDate"
-            [endDate]="endDate"
-            (selectedDate)="onChangeDateRange($event)">
-        </app-date-range-picker>
+
+    <div class="flex items-center mb-20-c">
+        <div class="w-1/3">
+            <app-date-range-picker
+                [opens]="'left'"
+                [drops]="'down'"
+                [startDate]="startDate"
+                [endDate]="endDate"
+                (selectedDate)="onChangeDateRange($event)">
+            </app-date-range-picker>
+        </div>
+
+        <div class="w-1/3 h-full">
+            <dx-lookup
+                [disabled]="isLoading"
+                [dataSource]="activityTypes"
+                [noDataText]="'No data to display'"
+                [showCancelButton]="false"
+                [(value)]="activityType"
+                class="field-box ml-16-c h-full border-1px border-solid border-blue-00AFFF"
+                displayExpr="name"
+                placeholder="Select type"
+                searchPlaceholder="Search"
+                valueExpr="id"
+                width="100%"
+                [itemTemplate]="'activityTypeTemplate'"
+                (onValueChanged)="filterActivityTypeChanged()">
+                    <dxo-drop-down-options [closeOnOutsideClick]="true"
+                                            [height]="'auto'"
+                                            [maxHeight]="300"
+                                            [showTitle]="false">
+                    </dxo-drop-down-options>
+
+                    <div *dxTemplate="let item of 'activityTypeTemplate'"
+                            [title]="item.name">
+                        {{item.name}}
+                    </div>
+                </dx-lookup>
+        </div>
     </div>
 
     <div class="task-time__chart-content">

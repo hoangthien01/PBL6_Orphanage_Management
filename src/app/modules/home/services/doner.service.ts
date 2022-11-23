@@ -24,8 +24,9 @@ export class DonerService {
 
     getStatisticChartData(params: {
         start_date: string,
-        end_date: string
+        end_date: string,
+        id: string,
     }): Observable<BudgetChartResponseModel> {
-        return this.baseService.get(`statistic/donate/get_donate_statistics?start_date=${params.start_date}&end_date=${params.end_date}`);
+        return this.baseService.get(`statistic/donate/get_donate_statistics?start_date=${params.start_date}&end_date=${params.end_date}&activity_type=${params.id}`);
     }
 }

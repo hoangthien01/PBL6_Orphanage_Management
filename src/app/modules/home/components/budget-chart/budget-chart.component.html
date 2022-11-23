@@ -44,8 +44,8 @@
         <ng-container *ngTemplateOutlet="chartTimeOverdueTasksTemplate"></ng-container>
         <div class="w-1/4 h-full flex items-center justify-center flex-col text-black-555 pr-20-c border-0 border-r-1px border-solid border-grey-CCC">
             <div class="text-28px mb-20-c text-center">Tổng số</div>
-            <div class="w-full p-12-c bg-green-89CD7F rounded-20px my-16-c"><span class="text-22px">{{totalDonate * 1000 | currency: "VND"}}</span> thu</div>
-            <div class="w-full p-12-c bg-red-E57979 rounded-20px my-16-c"><span class="text-22px">{{totalExpense * 1000 | currency: "VND"}}</span> chi</div>
+            <div class="w-full p-12-c bg-green-89CD7F rounded-20px my-16-c"><span class="text-22px">{{totalDonate * 1000 | currency: "VND"}}</span> <span class="text-16px"> thu</span></div>
+            <div class="w-full p-12-c bg-red-E57979 rounded-20px my-16-c"><span class="text-22px">{{totalExpense * 1000 | currency: "VND"}}</span> <span class="text-16px"> chi</span></div>
         </div>
         <div class="w-3/4 h-full px-20-c">
             <dx-chart

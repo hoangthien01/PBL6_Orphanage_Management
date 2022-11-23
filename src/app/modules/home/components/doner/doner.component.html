@@ -1,0 +1,74 @@
+<div class="doner-wrapper h-full">
+    <dx-data-grid
+        [dataSource]="dataSource"
+        [showBorders]="false"
+        [showRowLines]="false"
+        [showColumnLines]="false"
+        [rowAlternationEnabled]="true"
+        [noDataText]="'No data to display'">
+        <dxo-load-panel [enabled]="false"></dxo-load-panel>
+        <dxo-remote-operations [paging]="true"
+                                [sorting]="true">
+        </dxo-remote-operations>
+        <!-- <dxo-paging [pageIndex]="pageIndexDefault"
+                    [pageSize]="pagingSize"
+                    (pageIndexChange)="onPageIndexChanged($event)"
+                    (pageSizeChange)="setPagingSize($event)">
+        </dxo-paging> -->
+        <!-- <dxo-pager [showPageSizeSelector]="true"
+                    [visible]="true"
+                    [showNavigationButtons]="true"
+                    [allowedPageSizes]="[10, 25, 50, 100]"
+        ></dxo-pager> -->
+        <!-- <dxo-search-panel [visible]="true"
+                        [highlightCaseSensitive]="true"
+        ></dxo-search-panel> -->
+
+        <dxi-column
+            dataField="donor"
+            [caption]="'Người ủng hộ'"
+            [alignment]="'left'"
+            [allowSorting]="true"
+            [cellTemplate]="'nameCellTemplate'">
+            <ng-container *dxTemplate="let item of 'nameCellTemplate'">
+                <span class="text-blue-00AFFF cursor-pointer">{{item.value}}</span>
+            </ng-container>
+        </dxi-column>
+
+        <dxi-column
+            dataField="amount"
+            [caption]="'Số tiền'"
+            [alignment]="'left'"
+            [allowSorting]="true"
+            [cellTemplate]="'amountCellTemplate'">
+            <ng-container *dxTemplate="let item of 'amountCellTemplate'">
+                <span>{{item.value * 1000 | currency: "VND"}}</span>
+            </ng-container>
+        </dxi-column>
+
+        <dxi-column
+            dataField="activity"
+            [caption]="'Hoạt động'"
+            [alignment]="'left'"
+            [allowSorting]="true">
+        </dxi-column>
+
+        <dxi-column
+            dataField="note"
+            [caption]="'Lời nhắn'"
+            [alignment]="'left'"
+            [allowSorting]="true">
+        </dxi-column>
+
+        <dxi-column
+            dataField="created_at"
+            [caption]="'Thời gian'"
+            [alignment]="'left'"
+            [allowSorting]="true"
+            [cellTemplate]="'dateCellTemplate'">
+            <ng-container *dxTemplate="let item of 'dateCellTemplate'">
+                <span>{{item.value | date}}</span>
+            </ng-container>
+        </dxi-column>
+    </dx-data-grid>
+</div>

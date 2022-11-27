@@ -32,5 +32,8 @@
     <div class="text-16px text-black-555">
       <div [innerHTML]="activity.content"></div>
     </div>
+
+    <app-comment [activityId]="activity.id"></app-comment>
+    <app-comments></app-comments>
   </div>
 </div>

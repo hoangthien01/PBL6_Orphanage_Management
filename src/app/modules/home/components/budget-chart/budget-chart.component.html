@@ -1,0 +1,266 @@
+<div class="project-reports__task-time">
+    <div class="flex items-center mb-20-c">
+        <div class="w-1/3">
+            <app-date-range-picker
+                [opens]="'left'"
+                [drops]="'down'"
+                [startDate]="startDate"
+                [endDate]="endDate"
+                (selectedDate)="onChangeDateRange($event)">
+            </app-date-range-picker>
+        </div>
+
+        <div class="w-1/3 h-full">
+            <dx-lookup
+                [disabled]="isLoading"
+                [dataSource]="activityTypes"
+                [noDataText]="'No data to display'"
+                [showCancelButton]="false"
+                [(value)]="activityType"
+                class="field-box ml-16-c h-full border-1px border-solid border-blue-00AFFF"
+                displayExpr="name"
+                placeholder="Select type"
+                searchPlaceholder="Search"
+                valueExpr="id"
+                width="100%"
+                [itemTemplate]="'activityTypeTemplate'"
+                (onValueChanged)="filterActivityTypeChanged()">
+                    <dxo-drop-down-options [closeOnOutsideClick]="true"
+                                            [height]="'auto'"
+                                            [maxHeight]="300"
+                                            [showTitle]="false">
+                    </dxo-drop-down-options>
+
+                    <div *dxTemplate="let item of 'activityTypeTemplate'"
+                            [title]="item.name">
+                        {{item.name}}
+                    </div>
+                </dx-lookup>
+        </div>
+    </div>
+
+    <div class="task-time__chart-content flex items-center">
+        <ng-container *ngTemplateOutlet="chartTimeFinishedTasksTemplate"></ng-container>
+        <ng-container *ngTemplateOutlet="chartTimeOverdueTasksTemplate"></ng-container>
+        <div class="w-1/4 h-full flex items-center justify-center flex-col text-black-555 pr-20-c border-0 border-r-1px border-solid border-grey-CCC">
+            <div class="text-28px mb-20-c text-center">Tổng số</div>
+            <div class="w-full p-12-c bg-green-89CD7F rounded-20px my-16-c"><span class="text-22px">{{totalDonate * 1000 | currency: "VND"}}</span> <span class="text-16px"> thu</span></div>
+            <div class="w-full p-12-c bg-red-E57979 rounded-20px my-16-c"><span class="text-22px">{{totalExpense * 1000 | currency: "VND"}}</span> <span class="text-16px"> chi</span></div>
+        </div>
+        <div class="w-3/4 h-full px-20-c">
+            <dx-chart
+                #chartComponent
+                id="taskStatesByTimeChart"
+                [dataSource]="dataSource">
+                <dxi-series [valueField]="'expense'"
+                            [name]="'Tiền chi'"
+                            [opacity]="1"
+                            [color]="'url(#chartTimeOverdueTasks)'"
+                            [border]="{
+                                    visible: true,
+                                    color: '#EB543C',
+                                    dashStyle: 'solid',
+                                    width: 3
+                                }"
+                            [hoverStyle]="{
+                                border: {
+                                    visible: true,
+                                    color: '#EB543C',
+                                    width: 3
+                                },
+                                hatching: {
+                                    direction: 'none'
+                                }
+                            }">
+                    <dxo-point [visible]="true"
+                               [color]="'#EB543C'"
+                               [hoverStyle]="{
+                                   border: {
+                                       visible: true,
+                                       color: '#EB543C',
+                                       width: 2
+                                   },
+                                   color: '#FDEFED'
+                               }">
+                    </dxo-point>
+                </dxi-series>
+
+                <dxi-series [valueField]="'donate'"
+                            [name]="'Tiền thu'"
+                            [opacity]="1"
+                            [color]="'url(#chartTimeFinishedTasks)'"
+                            [hoverMode]="'none'"
+                            [border]="{
+                                    visible: true,
+                                    color: '#4EC43B',
+                                    dashStyle: 'solid',
+                                    width: 3
+                                }"
+                            [hoverStyle]="{
+                                border: {
+                                    visible: true,
+                                    color: '#4EC43B',
+                                    width: 3
+                                },
+                                hatching: {
+                                    direction: 'none'
+                                }
+                            }">
+                    <dxo-point [visible]="true"
+                               [color]="'#4EC43B'"
+                               [hoverStyle]="{
+                                   border: {
+                                       visible: true,
+                                       color: '#4EC43B',
+                                       width: 2
+                                   },
+                                   color: '#E9FDE7'
+                               }">
+                    </dxo-point>
+                </dxi-series>
+
+                <dxo-common-series-settings
+                    [argumentField]="'day'"
+                    [type]="'stackedsplinearea'">
+                </dxo-common-series-settings>
+
+                <dxi-value-axis [position]="'left'"
+                                [name]="'day'"
+                                [color]="'transparent'">
+                    <dxo-grid [visible]="true"
+                              [color]="'#D9DEE8'">
+                    </dxo-grid>
+
+                    <!-- <dxo-title [text]="'Số tiền'"
+                               [font]="{
+                                family: 'inherit',
+                                size: '14px',
+                                weight: 400,
+                                color: '#666E83'
+                                }"
+                               [margin]="24">
+                    </dxo-title> -->
+
+                    <dxo-tick [visible]="false"></dxo-tick>
+                    <dxo-minor-tick [visible]="false"></dxo-minor-tick>
+
+                    <dxo-label [font]="{
+                                family: 'inherit',
+                                size: '14px',
+                                weight: 400,
+                                color: '#666E83'
+                                }"
+                               [alignment]="'center'"
+                               [indentFromAxis]="12">
+                    </dxo-label>
+                </dxi-value-axis>
+
+                <dxo-argument-axis [argumentType]="'string'"
+                                   [valueMarginsEnabled]="false"
+                                   [color]="'#D9DEE8'">
+                    <dxo-tick [visible]="false"></dxo-tick>
+                    <dxo-minor-tick [visible]="false"></dxo-minor-tick>
+
+                    <dxo-label [font]="{
+                                family: 'inherit',
+                                size: '12px',
+                                weight: 700,
+                                color: '#7E869B'
+                                }"
+                               [alignment]="'center'"
+                               [indentFromAxis]="14">
+                    </dxo-label>
+                </dxo-argument-axis>
+
+                <dxo-legend [verticalAlignment]="'top'"
+                            [horizontalAlignment]="'center'"
+                            [itemTextPosition]="'right'"
+                            [margin]="{
+                                bottom: 24,
+                                top: 0
+                            }"
+                            [font]="{
+                                family: 'inherit',
+                                size: '14px',
+                                weight: 400,
+                                color: '#282E3E'
+                            }"
+                            [paddingLeftRight]="0"
+                            [paddingTopBottom]="0"
+                            [markerTemplate]="'markerTemplate'">
+                    <svg *dxTemplate="let item of 'markerTemplate'" width="16" height="16" viewBox="0 0 16 16"
+                         xmlns="http://www.w3.org/2000/svg"
+                         [attr.fill]="item.text | function: legendColorByStateNameHandler">
+                        <rect width="16" height="16" rx="4" [attr.fill]="item.text | function: legendColorByStateNameHandler"/>
+                    </svg>
+                </dxo-legend>
+
+                <dxo-tooltip [enabled]="true"
+                             [arrowLength]="4"
+                             [shared]="true"
+                             [color]="'#333'"
+                             [opacity]="0.93"
+                             [zIndex]="20"
+                             [cornerRadius]="6"
+                             [border]="{
+                                visible: false
+                             }"
+                             [shadow]="{
+                                color: 'transparent'
+                             }"
+                             [paddingLeftRight]="12"
+                             [paddingTopBottom]="12"
+                             [font]="{
+                                family: 'inherit',
+                                size: '10px',
+                                weight: 400,
+                                color: '#FFF'
+                             }"
+                             [contentTemplate]="'tooltipContentTemplate'">
+                    <div *dxTemplate="let item of 'tooltipContentTemplate'" class="chart__tooltip">
+                        <div class="chart-tooltip__argument-title">{{item.point.data.duration}}:</div>
+
+                        <div class="chart-tooltip__value-field-item d-flex align-items-center">
+                            <div class="value-field-item__square"
+                                 [style.background-color]="'#4EC43B'"></div>
+                            <div class="value-field-item__value">Hoàn thành:
+                                {{item.point.data.finishTask ? item.point.data.finishTask : 0}}
+                            </div>
+                        </div>
+
+                        <div class="chart-tooltip__value-field-item d-flex align-items-center">
+                            <div class="value-field-item__square"
+                                 [style.background-color]="'#EB543C'"></div>
+                            <div class="value-field-item__value">Quá hạn:
+                                {{item.point.data.overdueTask ? item.point.data.overdueTask : 0}}
+                            </div>
+                        </div>
+                    </div>
+                </dxo-tooltip>
+            </dx-chart>
+        </div>
+    </div>
+</div>
+
+<ng-template #chartTimeFinishedTasksTemplate>
+    <svg class="task-time__linear-gradient-color" width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="chartTimeFinishedTasks" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" [attr.stop-color]="'#8BDE7D'"/>
+                <stop offset="100%" [attr.stop-color]="'#E9FDE7'"/>
+            </linearGradient>
+        </defs>
+    </svg>
+</ng-template>
+
+<ng-template #chartTimeOverdueTasksTemplate>
+    <svg class="task-time__linear-gradient-color" width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="chartTimeOverdueTasks" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" [attr.stop-color]="'#FF8E7C'"/>
+                <stop offset="100%" [attr.stop-color]="'#FDEFED'"/>
+            </linearGradient>
+        </defs>
+    </svg>
+</ng-template>
+

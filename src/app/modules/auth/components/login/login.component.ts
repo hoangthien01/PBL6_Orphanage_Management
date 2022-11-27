@@ -114,7 +114,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             authResult: auth,
             setUpNewAuthResultType: UserActions.SetUpNewAuthResultType.Login
         }));
-        if (auth.profile.roles.levels === 3) {
+        if (auth.profile.roles.levels === 3 || auth.profile.roles.levels === 4) {
             this.router.navigate(['']).then();
         } else {
             this.router.navigate(['admin/home']).then();

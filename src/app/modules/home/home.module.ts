@@ -13,6 +13,9 @@ import { AuthGuard } from '@app/core/guards';
 import { HomeContentComponent } from './components/home-content/home-content.component';
 import { NgxPermissionsGuard, NgxPermissionsModule } from 'ngx-permissions';
 import { ProfileGeneralInfoComponent } from '../../theme/components/profile-general-info/profile-general-info.component';
+import { HomeOverviewStatusComponent } from './components/overview-status/overview-status.component';
+import { HomeDonerComponent } from './components/doner/doner.component';
+import { BudgetChartComponent } from './components/budget-chart/budget-chart.component';
 
 const SVG_ICONS = [
 ];
@@ -26,7 +29,6 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomeContentComponent,
-        redirectTo: 'manage-children',
         pathMatch: 'full'
       },
       {
@@ -92,12 +94,19 @@ export const routes: Routes = [
 ];
 
 // const PROVIDERS = [SubscriptionPlanService];
+const COMPONENTS = [
+    HomeComponent,
+    HeaderComponent,
+    AvatarComponent,
+    HomeOverviewStatusComponent,
+    HomeContentComponent,
+    HomeDonerComponent,
+    BudgetChartComponent
+];
 
 @NgModule({
   declarations: [
-    HomeComponent,
-    HeaderComponent,
-    AvatarComponent
+    ...COMPONENTS
   ],
   imports: [
     ThemeModule,
@@ -106,9 +115,7 @@ export const routes: Routes = [
     CommonModule,
   ],
   exports: [
-    HomeComponent,
-    HeaderComponent,
-    AvatarComponent
+   ...COMPONENTS
 ]
   // providers: [...PROVIDERS]
 })

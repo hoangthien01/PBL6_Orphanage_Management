@@ -1,0 +1,58 @@
+.project-reports__task-time {
+    width: 100%;
+    height: 100%;
+}
+
+.task-time__header {
+    padding-bottom: 24px;
+}
+
+.task-time__title {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: bold;
+    color: '#282E3E';
+    padding-right: 4px;
+}
+
+::ng-deep .task-time__filter-select-box {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: bold;
+}
+
+.task-time__chart-content {
+    height: calc(100% - 56px);
+    width: 100%;
+    position: relative;
+}
+
+.task-time__linear-gradient-color {
+    position: absolute;
+}
+
+#taskStatesByTimeChart {
+    width: 100%;
+    height: 100%;
+}
+
+.chart-tooltip__argument-title {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 700;
+    padding-bottom: 4px;
+}
+
+.chart-tooltip__value-field-item {
+    padding-bottom: 6px;
+}
+
+.value-field-item__square {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+}
+
+.value-field-item__value {
+    padding-left: 4px;
+}

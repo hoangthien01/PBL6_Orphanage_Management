@@ -1,0 +1,20 @@
+
+
+.home-content-wrapper {
+    .home-content-content {
+        .home-chart {
+            padding: 30px 30px 0;
+            height: 60%
+
+        }
+
+        .home-chart-content {
+            height: calc(100% - 40px);
+        }
+
+        .home-list-donate {
+            padding: 30px;
+            height: 40%;
+        }
+    }
+}

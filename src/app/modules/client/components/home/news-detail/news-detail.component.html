@@ -33,7 +33,11 @@
       <div [innerHTML]="activity.content"></div>
     </div>
 
-    <app-comment [activityId]="activity.id"></app-comment>
-    <app-comments></app-comments>
+    <app-comment
+        [activityId]="activity.id"
+        (onPostComment)="onPostComment($event)"></app-comment>
+    <app-comments
+        #comments
+        [activityId]="activity.id"></app-comments>
   </div>
 </div>

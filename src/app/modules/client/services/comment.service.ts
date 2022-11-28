@@ -17,4 +17,8 @@ export class CommentService {
     }): Observable<any> {
         return this.baseService.post(`activity/comment`, data);
     }
+
+    public getComments(activityId: string): Observable<any> {
+        return this.baseService.get(`activity/comment?activity=${activityId}`);
+    }
 }

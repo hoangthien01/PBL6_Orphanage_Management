@@ -1,14 +1,89 @@
-import { Component, OnDestroy } from '@angular/core';
-
+import { id } from 'date-fns/locale';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { CommentModel } from '@app/modules/client/models/comment.model';
+import { CommentService } from '@app/modules/client/services/comment.service';
+import { finalize } from 'rxjs/operators';
+//
 @Component({
-  selector: 'app-comments',
-  templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.scss']
+    selector: 'app-comments',
+    templateUrl: './comments.component.html',
+    styleUrls: ['./comments.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CommentsComponent implements OnDestroy {
-  constructor() {
-  }
+export class CommentsComponent implements OnInit, OnDestroy {
+    @Input() activityId: string;
+    //
+    comments: CommentModel[];
+    commentsList = new Object();
+    selectedCommentId: string;
+    message: string = '';
+    isLoading: boolean = false;
+    //
+    constructor(
+        private commentService: CommentService,
+        private cdr: ChangeDetectorRef
+    ) {
+    }
 
-  ngOnDestroy(): void {
-  }
+    ngOnInit(): void {
+        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+        //Add 'implements OnInit' to the class.
+        this.getComments();
+    }
+
+    ngOnDestroy(): void {
+    }
+
+    getComments() {
+        this.commentService.getComments(this.activityId)
+        .pipe(
+            finalize(() => {
+                this.cdr.detectChanges();
+            })
+        )
+        .subscribe(
+            res => {
+                res.forEach(element => {
+                    if(!element.parent) {
+                        this.commentsList[element.id] = [];
+                    }
+                });
+                res.forEach(element => {
+                    if (element.parent) {
+                        this.commentsList[element.parent].push(element);
+                    }
+                });
+                console.log('thxis.commentsList', this.commentsList);
+
+                this.comments = res
+            }
+        )
+    }
+
+    openReplyBox(commentId: string) {
+        this.selectedCommentId = commentId;
+    }
+
+    onSendComment() {
+        this.isLoading = true;
+        //
+        const data = {
+            content: this.message,
+            activity: this.activityId,
+            parent: this.selectedCommentId,
+        }
+        this.commentService.postComment(data)
+        .pipe(
+            finalize(() => {
+                this.message = '';
+                this.isLoading = false;
+                this.cdr.detectChanges();
+            })
+        )
+        .subscribe(
+            res => {
+                this.getComments();
+            }
+        )
+    }
 }

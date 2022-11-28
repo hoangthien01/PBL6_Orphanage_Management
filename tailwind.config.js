@@ -125,6 +125,8 @@ module.exports = {
                 "4px": "4px",
                 "5px": "5px",
                 "6px": "6px",
+                "8px": "8px",
+                "12px": "12px",
                 "20px": "20px",
                 "1/2": "50%",
                 "full": "100%"

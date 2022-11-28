@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { UserSelectors } from '@app/core/store';
 import { UserLoggedInModel } from '@app/core/store/models';
 import { CommentService } from '@app/modules/client/services/comment.service';
@@ -9,7 +9,8 @@ import { finalize } from 'rxjs/operators';
 @Component({
     selector: 'app-comment',
     templateUrl: './comment-box.component.html',
-    styleUrls: ['./comment-box.component.scss']
+    styleUrls: ['./comment-box.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommentComponent implements OnInit, OnDestroy {
     @Select(UserSelectors.userLogged) userLogged$: Observable<UserLoggedInModel>;
@@ -17,6 +18,8 @@ export class CommentComponent implements OnInit, OnDestroy {
     //
     @Input() activityId: string;
     @Input() parentId: string = '';
+    //
+    @Output() onPostComment: EventEmitter<void> = new EventEmitter<void>();
     //
     currentUser: UserLoggedInModel;
     message: string;
@@ -54,10 +57,12 @@ export class CommentComponent implements OnInit, OnDestroy {
         .pipe(
             finalize(() => {
                 this.isLoading = false;
+                this.cdr.detectChanges();
             })
         )
         .subscribe(
             res => {
+                this.onPostComment.emit();
             }
         )
     }

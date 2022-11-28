@@ -7,8 +7,8 @@ export const environment = {
   production: false,
   // baseUrl: 'http://127.0.0.1:8000',
 //   baseUrl: 'https://63ab-14-191-240-61.ap.ngrok.io/api/v1',
-  baseUrl: 'http://146.190.88.115:8000/api/v1',
-//   baseUrl: 'https://orphanage-management.herokuapp.com/api/v1',
+//   baseUrl: 'http://146.190.88.115:8000/api/v1',
+  baseUrl: 'https://orphanage-management.herokuapp.com/api/v1',
 };
 
 /*

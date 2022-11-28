@@ -1,0 +1,50 @@
+@import 'jerry-variable';
+@import 'mixins';
+
+.user-setting {
+	cursor: pointer;
+	position: relative;
+	@include vertical-align-flex();
+	// @include rem(height, 40);
+	@include rem(border-radius, 8);
+
+	.default-avatar {
+		cursor: pointer;
+		height: 32px;
+		width: 32px;
+		border-radius: 50%;
+		background-color: transparent;
+		text-align: center;
+		@include rem(font-size, 14);
+		object-fit: cover;
+		display: block;
+	}
+
+	.info-name-rank {
+		@include rem(padding-left, 10);
+		width: 100%;
+
+		.full-name {
+			display: block;
+			// color: #fff;
+			font-weight: 600;
+			display: -webkit-box;
+			-webkit-line-clamp: 1;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.rank {
+			display: block;
+			@include rem(font-size, 12);
+			color: $color-black-4;
+		}
+	}
+
+	.icon-warning {
+		@include rem(width, 17);
+		@include vertical-align-absolute();
+		@include rem(right, 15);
+	}
+}

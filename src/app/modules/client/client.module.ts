@@ -16,78 +16,80 @@ import { svgIconCalendar, svgIconUserLight } from 'src/assets/images/svg-icons.c
 import { DonateComponent } from './components/donate/donate.component';
 import { FooterComponent } from './components/home/footer/footer.component';
 import { ProfileGeneralInfoComponent } from '../../theme/components/profile-general-info/profile-general-info.component';
-import { CommentsComponent } from './components/home/news-detail/comments/comments.component';
 import { ChildrensComponent } from './components/childrens/childrens.component';
 import { homedir } from 'os';
 import {
     RegisterChildrenComponent
 } from "@app/modules/client/components/childrens/register-form/register-form.component";
+import { CommentComponent } from './components/home/comment-box/comment-box.component';
+import { CommentsComponent } from './components/home/comments/comments.component';
 
 const SVG_ICONS = [
-  svgIconUserLight,
-  svgIconCalendar
+    svgIconUserLight,
+    svgIconCalendar
 ];
 
 export const routes: Routes = [
-{
-    path: '',
-    component: ClientComponent,
-    children: [
-      {
+    {
         path: '',
-        component: HomeClientComponent,
-        pathMatch: 'full'
-      },
-      {
-        path: 'home',
-        component: HomeClientComponent,
-        pathMatch: 'full'
-      },
-      {
-        path: 'childrens',
-        component: ChildrensComponent,
-        pathMatch: 'full',
-      },
-      {
-        path: 'childrens/register',
-        component: RegisterChildrenComponent,
-        pathMatch: 'full',
-        canActivate: [AuthGuard],
-      },
-      {
-        path: 'donate',
-        component: DonateComponent,
-        pathMatch: 'full'
-      },
-      {
-        path: 'activities/:id',
-        component: NewsDetailComponent,
-        pathMatch: 'full',
-      },
-      {
-        path: 'activities/:id/donate',
-        component: DonateComponent,
-        pathMatch: 'full'
-      },
-    ]
-}
+        component: ClientComponent,
+        children: [
+            {
+                path: '',
+                component: HomeClientComponent,
+                pathMatch: 'full'
+            },
+            {
+                path: 'home',
+                component: HomeClientComponent,
+                pathMatch: 'full'
+            },
+            {
+                path: 'childrens',
+                component: ChildrensComponent,
+                pathMatch: 'full',
+            },
+            {
+                path: 'childrens/register',
+                component: RegisterChildrenComponent,
+                pathMatch: 'full',
+                canActivate: [AuthGuard],
+            },
+            {
+                path: 'donate',
+                component: DonateComponent,
+                pathMatch: 'full'
+            },
+            {
+                path: 'activities/:id',
+                component: NewsDetailComponent,
+                pathMatch: 'full',
+            },
+            {
+                path: 'activities/:id/donate',
+                component: DonateComponent,
+                pathMatch: 'full'
+            },
+        ]
+    }
 
 ];
 
 // const PROVIDERS = [SubscriptionPlanService];
 const COMPONENTS = [
-  ClientComponent,
-  HeaderComponent,
-  AvatarComponent,
-  BannerComponent,
-  NewsComponent,
-  HomeClientComponent,
-  NewsDetailComponent,
-  DonateComponent,
-  FooterComponent,
-  CommentsComponent,
-  ChildrensComponent,
-  RegisterChildrenComponent,
+    ClientComponent,
+    HeaderComponent,
+    AvatarComponent,
+    BannerComponent,
+    NewsComponent,
+    HomeClientComponent,
+    NewsDetailComponent,
+    DonateComponent,
+    FooterComponent,
+    ChildrensComponent,
+    RegisterChildrenComponent,
+    CommentComponent,
+    CommentsComponent,
 ];
 const PROVIDERS = [
 ]

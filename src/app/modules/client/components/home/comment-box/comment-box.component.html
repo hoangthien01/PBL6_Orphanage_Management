@@ -1,0 +1,38 @@
+
+<div class="comment-wrapper">
+    <div class="flex items-start w-full mt-32-c">
+        <div *ngIf="currentUser"
+               id="UserAvatar"
+               class="user-setting">
+            <img *ngIf="currentUser?.avatar; else usernameAvatar"
+             [src]="currentUser.avatar"
+                   class="default-avatar"
+                   loading="lazy" />
+            <ng-template #usernameAvatar>
+                <app-svg-icon class="default-avatar"
+                        [name]="'icon_avatar_default'"
+                        [title]="currentUser?.name">
+                </app-svg-icon>
+            </ng-template>
+        </div>
+
+        <dx-text-area
+            class="field-box ml-20-c flex-1"
+            height="120"
+            [placeholder]="'Viết bình luận...'"
+            [valueChangeEvent]="'input'"
+            [(value)]="message">
+        </dx-text-area>
+    </div>
+
+    <app-custom-button
+        class="float-right mt-20-c"
+        icon="{{ isLoading ? 'fas fa-spinner fa-spin' : '' }}"
+        [height]="40"
+        [disabled]="isLoading"
+        [width]="150"
+        [text]="'Gửi bình luận'"
+        [type]="'primary'"
+        (onClick)="onSendComment()">
+    </app-custom-button>
+</div>

@@ -1,0 +1,105 @@
+<div class="comments-wrapper mt-80-c">
+    <div *ngFor="let comment of comments">
+        <div *ngIf="!comment.parent" class="mt-30-c">
+            <div>
+                <div class="inline-block">
+                    <div class="mt-16-c flex items-start bg-grey-CCC rounded-20px p-10-c">
+                        <div
+                            id="UserAvatar"
+                            class="user-setting">
+                            <img *ngIf="comment?.account.avatar; else usernameAvatar"
+                             [src]="comment.account.avatar"
+                                   class="default-avatar"
+                                   loading="lazy" />
+                            <ng-template #usernameAvatar>
+                                <app-svg-icon class="default-avatar"
+                                        [name]="'icon_avatar_default'"
+                                        [title]="comment?.account.name">
+                                </app-svg-icon>
+                            </ng-template>
+                        </div>
+                        <div class="ml-16-c">
+                            <div class="text-16px rounded-12px">
+                                <div class="font-bold ">{{comment.account.name}}</div>
+                                <div>{{comment.content}}</div>
+                            </div>
+                            <div>
+                                <span class="pointer">Thích</span>
+                                <span class="pointer ml-16-c" (click)="openReplyBox(comment.id)">Phản hồi</span>
+                                <span class="pointer ml-16-c">{{comment.updated_at | date}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngFor="let item of commentsList[comment.id]" class="ml-60-c">
+                <div class="inline-block">
+                    <div class="mt-16-c flex items-start bg-grey-CCC rounded-20px p-10-c">
+                        <div
+                            id="UserAvatar"
+                            class="user-setting">
+                            <img *ngIf="item?.account.avatar; else usernameAvatar"
+                            [src]="comment.account.avatar"
+                                class="default-avatar"
+                                loading="lazy" />
+                            <ng-template #usernameAvatar>
+                                <app-svg-icon class="default-avatar"
+                                        [name]="'icon_avatar_default'"
+                                        [title]="item?.account.name">
+                                </app-svg-icon>
+                            </ng-template>
+                        </div>
+                        <div class="ml-16-c">
+                            <div class="text-16px rounded-12px">
+                                <div class="font-bold ">{{item.account.name}}</div>
+                                <div>{{item.content}}</div>
+                            </div>
+                            <div>
+                                <span class="pointer">Thích</span>
+                                <span class="pointer ml-16-c" (click)="openReplyBox(item.parent)">Phản hồi</span>
+                                <span class="pointer ml-16-c">{{item.updated_at | date}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-22-c ml-60-c flex items-center" *ngIf="selectedCommentId && selectedCommentId === comment.id">
+                <div
+                    id="UserAvatar"
+                    class="user-setting mr-12-c">
+                    <img *ngIf="comment?.account.avatar; else usernameAvatar"
+                    [src]="comment.account.avatar"
+                        class="default-avatar"
+                        loading="lazy" />
+                    <ng-template #usernameAvatar>
+                        <app-svg-icon class="default-avatar"
+                                [name]="'icon_avatar_default'"
+                                [title]="comment?.account.name">
+                        </app-svg-icon>
+                    </ng-template>
+                </div>
+
+                <dx-text-box
+                    class="w-full"
+                    [placeholder]="'Viết phản hồi...'"
+                    [(value)]="message"
+                    (onEnterKey)="onSendComment()">
+                </dx-text-box>
+
+                <!-- <app-custom-button
+                    class="ml-20-c"
+                    icon="{{ isLoading ? 'fas fa-spinner fa-spin' : '' }}"
+                    [height]="40"
+                    [disabled]="isLoading"
+                    [width]="150"
+                    [text]="'Gửi bình luận'"
+                    [type]="'primary'"
+                    (onClick)="onSendComment()">
+                </app-custom-button> -->
+            </div>
+        </div>
+    </div>
+
+</div>

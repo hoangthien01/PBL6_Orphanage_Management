@@ -56,6 +56,7 @@ export class CommentComponent implements OnInit, OnDestroy {
         this.commentService.postComment(data)
         .pipe(
             finalize(() => {
+                this.message = '';
                 this.isLoading = false;
                 this.cdr.detectChanges();
             })

@@ -50,14 +50,21 @@ export class CommentsComponent implements OnInit, OnDestroy {
                 });
                 res.forEach(element => {
                     if (element.parent) {
-                        this.commentsList[element.parent].push(element);
+                        this.commentsList[element.parent].push(element)
+                        this.commentsList[element.parent] = this.commentsList[element.parent].sort(this.dateComparison);
                     }
                 });
-                console.log('thxis.commentsList', this.commentsList);
-
-                this.comments = res
+                this.comments = res;
+                this.comments = this.comments.sort(this.dateComparison);
             }
         )
+    }
+
+    dateComparison(a, b): number {
+        const date1 = new Date(a.updated_at).valueOf()
+        const date2 = new Date(b.updated_at).valueOf()
+
+        return date1 - date2;
     }
 
     openReplyBox(commentId: string) {

@@ -70,17 +70,13 @@
 .child-comment > div::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: -37px;
     left: -2px;
     bottom: 67%;
     width: 0.75em;
     border: 2px solid #ccc;
     border-top: 0 none transparent;
     border-right: 0 none transparent;
-
-    &&:first-child {
-        top: -37px;
-    }
 }
 
 .parent-comment>.child-comment:last-child {

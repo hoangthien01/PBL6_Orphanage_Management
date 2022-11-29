@@ -1,8 +1,8 @@
 <div class="comments-wrapper mt-80-c">
     <div *ngFor="let comment of comments">
-        <div *ngIf="!comment.parent" class="mt-16-c">
+        <div *ngIf="!comment.parent" class="mt-16-c parent-comment">
             <div>
-                <div class="inline-block mt-16-c">
+                <div class="inline-block">
                     <div class="flex items-start">
                         <div
                             id="UserAvatar"
@@ -39,8 +39,8 @@
 
             <div
                 *ngFor="let item of commentsList[comment.id]"
-                class="ml-60-c">
-                <div class="inline-block mt-16-c">
+                class="ml-60-c child-comment">
+                <div class="inline-block pt-16-c">
                     <div class="flex items-start">
                         <div
                             id="UserAvatar"

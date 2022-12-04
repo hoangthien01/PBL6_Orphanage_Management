@@ -1,16 +1,16 @@
 <div class="comments-wrapper mt-80-c">
     <div *ngFor="let comment of comments">
-        <div *ngIf="!comment.parent" class="mt-30-c">
+        <div *ngIf="!comment.parent" class="mt-16-c parent-comment">
             <div>
                 <div class="inline-block">
-                    <div class="mt-16-c flex items-start bg-grey-CCC rounded-20px p-10-c">
+                    <div class="flex items-start">
                         <div
                             id="UserAvatar"
                             class="user-setting">
                             <img *ngIf="comment?.account.avatar; else usernameAvatar"
-                             [src]="comment.account.avatar"
-                                   class="default-avatar"
-                                   loading="lazy" />
+                                [src]="comment.account.avatar"
+                                    class="default-avatar"
+                                    loading="lazy" />
                             <ng-template #usernameAvatar>
                                 <app-svg-icon class="default-avatar"
                                         [name]="'icon_avatar_default'"
@@ -18,10 +18,14 @@
                                 </app-svg-icon>
                             </ng-template>
                         </div>
-                        <div class="ml-16-c">
-                            <div class="text-16px rounded-12px">
-                                <div class="font-bold ">{{comment.account.name}}</div>
-                                <div>{{comment.content}}</div>
+                        <div class="ml-8-c">
+                            <div class="flex items-start bg-grey-CCC rounded-20px px-10-c py-6-c">
+                                <div>
+                                    <div class="text-16px rounded-12px">
+                                        <div class="font-weight-bold">{{comment.account.name}}</div>
+                                        <div>{{comment.content}}</div>
+                                    </div>
+                                </div>
                             </div>
                             <div>
                                 <span class="pointer">Thích</span>
@@ -33,9 +37,11 @@
                 </div>
             </div>
 
-            <div *ngFor="let item of commentsList[comment.id]" class="ml-60-c">
-                <div class="inline-block">
-                    <div class="mt-16-c flex items-start bg-grey-CCC rounded-20px p-10-c">
+            <div
+                *ngFor="let item of commentsList[comment.id]"
+                class="ml-60-c child-comment">
+                <div class="inline-block pt-16-c">
+                    <div class="flex items-start">
                         <div
                             id="UserAvatar"
                             class="user-setting">
@@ -50,10 +56,15 @@
                                 </app-svg-icon>
                             </ng-template>
                         </div>
-                        <div class="ml-16-c">
-                            <div class="text-16px rounded-12px">
-                                <div class="font-bold ">{{item.account.name}}</div>
-                                <div>{{item.content}}</div>
+
+                        <div class="ml-8-c">
+                            <div class="flex items-start bg-grey-CCC rounded-20px p-10-c py-6-c">
+                                <div>
+                                    <div class="text-16px rounded-12px">
+                                        <div class="font-weight-bold">{{item.account.name}}</div>
+                                        <div>{{item.content}}</div>
+                                    </div>
+                                </div>
                             </div>
                             <div>
                                 <span class="pointer">Thích</span>
@@ -65,7 +76,9 @@
                 </div>
             </div>
 
-            <div class="mt-22-c ml-60-c flex items-center" *ngIf="selectedCommentId && selectedCommentId === comment.id">
+            <div
+                class="mt-16-c ml-27-c flex items-center"
+                *ngIf="selectedCommentId && selectedCommentId === comment.id">
                 <div
                     id="UserAvatar"
                     class="user-setting mr-12-c">

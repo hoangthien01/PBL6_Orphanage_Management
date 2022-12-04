@@ -1,5 +1,5 @@
 import { finalize } from 'rxjs/operators';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { ActivityService } from '@app/modules/activity/services/activity.service';
 import { Router } from '@angular/router';
 import { ActivityTypeModel } from '@app/modules/activity/models/activity-type.model';
@@ -22,9 +22,12 @@ import { id } from 'date-fns/locale';
 export class ActivitiesComponent implements OnDestroy {
     activites$: Observable<ActivityModel[]> = this.store.select<ActivityModel[]>(ActivitiesSelectors.activities);
     //
-    @Output() onShowCreatePage: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Input() isDataValid: boolean = false;
+    //
+    @Output() onShowCreatePage: EventEmitter<void | string> = new EventEmitter<void |string>();
     //
     activities: ActivityModel[];
+    activity: ActivityModel;
     activityTypes: ActivityTypeModel[];
     //
     loadingArr = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -99,33 +102,15 @@ export class ActivitiesComponent implements OnDestroy {
         )
     }
 
-    visibleRegisterPopup() {
-        this.isShowRegisterPopup = !this.isShowRegisterPopup;
-    }
-
-    hideRegisterPopup() {
-        this.isShowRegisterPopup = false;
-    }
-
     openCreatePage() {
         this.onShowCreatePage.emit();
     }
 
-    sendInfo() {
-        this.isRegistering = true;
-        this.userService.sendInfo(this.sendData)
-            .pipe(
-                finalize(() => {
-                    this.isRegistering = false;
-                    this.isShowRegisterPopup = false;
-                })
-            )
-            .subscribe((res) => {
-                AppNotify.success('Đăng kí nhận thông tin thành công.');
-            })
-    }
-
     goActivityDetail(id: string) {
         this.router.navigate(['activities', id]).then();
+    }
+
+    onEditActivity(id: string) {
+        this.onShowCreatePage.emit(id);
     }
 }

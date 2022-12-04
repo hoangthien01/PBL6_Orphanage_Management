@@ -40,7 +40,7 @@
 
                 <div class="box-properties">
                     <div class="field-label">Chi phí</div>
-                    <dx-text-box #firstNameTextBox
+                    <dx-number-box #firstNameTextBox
                                  class="field-box"
                                  appAutoFocusInput
                                  [disabled]="isProcessing"
@@ -48,22 +48,26 @@
                                  valueChangeEvent="input"
                                  placeholder="Nhập chi phí"
                                  (onValueChanged)="dataChanged()">
-                    </dx-text-box>
+                    </dx-number-box>
                 </div>
 
                 <div class="box-properties">
                     <div class="field-label">Thời gian</div>
-                    <app-date-range-picker #campaignStartDateRangePicker
-                                       [opens]="'left'"
-                                       [drops]="'down'"
-                                       (resetDateRangePicker)="onResetDate()"
-                                       (selectedDate)="onChangeDateRange($event)">
+                    <app-date-range-picker
+                        #campaignStartDateRangePicker
+                        [opens]="'left'"
+                        [drops]="'down'"
+                        [startDate]="activity.start_date"
+                        [endDate]="activity.end_date"
+                        (resetDateRangePicker)="onResetDate()"
+                        (selectedDate)="onChangeDateRange($event)">
                     </app-date-range-picker>
                 </div>
 
                 <div class="box-properties">
-                    <div class="field-label">Chọn ảnh bìa</div>
-                    <dx-file-uploader selectButtonText="Select photo"
+                    <div class="field-label">Ảnh bìa</div>
+                    <img class="h-200-c rounded-6px w-full object-cover" [src]="activity.cover_picture"/>
+                    <dx-file-uploader selectButtonText="Chọn ảnh"
                                       labelText=""
                                       accept="image/*"
                                       [multiple]="false"

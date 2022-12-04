@@ -1,14 +1,19 @@
 
-<div class="px-24-c h-5/6">
+<div class="px-24-c h-full flex flex-col">
   <app-activities
     *ngIf="!isShowCreatePage"
-    (onShowCreatePage)="isShowCreatePage = true">
+    [isDataValid]="isDataValid"
+    (onShowCreatePage)="onShowCreatePage($event)">
   </app-activities>
 
   <div *ngIf="isShowCreatePage" class="text-20px font-gotham-bold py-16-c flex items-center justify-between text-blue-282E3E children-management__header">
-    <span>
-      Add new activity
-    </span>
+    <app-custom-button
+        class="mx-16-c w-80-c cursor-pointer"
+        [height]="35"
+        [text]="'Quay lại'"
+        [type]="'primary-outline'"
+        (click)="goBack()">
+    </app-custom-button>
     <div>
       <app-custom-button
         class="mx-16-c w-80-c cursor-pointer"
@@ -18,10 +23,10 @@
         (click)="openSetting()">
       </app-custom-button>
 
-      <!-- [disabled]="!isDataValid" -->
       <app-custom-button
         class="ml-16 w-80-c cursor-pointer"
         [height]="35"
+        [disabled]="!isDataValid"
         [text]="'Đăng'"
         icon="{{ isProcessing ? 'fas fa-spinner fa-spin' : '' }}"
         [type]="'primary'"
@@ -35,17 +40,17 @@
                   [inputAttr]="{ autocomplete: 'on' }"
                   placeholder="Nhập tiêu đề..."
                   [(value)]="activity.title"
-                  [valueChangeEvent]="'input'">
+                  [valueChangeEvent]="'input'"
+                  (onValueChanged)="dataChanged()">
     </dx-text-box>
   </div>
 
-  <div *ngIf="isShowCreatePage" class="mt-30-c h-3/4">
+  <div *ngIf="isShowCreatePage" class="mt-30-c flex-1 pb-24-c quill-editor">
     <quill-editor
-      class="content-editor"
+      class="quill-editor__content"
       [(ngModel)]="activity.content"
-      [placeholder]="''"
-      [styles]="{'height': '440px'}"
-    >
+      (onContentChanged)="dataChanged()"
+      [placeholder]="''">
     </quill-editor>
   </div>
 </div>
@@ -53,4 +58,5 @@
 
 <app-activity-setting-popup
   [(visible)]="isShowSettingPopup"
+  [activity]="activity"
   (onSaveSetting)="saveActivitySetting($event)"></app-activity-setting-popup>

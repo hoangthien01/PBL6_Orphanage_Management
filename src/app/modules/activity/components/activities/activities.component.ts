@@ -24,9 +24,10 @@ export class ActivitiesComponent implements OnDestroy {
     //
     @Input() isDataValid: boolean = false;
     //
-    @Output() onShowCreatePage: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() onShowCreatePage: EventEmitter<void | string> = new EventEmitter<void |string>();
     //
     activities: ActivityModel[];
+    activity: ActivityModel;
     activityTypes: ActivityTypeModel[];
     //
     loadingArr = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -107,5 +108,9 @@ export class ActivitiesComponent implements OnDestroy {
 
     goActivityDetail(id: string) {
         this.router.navigate(['activities', id]).then();
+    }
+
+    onEditActivity(id: string) {
+        this.onShowCreatePage.emit(id);
     }
 }

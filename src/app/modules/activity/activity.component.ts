@@ -51,7 +51,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
         if (this.activity.title && this.activity.content
             && this.activity.cover_picture && this.activity.activity_type
             && this.activity.start_date && this.activity.end_date) {
-                this.isDataValid = true;
+            this.isDataValid = true;
         } else {
             this.isDataValid = false;
         }
@@ -66,5 +66,22 @@ export class ActivityComponent implements OnInit, OnDestroy {
         this.activity.start_date = activity.start_date;
         this.activity.end_date = activity.end_date;
         this.dataChanged();
+    }
+
+    goBack() {
+        this.isShowCreatePage = false;
+    }
+
+    onShowCreatePage(id?: string) {
+        this.activityService.getActivity(id)
+            .pipe(
+                finalize(() => {
+                    this.changeDetector.detectChanges();
+                })
+            ).subscribe((res) => {
+                this.activity = res;
+                this.isProcessing = false;
+            });
+        this.isShowCreatePage = true;
     }
 }

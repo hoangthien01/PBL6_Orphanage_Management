@@ -53,7 +53,8 @@
 
                         <div
                             *ngIf="isEditMode"
-                            class="absolute right-10-c top-10-c w-32-c h-32-c rounded-1/2 bg-white flex items-center justify-center">
+                            class="absolute right-10-c top-10-c w-32-c h-32-c rounded-1/2 bg-white flex items-center justify-center"
+                            (click)="onEditActivity(activity.id)">
                             <app-svg-icon
                                 class="text-blue-00AFFF"
                                 [width]="16"

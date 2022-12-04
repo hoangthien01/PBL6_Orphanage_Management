@@ -40,7 +40,7 @@
 
                 <div class="box-properties">
                     <div class="field-label">Chi phí</div>
-                    <dx-text-box #firstNameTextBox
+                    <dx-number-box #firstNameTextBox
                                  class="field-box"
                                  appAutoFocusInput
                                  [disabled]="isProcessing"
@@ -48,7 +48,7 @@
                                  valueChangeEvent="input"
                                  placeholder="Nhập chi phí"
                                  (onValueChanged)="dataChanged()">
-                    </dx-text-box>
+                    </dx-number-box>
                 </div>
 
                 <div class="box-properties">

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
+import { finalize } from 'rxjs/operators';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { POPUP_ANIMATION } from '@app/shared/app.constants';
 import { LoadResultModel } from '@app/shared/models';
@@ -50,7 +51,8 @@ export class ChildRequestGridComponent implements OnInit {
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private childRequestService: ChildRequestService
+        private childRequestService: ChildRequestService,
+        private cdr: ChangeDetectorRef,
     ) {
     }
 
@@ -129,7 +131,13 @@ export class ChildRequestGridComponent implements OnInit {
     }
 
     onApproveRequest(status) {
-        this.childRequestService.approveRequest(this.selectedRequestId).subscribe(
+        this.childRequestService.approveRequest(this.selectedRequestId)
+        .pipe(
+            finalize(() => {
+                this.cdr.detectChanges();
+            })
+        )
+        .subscribe(
             (result) => {
                 this.selectedRequestId = '';
                 this.isApprovePopup = false;
@@ -147,7 +155,13 @@ export class ChildRequestGridComponent implements OnInit {
     }
 
     onRejectRequest(status) {
-        this.childRequestService.rejectRequest(this.selectedRequestId).subscribe(
+        this.childRequestService.rejectRequest(this.selectedRequestId)
+        .pipe(
+            finalize(() => {
+                this.cdr.detectChanges();
+            })
+        )
+        .subscribe(
             (result) => {
                 this.isRejectPopup = false;
                 this.selectedRequestId = '';
@@ -165,7 +179,13 @@ export class ChildRequestGridComponent implements OnInit {
     }
 
     onCancelInvite(status) {
-        this.childRequestService.cancelInvitation(this.selectedRequestId).subscribe(
+        this.childRequestService.cancelInvitation(this.selectedRequestId)
+        .pipe(
+            finalize(() => {
+                this.cdr.detectChanges();
+            })
+        )
+        .subscribe(
             (result) => {
                 this.selectedRequestId = '';
                 this.isCancelPopup = false;

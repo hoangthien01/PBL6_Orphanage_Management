@@ -139,8 +139,9 @@
 
 <ng-container *ngIf="isApprovePopup">
     <app-popup-confirmation
+        [width]="500"
         [title]="'Xác nhận'"
-        [(visible)]="isApprovePopup"
+        [visible]="true"
         confirmButtonTitle="Yes"
         cancelButtonTitle="Cancel"
         (onConfirm)="onApproveRequest($event)">
@@ -150,6 +151,7 @@
 
 <ng-container *ngIf="isRejectPopup">
     <app-popup-confirmation
+        [width]="500"
         [title]="'Xác nhận'"
         [(visible)]="isRejectPopup"
         confirmButtonTitle="Yes"
@@ -162,6 +164,7 @@
 <ng-container *ngIf="isCancelPopup">
     <app-popup-confirmation
         [title]="'Xác nhận'"
+        [width]="500"
         [(visible)]="isCancelPopup"
         confirmButtonTitle="Yes"
         cancelButtonTitle="Cancel"

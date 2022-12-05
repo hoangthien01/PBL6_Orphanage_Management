@@ -142,6 +142,7 @@ export class ChildDetailComponent implements OnInit, OnDestroy {
               this.dataChanged();
           }
       }
+      this.hidePopup();
   }
 
   cloneDataAfterSavingSuccess() {
@@ -150,6 +151,7 @@ export class ChildDetailComponent implements OnInit, OnDestroy {
 
   rollbackToNonEditingData() {
       this.child = cloneDeep(this.childCloned);
+      this.hidePopup();
   }
 
   //#region Data Handler

@@ -128,7 +128,7 @@
                         </div>
                     </div>
 
-                    <div class="pt-30-c  pb-15-c">
+                    <div class="pt-30-c pb-15-c">
                         <app-custom-button class="mr-10-c"
                                            icon="{{ isSaving ? 'fas fa-spinner fa-spin' : '' }}"
                                            [width]="120"
@@ -142,7 +142,7 @@
                                            [height]="40"
                                            [text]="'Hủy'"
                                            [type]="'cancel'"
-                                           [disabled]="isSaving || !isDataChanged"
+                                           [disabled]="isSaving"
                                            (onClick)="cancelUpdate()">
                         </app-custom-button>
                     </div>

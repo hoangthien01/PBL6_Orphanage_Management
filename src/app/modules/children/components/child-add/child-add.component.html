@@ -57,18 +57,24 @@
                     <dx-number-box [(value)]="child.age"
                                    [showSpinButtons]="true"
                                    [showClearButton]="true"
-                                   (onValueChanged)="dataChanged()">
+                                   (onValueChanged)="dataChanged()"
+                                   (change)="onFileSelected($event)">
                     </dx-number-box>
                 </div>
 
                 <div class="box-properties">
                     <div class="field-label">Picture</div>
+                    <img
+                        [src]="url"
+                        *ngIf="url"
+                        class="h-200-c rounded-6px w-full object-cover mb-20-c"/>
                     <dx-file-uploader selectButtonText="Select photo"
                                       labelText=""
                                       accept="image/*"
                                       [multiple]="false"
                                       uploadMode="useForm"
-                                      [(value)]="file">
+                                      [(value)]="file"
+                                      (change)="onFileSelected($event)">
                     </dx-file-uploader>
                 </div>
             </div>

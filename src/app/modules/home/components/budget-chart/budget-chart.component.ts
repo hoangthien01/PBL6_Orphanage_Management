@@ -36,6 +36,8 @@ export class BudgetChartComponent implements OnInit, OnDestroy {
     //
 	isLoading = false;
     activityType = 'all';
+    totalDonate: number;
+    totalExpense: number;
 	isSidebarMenuExpanded = true;
 
 	subscription: Subscription = new Subscription();
@@ -85,6 +87,8 @@ export class BudgetChartComponent implements OnInit, OnDestroy {
 				})
 			)
 			.subscribe(res => {
+                this.totalDonate = res.total_donate;
+                this.totalExpense = res.total_expense;
 				this.dataSource = res.details.map( _ =>  {
                     _.donate = _.donate * 1000;
                     _.expense = _.expense * 1000;

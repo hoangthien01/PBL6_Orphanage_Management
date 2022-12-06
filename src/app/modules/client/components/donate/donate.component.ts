@@ -47,7 +47,6 @@ export class DonateComponent implements OnDestroy {
           locale: 'auto',
           token: (stripeToken: any) => {
             console.log(stripeToken);
-            this.isDonated = true;
             const data = {
                 activity: history.state.activityId,
                 amount: this.money / 1000,
@@ -56,6 +55,7 @@ export class DonateComponent implements OnDestroy {
             }
             this._donateService.donate(data).subscribe(
                 res => {
+                this.isDonated = true;
                   console.log(res);
               }
             )
@@ -66,7 +66,7 @@ export class DonateComponent implements OnDestroy {
         paymentHandler.open({
           name: 'F4plus Organization',
           description: 'Card info',
-          amount: amount * 100,
+          amount: amount,
           currency: 'vnd'
         });
     }

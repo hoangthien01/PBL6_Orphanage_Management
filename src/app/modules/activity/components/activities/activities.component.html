@@ -1,5 +1,5 @@
 <div class="news">
-  <div class="w-full pt-24-c flex justify-end h-71-c">
+  <div class="w-full pt-24-c flex justify-end h-71-c fixed top-0 right-33-c z-50">
     <app-custom-button
         class="float-left mr-4"
         [height]="40"
@@ -14,7 +14,6 @@
     <app-custom-button
         class="float-left"
         [height]="40"
-        [disabled]="isRegistering"
         icon="{{ isRegistering ? 'fas fa-spinner fa-spin' : '' }}"
         [width]="120"
         [text]="'Tạo bài viết'"
@@ -23,10 +22,8 @@
     </app-custom-button>
   </div>
 
-  <hr>
-
   <dx-scroll-view>
-        <div class="content-box">
+        <div class="content-box pb-30-c">
             <div class="">
                 <div class="news-content">
                 <ng-container *ngFor="let activity of activities; index as actionIndex;">
@@ -34,14 +31,14 @@
                         *ngIf="!isLoading"
                         class="card flex flex-col items-center relative">
                         <div class="w-full">
-                        <img class="w-full h-200 object-cover" loading="lazy"
+                        <img class="w-full h-132-c object-cover" loading="lazy"
                             :src="{{activity.cover_picture}}" width="480" height="320"
                             alt="What you need to know about COVID-19 vaccines" typeof="foaf:Image">
                         </div>
 
                         <div class="content">
                             <div class="pb-10-c pt-6-c text-blue-00AFFF">{{activity.activity_type | lookupValue : activityTypes : 'id' : 'name'}}</div>
-                            <p class="text-22px leading-28px">{{activity.title}}</p>
+                            <p class="text-16px leading-22px">{{activity.title}}</p>
                             <p class="text-16px leading-22px">  </p>
                             <div class="button">
                                 <span
@@ -54,7 +51,8 @@
 
                         <div
                             *ngIf="isEditMode"
-                            class="absolute right-10-c top-10-c w-32-c h-32-c rounded-1/2 bg-white flex items-center justify-center">
+                            class="absolute right-10-c top-10-c w-32-c h-32-c rounded-1/2 bg-white flex items-center justify-center"
+                            (click)="onEditActivity(activity.id)">
                             <app-svg-icon
                                 class="text-blue-00AFFF"
                                 [width]="16"
@@ -90,88 +88,3 @@
 	  </div>
   </dx-scroll-view>
 </div>
-
-<dx-popup
-	class="register-popup-container"
-	[width]="600"
-	[height]="390"
-	[showTitle]="true"
-	title="Đăng kí nhận thông tin"
-	[dragEnabled]="false"
-	[hideOnOutsideClick]="true"
-	[shading]="true"
-	[shadingColor]="'rgba(0,0,0,0.7)'"
-	[showCloseButton]="true"
-	[(visible)]="isShowRegisterPopup">
-	<div>
-		<div class="field-area form-wrapper" appAutoFocusInput>
-			<div class="box-properties">
-                <span class="field-label">Họ và tên</span>
-                <dx-text-box
-                    #passwordTextBox
-                    class="field-box"
-                    mode="text"
-                    placeholder="Your name"
-                    [(value)]="sendData.name"
-                    [valueChangeEvent]="'input'">
-                        <dx-validator>
-                            <dxi-validation-rule
-                                type="required"
-                                message="Password is required">
-                            </dxi-validation-rule>
-                        </dx-validator>
-                </dx-text-box>
-			</div>
-
-            <div class="box-properties">
-                <span class="field-label">Địa chỉ Email</span>
-                <dx-text-box #emailTextBox
-                            class="field-box"
-                            placeholder="Enter Email"
-                            [(value)]="sendData.email"
-                            [valueChangeEvent]="'input'">
-                    <dx-validator>
-                        <dxi-validation-rule type="required"
-                                            message="Email address is required">
-                        </dxi-validation-rule>
-                        <dxi-validation-rule type="email"
-                                            message="Invalid email address">
-                        </dxi-validation-rule>
-                    </dx-validator>
-                </dx-text-box>
-            </div>
-
-            <div class="box-properties">
-                <span class="field-label">Mật khẩu</span>
-                <dx-text-box
-                    #emailTextBox
-                    class="field-box"
-                    placeholder="Mật khẩu"
-                    [(value)]="sendData.password"
-                    [valueChangeEvent]="'input'">
-                    <dx-validator>
-                        <dxi-validation-rule
-                            type="required"
-                            message="This field is required">
-                        </dxi-validation-rule>
-                    </dx-validator>
-                </dx-text-box>
-            </div>
-
-            <div class="content-footer clearfi mt-16-c">
-                <div class="login-button flex items-center">
-                    <app-custom-button
-                        class="float-left mr-4"
-                        [height]="40"
-                        [disabled]="isRegistering"
-                        icon="{{ isRegistering ? 'fas fa-spinner fa-spin' : '' }}"
-                        [width]="120"
-                        [text]="'Theo dõi ngay'"
-                        [type]="'primary'"
-                        (onClick)="sendInfo()">
-                    </app-custom-button>
-                </div>
-            </div>
-	    </div>
-	</div>
-</dx-popup>

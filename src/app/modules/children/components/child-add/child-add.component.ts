@@ -52,13 +52,14 @@ export class ChildAddComponent implements OnInit, OnDestroy {
 
     child: ChildrenModel = new ChildrenModel();
     file: any[] = [];
-
+    url: any;
+    //
     isDataValid: boolean = false;
     isProcessing: boolean = false;
-
+    //
     private _valueChanged$: Subject<void> = new Subject<void>();
     private _subscriptions: Subscription = new Subscription();
-
+    //
     constructor(private _store: Store,
                 private cdr: ChangeDetectorRef,
                 private baseService: BaseService,
@@ -130,6 +131,20 @@ export class ChildAddComponent implements OnInit, OnDestroy {
                     this.refreshGrid.emit(true);
                 }
             });
+    }
+
+    onFileSelected(event) {
+        var reader = new FileReader();
+        reader.onload = (event: any) => {
+            this.url = event.target.result;
+        };
+        reader.onerror = (event: any) => {
+            console.log("File could not be read: " + event.target.error.code);
+        };
+        reader.readAsDataURL(event.target.files[0]);
+        setTimeout(() => {
+            this.cdr.detectChanges();
+        }, 500)
     }
 
     resetPopup() {

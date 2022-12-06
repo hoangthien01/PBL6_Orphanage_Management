@@ -62,20 +62,23 @@
             <div class="box-properties flex gap-40-c">
                 <div class="box-properties w-1/2" appAutoFocusInput>
                     <span class="field-label text-blue-00AFFF">Nghề nghiệp</span>
-                    <dx-text-box class="field-box"
-                                 [disabled]="isSaving"
-                                 [placeholder]="'Nghề nghiệp'"
-                                 [valueChangeEvent]="'input'">
+                    <dx-text-box
+                        class="field-box"
+                        [disabled]="isSaving"
+                        [placeholder]="'Nghề nghiệp'"
+                        [valueChangeEvent]="'input'">
                     </dx-text-box>
                 </div>
 
                 <div class="box-properties w-1/2" appAutoFocusInput>
                     <span class="field-label text-blue-00AFFF">Mức thu nhập hằng tháng</span>
-                    <dx-number-box class="field-box"
-                                 [disabled]="isSaving"
-                                 [placeholder]="'...'"
-                                 [valueChangeEvent]="'input'"
-                                 [(value)]="requestChild.income">
+                    <dx-number-box
+                        class="field-box"
+                        [disabled]="isSaving"
+                        format="đ #,###.##"
+                        [placeholder]="'...'"
+                        [valueChangeEvent]="'input'"
+                        [(value)]="requestChild.income">
                     </dx-number-box>
                 </div>
             </div>

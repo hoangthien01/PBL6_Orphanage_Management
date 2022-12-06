@@ -63,12 +63,18 @@
 
                 <div class="box-properties">
                     <div class="field-label">Picture</div>
-                    <dx-file-uploader selectButtonText="Select photo"
-                                      labelText=""
-                                      accept="image/*"
-                                      [multiple]="false"
-                                      uploadMode="useForm"
-                                      [(value)]="file">
+                    <img
+                        [src]="url"
+                        *ngIf="url"
+                        class="h-200-c rounded-6px w-full object-cover mb-20-c"/>
+                    <dx-file-uploader
+                        selectButtonText="Select photo"
+                        labelText=""
+                        accept="image/*"
+                        [multiple]="false"
+                        uploadMode="useForm"
+                        [(value)]="file"
+                        (change)="onFileSelected($event)">
                     </dx-file-uploader>
                 </div>
             </div>

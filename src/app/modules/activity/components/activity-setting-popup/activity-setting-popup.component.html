@@ -40,14 +40,15 @@
 
                 <div class="box-properties">
                     <div class="field-label">Chi phí</div>
-                    <dx-number-box #firstNameTextBox
-                                 class="field-box"
-                                 appAutoFocusInput
-                                 [disabled]="isProcessing"
-                                 [(value)]="activity.expense"
-                                 valueChangeEvent="input"
-                                 placeholder="Nhập chi phí"
-                                 (onValueChanged)="dataChanged()">
+                    <dx-number-box
+                        format="đ #,###.##"
+                        class="field-box"
+                        appAutoFocusInput
+                        [disabled]="isProcessing"
+                        [(value)]="activity.expense"
+                        valueChangeEvent="input"
+                        placeholder="Nhập chi phí"
+                        (onValueChanged)="dataChanged()">
                     </dx-number-box>
                 </div>
 

@@ -94,12 +94,13 @@
 
                         <div class="wpo-doanation-payment">
                             <h2>Nhập số tiền bạn muốn quyên góp</h2>
-                            <dx-number-box class="field-box"
-                                           format="VND #,##0.##"
-                                           [min]="10000"
-                                           [placeholder]="'......'"
-                                           [valueChangeEvent]="'input'"
-                                           [(value)]="money">
+                            <dx-number-box
+                                class="field-box"
+                                format="đ #,###.##"
+                                [min]="10000"
+                                [placeholder]="'......'"
+                                [valueChangeEvent]="'input'"
+                                [(value)]="money">
                             </dx-number-box>
 
                             <div>

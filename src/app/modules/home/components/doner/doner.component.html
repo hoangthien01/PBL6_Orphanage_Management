@@ -7,9 +7,9 @@
         [rowAlternationEnabled]="true"
         [noDataText]="'No data to display'">
         <dxo-load-panel [enabled]="false"></dxo-load-panel>
-        <dxo-remote-operations [paging]="true"
+        <!-- <dxo-remote-operations [paging]="true"
                                 [sorting]="true">
-        </dxo-remote-operations>
+        </dxo-remote-operations> -->
         <!-- <dxo-paging [pageIndex]="pageIndexDefault"
                     [pageSize]="pagingSize"
                     (pageIndexChange)="onPageIndexChanged($event)"
@@ -63,6 +63,7 @@
         <dxi-column
             dataField="created_at"
             [caption]="'Thời gian'"
+            sortOrder="desc"
             [alignment]="'left'"
             [allowSorting]="true"
             [cellTemplate]="'dateCellTemplate'">

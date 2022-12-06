@@ -57,7 +57,8 @@
                     <dx-number-box [(value)]="child.age"
                                    [showSpinButtons]="true"
                                    [showClearButton]="true"
-                                   (onValueChanged)="dataChanged()">
+                                   (onValueChanged)="dataChanged()"
+                                   (change)="onFileSelected($event)">
                     </dx-number-box>
                 </div>
 

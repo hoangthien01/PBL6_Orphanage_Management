@@ -5,7 +5,7 @@
   border: none !important;
 
   .popup-container {
-    height: 95%;
+    height: 100%;
   }
 }
 
@@ -69,4 +69,9 @@
             }
         }
     }
+
+}
+
+::ng-deep .dx-scrollable {
+    height: 94% !important;
 }

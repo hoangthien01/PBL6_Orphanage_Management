@@ -142,7 +142,9 @@ export class ChildAddComponent implements OnInit, OnDestroy {
             console.log("File could not be read: " + event.target.error.code);
         };
         reader.readAsDataURL(event.target.files[0]);
-        this.cdr.detectChanges();
+        setTimeout(() => {
+            this.cdr.detectChanges();
+        }, 500)
     }
 
     resetPopup() {

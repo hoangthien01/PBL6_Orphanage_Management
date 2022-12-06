@@ -1,5 +1,5 @@
 <div class="news">
-  <div class="w-full pt-24-c flex justify-end h-71-c">
+  <div class="w-full pt-24-c flex justify-end h-71-c fixed top-0 right-33-c z-50">
     <app-custom-button
         class="float-left mr-4"
         [height]="40"
@@ -22,10 +22,8 @@
     </app-custom-button>
   </div>
 
-  <hr>
-
   <dx-scroll-view>
-        <div class="content-box">
+        <div class="content-box pb-30-c">
             <div class="">
                 <div class="news-content">
                 <ng-container *ngFor="let activity of activities; index as actionIndex;">

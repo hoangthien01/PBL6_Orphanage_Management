@@ -52,10 +52,11 @@ export class EmployeeAddComponent implements OnInit, OnDestroy {
 
     child: EmployeeModel = new EmployeeModel();
     file: any[] = [];
-
+    url: any;
+    //
     isDataValid: boolean = false;
     isProcessing: boolean = false;
-
+    //
     private _valueChanged$: Subject<void> = new Subject<void>();
     private _subscriptions: Subscription = new Subscription();
 
@@ -95,6 +96,18 @@ export class EmployeeAddComponent implements OnInit, OnDestroy {
             return false;
         }
         return true;
+    }
+
+    onFileSelected(event) {
+        var reader = new FileReader();
+        reader.onload = (event: any) => {
+            this.url = event.target.result;
+        };
+        reader.onerror = (event: any) => {
+            console.log("File could not be read: " + event.target.error.code);
+        };
+        reader.readAsDataURL(event.target.files[0]);
+        this.cdr.detectChanges();
     }
 
     addChild(isKeepPopup: boolean) {

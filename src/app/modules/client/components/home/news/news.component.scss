@@ -30,14 +30,16 @@
                 grid-column-start: unset !important;
                 grid-column-end: unset !important;
                 flex-flow: column !important;
+                gap: 0 !important;
 
-                .image {
+                .article-image {
                     width: 100% !important;
-                    height: 200px;
+                    height: 200px !important;
                 }
 
-                .content {
+                .article-content {
                     width: 100% !important;
+                    height:  auto !important;
                 }
             }
         }
@@ -55,21 +57,22 @@
         margin-right: 0px;
 
         .article {
+            padding: 12px;
             text-align: left;
             cursor: pointer;
             overflow: hidden;
             min-height: 400px;
             width: 100%;
             position: relative;
-            -webkit-border-radius: 5px;
-            border-radius: 8px;
+            border-radius: 12px;
             background-clip: padding-box;
             box-shadow: 0 3px 3px -2px rgb(0 0 0 / 10%), 0 3px 4px 0 rgb(0 0 0 / 14%), 0 1px 8px 0 rgb(0 0 0 / 12%);
             background-color: #fff;
 
             &-content {
                 height: 100%;
-                padding: 20px;
+                margin-top: 8px;
+                padding: 8px;
                 text-align: left;
                 position: relative;
                 display: flex;
@@ -97,6 +100,7 @@
             &-image {
                 height: 200px;
                 flex-shrink: 0;
+                border-radius: 12px;
             }
         }
 
@@ -104,11 +108,12 @@
             display: flex;
             width: 100%;
             flex-flow: row;
+            gap: 20px;
             grid-column-start: 1;
             grid-column-end: 3;
 
             .article-image {
-                width: 65%;
+                width: 57%;
                 height: 100%;
 
                 img {
@@ -119,8 +124,13 @@
             }
 
             .article-content {
-                width: 35%;
+                width: 40%;
                 flex-shrink: 0;
+
+                &__title {
+                    -webkit-line-clamp: 7; /* number of lines to show */
+                            line-clamp: 7;
+                }
             }
         }
     }

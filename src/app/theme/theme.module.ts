@@ -44,7 +44,8 @@ import {
   DxTabsModule,
   DxPieChartModule,
   DxTreeViewModule,
-  DxSortableModule
+  DxSortableModule,
+  DxGalleryModule
 } from 'devextreme-angular';
 import { DxiColumnModule, DxoPagerModule, DxoPagingModule, DxoSelectionModule } from 'devextreme-angular/ui/nested';
 
@@ -144,7 +145,8 @@ const DEVEXTREME_MODULES = [
   DxPieChartModule,
   DxTreeViewModule,
   DxSortableModule,
-  Daterangepicker
+  Daterangepicker,
+  DxGalleryModule,
 ];
 
 const BASE_MODULES = [

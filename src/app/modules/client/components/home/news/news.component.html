@@ -6,37 +6,6 @@
 
         <!-- article card list  -->
         <div class="mb-52-c articles">
-            <!-- <div
-                class="article"
-                *ngIf="!isLoading">
-                <div class="image">
-                    <img :src="{{activities[0].cover_picture}}" alt="">
-                </div>
-
-                <div class="content">
-                    <p class="pb-10-c text-blue-00AFFF text-14px">{{activities[0].activity_type | lookupValue : activityTypes : 'id' : 'name'}}</p>
-                    <p
-                        class="text-22px leading-28px hover:text-blue-00AFFF"
-                        (click)="goActivityDetail(activities[0].id)">{{activities[0].title}}
-                    </p>
-                    <div class="button cursor-pointer">
-                        <div class="mb-20-c w-10/12">
-                            <div><span class="text-blue-00AFFF py-2-c">Mục tiêu: </span>{{activities[0].expense * 1000 | currency: "VND"}}</div>
-                            <div><span class="text-blue-00AFFF py-2-c">Đã kêu gọi: </span>{{activities[0].donate * 1000 | currency: "VND"}}</div>
-                            <div><span class="text-blue-00AFFF py-2-c">Diễn ra từ: </span> {{activities[0].start_date | date}} - {{activities[0].end_date | date}}</div>
-                        </div>
-                        <app-custom-button
-                            class="float-left mr-4"
-                            [height]="40"
-                            [width]="120"
-                            [text]="'Quyên góp'"
-                            [type]="'primary'"
-                            (click)="goToDonate(activities[0].id)">
-                        </app-custom-button>
-                    </div>
-                </div>
-            </div> -->
-
             <ng-container *ngFor="let activity of activities; index as actionIndex;">
                 <div
                     *ngIf="!isLoading"
@@ -58,7 +27,7 @@
 
                         <div class="article-content-footer">
                             <div class="article-content__description">
-                                <div class="mb-20-c w-10/12 text-15px">
+                                <div class="mb-20-c w-10/12 text-14px leading-20px">
                                     <div><span class="text-blue-00AFFF py-2-c">Mục tiêu: </span>{{activity.expense * 1000 | currency: "VND"}}</div>
                                     <div><span class="text-blue-00AFFF py-2-c">Đã kêu gọi: </span>{{activity.donate * 1000 | currency: "VND"}}</div>
                                     <div><span class="text-blue-00AFFF py-2-c">Diễn ra từ: </span> {{activity.start_date | date}} - {{activity.end_date | date}}</div>
@@ -111,7 +80,7 @@
 			<div class="w-1/3 rounded-5px overflow-hidden">
 				<img
                     class="max-w-none w-full "
-					src="../../../../../../assets/images/app-common/orphane1.avif"
+					src="../../../../../../assets/images/app-common/banner1.jpg"
 					alt="">
 			</div>
 
@@ -159,7 +128,7 @@
 		<div class="h-full">
 			<img
                 class="max-w-none w-full h-full object-cover"
-				src="../../../../../../assets/images/app-common/orphan.avif"
+				src="../../../../../../assets/images/app-common/banner8.jpg"
 				alt="">
 		</div>
 

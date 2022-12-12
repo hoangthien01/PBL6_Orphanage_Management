@@ -123,6 +123,7 @@ export class ChildAddComponent implements OnInit, OnDestroy {
                     if (isKeepPopup) {
                         this.resetPopup();
                         this.file = [];
+                        this.url = '';
                         this.focusToFirstNameTextBox();
                     } else {
                         this.hidePopup();

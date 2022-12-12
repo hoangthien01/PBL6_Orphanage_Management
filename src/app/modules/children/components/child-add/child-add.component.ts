@@ -119,7 +119,7 @@ export class ChildAddComponent implements OnInit, OnDestroy {
             }))
             .subscribe(res => {
                 if (res) {
-                    AppNotify.success(AppNotify.generateSuccessMessage('child', 'added'));
+                    AppNotify.success('Thêm thông tin trẻ thành công');
                     if (isKeepPopup) {
                         this.resetPopup();
                         this.file = [];

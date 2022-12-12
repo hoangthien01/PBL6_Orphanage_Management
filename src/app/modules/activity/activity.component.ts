@@ -39,7 +39,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
                     this.isShowCreatePage = false;
                     this.changeDetector.detectChanges();
                 })).subscribe((res) => {
-                    AppNotify.success(AppNotify.generateSuccessMessage('Cập nhật hoạt động thành công'));
+                    AppNotify.success('Cập nhật hoạt động thành công');
                 });
         } else {
             this.activityService.createActivity(this.activity)
@@ -48,7 +48,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
                     this.isShowCreatePage = false;
                     this.changeDetector.detectChanges();
                 })).subscribe((res) => {
-                    AppNotify.success(AppNotify.generateSuccessMessage('Activity', 'added'));
+                    AppNotify.success('Tạo mới hoạt động thành công');
                 });
         }
     }

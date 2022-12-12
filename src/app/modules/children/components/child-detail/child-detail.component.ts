@@ -121,7 +121,7 @@ export class ChildDetailComponent implements OnInit, OnDestroy {
           this.isSaving = false;
           this._cdr.detectChanges();
       })).subscribe(() => {
-          AppNotify.success(AppNotify.generateSuccessMessage('profile', 'updated'));
+          AppNotify.success('Cập nhật thông tin trẻ thành công');
           //
           this.cloneDataAfterSavingSuccess();
           this.refreshGrid.emit(true);

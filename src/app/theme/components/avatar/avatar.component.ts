@@ -136,7 +136,7 @@ export class ProfileAvatarComponent implements OnDestroy {
           ).subscribe((res) => {
             this.fileAvatarName = res.personal_picture;
             this.avatarUpdated.emit(res.personal_picture);
-            AppNotify.success(AppNotify.generateSuccessMessage('avatar', 'changed'));
+            AppNotify.success('Thay đổi avatar thành công');
           });
         } else {
           this._employeeService.updateEmployee(this.data).pipe(
@@ -152,7 +152,7 @@ export class ProfileAvatarComponent implements OnDestroy {
               this._store.dispatch(new UserActions.UpdateUserAvatar(res.avatar));
             }
             //
-            AppNotify.success(AppNotify.generateSuccessMessage('avatar', 'changed'));
+            AppNotify.success('Thay đổi avatar thành công');
           });
         }
     }
@@ -170,7 +170,7 @@ export class ProfileAvatarComponent implements OnDestroy {
             this.fileAvatarName = null;
             this.avatarUpdated.emit(null);
             //
-            AppNotify.success(AppNotify.generateSuccessMessage('avatar', 'removed'));
+            AppNotify.success('Xóa avatar thành công');
         });
         } else {
           this._employeeService.removeAvatar(this.data.id).pipe(
@@ -185,7 +185,7 @@ export class ProfileAvatarComponent implements OnDestroy {
                 this._store.dispatch(new UserActions.UpdateUserAvatar(null));
               }
               //
-              AppNotify.success(AppNotify.generateSuccessMessage('avatar', 'removed'));
+              AppNotify.success('Xóa avatar thành công');
           });
         }
     }

@@ -31,7 +31,7 @@
                                     class="popup-container-scroll-view"
                                     direction="vertical"
                                     showScrollbar="always">
-                        <div class="popup-content-wrapper">
+                        <div class="popup-content-wrapper leading-22px">
                             <ng-content></ng-content>
                         </div>
                     </dx-scroll-view>
@@ -40,7 +40,7 @@
                         <ng-container [ngTemplateOutlet]="conditionalAgreementTemplate"></ng-container>
                     </div>
                 </div>
-                <div class="popup-content-footer d-flex flex-nowrap justify-content-start gap-10-c">
+                <div class="popup-content-footer d-flex justify-between flex-nowrap gap-10-c">
                     <ng-container [ngTemplateOutlet]="footerTemplate ? footerTemplate : footerDefaultTemplate">
                     </ng-container>
                 </div>

@@ -26,7 +26,7 @@
         </dx-button> -->
     </div>
 
-    <div class="tab-content mt-8-c">
+    <div class="tab-content mt-22-c">
         <ng-container *ngIf="selectedTab == RequestStatusEnum.Active">
             <app-child-request-grid (loadChildRequestCounting)="onLoadChildRequestCounting()" [loadData]="reloadData"
                 [status]="RequestStatusEnum.Active"></app-child-request-grid>

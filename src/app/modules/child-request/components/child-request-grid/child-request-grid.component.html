@@ -139,7 +139,7 @@
 
 <ng-container *ngIf="isApprovePopup">
     <app-popup-confirmation
-        [width]="500"
+        [width]="'auto'"
         [title]="'Xác nhận'"
         [visible]="true"
         confirmButtonTitle="Yes"
@@ -151,25 +151,25 @@
 
 <ng-container *ngIf="isRejectPopup">
     <app-popup-confirmation
-        [width]="500"
+        [width]="'auto'"
         [title]="'Xác nhận'"
         [(visible)]="isRejectPopup"
         confirmButtonTitle="Yes"
         cancelButtonTitle="Cancel"
         (onConfirm)="onRejectRequest($event)">
-        <p>Bạn có chắc chắn từ chối yêu cầu này ? Bạn không thể hoàn tác hành động này.</p>
+        <p>Bạn có chắc chắn từ chối yêu cầu này? <br> Bạn không thể hoàn tác hành động này.</p>
     </app-popup-confirmation>
 </ng-container>
 
 <ng-container *ngIf="isCancelPopup">
     <app-popup-confirmation
         [title]="'Xác nhận'"
-        [width]="500"
+        [width]="'auto'"
         [(visible)]="isCancelPopup"
         confirmButtonTitle="Yes"
         cancelButtonTitle="Cancel"
         (onConfirm)="onCancelInvite($event)">
-        <p>Bạn có chắc chắn hủy yêu cầu này ? Bạn không thể hoàn tác hành động này.</p>
+        <p>Bạn có chắc chắn hủy yêu cầu này? <br> Bạn không thể hoàn tác hành động này.</p>
     </app-popup-confirmation>
 </ng-container>
 

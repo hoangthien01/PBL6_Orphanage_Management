@@ -1,3 +1,4 @@
+import { svgIconYoutube, svgIconLinkedIn, svgIconTiktok } from './../../../assets/images/svg-icons.constants';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,7 +13,7 @@ import { BannerComponent } from './components/home/banner/banner.component';
 import { NewsComponent } from './components/home/news/news.component';
 import { HomeClientComponent } from './components/home/home.component';
 import { NewsDetailComponent } from './components/home/news-detail/news-detail.component';
-import { svgIconCalendar, svgIconUserLight } from 'src/assets/images/svg-icons.constants';
+import { svgIconCalendar, svgIconFacebookMedallion, svgIconOutlookLogo, svgIconUserLight, svgIconYoutubeCircle } from 'src/assets/images/svg-icons.constants';
 import { DonateComponent } from './components/donate/donate.component';
 import { FooterComponent } from './components/home/footer/footer.component';
 import { ProfileGeneralInfoComponent } from '../../theme/components/profile-general-info/profile-general-info.component';
@@ -26,7 +27,11 @@ import { CommentsComponent } from './components/home/comments/comments.component
 
 const SVG_ICONS = [
     svgIconUserLight,
-    svgIconCalendar
+    svgIconCalendar,
+    svgIconYoutube,
+    svgIconLinkedIn,
+    svgIconTiktok,
+    svgIconFacebookMedallion,
 ];
 
 export const routes: Routes = [

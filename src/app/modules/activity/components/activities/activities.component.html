@@ -1,5 +1,5 @@
-<div class="news">
-  <div class="w-full pt-24-c flex justify-end h-71-c fixed top-0 right-33-c z-50">
+<div class="news h-full">
+  <div class="w-full my-24-c px-24-c flex justify-end h-40-c top-0 right-33-c z-50">
     <app-custom-button
         class="float-left mr-4"
         [height]="40"
@@ -22,69 +22,76 @@
     </app-custom-button>
   </div>
 
-  <dx-scroll-view>
-        <div class="content-box pb-30-c">
-            <div class="">
-                <div class="news-content">
-                <ng-container *ngFor="let activity of activities; index as actionIndex;">
-                    <div
-                        *ngIf="!isLoading"
-                        class="card flex flex-col items-center relative">
-                        <div class="w-full">
-                        <img class="w-full h-132-c object-cover" loading="lazy"
-                            :src="{{activity.cover_picture}}" width="480" height="320"
-                            alt="What you need to know about COVID-19 vaccines" typeof="foaf:Image">
-                        </div>
+    <dx-scroll-view>
+        <!-- article card list  -->
+        <div class="mb-52-c articles px-24-c">
+            <ng-container *ngFor="let activity of activities; index as actionIndex;">
+                <div
+                    *ngIf="!isLoading"
+                    class="article flex flex-col items-center">
+                    <img
+                        class="w-full object-cover article-image"
+                        loading="lazy"
+                        :src="{{activity.cover_picture}}">
 
-                        <div class="content">
-                            <div class="pb-10-c pt-6-c text-blue-00AFFF">{{activity.activity_type | lookupValue : activityTypes : 'id' : 'name'}}</div>
-                            <p class="text-16px leading-22px">{{activity.title}}</p>
-                            <p class="text-16px leading-22px">  </p>
-                            <div class="button">
-                                <span
-                                    class="text-blue-00AFFF text-14px"
-                                    (click)="goActivityDetail(activity.id)">
-                                    > Đọc câu chuyện
-                                </span>
-                            </div>
+                    <div class="article-content w-full">
+                        <div class="pb-10-c text-blue-00AFFF text-14px">
+                            {{activity.activity_type | lookupValue : activityTypes : 'id' : 'name'}}
                         </div>
-
                         <div
-                            *ngIf="isEditMode"
-                            class="absolute right-10-c top-10-c w-32-c h-32-c rounded-1/2 bg-white flex items-center justify-center"
-                            (click)="onEditActivity(activity.id)">
-                            <app-svg-icon
-                                class="text-blue-00AFFF"
-                                [width]="16"
-                                [name]="'icon_pencil'">
-                            </app-svg-icon>
+                            class="text-16px hover:text-blue-00AFFF article-content__title"
+                            (click)="goActivityDetail(activity.id)">
+                            {{activity.title}}
                         </div>
-                    </div>
-                </ng-container>
 
-                <!-- skeleton loader -->
-                <ng-container *ngFor="let activity of loadingArr">
-                <div *ngIf="isLoading" class="card is-loading">
-                    <div class="image"></div>
-                    <div class="content">
+                        <!-- <div class="article-content-footer">
+                            <div class="article-content__description">
+                                <div class="mb-20-c w-10/12 text-14px leading-20px">
+                                    <div><span class="text-blue-00AFFF py-2-c">Mục tiêu: </span>{{activity.expense * 1000 | currency: "VND"}}</div>
+                                    <div><span class="text-blue-00AFFF py-2-c">Đã kêu gọi: </span>{{activity.donate * 1000 | currency: "VND"}}</div>
+                                    <div><span class="text-blue-00AFFF py-2-c">Diễn ra từ: </span> {{activity.start_date | date}} - {{activity.end_date | date}}</div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <div
+                        *ngIf="isEditMode"
+                        class="absolute right-16-c top-16-c w-32-c h-32-c rounded-1/2 bg-white flex items-center justify-center"
+                        (click)="onEditActivityBtnClicked(activity.id)">
+                        <app-svg-icon
+                            class="text-blue-00AFFF"
+                            [width]="16"
+                            [name]="'icon_pencil'">
+                        </app-svg-icon>
+                    </div>
+                </div>
+            </ng-container>
+
+            <!-- skeleton loader -->
+            <ng-container *ngFor="let activity of loadingArr">
+                <div *ngIf="isLoading" class="article is-loading">
+                    <div class="article-image"></div>
+                    <div class="article-content">
                         <h2></h2>
                         <p></p>
                     </div>
                 </div>
-                </ng-container>
-            </div>
-            </div>
+            </ng-container>
+        </div>
+
         <div
             class="w-full text-center my-40-c"
-            *ngIf="activities.length > 6">
-			<app-custom-button
+            *ngIf="totalCount > activities.length">
+            <app-custom-button
                 class="uppercase text-22px hover:bg-white rounded-5px"
                 [height]="40"
+                [disabled]="isLoadingMore"
+                icon="{{ isLoadingMore ? 'fas fa-spinner fa-spin' : '' }}"
                 [text]="'Hiển thị thêm'"
-				[type]="'primary-outline'"
+                [type]="'primary-outline'"
                 (click)="loadMore()">
-			</app-custom-button>
-		</div>
-	  </div>
-  </dx-scroll-view>
+            </app-custom-button>
+        </div>
+    </dx-scroll-view>
 </div>

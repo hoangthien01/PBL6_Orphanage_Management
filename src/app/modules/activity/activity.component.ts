@@ -17,6 +17,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
     isShowSettingPopup: boolean = false;
     isProcessing: boolean = false;
     isShowCreatePage: boolean = false;
+    isEditMode: boolean = false;
     activity: ActivityModel = new ActivityModel();
     //
     constructor(private changeDetector: ChangeDetectorRef,
@@ -31,16 +32,25 @@ export class ActivityComponent implements OnInit, OnDestroy {
 
     addActivity() {
         this.isProcessing = true
-        this.activityService.createActivity(this.activity)
-            .pipe(
-                finalize(() => {
+        if (this.isEditMode) {
+            this.activityService.updateActivity(this.activity)
+                .pipe(finalize(() => {
                     this.isProcessing = false;
                     this.isShowCreatePage = false;
                     this.changeDetector.detectChanges();
-                }
-                )).subscribe((res) => {
-                    AppNotify.success(AppNotify.generateSuccessMessage('Activity', 'added'));
+                })).subscribe((res) => {
+                    AppNotify.success('Cập nhật hoạt động thành công');
                 });
+        } else {
+            this.activityService.createActivity(this.activity)
+                .pipe(finalize(() => {
+                    this.isProcessing = false;
+                    this.isShowCreatePage = false;
+                    this.changeDetector.detectChanges();
+                })).subscribe((res) => {
+                    AppNotify.success('Tạo mới hoạt động thành công');
+                });
+        }
     }
 
     openSetting() {
@@ -73,6 +83,11 @@ export class ActivityComponent implements OnInit, OnDestroy {
     }
 
     onShowCreatePage(id?: string) {
+        this.isShowCreatePage = true;
+    }
+
+    onEditActivity(id: string) {
+        this.isEditMode = true;
         this.activityService.getActivity(id)
             .pipe(
                 finalize(() => {

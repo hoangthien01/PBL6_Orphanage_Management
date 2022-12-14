@@ -16,6 +16,7 @@ import { UserLookupState } from './core/store/user-lookup/user-lookup.state';
 import { UserState } from './core/store/user/user.state';
 import { StripeModule } from 'stripe-angular';
 import {NgxsResetPluginModule} from "ngxs-reset-plugin";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 function initializeApp(injector: Injector) {
   console.log('Initializing App Component');
@@ -34,6 +35,7 @@ function initializeApp(injector: Injector) {
     BrowserModule,
     CommonModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     //
     AppRoutingModule,
     //

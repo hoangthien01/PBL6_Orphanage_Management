@@ -1,6 +1,16 @@
 <div class="banner py-40-c px-20-c">
   <div class="h-full banner-image">
-    <div> </div>
+    <div #mySlides [ngStyle]="{'background-image': 'url(' + backgroundImage+ ')'}"> </div>
+    <!-- <dx-gallery
+        #gallery
+        id="gallery"
+        [dataSource]="dataSource"
+        [height]="300"
+        [slideshowDelay]="slideshowDelay"
+        [loop]="true"
+        [showNavButtons]="true"
+        [showIndicator]="true"
+    ></dx-gallery> -->
   </div>
 
   <div class="banner-content h-full flex items-center justify-center flex-col text-left">

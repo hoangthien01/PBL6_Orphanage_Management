@@ -93,7 +93,7 @@ export class ChangePasswordComponent implements OnDestroy {
         this.userService.updatePassword(this.oldPassword, this.newPassword).pipe(
             finalize(() => this.isSaving = false))
             .subscribe(() => {
-                AppNotify.success(AppNotify.generateSuccessMessage('password', 'changed'));
+                AppNotify.success('Thay đổi mật khẩu thành công');
                 //
                 this.visible = false;
             });

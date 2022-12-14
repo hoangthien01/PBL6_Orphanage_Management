@@ -25,6 +25,7 @@ export class ActivitiesComponent implements OnDestroy {
     @Input() isDataValid: boolean = false;
     //
     @Output() onShowCreatePage: EventEmitter<void | string> = new EventEmitter<void |string>();
+    @Output() onEditActivity: EventEmitter<void | string> = new EventEmitter<void |string>();
     //
     activities: ActivityModel[];
     activity: ActivityModel;
@@ -32,7 +33,8 @@ export class ActivitiesComponent implements OnDestroy {
     //
     loadingArr = [1, 2, 3, 4, 5, 6, 7, 8];
     page: number = 1;
-    page_size: number = 6;
+    page_size: number = 8;
+    totalCount: number = 0;
     type: string = 'all';
     sendData: SendInfoModel = new SendInfoModel();
     //
@@ -40,6 +42,7 @@ export class ActivitiesComponent implements OnDestroy {
     isRegistering: boolean = false;
     isLoading: boolean = false;
     isEditMode: boolean = false;
+    isLoadingMore: boolean = false;
     //
     private _subscriptions: Subscription = new Subscription();;
     //
@@ -85,12 +88,14 @@ export class ActivitiesComponent implements OnDestroy {
             ).subscribe(
                 res => {
                     this.activities = res.results;
+                    this.totalCount = res.count;
                     this.store.dispatch(new ActivitiesActions.setActivities(res.results));
                 })
     }
 
     loadMore() {
-        this.page_size = this.page_size + 4;
+        this.page_size = this.page_size + 3;
+        this.isLoadingMore = true;
         this.getListActivities();
     }
 
@@ -110,7 +115,7 @@ export class ActivitiesComponent implements OnDestroy {
         this.router.navigate(['activities', id]).then();
     }
 
-    onEditActivity(id: string) {
-        this.onShowCreatePage.emit(id);
+    onEditActivityBtnClicked(id: string) {
+        this.onEditActivity.emit(id);
     }
 }

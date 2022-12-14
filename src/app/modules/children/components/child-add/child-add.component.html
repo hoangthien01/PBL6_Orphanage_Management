@@ -83,7 +83,7 @@
 
     <ng-template #footerTemplate>
         <div class="flex justify-between footer-container">
-            <app-custom-button (onClick)="addChild(true)"
+            <app-custom-button (onClick)="addChild(false)"
                                [disabled]="isProcessing || !isDataValid"
                                icon="{{ isProcessing ? 'fas fa-spinner fa-spin' : '' }}"
                                height="40"

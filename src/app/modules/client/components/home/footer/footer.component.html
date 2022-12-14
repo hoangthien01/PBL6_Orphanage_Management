@@ -1,20 +1,20 @@
 <footer class="bg-blue-00AFFF text-white footer">
   <div class="w-4/5 mx-auto flex justify-center items-center">
-    <div class="grid text-left grid-box w-2/3 text-16px">
+    <div class="grid text-left grid-box w-2/3 text-15px">
       <div>
-        <div class="font-weight-bold mb-12-c decoration-2 underline text-20px hover:text-red-DC6565 cursor-pointer">Trang chủ</div>
-        <div class="mt-6-c hover:text-red-DC6565 cursor-pointer">Chúng tôi làm gì</div>
-        <div class="mt-6-c hover:text-red-DC6565 cursor-pointer">Nghiên cứu và báo cáo</div>
-        <div class="mt-6-c hover:text-red-DC6565 cursor-pointer">Chuyện của chúng tôi</div>
-        <div class="mt-6-c hover:text-red-DC6565 cursor-pointer">Hành động</div>
+        <div class="font-weight-bold mb-12-c text-16px cursor-pointer">Trang chủ</div>
+        <div class="mt-6-c cursor-pointer">Chúng tôi làm gì</div>
+        <div class="mt-6-c cursor-pointer">Nghiên cứu và báo cáo</div>
+        <div class="mt-6-c cursor-pointer">Chuyện của chúng tôi</div>
+        <div class="mt-6-c cursor-pointer">Hành động</div>
       </div>
 
       <div>
-        <div class="font-weight-bold mb-12-c decoration-2 underline text-20px hover:text-red-DC6565 cursor-pointer">Giới thiệu</div>
-        <div class="mt-6-c hover:text-red-DC6565 cursor-pointer">Trẻ em Việt Nam</div>
-        <div class="mt-6-c hover:text-red-DC6565 cursor-pointer">Thông cáo báo chí</div>
-        <div class="mt-6-c hover:text-red-DC6565 cursor-pointer">Liên hệ</div>
-        <div class="mt-6-c hover:text-red-DC6565 cursor-pointer">Làm việc với F4Plus</div>
+        <div class="font-weight-bold mb-12-c text-16px cursor-pointer">Giới thiệu</div>
+        <div class="mt-6-c cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">Trẻ em Việt Nam</div>
+        <div class="mt-6-c cursor-pointer">Thông cáo báo chí</div>
+        <div class="mt-6-c cursor-pointer">Liên hệ</div>
+        <div class="mt-6-c cursor-pointer">Làm việc với F4Plus</div>
       </div>
     </div>
 
@@ -36,11 +36,33 @@
             </app-custom-button>
         </div>
 
-      <div class="flex items-center justify-center mt-20-c text-16px">
-        <span class="hover:text-red-DC6565 cursor-pointer">Thông tin pháp lý</span>
-        <div class="mx-8-c w-1-c h-12-c bg-white"></div>
-        <span class="hover:text-red-DC6565 cursor-pointer">Liên hệ</span>
-      </div>
+        <div class="flex items-center mt-16-c gap-18-c cursor-pointer">
+            <div class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
+                <app-svg-icon
+                    name="icon_facebook_medallion"
+                    [width]="24"
+                    [height]="24"></app-svg-icon>
+            </div>
+            <app-svg-icon
+                class="transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+                name="icon_youtube"
+                [width]="24"
+                [height]="24"></app-svg-icon>
+            <app-svg-icon
+                name="icon_tiktok"
+                [width]="24"
+                [height]="24"></app-svg-icon>
+            <app-svg-icon
+                name="icon_linked_in"
+                [width]="24"
+                [height]="24"></app-svg-icon>
+        </div>
+
+        <div class="flex items-center justify-center mt-20-c text-15px">
+            <span class="cursor-pointer">Thông tin pháp lý</span>
+            <div class="mx-8-c w-1-c h-12-c bg-white"></div>
+            <span class="cursor-pointer">Liên hệ</span>
+        </div>
     </div>
   </div>
 </footer>

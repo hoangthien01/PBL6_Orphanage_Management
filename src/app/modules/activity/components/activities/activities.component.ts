@@ -31,9 +31,9 @@ export class ActivitiesComponent implements OnDestroy {
     activity: ActivityModel;
     activityTypes: ActivityTypeModel[];
     //
-    loadingArr = [1, 2, 3, 4, 5, 6, 7, 8];
+    loadingArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     page: number = 1;
-    page_size: number = 8;
+    page_size: number = 12;
     totalCount: number = 0;
     type: string = 'all';
     sendData: SendInfoModel = new SendInfoModel();

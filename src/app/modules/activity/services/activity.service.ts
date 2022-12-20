@@ -31,4 +31,8 @@ export class ActivityService {
     createActivity(activity: ActivityModel): Observable<ActivityModel> {
       return this.baseService.postFile('activity', activity);
     }
+
+    updateActivity(activity: ActivityModel): Observable<ActivityModel> {
+      return this.baseService.putFile(`activity/${activity.id}`, activity);
+    }
 }

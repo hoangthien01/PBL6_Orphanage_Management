@@ -49,15 +49,15 @@ export class BaseService {
     }
 
     get headers(): HttpHeaders {
-      if(this.accessToken) {
+        if (this.accessToken) {
+            return new HttpHeaders({
+                'Content-Type': 'application/json',
+                Authorization: this.bearerAuthentication,
+            });
+        }
         return new HttpHeaders({
             'Content-Type': 'application/json',
-            Authorization: this.bearerAuthentication,
         });
-      }
-      return new HttpHeaders({
-        'Content-Type': 'application/json',
-      });
     }
 
     get options() {
@@ -88,10 +88,10 @@ export class BaseService {
         const headers = this.binaryArrayHeaders;
         return this.httpClient
             .get<any>(`${this.baseURL}/${url}`, { headers, responseType: 'blob' as 'json' }).pipe(tap(
-            data => {
-                this.downLoadFile(data, 'application/ms-excel', fileName, fileExtension);
-            }
-        ));
+                data => {
+                    this.downLoadFile(data, 'application/ms-excel', fileName, fileExtension);
+                }
+            ));
     }
 
     // getWithWSConnectionId<T>(url: string): Observable<T> {
@@ -241,7 +241,7 @@ export class BaseService {
     }
 
     private addDataToFormData(formData: FormData, data, name: string = null) {
-      console.log('formData', formData);
+        console.log('formData', formData);
 
         for (const property in data) {
             if (data.hasOwnProperty(property)) {

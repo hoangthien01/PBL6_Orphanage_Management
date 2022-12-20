@@ -4,89 +4,64 @@
 			Các hoạt động và sự kiện chính
 		</div>
 
-		<div class="">
-			<div class="news-content mb-52-c">
-				<div class="card card-large"  *ngIf="!isLoading">
-					<div class="image">
-						<img :src="{{activities[0].cover_picture}}" alt="">
-					</div>
+        <!-- article card list  -->
+        <div class="mb-52-c articles">
+            <ng-container *ngFor="let activity of activities; index as actionIndex;">
+                <div
+                    *ngIf="!isLoading"
+                    class="article flex flex-col items-center">
+                    <img
+                        class="w-full object-cover article-image"
+                        loading="lazy"
+                        :src="{{activity.cover_picture}}">
 
-					<div class="content">
-						<p class="pb-10-c text-blue-00AFFF text-14px">{{activities[0].activity_type | lookupValue : activityTypes : 'id' : 'name'}}</p>
-						<p
-                            class="text-22px leading-28px hover:text-blue-00AFFF"
-                            (click)="goActivityDetail(activities[0].id)">{{activities[0].title}}
-                        </p>
-                        <div class="button cursor-pointer">
-                            <div class="mb-20-c w-10/12">
-                                <div><span class="text-blue-00AFFF py-2-c">Mục tiêu: </span>{{activities[0].expense * 1000 | currency: "VND"}}</div>
-                                <div><span class="text-blue-00AFFF py-2-c">Đã kêu gọi: </span>{{activities[0].donate * 1000 | currency: "VND"}}</div>
-                                <div><span class="text-blue-00AFFF py-2-c">Diễn ra từ: </span> {{activities[0].start_date | date}} - {{activities[0].end_date | date}}</div>
-                            </div>
-                            <app-custom-button
-                                class="float-left mr-4"
-                                [height]="40"
-                                [width]="120"
-                                [text]="'Quyên góp'"
-                                [type]="'primary'"
-                                (click)="goToDonate(activities[0].id)">
-                            </app-custom-button>
-						</div>
-					</div>
-				</div>
-
-                <ng-container *ngFor="let activity of activities; index as actionIndex;">
-                    <div
-                        *ngIf="!isLoading && actionIndex >= 1"
-                        class="card flex flex-col items-center">
-                        <div class="w-full">
-                            <img class="w-full h-200 object-cover" loading="lazy"
-                                :src="{{activity.cover_picture}}" width="480" height="320"
-                                alt="What you need to know about COVID-19 vaccines" typeof="foaf:Image">
+                    <div class="article-content w-full">
+                        <div class="pb-10-c text-blue-00AFFF text-14px">
+                            {{activity.activity_type | lookupValue : activityTypes : 'id' : 'name'}}
+                        </div>
+                        <div
+                            class="text-18px hover:text-blue-00AFFF article-content__title"
+                            (click)="goActivityDetail(activity.id)">
+                            {{activity.title}}
                         </div>
 
-                        <div class="content w-full">
-                            <div class="pb-10-c text-blue-00AFFF text-14px">{{activity.activity_type | lookupValue : activityTypes : 'id' : 'name'}}</div>
-                            <p
-                                class="text-22px leading-28px hover:text-blue-00AFFF"
-                                (click)="goActivityDetail(activity.id)">{{activity.title}}
-                            </p>
-                            <!-- <p class="text-16px leading-22px"></p> -->
-                            <div class="button">
-                                <div class="mb-20-c w-10/12">
+                        <div class="article-content-footer">
+                            <div class="article-content__description">
+                                <div class="mb-20-c w-10/12 text-14px leading-20px">
                                     <div><span class="text-blue-00AFFF py-2-c">Mục tiêu: </span>{{activity.expense * 1000 | currency: "VND"}}</div>
                                     <div><span class="text-blue-00AFFF py-2-c">Đã kêu gọi: </span>{{activity.donate * 1000 | currency: "VND"}}</div>
                                     <div><span class="text-blue-00AFFF py-2-c">Diễn ra từ: </span> {{activity.start_date | date}} - {{activity.end_date | date}}</div>
                                 </div>
-                                <app-custom-button
-                                    class="float-left mr-4"
-                                    [height]="40"
-                                    [width]="120"
-                                    [text]="'Quyên góp'"
-                                    [type]="'primary'"
-                                    (click)="goToDonate(activity.id)">
-                                </app-custom-button>
                             </div>
+
+                            <app-custom-button
+                                class="float-right"
+                                [height]="40"
+                                [width]="120"
+                                [text]="'Quyên góp'"
+                                [type]="'primary'"
+                                (click)="goToDonate(activity.id)">
+                            </app-custom-button>
                         </div>
                     </div>
-                </ng-container>
+                </div>
+            </ng-container>
 
-                <!-- skeleton loader -->
-                <ng-container *ngFor="let activity of loadingArr">
-                    <div *ngIf="isLoading" class="card is-loading">
-                        <div class="image"></div>
-                        <div class="content">
+            <!-- skeleton loader -->
+            <ng-container *ngFor="let activity of loadingArr">
+                <div *ngIf="isLoading" class="article is-loading">
+                    <div class="article-image"></div>
+                    <div class="article-content">
                         <h2></h2>
                         <p></p>
-                        </div>
                     </div>
-                </ng-container>
-			</div>
-		</div>
+                </div>
+            </ng-container>
+        </div>
 
 		<div
             class="w-full text-center my-40-c"
-            *ngIf="totalCount > 5">
+            *ngIf="totalCount > activities.length">
             <app-custom-button
                 class="uppercase text-22px hover:bg-white rounded-5px"
                 [height]="40"
@@ -98,10 +73,14 @@
 			</app-custom-button>
 		</div>
 
-		<div class="py-60-c flex items-start justify-center" *ngIf="!isRegisteredInfo">
+        <!-- register info  -->
+		<div
+            class="py-60-c flex items-start justify-center"
+            *ngIf="!isRegisteredInfo">
 			<div class="w-1/3 rounded-5px overflow-hidden">
-				<img class="max-w-none w-full "
-					src="../../../../../../assets/images/app-common/orphane1.avif"
+				<img
+                    class="max-w-none w-full "
+					src="../../../../../../assets/images/app-common/banner1.jpg"
 					alt="">
 			</div>
 
@@ -112,7 +91,7 @@
 					các sự kiện, ảnh và câu chuyện về trẻ em từ những người đã đăng ký nhận bản tin từ chúng tôi và hơn thế nữa!
 				</p>
 				<app-custom-button
-					class="uppercase text-22px hover:bg-white rounded-5px"
+					class="uppercase text-22px hover:bg-white rounded-5px float-left"
 					[height]="40"
 					[text]="'Đăng kí nhận thông tin ngay'"
 					[type]="'primary'"
@@ -144,10 +123,12 @@
 		</div>
 	</div>
 
+    <!-- donate section  -->
 	<div class="article-donation">
 		<div class="h-full">
-			<img class="max-w-none w-full h-full object-cover"
-				src="../../../../../../assets/images/app-common/orphan.avif"
+			<img
+                class="max-w-none w-full h-full object-cover"
+				src="../../../../../../assets/images/app-common/banner8.jpg"
 				alt="">
 		</div>
 
@@ -183,9 +164,11 @@
 		</div>
 	</div>
 
-  <app-client-footer (onShowRegisterPopup)="visibleRegisterPopup()"></app-client-footer>
+    <!-- footer  -->
+    <app-client-footer (onShowRegisterPopup)="visibleRegisterPopup()"></app-client-footer>
 </div>
 
+<!-- Register receive infomation popup -->
 <dx-popup
 	class="register-popup-container"
 	[width]="600"

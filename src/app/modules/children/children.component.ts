@@ -1,3 +1,4 @@
+import { AppNotify } from '@app/utilities';
 import { finalize, filter } from 'rxjs/operators';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { exportDataGrid } from 'devextreme/excel_exporter';
@@ -91,6 +92,7 @@ export class ChildrenManagementComponent implements OnInit, OnDestroy {
     this.isProcessing = true;
     this.childrenService.deleteChild(this.selectedChildIds).subscribe(
         res => {
+            AppNotify.success("Xóa thông tin trẻ thành công.");
             this.childrenDataSource.reload();
             this.isProcessing = false;
         }

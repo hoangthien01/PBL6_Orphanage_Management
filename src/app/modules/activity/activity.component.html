@@ -1,14 +1,16 @@
 
-<div class="px-24-c h-full flex flex-col overflow-y-scroll relative border-custom pt-16-c mt-80-c pb-64-c">
-  <app-activities
-    *ngIf="!isShowCreatePage"
-    [isDataValid]="isDataValid"
-    (onShowCreatePage)="onShowCreatePage($event)">
-  </app-activities>
+<div class="h-full flex flex-col overflow-y-scroll relative border-custom overflow-hidden">
+    <app-activities
+        class="h-full"
+        *ngIf="!isShowCreatePage"
+        [isDataValid]="isDataValid"
+        (onShowCreatePage)="onShowCreatePage($event)"
+        (onEditActivity)="onEditActivity($event)">
+    </app-activities>
 
-  <div *ngIf="isShowCreatePage" class="text-20px font-gotham-bold py-16-c flex items-center justify-between text-blue-282E3E children-management__header">
+  <div *ngIf="isShowCreatePage" class="text-20px font-gotham-bold p-24-c flex items-center justify-between text-blue-282E3E children-management__header">
     <app-custom-button
-        class="mx-16-c w-80-c cursor-pointer"
+        class="w-80-c cursor-pointer"
         [height]="35"
         [text]="'Quay lại'"
         [type]="'primary-outline'"
@@ -24,10 +26,10 @@
       </app-custom-button>
 
       <app-custom-button
-        class="ml-16 w-80-c cursor-pointer"
+        class="ml-16 cursor-pointer"
         [height]="35"
         [disabled]="!isDataValid"
-        [text]="'Đăng'"
+        [text]="isEditMode ? 'Lưu thay đổi' : 'Đăng'"
         icon="{{ isProcessing ? 'fas fa-spinner fa-spin' : '' }}"
         [type]="'primary'"
         (click)="addActivity()">
@@ -35,7 +37,7 @@
     </div>
   </div>
 
-  <div *ngIf="isShowCreatePage" class="box-properties mt-20-c">
+  <div *ngIf="isShowCreatePage" class="box-properties px-24-c">
     <dx-text-box class="field-box"
                   [inputAttr]="{ autocomplete: 'on' }"
                   placeholder="Nhập tiêu đề..."
@@ -45,7 +47,7 @@
     </dx-text-box>
   </div>
 
-  <div *ngIf="isShowCreatePage" class="mt-30-c flex-1 pb-24-c quill-editor">
+  <div *ngIf="isShowCreatePage" class="p-24-c quill-editor">
     <quill-editor
       class="quill-editor__content"
       [(ngModel)]="activity.content"

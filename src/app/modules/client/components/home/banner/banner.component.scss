@@ -2,35 +2,34 @@
 @import "jerry-variable";
 
 .banner {
-  height: 650px;
-  flex-direction: row;
-  align-items: center;
-  grid-template-columns: 1fr 1fr;
-  display: grid;
-  gap: 20px;
-  background-color: #fff;
+    height: calc(100vh - 54px);
+    align-items: center;
+    grid-template-columns: 55% 45%;
+    display: grid;
+    gap: 20px;
+    background-color: #fff;
 
-  .banner-image {
-    position: relative;
+    .banner-image {
+        position: relative;
+        border-radius: 180px 40px 180px 40px;
+        overflow: hidden;
 
-    div {
-      border-radius: 180px 40px 180px 40px;
-      background-image: url(../../../../../../assets/images/app-common/banner.jpg);
-      display: inline-block;
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 100%;
-      background-repeat: no-repeat;
-      background-position: center center;
-      max-height: 700px;
-      background-size: cover;
+        div {
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            scale: 1.2;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
     }
-  }
 
-  .banner-content {
-    padding: 60px 30px;
-    // background-color: #1CABE2;
-  }
+    .banner-content {
+        padding: 60px 30px;
+        // background-color: #1CABE2;
+    }
 }

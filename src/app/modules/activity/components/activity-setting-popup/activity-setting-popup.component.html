@@ -67,7 +67,10 @@
 
                 <div class="box-properties">
                     <div class="field-label">Ảnh bìa</div>
-                    <img class="h-200-c rounded-6px w-full object-cover" [src]="activity.cover_picture"/>
+                    <img
+                        *ngIf="activity.cover_picture"
+                        class="h-200-c rounded-6px w-full object-cover"
+                        [src]="activity.cover_picture"/>
                     <dx-file-uploader selectButtonText="Chọn ảnh"
                                       labelText=""
                                       accept="image/*"

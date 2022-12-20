@@ -44,7 +44,8 @@ import {
   DxTabsModule,
   DxPieChartModule,
   DxTreeViewModule,
-  DxSortableModule
+  DxSortableModule,
+  DxGalleryModule
 } from 'devextreme-angular';
 import { DxiColumnModule, DxoPagerModule, DxoPagingModule, DxoSelectionModule } from 'devextreme-angular/ui/nested';
 
@@ -97,6 +98,7 @@ import { DateRangePickerComponent } from './components/date-range-picker/date-ra
 import { Daterangepicker } from 'ng2-daterangepicker';
 import { AttachmentPreviewPopupComponent } from './components/attachment-preview-popup/attachment-preview-popup.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { AppTabComponent } from './components/tab-menu/tab-menu.component';
 
 const DEVEXTREME_MODULES = [
   DxDataGridModule,
@@ -143,7 +145,8 @@ const DEVEXTREME_MODULES = [
   DxPieChartModule,
   DxTreeViewModule,
   DxSortableModule,
-  Daterangepicker
+  Daterangepicker,
+  DxGalleryModule,
 ];
 
 const BASE_MODULES = [
@@ -183,7 +186,8 @@ const COMPONENTS = [
   DateRangePickerComponent,
   AttachmentPreviewPopupComponent,
   ProfileGeneralInfoComponent,
-  ChangePasswordComponent
+  ChangePasswordComponent,
+  AppTabComponent,
 ];
 
 const PIPES = [

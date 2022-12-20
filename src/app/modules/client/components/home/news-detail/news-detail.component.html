@@ -10,6 +10,7 @@
   <app-load-panel [isLoading]="isLoading"></app-load-panel>
 
   <div class="w-4/5 mx-auto py-96-c" *ngIf="activity">
+    <img class="w-full object-cover max-h-200-c rounded-8px" [src]="activity.cover_picture" alt="" srcset="">
     <div class="flex items-center">
       <div class="text-14px uppercase my-28-c text-black-555 flex items-center">
         <app-svg-icon

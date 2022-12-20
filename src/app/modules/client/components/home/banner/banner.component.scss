@@ -2,10 +2,9 @@
 @import "jerry-variable";
 
 .banner {
-    height: 650px;
-    flex-direction: row;
+    height: calc(100vh - 54px);
     align-items: center;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 55% 45%;
     display: grid;
     gap: 20px;
     background-color: #fff;
@@ -16,17 +15,15 @@
         overflow: hidden;
 
         div {
-            //   background-image: url(../../../../../../assets/images/app-common/banner1.jpg);
             display: inline-block;
             position: absolute;
             left: 0;
             scale: 1.2;
             top: 0;
-            height: 100%;
+            bottom: 0;
             width: 100%;
             background-repeat: no-repeat;
             background-position: center center;
-            max-height: 700px;
             background-size: cover;
         }
     }

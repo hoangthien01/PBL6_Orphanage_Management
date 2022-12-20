@@ -80,6 +80,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
 
     goBack() {
         this.isShowCreatePage = false;
+        this.activity = new ActivityModel();
     }
 
     onShowCreatePage(id?: string) {

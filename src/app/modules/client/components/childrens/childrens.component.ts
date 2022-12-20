@@ -67,12 +67,12 @@ export class ChildrensComponent implements OnDestroy, OnInit {
         .pipe(
             finalize(() => {
                 this.loadingVisible = false;
-                this.isRegistered = true;
                 this.changeDetector.detectChanges();
             })
         )
         .subscribe(
             res => {
+                this.isRegistered = true;
             }
         )
     }

@@ -144,6 +144,7 @@
         [visible]="true"
         confirmButtonTitle="Yes"
         cancelButtonTitle="Cancel"
+        (onHiding)="isApprovePopup = false"
         (onConfirm)="onApproveRequest($event)">
         <p>Bạn có chắc chắn chấp nhận yêu cầu này?.</p>
     </app-popup-confirmation>
@@ -156,6 +157,7 @@
         [(visible)]="isRejectPopup"
         confirmButtonTitle="Yes"
         cancelButtonTitle="Cancel"
+        (onHiding)="isRejectPopup = false"
         (onConfirm)="onRejectRequest($event)">
         <p>Bạn có chắc chắn từ chối yêu cầu này? <br> Bạn không thể hoàn tác hành động này.</p>
     </app-popup-confirmation>
@@ -168,6 +170,7 @@
         [(visible)]="isCancelPopup"
         confirmButtonTitle="Yes"
         cancelButtonTitle="Cancel"
+        (onHiding)="isCancelPopup = false"
         (onConfirm)="onCancelInvite($event)">
         <p>Bạn có chắc chắn hủy yêu cầu này? <br> Bạn không thể hoàn tác hành động này.</p>
     </app-popup-confirmation>

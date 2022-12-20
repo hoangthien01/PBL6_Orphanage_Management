@@ -53,7 +53,7 @@ export class UserService {
         return this.baseService.post(`user/action/forgot_password`, data);
     }
 
-    sendInfo(data: SendInfoModel): Observable<string> {
+    sendInfo(data?: SendInfoModel): Observable<string> {
         return this.baseService.post(`user/action/register_email`, data);
     }
 

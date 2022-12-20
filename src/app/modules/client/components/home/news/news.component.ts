@@ -11,7 +11,8 @@ import { ActivitiesSelectors } from '@app/core/store/activities/activities.selec
 import { UserService } from '@app/modules/account-setting/services/user.service';
 import { SendInfoModel } from '@app/modules/client/models/send-info.model';
 import { AppNotify } from '@app/utilities';
-import { UserSelectors } from "@app/core/store";
+import { UserSelectors, UserStorage } from "@app/core/store";
+import { SetAccountIsRegisterd } from '@app/core/store/user/user.actions';
 
 @Component({
     selector: 'app-news',
@@ -101,6 +102,15 @@ export class NewsComponent implements OnDestroy {
     }
 
     visibleRegisterPopup() {
+        if (!!UserStorage.isLoggedIn()) {
+            this.userService.sendInfo(this.sendData)
+            .subscribe((res) => {
+                this.isRegisteredInfo = true;
+                this.store.dispatch(new SetAccountIsRegisterd(true));
+                AppNotify.success('Đăng kí nhận thông tin thành công.');
+            })
+            return;
+        }
         this.isShowRegisterPopup = !this.isShowRegisterPopup;
     }
 

@@ -237,6 +237,16 @@ export class UserState implements NgxsOnInit {
             }
         });
     }
+
+    @Action(UserActions.SetAccountIsRegisterd)
+    setIsRegisteredInfo(context: StateContext<AuthResultModel>, { payload }: UserActions.SetAccountIsRegisterd) {
+        context.patchState({
+            user: {
+                ...context.getState().user,
+                is_vip_donor: payload,
+            }
+        });
+    }
     //#endregion
 
     //#region Actions

@@ -22,6 +22,7 @@ export enum UserActionType {
     // Actions
     START_ONBOARDING = '[Account] Start Onboarding',
     OPEN_NEW_TAB_WITH_ANOTHER_ACCOUNT = '[Account] Open New Tab With Another Account',
+    SET_IS_REGISTERED_INFO = '[Account] Set Is Register'
 }
 
 export enum SetUpNewAuthResultType {
@@ -122,6 +123,13 @@ export class UpdateAccountIsOnboarded {
     }
 }
 
+export class SetAccountIsRegisterd {
+    static readonly type = UserActionType.SET_IS_REGISTERED_INFO;
+
+    constructor(public readonly payload: boolean) {
+    }
+}
+
 
 /**
  * Actions
@@ -153,4 +161,5 @@ export type UserActions =
     | UpdateAccountIsRequiredToRegisterA2P
     | UpdateAccountIsOnboarded
     | StartOnboarding
+    | SetAccountIsRegisterd
     | OpenNewTabWithAnotherAccount;

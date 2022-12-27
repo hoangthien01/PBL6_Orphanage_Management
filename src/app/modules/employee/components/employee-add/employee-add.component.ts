@@ -92,7 +92,7 @@ export class EmployeeAddComponent implements OnInit, OnDestroy {
 
     checkIsDataValid(): boolean {
         if ((!this.child.name || !this.child.name.trim())
-            || !this.child.age || !this.child.gender) {
+            || !this.child.phone || !this.child.gender) {
             return false;
         }
         return true;
@@ -120,10 +120,9 @@ export class EmployeeAddComponent implements OnInit, OnDestroy {
         console.log('file', this.file);
         const data = {
           name: this.child.name,
-          age: this.child.age.toString(),
+          email: this.child.email,
           gender: this.child.gender.toString(),
-          personal_picture: this.file[0]
-
+          phone: this.child.phone,
         }
         this.isProcessing = true;
         this.employeeService.addEmployee(data)
@@ -131,19 +130,22 @@ export class EmployeeAddComponent implements OnInit, OnDestroy {
               this.isProcessing = false;
               this.cdr.detectChanges();
             }))
-            .subscribe(res => {
-                if (res) {
-                    AppNotify.success(AppNotify.generateSuccessMessage('child', 'added'));
-                    if (isKeepPopup) {
-                        this.resetPopup();
-                        this.focusToFirstNameTextBox();
-                    } else {
-                        this.hidePopup();
+            .subscribe(
+                res => {
+                    if (res) {
+                        AppNotify.success(AppNotify.generateSuccessMessage('Employee', 'added'));
+                        if (isKeepPopup) {
+                            this.resetPopup();
+                            this.hidePopup();
+                            // this.focusToFirstNameTextBox();
+                        } else {
+                            this.hidePopup();
+                        }
+                        this.refreshGrid.emit(true);
                     }
-
-                    this.refreshGrid.emit(true);
-                }
-            });
+                },
+                (error) => AppNotify.error(error)
+            );
     }
 
     resetPopup() {

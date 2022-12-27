@@ -4,10 +4,20 @@
 .profile-general-info-page {
     position: relative;
     height: 100%;
+    padding: 16px;
 }
 
 dx-scroll-view.profile-general-info-scroll-view {
     width: calc(100vw - 240px);
+
+}
+
+::ng-deep .dx-scrollview-content {
+    height: calc(100vh - 57px) !important;
+
+    .popup-content-wrapper {
+        height: 100%;
+    }
 }
 
 .profile-general-info-wrapper {
@@ -15,8 +25,13 @@ dx-scroll-view.profile-general-info-scroll-view {
         line-height: 35px;
     }
 
+    ::ng-deep .dx-widget {
+        display: flex;
+        gap: 20px;
+    }
+
     .left-section {
-        width: 520px;
+        // width: 520px;
         margin-right: 30px;
     }
 

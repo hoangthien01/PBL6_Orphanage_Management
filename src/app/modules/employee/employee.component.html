@@ -79,8 +79,8 @@
                       [allowSorting]="true">
           </dxi-column>
 
-          <dxi-column dataField="address"
-                      [caption]="'Address'"
+          <dxi-column dataField="phone"
+                      [caption]="'Phone Number'"
                       [alignment]="'left'"
                       [allowSorting]="true">
           </dxi-column>
@@ -102,11 +102,10 @@
 </div>
 
 <ng-container *ngIf="isShowAddChildPopup">
-  <app-employee-add #addChildComponent
-                 [(visible)]="isShowAddChildPopup"
-                  >
-                 <!-- (refreshGrid)="onProspectAdded()" -->
-  </app-employee-add>
+    <app-employee-add #addChildComponent
+                    [(visible)]="isShowAddChildPopup"
+                    (refreshGrid)="onEmployeeAdded()">
+    </app-employee-add>
 </ng-container>
 
 <ng-container *ngIf="isShowChildDetailPopup">

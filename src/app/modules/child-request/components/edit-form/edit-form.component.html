@@ -2,9 +2,9 @@
 </app-load-panel>
 
 <div class="profile-general-info-page">
-    <div *ngIf="!isLoading">
-        <div class="profile-general-info-wrapper pl-10-c pr-30-c">
-            <div class="form-wrapper">
+    <div *ngIf="!isLoading" class="h-full">
+        <div class="profile-general-info-wrapper pl-10-c pr-30-c flex flex-col h-full">
+            <div class="form-wrapper flex-1">
                 <div class="general-info-section">
                     <div class="left-section pb-20-c">
                         <div class="box-properties" appAutoFocusInput>
@@ -50,50 +50,54 @@
                             </dx-text-box>
                         </div>
 
-                        <div class="box-properties" appAutoFocusInput>
-                            <span class="field-label">Số điện thoại</span>
-                            <dx-text-box class="field-box"
-                                            [disabled]="isSaving"
-                                            [placeholder]="'0013131....'"
-                                            [valueChangeEvent]="'input'"
-                                            [(value)]="requestDetail.adopter.phone"
-                                            (onValueChanged)="dataChanged()">
-                            </dx-text-box>
-                        </div>
-
-                        <div class="box-properties" appAutoFocusInput>
-                            <span class="field-label">Chức vụ</span>
-                            <dx-text-box class="field-box"
-                                            [disabled]="false"
-                                            [valueChangeEvent]="'input'"
-                                            [(value)]="requestDetail.adopter.occupation"
-                                            (onValueChanged)="dataChanged()">
-                            </dx-text-box>
-                        </div>
-
-                        <div class="box-properties">
-                            <span class="field-label">Địa chỉ Email</span>
-                            <div class="profile-general-info__email-field-container">
-                                <dx-text-box #accountEmailTextBox
-                                                class="field-box"
-                                                [disabled]="true"
-                                                [placeholder]="'Enter Email'"
+                        <div class="flex items-start justify-between gap-20-c">
+                            <div class="box-properties flex-1" appAutoFocusInput>
+                                <span class="field-label">Số điện thoại</span>
+                                <dx-text-box class="field-box"
+                                                [disabled]="isSaving"
+                                                [placeholder]="'0013131....'"
                                                 [valueChangeEvent]="'input'"
-                                                [(value)]="requestDetail.adopter.email"
+                                                [(value)]="requestDetail.adopter.phone"
+                                                (onValueChanged)="dataChanged()">
+                                </dx-text-box>
+                            </div>
+
+                            <div class="box-properties" appAutoFocusInput>
+                                <span class="field-label">Chức vụ</span>
+                                <dx-text-box class="field-box"
+                                                [disabled]="false"
+                                                [valueChangeEvent]="'input'"
+                                                [(value)]="requestDetail.adopter.occupation"
                                                 (onValueChanged)="dataChanged()">
                                 </dx-text-box>
                             </div>
                         </div>
 
-                        <div class="box-properties">
-                            <span class="field-label">Mức thu nhập</span>
-                            <dx-text-box class="field-box"
-                                            [disabled]="isSaving"
-                                            [placeholder]="'...'"
-                                            [valueChangeEvent]="'input'"
-                                            [(value)]="requestDetail.income"
-                                            (onValueChanged)="dataChanged()">
-                            </dx-text-box>
+                        <div class="flex items-start justify-between gap-20-c">
+                            <div class="box-properties flex-1">
+                                <span class="field-label">Địa chỉ Email</span>
+                                <div class="profile-general-info__email-field-container">
+                                    <dx-text-box #accountEmailTextBox
+                                                    class="field-box"
+                                                    [disabled]="true"
+                                                    [placeholder]="'Enter Email'"
+                                                    [valueChangeEvent]="'input'"
+                                                    [(value)]="requestDetail.adopter.email"
+                                                    (onValueChanged)="dataChanged()">
+                                    </dx-text-box>
+                                </div>
+                            </div>
+
+                            <div class="box-properties">
+                                <span class="field-label">Mức thu nhập</span>
+                                <dx-text-box class="field-box"
+                                                [disabled]="isSaving"
+                                                [placeholder]="'...'"
+                                                [valueChangeEvent]="'input'"
+                                                [(value)]="requestDetail.income"
+                                                (onValueChanged)="dataChanged()">
+                                </dx-text-box>
+                            </div>
                         </div>
 
                         <div class="box-properties">
@@ -118,9 +122,9 @@
                         </div>
                     </div>
                 </div>
-        </div>
+            </div>
 
-            <div class="pt-20-c pb-10-c">
+            <div class="pt-20-c pb-10-c flex items-center justify-end">
                 <app-custom-button class="mr-10-c"
                                    icon="{{ isSaving ? 'fas fa-spinner fa-spin' : '' }}"
                                    [width]="120"

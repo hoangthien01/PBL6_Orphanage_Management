@@ -39,8 +39,8 @@ const INIT_STATE: AuthResultModel = {
 @Injectable()
 export class UserState implements NgxsOnInit {
     constructor(private _router: Router,
-                private _baseService: BaseService,
-                private _permissionsService: NgxPermissionsService) {
+        private _baseService: BaseService,
+        private _permissionsService: NgxPermissionsService) {
     }
 
     //#region OnInitialized
@@ -87,8 +87,8 @@ export class UserState implements NgxsOnInit {
     //#region
     @Action(UserActions.Logout)
     logout({ dispatch }: StateContext<UserState>, { payload }: UserActions.Logout) {
-      this._permissionsService.flushPermissions();
-    dispatch(new StateResetAll());
+        this._permissionsService.flushPermissions();
+        dispatch(new StateResetAll());
         if (!!payload && !!payload.isForcedToLogOut) {
             UserStorage.removeSessionStorage();
             UserStorage.removeLocalStorage();
@@ -125,47 +125,52 @@ export class UserState implements NgxsOnInit {
     //#region Auth Result Handlers
     @Action(UserActions.SetAuthResult)
     setAuthResult(context: StateContext<AuthResultModel>, { payload }: UserActions.SetAuthResult) {
-      if (!payload.authResult) {
-        context.dispatch(new UserActions.Logout({
-          navigateToUrl: ENDPOINTS.LOGIN,
-        }));
-        return;
-      }
-      //
-      this._storeLoggedUser({
-          authResult: payload.authResult,
-          setUpNewAuthResultType: payload.setUpNewAuthResultType
-      });
-      // ngx-permissions
-      let scope = new Map();
-      let ori_data =  payload.authResult.permissions.split(' ');
-      ori_data.forEach((item) => {
-        if (!item || item == '') {
-          return;
+        if (!payload.authResult) {
+            context.dispatch(new UserActions.Logout({
+                navigateToUrl: ENDPOINTS.LOGIN,
+            }));
+            return;
         }
-        let data = item.split(':');
-        if (scope.has(data[0])) {
-          scope.get(data[0]).push(data[1]);
-        } else {
-          scope.set(data[0], new Array(data[1]));
+        //
+        this._storeLoggedUser({
+            authResult: payload.authResult,
+            setUpNewAuthResultType: payload.setUpNewAuthResultType
+        });
+        // ngx-permissions
+        let scope = new Map();
+        let ori_data = payload.authResult.permissions.split(' ');
+        ori_data.forEach((item) => {
+            if (!item || item == '') {
+                return;
+            }
+            let data = item.split(':');
+            if (scope.has(data[0])) {
+                scope.get(data[0]).push(data[1]);
+            } else {
+                scope.set(data[0], new Array(data[1]));
+            }
+        })
+        for (let [key, value] of scope) {
+            // this._ngxRolesService.addRole(key, value);
+            this._permissionsService.addPermission(value);
         }
-      })
-      for (let [key, value] of scope) {
-        // this._ngxRolesService.addRole(key, value);
-        this._permissionsService.addPermission(value);
-      }
-      // console.log('NgxRoles', this._ngxRolesService.getRoles());
-      console.log('Permissions', this._permissionsService.getPermissions());
+        // console.log('NgxRoles', this._ngxRolesService.getRoles());
+        console.log('Permissions', this._permissionsService.getPermissions());
 
-      context.patchState({
-          user: new UserLoggedInModel({
-            ...payload.authResult.profile,
-            permissions: payload.authResult.permissions,
-            email: payload.authResult.email,
+        context.patchState({
+            user: new UserLoggedInModel({
+                ...payload.authResult.profile,
+                permissions: payload.authResult.permissions,
+                email: payload.authResult.email,
+                avatar: payload.authResult.avatar,
+            }),
             avatar: payload.authResult.avatar,
-          }),
-          avatar: payload.authResult.avatar,
-      });
+        });
+        // reload to admin home if user reload page and level is admin
+        if (payload.setUpNewAuthResultType === UserActions.SetUpNewAuthResultType.ReloadPage) {
+            // window.location.href = window.location.origin + '/admin/home';
+            // this._router.navigateByUrl('/admin');
+        }
     }
 
     private _storeLoggedUser(params: { authResult: AuthResultModel; setUpNewAuthResultType: UserActions.SetUpNewAuthResultType }) {
@@ -174,35 +179,35 @@ export class UserState implements NgxsOnInit {
         localStorage.setItem(USER_ID, params.authResult.profile.id);
         // Store TokenInfo in SessionStorage and LocalStorage
         switch (params.setUpNewAuthResultType) {
-          case UserActions.SetUpNewAuthResultType.Login:
-          case UserActions.SetUpNewAuthResultType.SwitchAccount:
-          case UserActions.SetUpNewAuthResultType.AutoLogin:
-            AppStorage.storeEncodeData({
-                storage: 'session',
-                key: USER_ACCESS_TOKEN,
-                value: params.authResult.token,
-                valueType: 'string'
-            });
-            AppStorage.storeEncodeData({
-                storage: 'session',
-                key: USER_PERMISSIONS,
-                value: params.authResult.permissions,
-                valueType: 'array'
-            });
+            case UserActions.SetUpNewAuthResultType.Login:
+            case UserActions.SetUpNewAuthResultType.SwitchAccount:
+            case UserActions.SetUpNewAuthResultType.AutoLogin:
+                AppStorage.storeEncodeData({
+                    storage: 'session',
+                    key: USER_ACCESS_TOKEN,
+                    value: params.authResult.token,
+                    valueType: 'string'
+                });
+                AppStorage.storeEncodeData({
+                    storage: 'session',
+                    key: USER_PERMISSIONS,
+                    value: params.authResult.permissions,
+                    valueType: 'array'
+                });
 
-            AppStorage.storeEncodeData({
-                storage: 'local',
-                key: USER_ACCESS_TOKEN,
-                value: params.authResult.token,
-                valueType: 'string'
-            });
-            AppStorage.storeEncodeData({
-                storage: 'local',
-                key: USER_PERMISSIONS,
-                value: params.authResult.permissions,
-                valueType: 'string'
-            });
-            break;
+                AppStorage.storeEncodeData({
+                    storage: 'local',
+                    key: USER_ACCESS_TOKEN,
+                    value: params.authResult.token,
+                    valueType: 'string'
+                });
+                AppStorage.storeEncodeData({
+                    storage: 'local',
+                    key: USER_PERMISSIONS,
+                    value: params.authResult.permissions,
+                    valueType: 'string'
+                });
+                break;
         }
     }
     //#endregion

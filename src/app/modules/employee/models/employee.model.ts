@@ -4,6 +4,7 @@ export class EmployeeModel {
   name: string;
   age: number = 21;
   address: string;
+  email: string;
   avatar: string;
   birthday:string;
   created_at: string;

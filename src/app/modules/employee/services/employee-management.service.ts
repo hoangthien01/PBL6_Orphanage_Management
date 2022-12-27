@@ -24,7 +24,7 @@ export class EmployeeService {
   }
 
   addEmployee(employee: any) :Observable<EmployeeModel> {
-    return this.baseService.postFile(`user`, employee);
+    return this.baseService.post(`user/create_employee`, employee);
   }
 
   getEmployee(id: string): Observable<EmployeeModel> {

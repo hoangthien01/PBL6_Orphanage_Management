@@ -119,4 +119,8 @@ export class EmployeeManagementComponent implements OnInit, OnDestroy {
         this.employeeDetail = e.data;
         this.isShowChildDetailPopup = true;
     }
+
+    onEmployeeAdded(event: boolean) {
+        this.loadGridData();
+    }
 }

@@ -21,75 +21,80 @@ const SVG_ICONS = [
 ];
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'home',
-        component: HomeContentComponent,
-        pathMatch: 'full'
-      },
-      {
-        path: 'manage-role',
-        loadChildren: () => import('@app/modules/role-management/role-management.module').then(m => m.RoleManagementModule),
-        canActivate: [AuthGuard, NgxPermissionsGuard],
-        data: {
-          permissions: {
-            only: 'view_children_info'
-          },
-          preload: false
-        }
-      },
-      {
-        path: 'manage-children',
-        loadChildren: () => import('@app/modules/children/children.module').then(m => m.ChildrenManagementModule),
-        canActivate: [AuthGuard, NgxPermissionsGuard],
-        data: {
-          permissions: {
-            only: 'view_children_info'
-          },
-          preload: false
-        }
-      },
-      {
-        path: 'manage-employee',
-        loadChildren: () => import('@app/modules/employee/employee.module').then(m => m.EmployeeManagementModule),
-        canActivate: [AuthGuard, NgxPermissionsGuard],
-        data: {
-          permissions: {
-            only: 'view_employee_info'
-          },
-          preload: false
-        }
-      },
-      {
-        path: 'activity',
-        loadChildren: () => import('@app/modules/activity/activity.module').then(m => m.ActivityModule),
+    {
+        path: '',
+        component: HomeComponent,
         canActivate: [AuthGuard],
-        data: {
-          preload: false
-        }
-      },
-      {
-        path: 'profile',
-        loadChildren: () => import('@app/modules/profile/profile.module').then(m => m.ProfileModule),
-        canActivate: [AuthGuard],
-        data: {
-          preload: false
-        }
-      },
-      {
-        path: 'child-requests',
-        loadChildren: () => import('@app/modules/child-request/child-request.module').then(m => m.ChildRequestModule),
-        canActivate: [AuthGuard],
-        data: {
-          preload: false
-        }
-      },
-    ]
-  }
+        children: [
+            {
+                path: '',
+                component: HomeContentComponent,
+                pathMatch: 'full'
+            },
+            {
+                path: 'home',
+                component: HomeContentComponent,
+                pathMatch: 'full'
+            },
+            {
+                path: 'manage-role',
+                loadChildren: () => import('@app/modules/role-management/role-management.module').then(m => m.RoleManagementModule),
+                canActivate: [AuthGuard, NgxPermissionsGuard],
+                data: {
+                    permissions: {
+                        only: 'view_children_info'
+                    },
+                    preload: false
+                }
+            },
+            {
+                path: 'manage-children',
+                loadChildren: () => import('@app/modules/children/children.module').then(m => m.ChildrenManagementModule),
+                canActivate: [AuthGuard, NgxPermissionsGuard],
+                data: {
+                    permissions: {
+                        only: 'view_children_info'
+                    },
+                    preload: false
+                }
+            },
+            {
+                path: 'manage-employee',
+                loadChildren: () => import('@app/modules/employee/employee.module').then(m => m.EmployeeManagementModule),
+                canActivate: [AuthGuard, NgxPermissionsGuard],
+                data: {
+                    permissions: {
+                        only: 'view_employee_info'
+                    },
+                    preload: false
+                }
+            },
+            {
+                path: 'activity',
+                loadChildren: () => import('@app/modules/activity/activity.module').then(m => m.ActivityModule),
+                canActivate: [AuthGuard],
+                data: {
+                    preload: false
+                }
+            },
+            {
+                path: 'profile',
+                loadChildren: () => import('@app/modules/profile/profile.module').then(m => m.ProfileModule),
+                canActivate: [AuthGuard],
+                data: {
+                    preload: false
+                }
+            },
+            {
+                path: 'child-requests',
+                loadChildren: () => import('@app/modules/child-request/child-request.module').then(m => m.ChildRequestModule),
+                canActivate: [AuthGuard],
+                data: {
+                    preload: false
+                }
+            },
+        ]
+    }
 
 ];
 
@@ -105,22 +110,22 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-  declarations: [
-    ...COMPONENTS
-  ],
-  imports: [
-    ThemeModule,
-    RouterModule,
-    RouterModule.forChild(routes),
-    CommonModule,
-  ],
-  exports: [
-   ...COMPONENTS
-]
-  // providers: [...PROVIDERS]
+    declarations: [
+        ...COMPONENTS
+    ],
+    imports: [
+        ThemeModule,
+        RouterModule,
+        RouterModule.forChild(routes),
+        CommonModule,
+    ],
+    exports: [
+        ...COMPONENTS
+    ]
+    // providers: [...PROVIDERS]
 })
 export class HomeModule {
-  constructor(private svgIconRegistry: SvgIconsRegistry) {
-    svgIconRegistry.registerIcons(SVG_ICONS);
-  }
+    constructor(private svgIconRegistry: SvgIconsRegistry) {
+        svgIconRegistry.registerIcons(SVG_ICONS);
+    }
 }

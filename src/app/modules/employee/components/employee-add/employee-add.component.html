@@ -24,6 +24,25 @@
                 </div>
 
                 <div class="box-properties">
+                    <span class="field-label">Email</span>
+                    <dx-text-box #emailTextBox
+                                 class="field-box"
+                                 placeholder="Enter Email"
+                                 [valueChangeEvent]="'input'"
+                                 [(value)]="child.email"
+                                 (onValueChanged)="dataChanged()">
+                        <dx-validator>
+                            <dxi-validation-rule type="required"
+                                                 message="Email address is required">
+                            </dxi-validation-rule>
+                            <dxi-validation-rule type="email"
+                                                 message="Invalid email address">
+                            </dxi-validation-rule>
+                        </dx-validator>
+                    </dx-text-box>
+                </div>
+
+                <div class="box-properties">
                     <div class="field-label">Gender</div>
                     <dx-lookup #assignLookup
                                [disabled]="isProcessing"
@@ -52,16 +71,29 @@
                     </dx-lookup>
                 </div>
 
-                <div class="box-properties">
+                <!-- <div class="box-properties">
                     <div class="field-label">Age</div>
                     <dx-number-box [(value)]="child.age"
                                    [showSpinButtons]="true"
                                    [showClearButton]="true"
                                    (onValueChanged)="dataChanged()">
                     </dx-number-box>
-                </div>
+                </div> -->
 
                 <div class="box-properties">
+                    <span class="field-label">Phone Number</span>
+                    <dx-text-box #firstNameTextBox
+                                 class="field-box"
+                                 appAutoFocusInput
+                                 [disabled]="isProcessing"
+                                 valueChangeEvent="input"
+                                 placeholder="Enter Phone number"
+                                 [(value)]="child.phone"
+                                 (onValueChanged)="dataChanged()">
+                    </dx-text-box>
+                </div>
+
+                <!-- <div class="box-properties">
                     <div class="field-label">Picture</div>
                     <img
                         [src]="url"
@@ -76,7 +108,7 @@
                         [(value)]="file"
                         (change)="onFileSelected($event)">
                     </dx-file-uploader>
-                </div>
+                </div> -->
             </div>
         </dx-validation-group>
     </div>

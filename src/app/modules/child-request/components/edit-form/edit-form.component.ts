@@ -4,7 +4,7 @@ import { debounceTime, finalize } from 'rxjs/operators';
 import { isEqual, cloneDeep } from 'lodash-es';
 //
 import { COMMON_MESSAGE } from '@app/shared/message';
-import { CommonFunction } from 'src/app/utilities';
+import { AppNotify, CommonFunction } from 'src/app/utilities';
 import { CanComponentDeactivate } from '@app/core/guards';
 import { ChildRequestService } from '../../data/services/child-request.service';
 import { ChildRequestDetailModel } from '../../models/child-request.model';
@@ -84,22 +84,19 @@ export class ChildReuqestEditFormComponent implements OnInit, OnDestroy, CanComp
             return;
         }
         //
-        this.isSaving = true;
-        // this._employeeService.updateEmployee(this.employee).pipe(finalize(() => {
+        // this.isSaving = true;
+        // this.childRequestService.(this.requestDetail).pipe(finalize(() => {
         //     this.isSaving = false;
         //     this._cdr.detectChanges();
-        // })).subscribe((res) => {
-        //     AppNotify.success(AppNotify.generateSuccessMessage('profile', 'updated'));
-        //     //
-        //     this.cloneDataAfterSavingSuccess();
-        //     // this._userService.updateUserName.emit(this.profileGeneralInfo.name);
-        //     if (!this.employeeId) {
-        //       this._store.dispatch(new UserActions.UpdateUserName(res.name));
-        //     }
-        //     //
-        //     this.dataChanged();
-        // },
-        // error => AppNotify.error(error));
+        // })).subscribe(
+        //     (res) => {
+        //         AppNotify.success(AppNotify.generateSuccessMessage('Request', 'updated'));
+        //         //
+        //         this.cloneDataAfterSavingSuccess();
+        //         this.dataChanged()
+        //     },
+        //     error => AppNotify.error(error)
+        // );
     }
 
     async cancelUpdate() {

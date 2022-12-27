@@ -133,7 +133,7 @@ export class EmployeeAddComponent implements OnInit, OnDestroy {
             .subscribe(
                 res => {
                     if (res) {
-                        AppNotify.success(AppNotify.generateSuccessMessage('child', 'added'));
+                        AppNotify.success(AppNotify.generateSuccessMessage('Employee', 'added'));
                         if (isKeepPopup) {
                             this.resetPopup();
                             this.hidePopup();

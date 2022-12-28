@@ -28,7 +28,7 @@
       <app-custom-button
         class="ml-16 cursor-pointer"
         [height]="35"
-        [disabled]="!isDataValid"
+        [disabled]="!isDataValid || isProcessing"
         [text]="isEditMode ? 'Lưu thay đổi' : 'Đăng'"
         icon="{{ isProcessing ? 'fas fa-spinner fa-spin' : '' }}"
         [type]="'primary'"

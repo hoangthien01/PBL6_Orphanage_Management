@@ -37,6 +37,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
                 .pipe(finalize(() => {
                     this.isProcessing = false;
                     this.isShowCreatePage = false;
+                    this.activity = new ActivityModel();
                     this.changeDetector.detectChanges();
                 })).subscribe((res) => {
                     AppNotify.success('Cập nhật hoạt động thành công');
@@ -46,6 +47,7 @@ export class ActivityComponent implements OnInit, OnDestroy {
                 .pipe(finalize(() => {
                     this.isProcessing = false;
                     this.isShowCreatePage = false;
+                    this.activity = new ActivityModel();
                     this.changeDetector.detectChanges();
                 })).subscribe((res) => {
                     AppNotify.success('Tạo mới hoạt động thành công');

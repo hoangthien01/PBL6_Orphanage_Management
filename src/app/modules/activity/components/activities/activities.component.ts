@@ -118,4 +118,15 @@ export class ActivitiesComponent implements OnDestroy {
     onEditActivityBtnClicked(id: string) {
         this.onEditActivity.emit(id);
     }
+
+    onDeleteActivityBtnClicked(id: string) {
+        this.activityService.deleteActivity(id)
+        .pipe(
+            finalize(() => {
+                this.cdr.detectChanges();
+            })
+        ).subscribe((res) => {
+            this.getListActivities();
+        });
+    }
 }

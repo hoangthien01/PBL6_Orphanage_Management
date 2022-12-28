@@ -76,7 +76,8 @@
                                       accept="image/*"
                                       [multiple]="false"
                                       uploadMode="useForm"
-                                      [(value)]="file">
+                                      [(value)]="file"
+                                      (change)="onFileSelected($event)">
                     </dx-file-uploader>
                 </div>
             </div>

@@ -15,9 +15,11 @@ import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import { ActivitySettingPopupComponent } from './components/activity-setting-popup/activity-setting-popup.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
+import { svgIconCloseWeight } from 'src/assets/images/svg-icons.constants';
 // import "quill-emoji/dist/quill-emoji.css";
 //
 const SVG_ICONS = [
+    svgIconCloseWeight,
 ];
 
 const COMPONENTS = [

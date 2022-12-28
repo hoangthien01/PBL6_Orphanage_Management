@@ -35,4 +35,8 @@ export class ActivityService {
     updateActivity(activity: ActivityModel): Observable<ActivityModel> {
       return this.baseService.putFile(`activity/${activity.id}`, activity);
     }
+
+    deleteActivity(activityId: string): Observable<void> {
+      return this.baseService.delete(`activity/${activityId}`);
+    }
 }

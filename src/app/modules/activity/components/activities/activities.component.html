@@ -65,6 +65,17 @@
                             [name]="'icon_pencil'">
                         </app-svg-icon>
                     </div>
+
+                    <div
+                        *ngIf="isEditMode"
+                        class="absolute right-16-c top-60-c w-32-c h-32-c rounded-1/2 bg-white flex items-center justify-center"
+                        (click)="onDeleteActivityBtnClicked(activity.id)">
+                        <app-svg-icon
+                            class="text-red-CE1818"
+                            [width]="16"
+                            [name]="'icon_close_weight'">
+                        </app-svg-icon>
+                    </div>
                 </div>
             </ng-container>
 
